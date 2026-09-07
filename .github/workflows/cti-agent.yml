@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Installera beroenden
-        run: pip install feedparser
+        run: pip install feedparser requests
       - name: Kör agenten
         run: python3 agent.py
       - name: Committa uppdaterad databas
