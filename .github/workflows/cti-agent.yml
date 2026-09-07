@@ -1,8 +1,8 @@
 name: CTI Agent
 on:
   schedule:
-    - cron: '0 * * * *'   # varje heltimme
-  workflow_dispatch:        # ger dig en manuell "Run"-knapp i Actions-fliken
+    - cron: '0 * * * *'
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
