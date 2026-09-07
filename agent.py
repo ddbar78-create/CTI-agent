@@ -1,7 +1,10 @@
-
 """
 CTI-agent: hämtar RSS-flöden, extraherar IOCs, lagrar i SQLite,
 och skriver ut en kort sammanfattning.
+
+Kör:
+    python3 agent.py            # kör en gång
+    python3 agent.py --loop 3600  # kör var 3600:e sekund (loop-läge)
 """
 
 import argparse
@@ -13,6 +16,7 @@ import feedparser
 from feeds import FEEDS
 from extract import extract_iocs
 from storage import init_db, get_conn, save_article, save_iocs, recent_iocs
+from abuse_ch import run_threatfox
 
 
 def run_once():
@@ -47,6 +51,7 @@ def run_once():
 
                 total_new_articles += 1
 
+                # Extrahera IOCs ur titel + sammanfattning
                 iocs = extract_iocs(f"{title}\n{summary}")
                 if iocs:
                     save_iocs(conn, article_id, iocs)
@@ -54,8 +59,11 @@ def run_once():
                     total_new_iocs += count
                     print(f"    Ny artikel: {title[:70]}  ({count} IOCs)")
 
+    # Strukturerad, källbekräftad IOC-data från abuse.ch ThreatFox
+    run_threatfox(days=1)
+
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
-          f"{total_new_iocs} nya IOCs ===\n")
+          f"{total_new_iocs} nya IOCs (via RSS) ===\n")
 
     print("Senaste IOCs i databasen:")
     for ioc_type, value, art_title, link in recent_iocs(limit=15):
