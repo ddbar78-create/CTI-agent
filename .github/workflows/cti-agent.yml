@@ -1,32 +1,25 @@
 name: CTI Agent
-
 on:
   schedule:
     - cron: '0 * * * *'   # varje heltimme
   workflow_dispatch:        # ger dig en manuell "Run"-knapp i Actions-fliken
-
 permissions:
   contents: write
-
 jobs:
   collect:
     runs-on: ubuntu-latest
     steps:
       - name: Checka ut repot
         uses: actions/checkout@v4
-
       - name: Sätt upp Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Installera beroenden
         run: pip install feedparser
-
       - name: Kör agenten
         run: python3 agent.py
-
-        - name: Committa uppdaterad databas
+      - name: Committa uppdaterad databas
         run: |
           git config user.name "CTI Agent Bot"
           git config user.email "actions@github.com"
