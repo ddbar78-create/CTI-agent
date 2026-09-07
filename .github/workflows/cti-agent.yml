@@ -26,10 +26,10 @@ jobs:
       - name: Kör agenten
         run: python3 agent.py
 
-      - name: Committa uppdaterad databas
+        - name: Committa uppdaterad databas
         run: |
           git config user.name "CTI Agent Bot"
           git config user.email "actions@github.com"
           git add cti.db
           git diff --staged --quiet || git commit -m "Uppdatera IOC-databas"
-          git push
+          git push origin HEAD:${{ github.ref_name }}
