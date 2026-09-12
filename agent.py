@@ -15,8 +15,14 @@ import feedparser
 
 from feeds import FEEDS
 from extract import extract_iocs
-from storage import init_db, get_conn, save_article, save_iocs, recent_iocs
+from storage import (
+    init_db, get_conn, save_article, save_iocs, recent_iocs,
+    save_llm_enrichment,
+)
 from abuse_ch import run_threatfox
+from llm_extract import enrich_article
+from telegram_scan import run_telegram
+from telegram_channels import CHANNELS as TELEGRAM_CHANNELS
 
 
 def run_once():
@@ -51,16 +57,30 @@ def run_once():
 
                 total_new_articles += 1
 
-                # Extrahera IOCs ur titel + sammanfattning
+                # Regex-baserade IOCs (snabbt, gratis, men brusigt)
                 iocs = extract_iocs(f"{title}\n{summary}")
                 if iocs:
                     save_iocs(conn, article_id, iocs)
                     count = sum(len(v) for v in iocs.values())
                     total_new_iocs += count
                     print(f"    Ny artikel: {title[:70]}  ({count} IOCs)")
+                else:
+                    print(f"    Ny artikel: {title[:70]}")
+
+                # LLM-baserad kontext (hotaktör, TTPs, sektor, allvarlighet)
+                enrichment = enrich_article(title, summary)
+                if enrichment:
+                    save_llm_enrichment(conn, article_id, enrichment)
+                    if enrichment.get("is_relevant"):
+                        actor = enrichment.get("threat_actor") or "okänd aktör"
+                        severity = enrichment.get("severity", "okänd")
+                        print(f"      -> LLM: {actor}, allvarlighet: {severity}")
 
     # Strukturerad, källbekräftad IOC-data från abuse.ch ThreatFox
     run_threatfox(days=1)
+
+    # Publika Telegram-kanaler (se telegram_channels.py för konfiguration)
+    run_telegram(TELEGRAM_CHANNELS)
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
