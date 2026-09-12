@@ -1,4 +1,3 @@
-
 """
 Hämtar strukturerade, verifierade IOCs från abuse.ch ThreatFox.
 Till skillnad från RSS+regex-extraktionen i agent.py är det här riktig,
@@ -9,6 +8,7 @@ API-dokumentation: https://threatfox.abuse.ch/api/
 Ingen API-nyckel krävs för att läsa ut senaste IOCs.
 """
 
+import os
 import time
 import sys
 
@@ -21,10 +21,20 @@ THREATFOX_API = "https://threatfox-api.abuse.ch/api/v1/"
 
 def fetch_threatfox(days: int = 1) -> list:
     """Hämtar IOCs från de senaste N dagarna. Returnerar en lista av dicts."""
+    auth_key = os.environ.get("THREATFOX_AUTH_KEY")
+    if not auth_key:
+        print(
+            "    Ingen THREATFOX_AUTH_KEY satt — hoppar över ThreatFox. "
+            "Skaffa en gratis nyckel på https://auth.abuse.ch/",
+            file=sys.stderr,
+        )
+        return []
+
     try:
         resp = requests.post(
             THREATFOX_API,
             json={"query": "get_iocs", "days": days},
+            headers={"Auth-Key": auth_key},
             timeout=30,
         )
         resp.raise_for_status()
