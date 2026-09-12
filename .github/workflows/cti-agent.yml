@@ -19,6 +19,8 @@ jobs:
         run: pip install feedparser requests
       - name: Kör agenten
         run: python3 agent.py
+        env:
+          THREATFOX_AUTH_KEY: ${{ secrets.THREATFOX_AUTH_KEY }}
       - name: Committa uppdaterad databas
         run: |
           git config user.name "CTI Agent Bot"
