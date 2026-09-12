@@ -18,6 +18,12 @@ from storage import get_conn, save_article, save_iocs
 
 THREATFOX_API = "https://threatfox-api.abuse.ch/api/v1/"
 
+# Lägsta confidence-nivå (0-100) för att en IOC ska sparas.
+# ThreatFox sätter ofta 50 på "Unknown Loader"-poster med osäker attribution;
+# 75 ger en bra balans mellan täckning och precision. Höj till 90-100 om du
+# bara vill ha de säkraste träffarna.
+MIN_CONFIDENCE = 75
+
 
 def fetch_threatfox(days: int = 1) -> list:
     """Hämtar IOCs från de senaste N dagarna. Returnerar en lista av dicts."""
@@ -74,15 +80,28 @@ def run_threatfox(days: int = 1):
             return
 
         grouped = {}
+        skipped_low_confidence = 0
         for entry in entries:
+            confidence = entry.get("confidence_level", 0) or 0
+            if confidence < MIN_CONFIDENCE:
+                skipped_low_confidence += 1
+                continue
+
             ioc_type = entry.get("ioc_type", "unknown")
             value = entry.get("ioc", "")
             malware = entry.get("malware_printable", "okänd")
-            confidence = entry.get("confidence_level", "?")
             # Vi berikar värdet med kontext direkt i strängen, så att det syns
             # även i den enkla text-baserade vyn (t.ex. i GitHub Actions-loggen).
             enriched = f"{value}  [{malware}, confidence {confidence}]"
             grouped.setdefault(ioc_type, set()).add(enriched)
+
+        if skipped_low_confidence:
+            print(f"    Hoppade över {skipped_low_confidence} IOCs under "
+                  f"confidence {MIN_CONFIDENCE}")
+
+        if not grouped:
+            print("    Inga IOCs klarade confidence-filtret.")
+            return
 
         save_iocs(conn, article_id, grouped)
         total = sum(len(v) for v in grouped.values())
