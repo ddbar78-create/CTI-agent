@@ -55,6 +55,12 @@ CREATE TABLE IF NOT EXISTS cve_enrichment (
     summary TEXT,
     checked_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS domain_enrichment (
+    domain TEXT PRIMARY KEY,
+    related_domains TEXT,
+    checked_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -244,6 +250,33 @@ def save_cve_enrichment(conn, cve_id: str, cvss, epss, kev: bool,
             summary = excluded.summary, checked_at = CURRENT_TIMESTAMP
         """,
         (cve_id, cvss, epss, int(bool(kev)), ransomware_campaign, summary),
+    )
+
+
+def get_unenriched_domains(db_path: str = DB_PATH, limit: int = 15) -> list:
+    """Hittar domäner från iocs-tabellen som ännu inte slagits upp mot crt.sh."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT DISTINCT value FROM iocs WHERE ioc_type = 'domain'")
+        all_domains = {row[0].strip().lower() for row in cur.fetchall() if row[0]}
+
+        cur.execute("SELECT domain FROM domain_enrichment")
+        already_checked = {row[0] for row in cur.fetchall()}
+
+    return list(all_domains - already_checked)[:limit]
+
+
+def save_domain_enrichment(conn, domain: str, related_domains: list):
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT INTO domain_enrichment (domain, related_domains)
+        VALUES (?, ?)
+        ON CONFLICT(domain) DO UPDATE SET
+            related_domains = excluded.related_domains,
+            checked_at = CURRENT_TIMESTAMP
+        """,
+        (domain, ", ".join(related_domains)),
     )
 
 
