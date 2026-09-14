@@ -27,6 +27,7 @@ from ransomware_live import run_ransomware_live
 from notify import notify
 from generate_report import generate_report
 from retention import prune_old_data
+from shodan_lookup import run_shodan_enrichment
 
 
 def run_once():
@@ -91,6 +92,9 @@ def run_once():
 
     # Vad ransomware-grupper själva offentliggör om sina offer
     new_victims = run_ransomware_live()
+
+    # Berika insamlade IP-adresser med öppna portar/CVE:er (Shodan InternetDB)
+    run_shodan_enrichment()
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
