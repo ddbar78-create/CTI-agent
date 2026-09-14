@@ -28,6 +28,7 @@ from notify import notify
 from generate_report import generate_report
 from retention import prune_old_data
 from shodan_lookup import run_shodan_enrichment
+from cve_priority import run_cve_enrichment
 
 
 def run_once():
@@ -93,8 +94,11 @@ def run_once():
     # Vad ransomware-grupper själva offentliggör om sina offer
     new_victims = run_ransomware_live()
 
-    # Berika insamlade IP-adresser med öppna portar/CVE:er (Shodan InternetDB)
+    # Berika insamlade IP-adresser med öppna portar/CVE:er (Shodan)
     run_shodan_enrichment()
+
+    # Prioritera CVE:er med EPSS/KEV-data (Shodan CVEDB, gratis)
+    urgent_cves = run_cve_enrichment()
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
@@ -105,6 +109,12 @@ def run_once():
 
     # --- Bygg och skicka en sammanfattande notis, bara om något är värt att flagga ---
     summary_lines = []
+
+    if urgent_cves:
+        summary_lines.append(f"🔴 {len(urgent_cves)} akuta CVE:er (KEV eller EPSS ≥ 50%):")
+        for c in urgent_cves[:10]:
+            flag = "KEV" if c["kev"] else f"EPSS {c['epss']:.0%}"
+            summary_lines.append(f"   • {c['cve_id']} ({flag})")
 
     if new_victims:
         summary_lines.append(f"🔴 {len(new_victims)} nya ransomware-offer:")
