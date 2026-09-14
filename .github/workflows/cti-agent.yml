@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Installera beroenden
-        run: pip install feedparser requests
+        run: pip install feedparser requests beautifulsoup4
       - name: Kör agenten
         run: python3 agent.py
         env:
