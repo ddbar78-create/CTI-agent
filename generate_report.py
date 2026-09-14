@@ -169,6 +169,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         """,
     )
 
+    domain_infra = _rows(
+        conn,
+        """
+        SELECT domain, related_domains FROM domain_enrichment
+        WHERE related_domains != ''
+        ORDER BY checked_at DESC LIMIT 20
+        """,
+    )
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -247,6 +256,14 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </tr>'''
         for c in cve_priorities
     ) or '<tr><td colspan="4" class="empty">Inga CVE:er prioriterade ännu.</td></tr>'
+
+    domain_infra_html = "\n".join(
+        f'''<tr>
+              <td class="mono">{_esc(d["domain"])}</td>
+              <td class="mono dim ioc-value">{_esc(d["related_domains"])}</td>
+            </tr>'''
+        for d in domain_infra
+    ) or '<tr><td colspan="2" class="empty">Ingen relaterad infrastruktur hittad ännu (byggs upp gradvis).</td></tr>'
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -445,6 +462,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="table-scroll">
       <table id="iocTable">
         <tbody>{iocs_html}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Relaterad infrastruktur (Certificate Transparency, crt.sh)</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody>{domain_infra_html}</tbody>
       </table>
     </div>
   </section>
