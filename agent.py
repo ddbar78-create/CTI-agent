@@ -23,12 +23,15 @@ from abuse_ch import run_threatfox
 from llm_extract import enrich_article
 from telegram_scan import run_telegram
 from telegram_channels import CHANNELS as TELEGRAM_CHANNELS
+from ransomware_live import run_ransomware_live
+from notify import notify
 
 
 def run_once():
     init_db()
     total_new_articles = 0
     total_new_iocs = 0
+    high_severity_hits = []  # (titel, aktör, allvarlighet) för LLM-flaggade artiklar
 
     with get_conn() as conn:
         for feed in FEEDS:
@@ -75,12 +78,17 @@ def run_once():
                         actor = enrichment.get("threat_actor") or "okänd aktör"
                         severity = enrichment.get("severity", "okänd")
                         print(f"      -> LLM: {actor}, allvarlighet: {severity}")
+                        if severity in ("high", "critical"):
+                            high_severity_hits.append((title[:80], actor, severity))
 
     # Strukturerad, källbekräftad IOC-data från abuse.ch ThreatFox
-    run_threatfox(days=1)
+    threatfox_count = run_threatfox(days=1)
 
     # Publika Telegram-kanaler (se telegram_channels.py för konfiguration)
-    run_telegram(TELEGRAM_CHANNELS)
+    telegram_count = run_telegram(TELEGRAM_CHANNELS)
+
+    # Vad ransomware-grupper själva offentliggör om sina offer
+    new_victims = run_ransomware_live()
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
@@ -88,6 +96,27 @@ def run_once():
     print("Senaste IOCs i databasen:")
     for ioc_type, value, art_title, link in recent_iocs(limit=15):
         print(f"  [{ioc_type}] {value}  <- {art_title[:50]} ({link})")
+
+    # --- Bygg och skicka en sammanfattande notis, bara om något är värt att flagga ---
+    summary_lines = []
+
+    if new_victims:
+        summary_lines.append(f"🔴 {len(new_victims)} nya ransomware-offer:")
+        for v in new_victims[:10]:
+            summary_lines.append(f"   • {v['group']} → {v['victim']} ({v['country']})")
+
+    if high_severity_hits:
+        summary_lines.append(f"🟠 {len(high_severity_hits)} artiklar med hög/kritisk allvarlighet:")
+        for title, actor, severity in high_severity_hits[:10]:
+            summary_lines.append(f"   • [{severity}] {actor}: {title}")
+
+    if threatfox_count:
+        summary_lines.append(f"🔵 {threatfox_count} nya ThreatFox-IOCs (confidence ≥ 75)")
+
+    if telegram_count:
+        summary_lines.append(f"🔵 {telegram_count} nya Telegram-inlägg")
+
+    notify(summary_lines)
 
 
 def main():
