@@ -91,6 +91,10 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
 
     stats = _rows(conn, "SELECT COUNT(*) AS n FROM articles")[0]["n"]
     ioc_stats = _rows(conn, "SELECT COUNT(*) AS n FROM iocs")[0]["n"]
+    full_text_count = _rows(
+        conn,
+        "SELECT COUNT(*) AS n FROM articles WHERE full_text IS NOT NULL AND full_text != ''",
+    )[0]["n"]
 
     ioc_type_breakdown = _rows(
         conn,
@@ -133,7 +137,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     recent_articles = _rows(
         conn,
         """
-        SELECT feed, title, link, published, fetched_at
+        SELECT feed, title, link, published, fetched_at,
+               (full_text IS NOT NULL AND full_text != '') AS has_full_text
         FROM articles
         WHERE feed != 'ransomware.live' AND feed NOT LIKE 'ThreatFox%'
         ORDER BY id DESC LIMIT 40
@@ -209,9 +214,10 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         f'''<tr>
               <td class="dim">{_esc(a["feed"])}</td>
               <td><a href="{_esc(a["link"])}" target="_blank" rel="noopener">{_esc(a["title"])}</a></td>
+              <td>{'<span class="badge badge-full-text">Fulltext</span>' if a["has_full_text"] else '<span class="dim">—</span>'}</td>
             </tr>'''
         for a in recent_articles
-    ) or '<tr><td colspan="2" class="empty">Inga artiklar ännu.</td></tr>'
+    ) or '<tr><td colspan="3" class="empty">Inga artiklar ännu.</td></tr>'
 
     shodan_html = "\n".join(
         f'''<tr>
@@ -346,6 +352,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   }}
   .badge-high {{ background: rgba(232,163,61,0.15); color: var(--amber); }}
   .badge-critical {{ background: rgba(217,83,79,0.18); color: var(--red); }}
+  .badge-full-text {{ background: rgba(91,141,214,0.15); color: var(--blue); }}
   .bar-row {{ display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem; }}
   .bar-label {{ width: 90px; flex-shrink: 0; color: var(--text-dim); font-family: var(--mono); }}
   .bar-track {{ flex: 1; background: var(--panel-border); border-radius: 3px; height: 8px; overflow: hidden; }}
@@ -386,6 +393,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="stat"><div class="stat-num">{ioc_stats}</div><div class="stat-label">IOCs totalt</div></div>
     <div class="stat"><div class="stat-num">{len(ransomware_victims)}</div><div class="stat-label">Senaste ransomware-offer</div></div>
     <div class="stat"><div class="stat-num">{len(high_severity)}</div><div class="stat-label">High/critical (LLM)</div></div>
+    <div class="stat"><div class="stat-num">{full_text_count}</div><div class="stat-label">Artiklar med fulltext hämtad</div></div>
   </div>
 
   <section>
