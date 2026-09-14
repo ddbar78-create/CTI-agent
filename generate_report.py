@@ -1,4 +1,3 @@
-
 """
 Genererar index.html — en fristående instrumentpanel över allt agenten
 samlat in. Ingen server, inget ramverk, bara en enda HTML-fil med
@@ -27,6 +26,64 @@ def _rows(conn, query, params=()):
 
 def _esc(value) -> str:
     return html.escape(str(value)) if value is not None else ""
+
+
+def _svg_trend_chart(dates: list, series: dict, width: int = 1000, height: int = 200) -> str:
+    """
+    Bygger en enkel, beroendefri SVG-linjegraf.
+    series: {namn: (lista_med_värden, färg)} — alla listor måste vara lika
+    långa som dates. Varje anrop ritar sin egen skala (max = högsta värdet
+    bland de serier som skickas in), så ge inte in serier med väldigt olika
+    storleksordning i samma anrop — dela upp i flera diagram istället.
+    """
+    if not dates:
+        return '<p class="empty">Ingen trenddata ännu — kommer synas efter några dagars körning.</p>'
+
+    all_values = [v for values, _ in series.values() for v in values]
+    max_val = max(all_values) if any(all_values) else 1
+
+    n = len(dates)
+    pad_l, pad_r, pad_t, pad_b = 45, 15, 15, 28
+    plot_w = width - pad_l - pad_r
+    plot_h = height - pad_t - pad_b
+
+    def px(i):
+        return pad_l + (i / max(n - 1, 1)) * plot_w
+
+    def py(v):
+        return pad_t + plot_h - (v / max_val) * plot_h
+
+    parts = [
+        f'<line x1="{pad_l}" y1="{pad_t}" x2="{pad_l}" y2="{height - pad_b}" stroke="#262d3a" />',
+        f'<line x1="{pad_l}" y1="{height - pad_b}" x2="{width - pad_r}" y2="{height - pad_b}" stroke="#262d3a" />',
+        f'<text x="4" y="{pad_t + 4}" font-size="10" fill="#7a8394">{max_val}</text>',
+    ]
+
+    for values, color in series.values():
+        points = " ".join(f"{px(i):.1f},{py(v):.1f}" for i, v in enumerate(values))
+        parts.append(f'<polyline fill="none" stroke="{color}" stroke-width="2" points="{points}" />')
+        for i, v in enumerate(values):
+            if v:
+                parts.append(f'<circle cx="{px(i):.1f}" cy="{py(v):.1f}" r="2.5" fill="{color}" />')
+
+    step = max(1, n // 8)
+    for i in range(0, n, step):
+        parts.append(
+            f'<text x="{px(i):.1f}" y="{height - 6}" font-size="10" fill="#7a8394" '
+            f'text-anchor="middle">{_esc(dates[i][5:])}</text>'
+        )
+
+    legend = "".join(
+        f'<span class="legend-item"><span class="legend-dot" style="background:{color}"></span>{_esc(name)}</span>'
+        for name, (_, color) in series.items()
+    )
+
+    return (
+        f'<svg viewBox="0 0 {width} {height}" width="100%" height="{height}">'
+        + "".join(parts)
+        + "</svg>"
+        + f'<div class="legend">{legend}</div>'
+    )
 
 
 def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
@@ -83,6 +140,12 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         """,
     )
 
+    daily_rows = _rows(
+        conn,
+        "SELECT * FROM daily_counts ORDER BY date DESC LIMIT 30",
+    )
+    daily_rows = list(reversed(daily_rows))
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -135,6 +198,24 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
         f'<option value="{_esc(t)}">{_esc(t)}</option>' for t in ioc_types_for_filter
+    )
+
+    # Två separata diagram — ThreatFox har helt annan skala (tusentals/dag)
+    # än de övriga källorna, så en gemensam graf skulle trycka ner de senare
+    # till en osynlig platt linje.
+    trend_dates = [r["date"] for r in daily_rows]
+    threatfox_chart_html = _svg_trend_chart(
+        trend_dates,
+        {"ThreatFox": ([r["new_iocs_threatfox"] for r in daily_rows], "#e8a33d")},
+    )
+    other_sources_chart_html = _svg_trend_chart(
+        trend_dates,
+        {
+            "RSS-artiklar": ([r["new_articles"] for r in daily_rows], "#5b8dd6"),
+            "RSS/regex-IOCs": ([r["new_iocs_regex"] for r in daily_rows], "#8b6fd6"),
+            "Telegram": ([r["new_telegram"] for r in daily_rows], "#4fb3a9"),
+            "Ransomware-offer": ([r["new_ransomware_victims"] for r in daily_rows], "#d9534f"),
+        },
     )
 
     html_doc = f"""<!DOCTYPE html>
@@ -223,6 +304,13 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .bar-track {{ flex: 1; background: var(--panel-border); border-radius: 3px; height: 8px; overflow: hidden; }}
   .bar-fill {{ background: var(--amber); height: 100%; }}
   .bar-count {{ width: 45px; text-align: right; font-family: var(--mono); color: var(--text-dim); font-size: 0.8rem; }}
+  .legend {{ display: flex; gap: 1.25rem; margin-top: 0.6rem; font-size: 0.8rem; color: var(--text-dim); }}
+  .legend-item {{ display: flex; align-items: center; }}
+  .legend-dot {{ display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; }}
+  .chart-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }}
+  .chart-panel {{ background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px; padding: 1rem; }}
+  .chart-title {{ font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem; }}
+  @media (max-width: 700px) {{ .chart-grid {{ grid-template-columns: 1fr; }} }}
   select, input[type="search"] {{
     background: var(--panel);
     border: 1px solid var(--panel-border);
@@ -252,6 +340,20 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="stat"><div class="stat-num">{len(ransomware_victims)}</div><div class="stat-label">Senaste ransomware-offer</div></div>
     <div class="stat"><div class="stat-num">{len(high_severity)}</div><div class="stat-label">High/critical (LLM)</div></div>
   </div>
+
+  <section>
+    <h2>Trend, senaste {len(daily_rows)} dagarna</h2>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-title">ThreatFox (hög volym)</div>
+        {threatfox_chart_html}
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title">Övriga källor</div>
+        {other_sources_chart_html}
+      </div>
+    </div>
+  </section>
 
   <section>
     <h2>IOC-typer i databasen</h2>
