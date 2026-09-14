@@ -21,6 +21,8 @@ jobs:
         run: python3 agent.py
         env:
           THREATFOX_AUTH_KEY: ${{ secrets.THREATFOX_AUTH_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SHODAN_API_KEY: ${{ secrets.SHODAN_API_KEY }}
       - name: Committa uppdaterad databas
         run: |
           git config user.name "CTI Agent Bot"
