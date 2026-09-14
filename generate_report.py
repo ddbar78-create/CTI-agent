@@ -155,6 +155,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         """,
     )
 
+    cve_priorities = _rows(
+        conn,
+        """
+        SELECT cve_id, cvss, epss, kev, ransomware_campaign, summary
+        FROM cve_enrichment
+        ORDER BY kev DESC, epss DESC LIMIT 30
+        """,
+    )
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -213,6 +222,25 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </tr>'''
         for s in shodan_hits
     ) or '<tr><td colspan="4" class="empty">Ingen Shodan-data ännu (byggs upp gradvis, ~20 nya IP:er/körning).</td></tr>'
+
+    def _cve_badge(c):
+        if c["kev"]:
+            return '<span class="badge badge-critical">KEV — aktivt utnyttjad</span>'
+        if (c["epss"] or 0) >= 0.5:
+            return f'<span class="badge badge-high">EPSS {c["epss"]:.0%}</span>'
+        if (c["epss"] or 0) >= 0.1:
+            return f'<span class="dim mono">EPSS {c["epss"]:.0%}</span>'
+        return f'<span class="dim mono">EPSS {(c["epss"] or 0):.1%}</span>'
+
+    cve_html = "\n".join(
+        f'''<tr>
+              <td class="mono">{_esc(c["cve_id"])}</td>
+              <td>{_cve_badge(c)}</td>
+              <td class="dim">{_esc(c["cvss"]) if c["cvss"] else "—"}</td>
+              <td class="dim">{_esc((c["summary"] or "")[:90])}{"..." if c["summary"] and len(c["summary"]) > 90 else ""}</td>
+            </tr>'''
+        for c in cve_priorities
+    ) or '<tr><td colspan="4" class="empty">Inga CVE:er prioriterade ännu.</td></tr>'
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -409,6 +437,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="table-scroll">
       <table id="iocTable">
         <tbody>{iocs_html}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>CVE-prioritering (EPSS + KEV via Shodan CVEDB)</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody>{cve_html}</tbody>
       </table>
     </div>
   </section>
