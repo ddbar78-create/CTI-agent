@@ -27,6 +27,15 @@ CREATE TABLE IF NOT EXISTS iocs (
     FOREIGN KEY (article_id) REFERENCES articles(id),
     UNIQUE(article_id, ioc_type, value)
 );
+
+CREATE TABLE IF NOT EXISTS daily_counts (
+    date TEXT PRIMARY KEY,
+    new_articles INTEGER DEFAULT 0,
+    new_iocs_regex INTEGER DEFAULT 0,
+    new_iocs_threatfox INTEGER DEFAULT 0,
+    new_telegram INTEGER DEFAULT 0,
+    new_ransomware_victims INTEGER DEFAULT 0
+);
 """
 
 
@@ -85,6 +94,45 @@ def save_llm_enrichment(conn, article_id: int, enrichment: dict):
             article_id,
         ),
     )
+
+
+def record_daily_stats(conn, **kwargs):
+    """
+    Ökar dagens räknare i daily_counts med de värden som anges, t.ex.:
+    record_daily_stats(conn, new_articles=5, new_iocs_threatfox=3540)
+    Skapar dagens rad om den inte redan finns. Säkert att anropa flera
+    gånger samma dag (adderar, skriver inte över).
+    """
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO daily_counts (date) VALUES (?) ON CONFLICT(date) DO NOTHING",
+        (today,),
+    )
+    valid_columns = {
+        "new_articles", "new_iocs_regex", "new_iocs_threatfox",
+        "new_telegram", "new_ransomware_victims",
+    }
+    for key, value in kwargs.items():
+        if key in valid_columns and value:
+            cur.execute(
+                f"UPDATE daily_counts SET {key} = {key} + ? WHERE date = ?",
+                (value, today),
+            )
+
+
+def get_daily_stats(db_path: str = DB_PATH, days: int = 30) -> list:
+    """Hämtar de senaste N dagarnas summeringar, i kronologisk ordning."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT * FROM daily_counts ORDER BY date DESC LIMIT ?", (days,)
+        )
+        cols = [d[0] for d in cur.description]
+        rows = [dict(zip(cols, row)) for row in cur.fetchall()]
+    return list(reversed(rows))
 
 
 def save_article(conn, feed: str, title: str, link: str, published: str, summary: str):
