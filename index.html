@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTI-agent — instrumentpanel</title>
+<style>
+  :root {
+    --bg: #12161d;
+    --panel: #181d26;
+    --panel-border: #262d3a;
+    --text: #d7dbe3;
+    --text-dim: #7a8394;
+    --amber: #e8a33d;
+    --red: #d9534f;
+    --blue: #5b8dd6;
+    --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    margin: 0;
+    padding: 2.5rem 1.5rem 4rem;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  header { margin-bottom: 2.5rem; }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  .subtitle { color: var(--text-dim); font-size: 0.9rem; }
+  .stat-row {
+    display: flex;
+    gap: 1px;
+    margin: 1.75rem 0;
+    background: var(--panel-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .stat {
+    flex: 1;
+    background: var(--panel);
+    padding: 1rem 1.25rem;
+  }
+  .stat-num { font-size: 1.8rem; font-weight: 600; font-family: var(--mono); }
+  .stat-label { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; }
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  td { padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--panel-border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .dim { color: var(--text-dim); font-size: 0.82rem; white-space: nowrap; }
+  .mono { font-family: var(--mono); font-size: 0.83rem; }
+  .ioc-value { word-break: break-all; }
+  .empty { color: var(--text-dim); font-style: italic; padding: 1rem 0.5rem; }
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .badge-high { background: rgba(232,163,61,0.15); color: var(--amber); }
+  .badge-critical { background: rgba(217,83,79,0.18); color: var(--red); }
+  .bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem; }
+  .bar-label { width: 90px; flex-shrink: 0; color: var(--text-dim); font-family: var(--mono); }
+  .bar-track { flex: 1; background: var(--panel-border); border-radius: 3px; height: 8px; overflow: hidden; }
+  .bar-fill { background: var(--amber); height: 100%; }
+  .bar-count { width: 45px; text-align: right; font-family: var(--mono); color: var(--text-dim); font-size: 0.8rem; }
+  select, input[type="search"] {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: var(--sans);
+  }
+  .controls { display: flex; gap: 0.6rem; margin-bottom: 0.9rem; }
+  .table-scroll { max-height: 480px; overflow-y: auto; border: 1px solid var(--panel-border); border-radius: 6px; }
+  .table-scroll table { font-size: 0.85rem; }
+  .table-scroll td:first-child { padding-left: 0.9rem; }
+  footer { color: var(--text-dim); font-size: 0.78rem; margin-top: 3rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>CTI-agent — instrumentpanel</h1>
+    <div class="subtitle">Senast uppdaterad 2026-09-14 08:08 UTC · körs automatiskt varje timme</div>
+  </header>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">318</div><div class="stat-label">Artiklar/poster totalt</div></div>
+    <div class="stat"><div class="stat-num">10083</div><div class="stat-label">IOCs totalt</div></div>
+    <div class="stat"><div class="stat-num">25</div><div class="stat-label">Senaste ransomware-offer</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">High/critical (LLM)</div></div>
+  </div>
+
+  <section>
+    <h2>IOC-typer i databasen</h2>
+    <div class="bar-row">
+              <span class="bar-label">sha256_hash</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+              <span class="bar-count">5527</span>
+            </div>
+<div class="bar-row">
+              <span class="bar-label">domain</span>
+              <div class="bar-track"><div class="bar-fill" style="width:41%"></div></div>
+              <span class="bar-count">2247</span>
+            </div>
+<div class="bar-row">
+              <span class="bar-label">ip:port</span>
+              <div class="bar-track"><div class="bar-fill" style="width:18%"></div></div>
+              <span class="bar-count">1012</span>
+            </div>
+<div class="bar-row">
+              <span class="bar-label">url</span>
+              <div class="bar-track"><div class="bar-fill" style="width:11%"></div></div>
+              <span class="bar-count">617</span>
+            </div>
+<div class="bar-row">
+              <span class="bar-label">sha1_hash</span>
+              <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+              <span class="bar-count">326</span>
+            </div>
+<div class="bar-row">
+              <span class="bar-label">md5_hash</span>
+              <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+              <span class="bar-count">326</span>
+            </div>
+<div class="bar-row">
+              <span class="bar-label">cve</span>
+              <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
+              <span class="bar-count">28</span>
+            </div>
+  </section>
+
+  <section>
+    <h2>Senaste ransomware-offeraviseringar</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody><tr>
+              <td>direwolf: EMS1R (US)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>chaos: copeplastics.com (GB)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>Panzer: Financière d&#x27;Uzès (FR)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>direwolf: Sales Boomerang (US)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: mcnishsteel.com (CA)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: recoverycafe.org (US)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: hbpro.pt (PT)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: gsngestion.es (ES)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: cenmar-manila.com (PH)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: gayafores.es (ES)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: assiprime.it (IT)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: cannonpuntana.com (AR)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: reichenau.at (AT)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>safepay: palmettoeyeinstitute.com (US)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>play: GT Distributors (US)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>play: Red Star Oil (RS)</td>
+              <td class="dim">2026-09-08</td>
+            </tr>
+<tr>
+              <td>akira: Kyodo USA (US)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>incransom: cullottalaw.com (US)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>qilin: Mitsuwa Trading Co., Ltd (JP)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>AuditTeam: my***ru (RU)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>AuditTeam: ki***jp (JP)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>pear: Foss Inc. (US)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>incransom: https://mediengruppethiel.de/ (DE)</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>anubis: Gellibrand Support Services ()</td>
+              <td class="dim">2026-09-09</td>
+            </tr>
+<tr>
+              <td>emperador: Universal Starch-Chem Allied Ltd (IN)</td>
+              <td class="dim">2026-09-09</td>
+            </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hög/kritisk allvarlighet (LLM-flaggat)</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody><tr><td colspan="4" class="empty">Inga high/critical-flaggade artiklar ännu (kräver ANTHROPIC_API_KEY).</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Senaste IOCs</h2>
+    <div class="controls">
+      <select id="typeFilter" onchange="filterIocs()">
+        <option value="">Alla typer</option>
+        <option value="cve">cve</option>
+<option value="domain">domain</option>
+<option value="ip:port">ip:port</option>
+<option value="md5_hash">md5_hash</option>
+<option value="sha1_hash">sha1_hash</option>
+<option value="sha256_hash">sha256_hash</option>
+<option value="url">url</option>
+      </select>
+      <input type="search" id="iocSearch" placeholder="Sök värde..." oninput="filterIocs()">
+    </div>
+    <div class="table-scroll">
+      <table id="iocTable">
+        <tbody><tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">b0fdb40d42afdc880bec986cd6544f3e  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">7868f2ac2276680a3ddcc0ef9f886650  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">ade728b0cb639b612376ca8938c8f997  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">9e68f8d5e235ba07f491dff13b7288ba  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">5a71e6c07c13f03c7839b0631013d91f  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">7bcf228c5f9acc5fce436dd87d6cfff7  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">6ff3cc67b35a5caed0468ea9352506e9  [XWorm, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">2802ea1cdae9c7fa53102624db92edb3  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">ecbe908227806271221254ce5dd73a09  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">210dec80108947825532a4d552b2c871  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">9d56be0a712cfcf3dd4338156269acb0  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">22cebd3ccdd8efab543383d38df54381  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">1e6554b354c80d2206444e71567bc9b2  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">c3a9a58d2cf4420197ebcf473a2006a2  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">c9728efa849979820dd1172ac7b90776  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">7d416b5043b39130e356bd387d565f99  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">b82bc571bf628d692482af7b38cd16aa  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">4211f5d4d9264c88206fe09564fb41c5  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">9dec70452ff18da2864430e1ab25b645  [MASS Logger, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">b98605e011d192ae414588870af2bbd1  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">58eadcc3e89bed96bdc171d7ce9d36df  [ACR Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">5ad1b2748b02c7d9e65b4f990bdacb29  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">f956def1f761946ea00203df56cd1828  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">95f15b2bb39901645985addaf2b596b5  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">be27e7f9638ffdb00fea6153fb7e5c87  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">7143db771d9cd4cc578cd3117368cbbb  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">6fc0f852c5aad2df0bbacb406447b10e  [XWorm, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">01af93c099eda51a2b46fb2108fc1e2a  [NjRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">6ff26b74fc9ec8a190966a9caa97ae39  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">a3c77141d07b9c01db06191a3fa0382b  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">aca7c39c5104d3ce16117e040783f853  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">47f3ce7738a7a1e5bfdd668a3f4e4b77  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">4461e5f60246a55d3388173bba071d81  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">82bbc9eb600a2c9b13ca9cd19bb29158  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">3638e23d5a94ceaf66a65af2d3b69a75  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">f4a21c6c2dbc446fadce7744a112cb14  [CrossRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">8409fb4eb2c25721555a20bb5b11f6e1  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">081358e7d4586ef57208d63dfa194b97  [Prometei, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">68d9d1fafb5beeeda1e47ba880142c6a  [ACR Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">115a1aafb4fcab45d56972de88c55e4e  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">610869ca82861f9dd8148f57e607d566  [Creal Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">f0e0c233b6385030953a8cdd31dfd928  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">cc4ee7a96e87e5313e8aa208e2b3c3ea  [BlackMatter, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">017d1815c562d887c711c3d5f9ca3cfa  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">43f40c6b5f12c82e6017ddb3af33d3ac  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">49fcc8e6da43194c34114fa0785ad5a8  [X-Agent, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">3a422da1c7a6d1e70cf066b71d4c5544  [Stealc, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">a408b814a64621c15f42b4ddfa92540b  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">2f142ac7959a2abdd836de4d78cac59c  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">42418e61eb3496cfc66c15efb1a9ce42  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">75cfecbb3316ad279ac4e7fd6dadaa76  [SalatStealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">9b8e765efa5ec8ec2929102723b3f754  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">c44c1362f1afd034b7f7dc32ab0b6b07  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">f06123222129e8092bda3ab9035a4fb2  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">d9debefbcf7a77436bb62a9af5dd19bd  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">6d1edb3a65fc022cfa90f9c00eb2629d  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">1f655924f90d0dd0e7a53d905f153221  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">dfb3cccf389b73c970f4c3a9e4eb0937  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">9f987de2d727ed26dde4fc094f64bf8d  [HijackLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">dc144374ec964585b6b9a1623626af99  [MASS Logger, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">65f23aadb5ef431fc71cae0c2c01701e  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">be41cf7a1e6f096175aae247e48cb98c  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">774ef6bc2f8625205611ced30bb4eee4  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">72b4cbacd5e0f967cda3a9adfd04a136  [SnappyClient, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">5297d2a177b3f632ff3c8e81555beb56  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">400d8e0397ae74edd5d3462c21cc82fd  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">161cffce699888fd263578084a863522  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">89e8142db77ae78017d70bee910bf37c  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">bf37c9919b35a2dfb460dc07f2e03f90  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">f4cb26da786b7dcf513ef3386086b566  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">d73d2bef75e819b60dc09de0ecbaaf40464c9597  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">29e30b954127321a45f327427652e8f40c4681eb  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">992fb1ab364904d82f5aa3d601fd857e0428a9bd  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">495a2f32b53ed6c08bff79a1f53f259f03ca3af1  [Stealc, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">3661749e5775824005378ec713714326cb0070e9  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">3863ac083bec3be3372a3a5498aae2d6cecceec2  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">1406c0b27cbb8d9b4d50e4eef4d5d1992a8fd566  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">325d0d64493d61375858ff812d61575ab3d5f9ae  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">1c000b83317f1905082ba29b0ac16ce5cd86af49  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">dc976f2e9eaa089b196e0fee615e0621bbdaa93b  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">fd7ec45552919baf92c37cb17b533d5eedfe5758  [NjRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">de9311c1d5d1cf8a2285a4d8b61087b1a152cd05  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e9f57b057380b8da867c57a26550ea509e5cb3e8  [CrossRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">ed586a7f9974e52935be05d9b7868f481ad3031b  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">6ab4bd351777854559511fe92d93a45178407a73  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">f765bb414697cee330ff39972b93b52693d4d355  [MASS Logger, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">1fabe05ad8cfae51c99d34b7b51e5eea6f786116  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">36dad39a9bd9bc0eff1aa85bd98d5e3184b9afd5  [X-Agent, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">a7e7feea48f60ec068a97cb3462a721ace16a61b  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">c057e76cfc4ecd745116195def18236f94cce6c3  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">a4bb6de1f82e9c8090d7837e0214a0962790a3f4  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">bddd94f94e16c8b47cdc0eb2d9dbb392547f5ae2  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">1e44ce8e1eac0996fe0be1f7c2678598fd1654ca  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">4fe4eed55d56b8579df02d0d1920e2ad2bf43bb5  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">00279fe0b46466c6e23cf9c72ac09cf95e969ec8  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">a015b91d38356069c698a75f97dff00bdc0d15ce  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">558f4fc9f5f565f15242ba80d12d28067e3655c2  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">a8e7d17e74a1b0c8cfe3b5fa7769c10eb133d83a  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">3b5c7c2a47dc4be1bf7126251441d24b72774075  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e75793e2020ba711e71248d859fc35a00a62751e  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">0c7e79e2d0ebf1b02997e9ce98c5fc9605b3d669  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">b81bdac4a08284cb86b20498403d5f0c245fd198  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">722294909baebbbd2e61ace8eb42b89170ce084b  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">d2476b5c451720dd76902b9e575f3b685d89cfc3  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">aefb2aeb4d9cf90d66785cd14d3f597c47969e12  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e1de54b8f46e5c4fa38052f0cf5891e7d35549a9  [XWorm, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">0191f69a9fe7e77b612197daca92c26e71c1ba21  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">3558294da51449fce9d596493a917f067865a798  [HijackLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">43e951b6979ab83deb90c00109d92d2af264cee8  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">dead781b601710e61b11849c0eb9143612c07999  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">49bdbe1a50188098fe24d406bdccf5807735150a  [BlackMatter, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">605b5222a62efa748a131d4e0d852b479ee8d25a  [ACR Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e4f11c4bb4353382fcac5daef0c597e4f1f22cfa  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">06804356ef8b7d3678de5a057ee0a5372c0aa73c  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">59a05e3ea01c1d732b50e1f8451facead4aaa11d  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">d58953fab52eba0d293c5190cfdb2ad9a3c1839d  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">d5a041733fb6edc3a97177c81a2a6e4ce76b1435  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">57ace338ef8783b00e494a7b5e16298dd1f4eed3  [XWorm, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">6d64daac659498745b7f76ff7f1d09e80e0eafef  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">9c9eb612a46f3344a3d7619f80a52a1483bbc66e  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">a0beb5d130c3f9e1b0ab6eb3c96d3af9afbd6eda  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">30e1a4b7b708f05c84bc1b454a662c8cdece1e2e  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">fe3fea608d434635324832fa9f19287e8e20efe5  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e70e067b32ec5848a114276f6740ccce3f0f54f9  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">5e7648ad22e07ef43cdac86178899d26a2b15f4f  [Creal Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">9cb1c1f41edf5def51ed1c18835d68722d057932  [Prometei, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">9be747385d6107419cd3dc743f0a20b511a0d9ea  [MASS Logger, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e0faaa80311ada88e8d580e2f618d0efa00aa4ee  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">1de1cb57d11bfdae49e04d78b17e8a3579af5f29  [SalatStealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">ca0114a1d5d941287431fd5f506b85df0b1d4a62  [SnappyClient, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">5771cc7002fdc049085fd20c63c7b81831682069  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">85590357f811a8f0353bc732a8774b8ef3f9f576  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">70f73fd3b046ea2e0b72dc09cfde61298a2d754e  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">870f22c415f3c9d5a599ed21c2854b688aa233a4  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">d0142333a7af8c3829c1596ac9f5d836e9ae1971  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">4eef38cda023ffa473d9aea01303fb99f45124ff  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">be5601d0a4dc2c2349135ddbced21846e7acf10d  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e662e5955b3f0b94fdf251283b553ccbaeb9c751  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">02931ea9da3100f3383a78c4276d76fc3e034907  [ACR Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">6752939901ff10fa9057c20c1926a417484d1608  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">27bcc30e9cb698c20bed734237dc3d929c34c70415ab79b90610ac698d768bf0  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">46dcb2cbab575cb8a4a8d608c70c6acdc34b18e7ffbf0c479e177a48c6822a08  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">02c7d7ffc279d2d791fac163ce8252bfb9f4fff406266fb69a4d381ab6e315e4  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">4abcd5e7df9188710db8acad440136393d8480ea33a58f6c67627eb5dbc66ec9  [MacSync, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ab456fcf30eea0dfadf5cde1ebe81dd692adbb0330660ab3d5eb9314bd292dd5  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c4057d8222ea5eef7529ea1c01727b939443a6501dcb18504ff8097b5ce476eb  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">735a93843919f13e7a64444bb33146780b66e76bf75d2e6656c7bfee27cc87a2  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5a1e3597687b64c14f2e9cbd03c75c77a72f150df6681e39dbb94b62c1eb1bdf  [MacSync, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b8e53dbb3d23570d3739c880c8e31a76c804dfcbdfac4defd726aba1ed9928bc  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b4340ceb494626014fc86a0cd1c59bb0c0ccff460b1c3e6c03f6d6a54c7ea1f7  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">73297baf09544ba19037911c2a5352069622ebdbccae2ae15d7150c718dd81f4  [CrossRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c706cda57bdedcba57008dba259b9c4e12564b7b4cc70c4b27fecd07ccaa8f51  [HijackLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d5e8fa1f1a4b3e2aabb4f7b8e2c795b380703474be49e27928b69778153e274f  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">603264cbf503d230902ee89324431bf3b81aebbdb31ca3cafe2deef0652405fc  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">446cd26639c2d1e09dd9d9edebbd7150d6d5c0f40a4f63c534430c5974a95879  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">adba27615403539d9bde6f67a578237441e48076ea62d4e895f038a6c836d2d7  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ac13d281a641dbfe19ff05dbcd9d758e567a0d608ae188d8202d53836c54095c  [MacSync, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">6492bc2bfaa40a1a4c783fde77be26cd0381038f13deacce833ae84a6dbc5712  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3e5097274c863873dfc79f315c39c30eb61e49e74db1bcee76bb372f584b9ff3  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fb3e08606ae075de90c15e1bec1cdeac4796cf5467cfe7ea4cfe07e911456aa5  [MacSync, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">6fbe2a1d1229aad5b33ee951d7cfdb4a4870e8ee342464742812d2e0c2b3c082  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">07a7afd2a891cbd8b1600d0327a6832d596b655011b9fc79265c7e068bc8fc85  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c0dc629d5ef691bd5e086bbeab9bda1ec7317795119075b3a7b0162a8806a5eb  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">17ad3b76cf99eb60d1a47c70ffc1076c68a07ed7292253389b4ebc760bbce430  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">63d87d4569a491553e14757dc267aa29ae8b606b0396dd16acc5c642f629fc7e  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">81f570ea4d714e3b7a01981c311a83b5a60684ab21c3b3352c8905543f42519f  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">1dc1f5d8863e2f4d6105a47e6aa11428668c9c604b3c55247e2bce376bdd5724  [AdaptixC2, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c8ef459350bca905aa1576c61090ac8f30cdc675a14fb81e07913b072da6fb9a  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">03115f6c0b387cc021c61632006b57859e65b25abc48923369d5caba71481544  [Formbook, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">a981fdba66721eb21e7a3c0ab18e487247bbcf97158737ab8c80e98f4ec240dd  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">01ade49da5924459befd34e293fa56b455eebc896374d259e744adc022acc5c2  [Unknown Loader, confidence 85]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fd4896cf61b676a39918f119247f3f7c746b29645e732ab09b3318f8479da728  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">024044a62ec733a0baac53d555111c796c9bb8b79eb6f39f5a7e58c430cc0954  [MacSync, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e9c9827d41d12feb1ccc270cba9f82b08da359999fb95fdaa59f45015bcc90b1  [AsyncRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c64bc9489e1711e146a6705470f5065094853bc15840ea02f0f0e38fd2552b5d  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f4a50d303d6388628bd7256cd9cf5cd7e06d2f92c902ce584ee3e53671633855  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e71180c84e4b5fd0f49090facc0ed59a9e76c1e1f79d6e880d0f1cfb44e40366  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">27c348600367b8516b28dbf599f778fb8952c416f34c21d73818a08dfd8f9f8f  [MacSync, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">837f3b41488599ff02ffc32a795c073a32143349088c97f786b910c0cbe46503  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d1585ac714ef2f5bd01e2a782c1442b188b5b0c5c068abc91ef484434bbbe8f6  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ad7829bf9fbc471369b48b47703ba4e7dbc58769a4f38285404c5c7ec6bdce16  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">2df74820b43d670dfb94f78cda9e98cdf59cbddac2fcf52d739a42f199dc49e3  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">edae3ddf216afd22d3b9774ed4f3b2b71b9da9810457791723d4982da87260e2  [Creal Stealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3a527fd6dc49c4664acdef17a2f7a0a3a576e6f96ea2b9c2e21a238d23928c44  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3ad1bdbba40ea98cc2a89e0e13ec9632cbbbc11306bc04e1203dee1513b95ce9  [Agent Tesla, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">2d5f05106b2cd88b2d6eabc7813f30a60c95823af166548c804be3e128028bf1  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e0a2c9631991fd3b5a5b4fddc8cb9075c1f3d9823c6975fc4a5de9c3ec3cafbf  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">46f4cd435ca39c8fc2f1814fd9740a7ee9716207f5351d21008672ab466149eb  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">81541906f6dce59ade5c332112ef2d2f1f5861b1d855dfb2d1a5e2b52335bddc  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b3c05142afc6d7c708c55ba7a97dbb4272f43353205e8cab7b9a8117959cc270  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c2575cfd4b69d58ff625346a1f10c30e006fc94fd24fcc131b47eb5f1e533f0e  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">54e27f31669d1d0c56514ceb76cf62bfa5c606ad3ec24cfef430837d2a01f071  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">29824d0075f3ae148c38a0ac5d1e1de2cda8cce264b6534c7e8d9ee516324ea6  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5d43f472743ec596067f96a143e0058a8bd27b119f59e2705293334c21fd05f4  [SnappyClient, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ae00173d00f74bf65aa244ebf3885ae72c264162b6945af09c1eb7360ba45c44  [Coinminer, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0f017eac0a0bd2f5c04a2be165a1f3e9d3146b9bf20e6cc7f96c183471c8802d  [Troldesh, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">a3c4caa69e343fc4f9d4cd12d62db2d8d35f492cab32eb3bd656217fbb5a2aeb  [MASS Logger, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">33808f4224a8260786123b1a662fbf6fef738031e03c6b47128c64f125e68f8b  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e203208abae204c1168a27fec04c5cf7ead97777855c36be04b8df35e1ad8df9  [SigLoader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">4c9dfdcf21998d5012eb939188ff8cd02e34d9b4ca6cc2ad477b17b333ba0553  [Unknown Loader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Senaste artiklar (RSS / Telegram)</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody><tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9437" target="_blank" rel="noopener">Big news for malware enjoyers: more malware has been pushed to prod. It is more than I can count on </a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/cisa-hackers-now-exploit-max-severity-gitlab-flaw-in-attacks/" target="_blank" rel="noopener">CISA: Hackers now exploit max severity GitLab flaw in attacks</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9436" target="_blank" rel="noopener">Working on my first ever video on goop (malware) reverse engineering and analysis.  It is extremely </a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9435" target="_blank" rel="noopener">Working on my first ever video on goop (malware) reverse engineering and analysis. It is extremely g</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9434" target="_blank" rel="noopener">BREAKING: NEW AI MODELS CONFIRM THE COW GO MOO MOO AND DUCK GOES QUACK QUACK  AI EXPERTS MEETING MON</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9433" target="_blank" rel="noopener">BREAKING: NEW AI MODELS CONFIRM THE COW GO MOO MOO AND DUCK GOES QUACK QUACK AI EXPERTS MEETING MOND</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9432" target="_blank" rel="noopener">Post attempt number four. I&#x27;m sorry to people who have notifications enabled and keep receiving noti</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9431" target="_blank" rel="noopener">Post attempt number four. I&#x27;m sorry to people who have notifications enabled and keep receiving noti</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9430" target="_blank" rel="noopener">My stinky degenerate nerds, I&#x27;m begging of you, some of you need to get a grip (key weird some, not </a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9429" target="_blank" rel="noopener">&gt; be me &gt; get dm &gt; &quot;smelly i found goop&quot; &gt; wtf i love goop (malware) &gt; sends like to GitHub &gt; downlo</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9428" target="_blank" rel="noopener">WELL, IT SURE IS STRANGE how so many of my colleagues have all SUDDENLY decided to start doing ALT+0</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9427" target="_blank" rel="noopener">WELL, IT SURE IS STRANGE how so many of my colleagues have all SUDDENLY decided to start doing ALT+0</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9426" target="_blank" rel="noopener">No goop bonking tonight  Some fucking dumbass drunk driver crashed into a telephone pole, a few bloc</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9425" target="_blank" rel="noopener">No goop bonking tonight Some fucking dumbass drunk driver crashed into a telephone pole, a few block</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9422" target="_blank" rel="noopener">&gt; get dm on telegram &gt; forget to reply &gt; check vxug email today &gt; 3,200+ emails &gt; all different emai</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9421" target="_blank" rel="noopener">&gt; get dm on telegram &gt; forget to reply &gt; check vxug email today &gt; 3,200+ emails &gt; all different emai</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9420" target="_blank" rel="noopener">&gt; be me &gt; get dm &gt; &quot;smelly i found goop&quot; &gt; wtf i love goop (malware) &gt; &quot;I lost the goop... but I fou</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9419" target="_blank" rel="noopener">&gt; ask ChatGPT what it knows about me &gt; lists stuff &gt; &quot;You demonstrate a passive interest in Windows </a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9418" target="_blank" rel="noopener">&gt; be me &gt; get dm &gt; &quot;smelly i found goop&quot; &gt; wtf i love goop (malware) &gt; &quot;I purchased some car diagnos</a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9415" target="_blank" rel="noopener">Today I decided to check in on the President of the United States and see what he&#x27;s doing on social </a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9414" target="_blank" rel="noopener">Today I decided to check in on the President of the United States and see what he&#x27;s doing on social </a></td>
+            </tr>
+<tr>
+              <td class="dim">Telegram @vxunderground</td>
+              <td><a href="https://t.me/vxunderground/9413" target="_blank" rel="noopener">I looked at this goop masquerading as the Israel government. I don&#x27;t know anything about Israeli stu</a></td>
+            </tr>
+<tr>
+              <td class="dim">SANS ISC</td>
+              <td><a href="https://isc.sans.edu/diary/rss/33334" target="_blank" rel="noopener">ISC Stormcast For Monday, September 14th, 2026 https://isc.sans.edu/podcastdetail/10092, (Mon, Sep 14th)</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-tencent-app-flaw-to-deploy-grayrabbit-malware/" target="_blank" rel="noopener">Hackers exploit Tencent app flaw to deploy GrayRabbit malware</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/attackers-use-passkey-phishing-to.html" target="_blank" rel="noopener">Attackers Use Passkey Phishing to Hijack Microsoft Cloud Accounts and Exfiltrate Data</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/cisa-adds-5-actively-exploited.html" target="_blank" rel="noopener">CISA Adds 5 Actively Exploited Artifactory, ScreenConnect, and RouterOS Flaws to KEV</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/dutch-ncsc-critical-check-point-vpn-flaws-exploitation-is-imminent/" target="_blank" rel="noopener">Dutch NCSC: Critical Check Point VPN flaws exploitation is imminent</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/when-whole-company-adopts-ai-what-it.html" target="_blank" rel="noopener">When the Whole Company Adopts AI: What It Does to Your SOC</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/openai-agents-linked-to-rubygems.html" target="_blank" rel="noopener">OpenAI Agents Linked to RubyGems Campaign That Gained RCE on RubyDoc Servers</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/hackers-abused-claude-to-extract-secrets-from-18m-android-apps/" target="_blank" rel="noopener">Hackers abused Claude to extract secrets from 1.8M Android apps</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/passkey-themed-phishing-attacks-lead-to-microsoft-365-data-theft/" target="_blank" rel="noopener">Passkey-themed phishing attacks lead to Microsoft 365 data theft</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/florida-confirms-dmv-database-breached-via-stolen-police-account/" target="_blank" rel="noopener">Florida confirms DMV database breached via stolen police account</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html" target="_blank" rel="noopener">Anthropic Says Seven China-Based AI Labs Ran Industrial-Scale Claude Distillation Attacks</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/gitlab-cvss-10-file-read-flaw-draws-in.html" target="_blank" rel="noopener">GitLab CVSS 10 File-Read Flaw Draws In-the-Wild Probes After Disclosure</a></td>
+            </tr>
+<tr>
+              <td class="dim">SANS ISC</td>
+              <td><a href="https://isc.sans.edu/diary/rss/33332" target="_blank" rel="noopener">The Self-Expanding Stolen Inference Supply Chain: An AI Agent Harvesting and Re-Serving LLM Access, (Fri, Sep 11th)</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/how-threat-actors-are-turning-trusted-ai-platforms-into-an-attack-surface/" target="_blank" rel="noopener">How Threat Actors Are Turning Trusted AI Platforms Into an Attack Surface</a></td>
+            </tr>
+<tr>
+              <td class="dim">BleepingComputer</td>
+              <td><a href="https://www.bleepingcomputer.com/news/security/artifactory-flaws-chained-in-attacks-deploying-backdoor-malware/" target="_blank" rel="noopener">Artifactory flaws chained in attacks deploying backdoor malware</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/your-critical-vulnerabilities-might-not.html" target="_blank" rel="noopener">Your Critical Vulnerabilities Might Not Be Your Biggest Risk</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/russian-state-sponsored-hackers-use.html" target="_blank" rel="noopener">Russian State-Sponsored Hackers Use Claude to Rebuild Malware After Detection</a></td>
+            </tr>
+<tr>
+              <td class="dim">The Hacker News</td>
+              <td><a href="https://thehackernews.com/2026/09/claude-used-to-automate-exploitation.html" target="_blank" rel="noopener">Claude Used to Automate Exploitation and Data Theft Across Multiple Victims</a></td>
+            </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>Genererad av cti-agent. Data från RSS-källor, ThreatFox (abuse.ch), Telegram och ransomware.live.</footer>
+</div>
+
+<script>
+function filterIocs() {
+  const type = document.getElementById('typeFilter').value.toLowerCase();
+  const search = document.getElementById('iocSearch').value.toLowerCase();
+  const rows = document.querySelectorAll('#iocTable tr[data-type]');
+  rows.forEach(row => {
+    const rowType = row.getAttribute('data-type').toLowerCase();
+    const text = row.textContent.toLowerCase();
+    const matchesType = !type || rowType === type;
+    const matchesSearch = !search || text.includes(search);
+    row.style.display = (matchesType && matchesSearch) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
