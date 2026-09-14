@@ -146,6 +146,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     )
     daily_rows = list(reversed(daily_rows))
 
+    shodan_hits = _rows(
+        conn,
+        """
+        SELECT ip, ports, hostnames, vulns, tags FROM ip_enrichment
+        WHERE vulns != '' OR ports != ''
+        ORDER BY checked_at DESC LIMIT 30
+        """,
+    )
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -194,6 +203,16 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </tr>'''
         for a in recent_articles
     ) or '<tr><td colspan="2" class="empty">Inga artiklar ännu.</td></tr>'
+
+    shodan_html = "\n".join(
+        f'''<tr>
+              <td class="mono">{_esc(s["ip"])}</td>
+              <td class="mono dim">{_esc(s["ports"]) or "—"}</td>
+              <td>{'<span class="badge badge-critical">' + _esc(s["vulns"]) + '</span>' if s["vulns"] else '—'}</td>
+              <td class="dim">{_esc(s["hostnames"]) or "—"}</td>
+            </tr>'''
+        for s in shodan_hits
+    ) or '<tr><td colspan="4" class="empty">Ingen Shodan-data ännu (byggs upp gradvis, ~20 nya IP:er/körning).</td></tr>'
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -390,6 +409,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="table-scroll">
       <table id="iocTable">
         <tbody>{iocs_html}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>IP-berikning (Shodan InternetDB) — öppna portar &amp; kända CVE:er</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody>{shodan_html}</tbody>
       </table>
     </div>
   </section>
