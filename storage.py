@@ -45,6 +45,16 @@ CREATE TABLE IF NOT EXISTS ip_enrichment (
     tags TEXT,
     checked_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS cve_enrichment (
+    cve_id TEXT PRIMARY KEY,
+    cvss REAL,
+    epss REAL,
+    kev INTEGER DEFAULT 0,
+    ransomware_campaign TEXT,
+    summary TEXT,
+    checked_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -191,6 +201,35 @@ def save_ip_enrichment(conn, ip: str, ports: list, hostnames: list, vulns: list,
             ", ".join(vulns),
             ", ".join(tags),
         ),
+    )
+
+
+def get_unenriched_cves(db_path: str = DB_PATH, limit: int = 30) -> list:
+    """Hittar CVE-ID:n från iocs-tabellen som ännu inte har slagits upp mot CVEDB."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT DISTINCT value FROM iocs WHERE ioc_type = 'cve'")
+        all_cves = {row[0].upper() for row in cur.fetchall()}
+
+        cur.execute("SELECT cve_id FROM cve_enrichment")
+        already_checked = {row[0] for row in cur.fetchall()}
+
+    return list(all_cves - already_checked)[:limit]
+
+
+def save_cve_enrichment(conn, cve_id: str, cvss, epss, kev: bool,
+                         ransomware_campaign, summary: str):
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT INTO cve_enrichment (cve_id, cvss, epss, kev, ransomware_campaign, summary)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(cve_id) DO UPDATE SET
+            cvss = excluded.cvss, epss = excluded.epss, kev = excluded.kev,
+            ransomware_campaign = excluded.ransomware_campaign,
+            summary = excluded.summary, checked_at = CURRENT_TIMESTAMP
+        """,
+        (cve_id, cvss, epss, int(bool(kev)), ransomware_campaign, summary),
     )
 
 
