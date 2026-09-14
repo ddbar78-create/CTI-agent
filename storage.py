@@ -73,6 +73,20 @@ def init_db(db_path: str = DB_PATH):
     with get_conn(db_path) as conn:
         conn.executescript(SCHEMA)
         _migrate_llm_columns(conn)
+        _migrate_full_text_column(conn)
+
+
+def _migrate_full_text_column(conn):
+    cur = conn.cursor()
+    cur.execute("PRAGMA table_info(articles)")
+    existing = {row[1] for row in cur.fetchall()}
+    if "full_text" not in existing:
+        cur.execute("ALTER TABLE articles ADD COLUMN full_text TEXT")
+
+
+def save_full_text(conn, article_id: int, text: str):
+    cur = conn.cursor()
+    cur.execute("UPDATE articles SET full_text = ? WHERE id = ?", (text, article_id))
 
 
 def _migrate_llm_columns(conn):
