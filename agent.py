@@ -25,6 +25,7 @@ from telegram_scan import run_telegram
 from telegram_channels import CHANNELS as TELEGRAM_CHANNELS
 from ransomware_live import run_ransomware_live
 from notify import notify
+from generate_report import generate_report
 
 
 def run_once():
@@ -117,6 +118,9 @@ def run_once():
         summary_lines.append(f"🔵 {telegram_count} nya Telegram-inlägg")
 
     notify(summary_lines)
+
+    # Bygg om instrumentpanelen (index.html) med senaste datan
+    generate_report()
 
 
 def main():
