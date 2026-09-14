@@ -89,6 +89,7 @@ def crawl_article(url: str) -> str:
     Returnerar en sammanslagen textsträng (tom vid fel eller robots-blockering).
     """
     if not _allowed_by_robots(url):
+        print(f"      robots.txt blockerar crawling av {url}", file=sys.stderr)
         return ""
 
     try:
@@ -99,7 +100,11 @@ def crawl_article(url: str) -> str:
         return ""
 
     article_text = _extract_main_text(resp.text)
-    combined = [article_text] if article_text else []
+    if not article_text:
+        print(f"      Ingen huvudtext hittades på {url} (oväntad sidstruktur)", file=sys.stderr)
+        return ""
+
+    combined = [article_text]
 
     for ref_url in _extract_reference_links(resp.text, url):
         time.sleep(DELAY_BETWEEN_REQUESTS)
@@ -116,7 +121,9 @@ def crawl_article(url: str) -> str:
         if ref_text:
             combined.append(f"[Referens: {ref_url}]\n{ref_text[:3000]}")
 
-    return "\n\n".join(combined)
+    result = "\n\n".join(combined)
+    print(f"      Crawlade {url} ({len(result)} tecken hämtade)")
+    return result
 
 
 if __name__ == "__main__":
