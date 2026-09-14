@@ -17,7 +17,7 @@ from feeds import FEEDS
 from extract import extract_iocs
 from storage import (
     init_db, get_conn, save_article, save_iocs, recent_iocs,
-    save_llm_enrichment,
+    save_llm_enrichment, record_daily_stats,
 )
 from abuse_ch import run_threatfox
 from llm_extract import enrich_article
@@ -26,6 +26,7 @@ from telegram_channels import CHANNELS as TELEGRAM_CHANNELS
 from ransomware_live import run_ransomware_live
 from notify import notify
 from generate_report import generate_report
+from retention import prune_old_data
 
 
 def run_once():
@@ -118,6 +119,20 @@ def run_once():
         summary_lines.append(f"🔵 {telegram_count} nya Telegram-inlägg")
 
     notify(summary_lines)
+
+    # Spara dagens siffror i den lilla, aldrig-rensade trendtabellen
+    with get_conn() as conn:
+        record_daily_stats(
+            conn,
+            new_articles=total_new_articles,
+            new_iocs_regex=total_new_iocs,
+            new_iocs_threatfox=threatfox_count,
+            new_telegram=telegram_count,
+            new_ransomware_victims=len(new_victims),
+        )
+
+    # Håll databasen hanterbar i storlek (se retention.py för policy)
+    prune_old_data()
 
     # Bygg om instrumentpanelen (index.html) med senaste datan
     generate_report()
