@@ -30,6 +30,7 @@ from retention import prune_old_data
 from shodan_lookup import run_shodan_enrichment
 from cve_priority import run_cve_enrichment
 from article_crawler import crawl_article, MAX_CRAWLS_PER_RUN, DELAY_BETWEEN_REQUESTS
+from crt_sh import run_crtsh_enrichment
 
 
 def run_once():
@@ -113,6 +114,9 @@ def run_once():
 
     # Prioritera CVE:er med EPSS/KEV-data (Shodan CVEDB, gratis)
     urgent_cves = run_cve_enrichment()
+
+    # Hitta relaterad infrastruktur för domäner via Certificate Transparency
+    run_crtsh_enrichment()
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
