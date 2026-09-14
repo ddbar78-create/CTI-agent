@@ -57,10 +57,10 @@ def fetch_channel_messages(channel: str, limit: int = 20) -> list:
     return messages
 
 
-def run_telegram(channels: list):
-    """Hämtar och lagrar nya inlägg från alla kanaler i listan."""
+def run_telegram(channels: list) -> int:
+    """Hämtar och lagrar nya inlägg från alla kanaler i listan. Returnerar antal nya inlägg."""
     if not channels:
-        return
+        return 0
 
     total_new = 0
     total_iocs = 0
@@ -95,6 +95,8 @@ def run_telegram(channels: list):
         print(f"    Telegram: {total_new} nya inlägg, {total_iocs} nya IOCs")
     else:
         print("    Telegram: inga nya inlägg.")
+
+    return total_new
 
 
 if __name__ == "__main__":
