@@ -17,7 +17,7 @@ from feeds import FEEDS
 from extract import extract_iocs
 from storage import (
     init_db, get_conn, save_article, save_iocs, recent_iocs,
-    save_llm_enrichment, record_daily_stats,
+    save_llm_enrichment, record_daily_stats, save_full_text,
 )
 from abuse_ch import run_threatfox
 from llm_extract import enrich_article
@@ -29,6 +29,7 @@ from generate_report import generate_report
 from retention import prune_old_data
 from shodan_lookup import run_shodan_enrichment
 from cve_priority import run_cve_enrichment
+from article_crawler import crawl_article, MAX_CRAWLS_PER_RUN, DELAY_BETWEEN_REQUESTS
 
 
 def run_once():
@@ -36,6 +37,7 @@ def run_once():
     total_new_articles = 0
     total_new_iocs = 0
     high_severity_hits = []  # (titel, aktör, allvarlighet) för LLM-flaggade artiklar
+    crawl_count = 0  # begränsar antal fullständiga sidhämtningar denna körning
 
     with get_conn() as conn:
         for feed in FEEDS:
@@ -64,8 +66,20 @@ def run_once():
 
                 total_new_articles += 1
 
+                # Hämta fullständig artikeltext + utvalda referenslänkar
+                # (NVD, CVE.org, GitHub Advisories, MSRC, CISA) — ger mycket
+                # mer underlag än det ofta korta RSS-utdraget.
+                combined_text = f"{title}\n{summary}"
+                if crawl_count < MAX_CRAWLS_PER_RUN and link:
+                    full_text = crawl_article(link)
+                    if full_text:
+                        save_full_text(conn, article_id, full_text)
+                        combined_text = f"{title}\n{full_text}"
+                    crawl_count += 1
+                    time.sleep(DELAY_BETWEEN_REQUESTS)
+
                 # Regex-baserade IOCs (snabbt, gratis, men brusigt)
-                iocs = extract_iocs(f"{title}\n{summary}")
+                iocs = extract_iocs(combined_text)
                 if iocs:
                     save_iocs(conn, article_id, iocs)
                     count = sum(len(v) for v in iocs.values())
@@ -75,7 +89,7 @@ def run_once():
                     print(f"    Ny artikel: {title[:70]}")
 
                 # LLM-baserad kontext (hotaktör, TTPs, sektor, allvarlighet)
-                enrichment = enrich_article(title, summary)
+                enrichment = enrich_article(title, combined_text)
                 if enrichment:
                     save_llm_enrichment(conn, article_id, enrichment)
                     if enrichment.get("is_relevant"):
