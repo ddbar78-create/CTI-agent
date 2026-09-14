@@ -258,7 +258,15 @@ def get_unenriched_domains(db_path: str = DB_PATH, limit: int = 15) -> list:
     with get_conn(db_path) as conn:
         cur = conn.cursor()
         cur.execute("SELECT DISTINCT value FROM iocs WHERE ioc_type = 'domain'")
-        all_domains = {row[0].strip().lower() for row in cur.fetchall() if row[0]}
+        raw_values = [row[0] for row in cur.fetchall() if row[0]]
+
+        # ThreatFox-domäner har formatet "evil.example  [ClearFake, confidence 100]"
+        # — plocka ut bara den rena domänen, precis som för IP-adresser.
+        all_domains = set()
+        for v in raw_values:
+            domain_part = v.split(" [")[0].strip().lower()
+            if domain_part:
+                all_domains.add(domain_part)
 
         cur.execute("SELECT domain FROM domain_enrichment")
         already_checked = {row[0] for row in cur.fetchall()}
