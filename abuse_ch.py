@@ -56,13 +56,13 @@ def fetch_threatfox(days: int = 1) -> list:
     return data.get("data", [])
 
 
-def run_threatfox(days: int = 1):
-    """Hämtar, grupperar och sparar ThreatFox-IOCs i samma databas som RSS-agenten."""
+def run_threatfox(days: int = 1) -> int:
+    """Hämtar, grupperar och sparar ThreatFox-IOCs. Returnerar antal sparade IOCs."""
     print("[+] Hämtar: ThreatFox (abuse.ch) ...")
     entries = fetch_threatfox(days=days)
     if not entries:
         print("    Inga nya IOCs från ThreatFox.")
-        return
+        return 0
 
     with get_conn() as conn:
         # En syntetisk "artikel" representerar denna körnings ThreatFox-hämtning,
@@ -77,7 +77,7 @@ def run_threatfox(days: int = 1):
             summary="",
         )
         if article_id is None:
-            return
+            return 0
 
         grouped = {}
         skipped_low_confidence = 0
@@ -101,11 +101,12 @@ def run_threatfox(days: int = 1):
 
         if not grouped:
             print("    Inga IOCs klarade confidence-filtret.")
-            return
+            return 0
 
         save_iocs(conn, article_id, grouped)
         total = sum(len(v) for v in grouped.values())
         print(f"    Sparade {total} ThreatFox-IOCs (malware-familjer inkluderade)")
+        return total
 
 
 if __name__ == "__main__":
