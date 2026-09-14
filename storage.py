@@ -27,6 +27,24 @@ CREATE TABLE IF NOT EXISTS iocs (
     FOREIGN KEY (article_id) REFERENCES articles(id),
     UNIQUE(article_id, ioc_type, value)
 );
+
+CREATE TABLE IF NOT EXISTS daily_counts (
+    date TEXT PRIMARY KEY,
+    new_articles INTEGER DEFAULT 0,
+    new_iocs_regex INTEGER DEFAULT 0,
+    new_iocs_threatfox INTEGER DEFAULT 0,
+    new_telegram INTEGER DEFAULT 0,
+    new_ransomware_victims INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS ip_enrichment (
+    ip TEXT PRIMARY KEY,
+    ports TEXT,
+    hostnames TEXT,
+    vulns TEXT,
+    tags TEXT,
+    checked_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -83,6 +101,95 @@ def save_llm_enrichment(conn, article_id: int, enrichment: dict):
             enrichment.get("severity"),
             enrichment.get("one_line_summary"),
             article_id,
+        ),
+    )
+
+
+def record_daily_stats(conn, **kwargs):
+    """
+    Ökar dagens räknare i daily_counts med de värden som anges, t.ex.:
+    record_daily_stats(conn, new_articles=5, new_iocs_threatfox=3540)
+    Skapar dagens rad om den inte redan finns. Säkert att anropa flera
+    gånger samma dag (adderar, skriver inte över).
+    """
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO daily_counts (date) VALUES (?) ON CONFLICT(date) DO NOTHING",
+        (today,),
+    )
+    valid_columns = {
+        "new_articles", "new_iocs_regex", "new_iocs_threatfox",
+        "new_telegram", "new_ransomware_victims",
+    }
+    for key, value in kwargs.items():
+        if key in valid_columns and value:
+            cur.execute(
+                f"UPDATE daily_counts SET {key} = {key} + ? WHERE date = ?",
+                (value, today),
+            )
+
+
+def get_daily_stats(db_path: str = DB_PATH, days: int = 30) -> list:
+    """Hämtar de senaste N dagarnas summeringar, i kronologisk ordning."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT * FROM daily_counts ORDER BY date DESC LIMIT ?", (days,)
+        )
+        cols = [d[0] for d in cur.description]
+        rows = [dict(zip(cols, row)) for row in cur.fetchall()]
+    return list(reversed(rows))
+
+
+def get_unenriched_ips(db_path: str = DB_PATH, limit: int = 20) -> list:
+    """
+    Hittar IP-adresser från iocs-tabellen (typ ipv4 eller ip:port) som
+    ännu inte har slagits upp mot Shodan InternetDB.
+    """
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT DISTINCT value FROM iocs
+            WHERE ioc_type IN ('ipv4', 'ip:port')
+            """
+        )
+        raw_values = [row[0] for row in cur.fetchall()]
+
+        # ip:port-värden från ThreatFox har formatet "1.2.3.4:443  [malware, ...]"
+        # — plocka ut bara själva IP-delen.
+        ips = set()
+        for v in raw_values:
+            ip_part = v.split(":")[0].split(" ")[0].strip()
+            if ip_part:
+                ips.add(ip_part)
+
+        cur.execute("SELECT ip FROM ip_enrichment")
+        already_checked = {row[0] for row in cur.fetchall()}
+
+    return list(ips - already_checked)[:limit]
+
+
+def save_ip_enrichment(conn, ip: str, ports: list, hostnames: list, vulns: list, tags: list):
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT INTO ip_enrichment (ip, ports, hostnames, vulns, tags)
+        VALUES (?, ?, ?, ?, ?)
+        ON CONFLICT(ip) DO UPDATE SET
+            ports = excluded.ports, hostnames = excluded.hostnames,
+            vulns = excluded.vulns, tags = excluded.tags,
+            checked_at = CURRENT_TIMESTAMP
+        """,
+        (
+            ip,
+            ", ".join(str(p) for p in ports),
+            ", ".join(hostnames),
+            ", ".join(vulns),
+            ", ".join(tags),
         ),
     )
 
