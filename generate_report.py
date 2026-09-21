@@ -178,6 +178,14 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         """,
     )
 
+    domain_ages = _rows(
+        conn,
+        """
+        SELECT domain, registered_date, age_days, registrar FROM domain_age
+        ORDER BY age_days ASC LIMIT 30
+        """,
+    )
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -264,6 +272,25 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </tr>'''
         for d in domain_infra
     ) or '<tr><td colspan="2" class="empty">Ingen relaterad infrastruktur hittad ännu (byggs upp gradvis).</td></tr>'
+
+    def _age_badge(age_days):
+        if age_days is None:
+            return '<span class="dim">—</span>'
+        if age_days < 30:
+            return f'<span class="badge badge-critical">{age_days} dagar — NY</span>'
+        if age_days < 180:
+            return f'<span class="badge badge-high">{age_days} dagar</span>'
+        return f'<span class="dim mono">{age_days} dagar</span>'
+
+    domain_age_html = "\n".join(
+        f'''<tr>
+              <td class="mono">{_esc(d["domain"])}</td>
+              <td>{_age_badge(d["age_days"])}</td>
+              <td class="dim">{_esc(d["registered_date"]) or "—"}</td>
+              <td class="dim">{_esc(d["registrar"]) or "—"}</td>
+            </tr>'''
+        for d in domain_ages
+    ) or '<tr><td colspan="4" class="empty">Ingen domänålder kontrollerad ännu (byggs upp gradvis).</td></tr>'
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -462,6 +489,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="table-scroll">
       <table id="iocTable">
         <tbody>{iocs_html}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Domänålder (RDAP/WHOIS) — nyregistrerade domäner flaggade</h2>
+    <div class="table-scroll">
+      <table>
+        <tbody>{domain_age_html}</tbody>
       </table>
     </div>
   </section>
