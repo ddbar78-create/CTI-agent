@@ -61,6 +61,14 @@ CREATE TABLE IF NOT EXISTS domain_enrichment (
     related_domains TEXT,
     checked_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS domain_age (
+    domain TEXT PRIMARY KEY,
+    registered_date TEXT,
+    age_days INTEGER,
+    registrar TEXT,
+    checked_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -189,8 +197,6 @@ def get_unenriched_ips(db_path: str = DB_PATH, limit: int = 20) -> list:
         )
         raw_values = [row[0] for row in cur.fetchall()]
 
-        # ip:port-värden från ThreatFox har formatet "1.2.3.4:443  [malware, ...]"
-        # — plocka ut bara själva IP-delen.
         ips = set()
         for v in raw_values:
             ip_part = v.split(":")[0].split(" ")[0].strip()
@@ -253,21 +259,29 @@ def save_cve_enrichment(conn, cve_id: str, cvss, epss, kev: bool,
     )
 
 
+def _all_clean_domains(conn) -> set:
+    """
+    Hämtar alla domänvärden från iocs-tabellen, rensade från ThreatFox-
+    style annotering (t.ex. "evil.example  [ClearFake, confidence 100]"
+    -> "evil.example"). Delad hjälpfunktion för crt.sh- och RDAP-uppslag.
+    """
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT value FROM iocs WHERE ioc_type = 'domain'")
+    raw_values = [row[0] for row in cur.fetchall() if row[0]]
+
+    clean = set()
+    for v in raw_values:
+        domain_part = v.split(" [")[0].strip().lower()
+        if domain_part:
+            clean.add(domain_part)
+    return clean
+
+
 def get_unenriched_domains(db_path: str = DB_PATH, limit: int = 15) -> list:
-    """Hittar domäner från iocs-tabellen som ännu inte slagits upp mot crt.sh."""
+    """Hittar domäner som ännu inte slagits upp mot crt.sh."""
     with get_conn(db_path) as conn:
+        all_domains = _all_clean_domains(conn)
         cur = conn.cursor()
-        cur.execute("SELECT DISTINCT value FROM iocs WHERE ioc_type = 'domain'")
-        raw_values = [row[0] for row in cur.fetchall() if row[0]]
-
-        # ThreatFox-domäner har formatet "evil.example  [ClearFake, confidence 100]"
-        # — plocka ut bara den rena domänen, precis som för IP-adresser.
-        all_domains = set()
-        for v in raw_values:
-            domain_part = v.split(" [")[0].strip().lower()
-            if domain_part:
-                all_domains.add(domain_part)
-
         cur.execute("SELECT domain FROM domain_enrichment")
         already_checked = {row[0] for row in cur.fetchall()}
 
@@ -285,6 +299,33 @@ def save_domain_enrichment(conn, domain: str, related_domains: list):
             checked_at = CURRENT_TIMESTAMP
         """,
         (domain, ", ".join(related_domains)),
+    )
+
+
+def get_unenriched_domains_for_age(db_path: str = DB_PATH, limit: int = 15) -> list:
+    """Hittar domäner som ännu inte fått sin registreringsålder kontrollerad (RDAP)."""
+    with get_conn(db_path) as conn:
+        all_domains = _all_clean_domains(conn)
+        cur = conn.cursor()
+        cur.execute("SELECT domain FROM domain_age")
+        already_checked = {row[0] for row in cur.fetchall()}
+
+    return list(all_domains - already_checked)[:limit]
+
+
+def save_domain_age(conn, domain: str, registered_date: str, age_days: int, registrar: str):
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT INTO domain_age (domain, registered_date, age_days, registrar)
+        VALUES (?, ?, ?, ?)
+        ON CONFLICT(domain) DO UPDATE SET
+            registered_date = excluded.registered_date,
+            age_days = excluded.age_days,
+            registrar = excluded.registrar,
+            checked_at = CURRENT_TIMESTAMP
+        """,
+        (domain, registered_date, age_days, registrar),
     )
 
 
