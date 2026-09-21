@@ -31,6 +31,7 @@ from shodan_lookup import run_shodan_enrichment
 from cve_priority import run_cve_enrichment
 from article_crawler import crawl_article, MAX_CRAWLS_PER_RUN, DELAY_BETWEEN_REQUESTS
 from crt_sh import run_crtsh_enrichment
+from domain_age import run_domain_age_check
 
 
 def run_once():
@@ -68,8 +69,6 @@ def run_once():
                 total_new_articles += 1
 
                 # Hämta fullständig artikeltext + utvalda referenslänkar
-                # (NVD, CVE.org, GitHub Advisories, MSRC, CISA) — ger mycket
-                # mer underlag än det ofta korta RSS-utdraget.
                 combined_text = f"{title}\n{summary}"
                 if crawl_count < MAX_CRAWLS_PER_RUN and link:
                     full_text = crawl_article(link)
@@ -118,6 +117,9 @@ def run_once():
     # Hitta relaterad infrastruktur för domäner via Certificate Transparency
     run_crtsh_enrichment()
 
+    # Kontrollera domänålder via RDAP — flaggar nyregistrerade domäner
+    new_registered_domains = run_domain_age_check()
+
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
 
@@ -138,6 +140,11 @@ def run_once():
         summary_lines.append(f"🔴 {len(new_victims)} nya ransomware-offer:")
         for v in new_victims[:10]:
             summary_lines.append(f"   • {v['group']} → {v['victim']} ({v['country']})")
+
+    if new_registered_domains:
+        summary_lines.append(f"🟡 {len(new_registered_domains)} nyregistrerade domäner (<30 dagar):")
+        for d in new_registered_domains[:10]:
+            summary_lines.append(f"   • {d['domain']} ({d['age_days']} dagar)")
 
     if high_severity_hits:
         summary_lines.append(f"🟠 {len(high_severity_hits)} artiklar med hög/kritisk allvarlighet:")
