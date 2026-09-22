@@ -69,6 +69,16 @@ CREATE TABLE IF NOT EXISTS domain_age (
     registrar TEXT,
     checked_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS ransomware_victims (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_name TEXT,
+    victim TEXT,
+    country TEXT,
+    sector TEXT,
+    attack_date TEXT,
+    UNIQUE(group_name, victim, attack_date)
+);
 """
 
 
@@ -327,6 +337,33 @@ def save_domain_age(conn, domain: str, registered_date: str, age_days: int, regi
         """,
         (domain, registered_date, age_days, registrar),
     )
+
+
+def save_ransomware_victim(conn, group_name: str, victim: str, country: str,
+                            sector: str, attack_date: str):
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT OR IGNORE INTO ransomware_victims
+            (group_name, victim, country, sector, attack_date)
+        VALUES (?, ?, ?, ?, ?)
+        """,
+        (group_name, victim, country, sector, attack_date),
+    )
+
+
+def get_victim_country_counts(db_path: str = DB_PATH) -> list:
+    """Returnerar [{country, n}] sorterat på flest offer först."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT country, COUNT(*) AS n FROM ransomware_victims
+            WHERE country IS NOT NULL AND country != ''
+            GROUP BY country ORDER BY n DESC
+            """
+        )
+        return [{"country": row[0], "n": row[1]} for row in cur.fetchall()]
 
 
 def save_article(conn, feed: str, title: str, link: str, published: str, summary: str):
