@@ -28,6 +28,91 @@ def _esc(value) -> str:
     return html.escape(str(value)) if value is not None else ""
 
 
+# Ungefärliga centroider (lat, lon) för länder som vanligen förekommer i
+# ransomware.live-data. Räcker inte alla världens länder att göra kartan
+# meningsfull, men täcker de vanligaste. Okända landskoder listas separat
+# under kartan istället för att tappas bort helt.
+COUNTRY_CENTROIDS = {
+    "US": (39.8, -98.6), "CA": (56.1, -106.3), "MX": (23.6, -102.6),
+    "BR": (-14.2, -51.9), "AR": (-38.4, -63.6), "CL": (-35.7, -71.5),
+    "GB": (55.4, -3.4), "IE": (53.4, -8.2), "FR": (46.6, 2.2),
+    "DE": (51.2, 10.5), "ES": (40.5, -3.7), "PT": (39.4, -8.2),
+    "IT": (41.9, 12.6), "NL": (52.1, 5.3), "BE": (50.5, 4.5),
+    "CH": (46.8, 8.2), "AT": (47.5, 14.6), "SE": (60.1, 18.6),
+    "NO": (60.5, 8.5), "DK": (56.3, 9.5), "FI": (61.9, 25.7),
+    "PL": (51.9, 19.1), "CZ": (49.8, 15.5), "GR": (39.1, 21.8),
+    "RU": (61.5, 105.3), "UA": (48.4, 31.2), "TR": (38.9, 35.2),
+    "IL": (31.0, 34.8), "SA": (23.9, 45.1), "AE": (23.4, 53.8),
+    "ZA": (-30.6, 22.9), "NG": (9.1, 8.7), "EG": (26.8, 30.8),
+    "IN": (20.6, 79.0), "PK": (30.4, 69.3), "CN": (35.9, 104.2),
+    "JP": (36.2, 138.3), "KR": (35.9, 127.8), "TW": (23.7, 121.0),
+    "PH": (12.9, 121.8), "VN": (14.1, 108.3), "TH": (15.9, 100.9),
+    "MY": (4.2, 102.0), "SG": (1.35, 103.8), "ID": (-0.8, 113.9),
+    "AU": (-25.3, 133.8), "NZ": (-41.0, 174.9),
+    "RS": (44.0, 21.0), "HR": (45.1, 15.2), "RO": (45.9, 25.0),
+    "HU": (47.2, 19.5), "BG": (42.7, 25.5), "SK": (48.7, 19.7),
+}
+
+
+def _svg_world_dot_map(country_counts: list, width: int = 1000, height: int = 480) -> str:
+    """
+    Ritar en enkel punktkarta (inget beroende av extern konturdata):
+    ett latitud/longitud-rutnät med en cirkel per land, storlek/opacitet
+    baserat på antal offer. Länder utan känd centroid listas separat.
+    """
+    if not country_counts:
+        return '<p class="empty">Ingen geografisk data ännu.</p>'
+
+    plotted = [c for c in country_counts if c["country"] in COUNTRY_CENTROIDS]
+    unplotted = [c for c in country_counts if c["country"] not in COUNTRY_CENTROIDS]
+
+    max_n = max((c["n"] for c in plotted), default=1)
+
+    def lon_to_x(lon):
+        return (lon + 180) / 360 * width
+
+    def lat_to_y(lat):
+        return (90 - lat) / 180 * height
+
+    parts = []
+    # Enkelt gradnät (var 30:e grad) för visuell referens
+    for lon in range(-180, 181, 30):
+        x = lon_to_x(lon)
+        parts.append(f'<line x1="{x:.1f}" y1="0" x2="{x:.1f}" y2="{height}" stroke="#1e2430" stroke-width="1"/>')
+    for lat in range(-90, 91, 30):
+        y = lat_to_y(lat)
+        parts.append(f'<line x1="0" y1="{y:.1f}" x2="{width}" y2="{y:.1f}" stroke="#1e2430" stroke-width="1"/>')
+    # Ekvatorn och nollmeridianen lite tydligare
+    parts.append(f'<line x1="0" y1="{lat_to_y(0):.1f}" x2="{width}" y2="{lat_to_y(0):.1f}" stroke="#2e3646" stroke-width="1.5"/>')
+    parts.append(f'<line x1="{lon_to_x(0):.1f}" y1="0" x2="{lon_to_x(0):.1f}" y2="{height}" stroke="#2e3646" stroke-width="1.5"/>')
+
+    for c in plotted:
+        lat, lon = COUNTRY_CENTROIDS[c["country"]]
+        x, y = lon_to_x(lon), lat_to_y(lat)
+        radius = 5 + (c["n"] / max_n) * 20
+        opacity = 0.35 + (c["n"] / max_n) * 0.5
+        parts.append(
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius:.1f}" '
+            f'fill="#d9534f" fill-opacity="{opacity:.2f}" stroke="#d9534f" stroke-width="1"/>'
+        )
+        parts.append(
+            f'<text x="{x:.1f}" y="{y - radius - 4:.1f}" font-size="11" fill="#d7dbe3" '
+            f'text-anchor="middle">{_esc(c["country"])} ({c["n"]})</text>'
+        )
+
+    map_svg = (
+        f'<svg viewBox="0 0 {width} {height}" width="100%" height="{height}" '
+        f'style="background:#0d1017; border-radius:6px;">' + "".join(parts) + "</svg>"
+    )
+
+    unplotted_note = ""
+    if unplotted:
+        listed = ", ".join(f'{_esc(c["country"])} ({c["n"]})' for c in unplotted)
+        unplotted_note = f'<p class="dim" style="margin-top:0.6rem;">Utanför kartans landslista: {listed}</p>'
+
+    return map_svg + unplotted_note
+
+
 def _svg_trend_chart(dates: list, series: dict, width: int = 1000, height: int = 200) -> str:
     """
     Bygger en enkel, beroendefri SVG-linjegraf.
@@ -186,6 +271,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         """,
     )
 
+    victim_country_counts = _rows(
+        conn,
+        """
+        SELECT country, COUNT(*) AS n FROM ransomware_victims
+        WHERE country IS NOT NULL AND country != ''
+        GROUP BY country ORDER BY n DESC
+        """,
+    )
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -291,6 +385,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </tr>'''
         for d in domain_ages
     ) or '<tr><td colspan="4" class="empty">Ingen domänålder kontrollerad ännu (byggs upp gradvis).</td></tr>'
+
+    world_map_html = _svg_world_dot_map(victim_country_counts)
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -457,6 +553,11 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   <section>
     <h2>IOC-typer i databasen</h2>
     {breakdown_html}
+  </section>
+
+  <section>
+    <h2>Geografisk spridning — ransomware-offer</h2>
+    {world_map_html}
   </section>
 
   <section>
