@@ -16,7 +16,7 @@ import sys
 
 import requests
 
-from storage import get_conn, save_article, save_iocs
+from storage import get_conn, save_article, save_iocs, save_ransomware_victim
 from extract import extract_iocs
 
 API_BASE = "https://api.ransomware.live/v2"
@@ -47,6 +47,7 @@ def run_ransomware_live() -> list:
         return []
 
     new_victims = []
+
     with get_conn() as conn:
         for v in victims:
             victim_name = v.get("victim", "Okänt offer")
@@ -55,8 +56,6 @@ def run_ransomware_live() -> list:
             country = v.get("country", "")
             sector = v.get("activity") or v.get("sector") or ""
 
-            # Ett unikt "länk"-värde krävs för dedupe — victim+grupp+datum
-            # räcker för att identifiera en unik avisering.
             link = f"ransomware.live/{group}/{victim_name}/{attack_date}"
             title = f"{group}: {victim_name} ({country})"
             summary = (
@@ -75,9 +74,11 @@ def run_ransomware_live() -> list:
             if article_id is None:
                 continue  # redan sedd tidigare
 
+            # Strukturerad kopia — används bl.a. för världskartan över offer
+            save_ransomware_victim(conn, group, victim_name, country, sector, attack_date)
+
             new_victims.append({"group": group, "victim": victim_name, "country": country})
 
-            # Extrahera ev. domäner/URL:er om sådana nämns i datan
             iocs = extract_iocs(summary)
             if iocs:
                 save_iocs(conn, article_id, iocs)
