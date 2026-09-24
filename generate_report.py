@@ -14,6 +14,7 @@ import sqlite3
 from datetime import datetime, timezone
 
 from storage import DB_PATH
+from attack_mapping import parse_family_from_value, classify_family
 
 OUTPUT_PATH = "index.html"
 
@@ -392,6 +393,30 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         if len(bucket) < 25:
             bucket.append({"group": row["group_name"], "victim": row["victim"]})
 
+    # Analysera malware-familjer från ThreatFox-annoterade IOC-värden och
+    # mappa dem mot ATT&CK-kategorier. Ren analys av redan insamlad data,
+    # ingen extern källa behövs.
+    threatfox_values = _rows(
+        conn,
+        """
+        SELECT iocs.value FROM iocs
+        JOIN articles ON articles.id = iocs.article_id
+        WHERE articles.feed LIKE 'ThreatFox%'
+        """,
+    )
+    family_counts: dict = {}
+    for row in threatfox_values:
+        family = parse_family_from_value(row["value"])
+        if family:
+            family_counts[family] = family_counts.get(family, 0) + 1
+
+    attack_rows = []
+    for family, count in sorted(family_counts.items(), key=lambda x: -x[1]):
+        category, techniques = classify_family(family)
+        attack_rows.append({
+            "family": family, "count": count, "category": category, "techniques": techniques,
+        })
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -499,6 +524,32 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     ) or '<tr><td colspan="4" class="empty">Ingen domänålder kontrollerad ännu (byggs upp gradvis).</td></tr>'
 
     world_map_html = _real_world_map_block(victim_country_counts, victim_details_by_country)
+
+    # Gruppera per kategori för en tydligare, mindre repetitiv vy
+    category_groups: dict = {}
+    for row in attack_rows:
+        category_groups.setdefault(row["category"], []).append(row)
+
+    attack_html_parts = []
+    for category, rows in sorted(category_groups.items(), key=lambda x: -sum(r["count"] for r in x[1])):
+        total = sum(r["count"] for r in rows)
+        families_str = ", ".join(f'{_esc(r["family"])} ({r["count"]})' for r in rows[:12])
+        techniques = rows[0]["techniques"]  # samma tekniker för hela kategorin
+        techniques_html = " · ".join(
+            f'<a href="https://attack.mitre.org/techniques/{tid.replace(".", "/")}/" '
+            f'target="_blank" rel="noopener">{tid} {_esc(name)}</a>'
+            for tid, name in techniques
+        )
+        attack_html_parts.append(f'''
+          <div class="attack-category">
+            <div class="attack-category-header">
+              <span>{_esc(category)}</span>
+              <span class="dim">{total} IOCs</span>
+            </div>
+            <div class="attack-techniques">{techniques_html}</div>
+            <div class="attack-families dim">{families_str}</div>
+          </div>''')
+    attack_html = "".join(attack_html_parts) or '<p class="empty">Ingen ThreatFox-data att analysera ännu.</p>'
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -655,6 +706,20 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
+  .attack-category {{
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.7rem;
+  }}
+  .attack-category-header {{
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-weight: 600; font-size: 0.92rem; margin-bottom: 0.5rem;
+  }}
+  .attack-techniques {{ font-size: 0.82rem; margin-bottom: 0.4rem; }}
+  .attack-techniques a {{ margin-right: 0.3rem; }}
+  .attack-families {{ font-size: 0.8rem; }}
 </style>
 </head>
 <body>
@@ -684,6 +749,11 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         {other_sources_chart_html}
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2>Malware-familjer mot MITRE ATT&amp;CK (kategoribaserad approximation)</h2>
+    {attack_html}
   </section>
 
   <section>
