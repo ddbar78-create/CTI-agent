@@ -366,6 +366,28 @@ def get_victim_country_counts(db_path: str = DB_PATH) -> list:
         return [{"country": row[0], "n": row[1]} for row in cur.fetchall()]
 
 
+def get_victims_grouped_by_country(db_path: str = DB_PATH, limit_per_country: int = 25) -> dict:
+    """Returnerar {country: [{"group": ..., "victim": ...}, ...]} — används
+    för att visa detaljer när man klickar på en bubbla på världskartan."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT country, group_name, victim FROM ransomware_victims
+            WHERE country IS NOT NULL AND country != ''
+            ORDER BY id DESC
+            """
+        )
+        rows = cur.fetchall()
+
+    grouped: dict = {}
+    for country, group_name, victim in rows:
+        bucket = grouped.setdefault(country, [])
+        if len(bucket) < limit_per_country:
+            bucket.append({"group": group_name, "victim": victim})
+    return grouped
+
+
 def save_article(conn, feed: str, title: str, link: str, published: str, summary: str):
     """Sparar en artikel. Returnerar article_id, eller None om den redan finns."""
     cur = conn.cursor()
