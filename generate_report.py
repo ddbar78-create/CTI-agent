@@ -56,7 +56,7 @@ COUNTRY_CENTROIDS = {
 }
 
 
-def _real_world_map_block(country_counts: list, element_id: str = "worldMap") -> str:
+def _real_world_map_block(country_counts: list, victim_details: dict, element_id: str = "worldMap") -> str:
     """
     Bygger ett HTML/JS-block som ritar en RIKTIG världskarta (faktiska
     landgränser) med D3.js + en etablerad world-atlas TopoJSON-fil,
@@ -64,18 +64,23 @@ def _real_world_map_block(country_counts: list, element_id: str = "worldMap") ->
     hos den som tittar på dashboarden (helt normalt för en webbsida).
 
     Bubblor för varje land ritas ovanpå kartan baserat på COUNTRY_CENTROIDS.
+    Klick på en bubbla visar offer/grupper för det landet i en detaljpanel.
     En "Ladda ner som PNG"-knapp låter dig exportera kartan för presentationer.
     """
     if not country_counts:
         return '<p class="empty">Ingen geografisk data ännu.</p>'
 
     data_points = [
-        {"country": c["country"], "n": c["n"], "lat": COUNTRY_CENTROIDS[c["country"]][0],
-         "lon": COUNTRY_CENTROIDS[c["country"]][1]}
+        {
+            "country": c["country"], "n": c["n"],
+            "lat": COUNTRY_CENTROIDS[c["country"]][0],
+            "lon": COUNTRY_CENTROIDS[c["country"]][1],
+            "victims": victim_details.get(c["country"], []),
+        }
         for c in country_counts if c["country"] in COUNTRY_CENTROIDS
     ]
     unplotted = [c for c in country_counts if c["country"] not in COUNTRY_CENTROIDS]
-    data_json = json.dumps(data_points)
+    data_json = json.dumps(data_points, ensure_ascii=False)
 
     unplotted_note = ""
     if unplotted:
@@ -87,6 +92,9 @@ def _real_world_map_block(country_counts: list, element_id: str = "worldMap") ->
       <button onclick="downloadMapAsPng()" class="map-download-btn">⬇ Ladda ner karta som PNG</button>
     </div>
     <div id="{element_id}" class="world-map-container"></div>
+    <div id="{element_id}Details" class="map-details-panel">
+      <span class="dim">Klicka på en bubbla för att se vilka offer/grupper som ligger bakom siffran.</span>
+    </div>
     {unplotted_note}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
@@ -136,9 +144,24 @@ def _real_world_map_block(country_counts: list, element_id: str = "worldMap") ->
           .attr("transform", d => {{
             const p = projection([d.lon, d.lat]);
             return `translate(${{p[0]}},${{p[1]}})`;
+          }})
+          .style("cursor", "pointer")
+          .on("click", function(event, d) {{
+            svg.selectAll("circle.bubble-main").attr("stroke-width", 1);
+            d3.select(this).select("circle.bubble-main").attr("stroke-width", 3);
+
+            const panel = document.getElementById("{element_id}Details");
+            const victimList = d.victims.map(v =>
+              `<li><strong>${{v.group}}</strong> → ${{v.victim}}</li>`
+            ).join("");
+            panel.innerHTML = `
+              <div class="map-details-header">${{d.country}} — ${{d.n}} rapporterade offer</div>
+              <ul class="map-details-list">${{victimList || "<li>Ingen detaljerad offerinfo sparad ännu.</li>"}}</ul>
+            `;
           }});
 
         bubbles.append("circle")
+          .attr("class", "bubble-main")
           .attr("r", d => radius(d.n))
           .attr("fill", d => color(d.n))
           .attr("fill-opacity", 0.75)
@@ -355,6 +378,20 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         """,
     )
 
+    victim_details_by_country = {}
+    victim_rows_raw = _rows(
+        conn,
+        """
+        SELECT country, group_name, victim FROM ransomware_victims
+        WHERE country IS NOT NULL AND country != ''
+        ORDER BY id DESC
+        """,
+    )
+    for row in victim_rows_raw:
+        bucket = victim_details_by_country.setdefault(row["country"], [])
+        if len(bucket) < 25:
+            bucket.append({"group": row["group_name"], "victim": row["victim"]})
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -461,7 +498,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         for d in domain_ages
     ) or '<tr><td colspan="4" class="empty">Ingen domänålder kontrollerad ännu (byggs upp gradvis).</td></tr>'
 
-    world_map_html = _real_world_map_block(victim_country_counts)
+    world_map_html = _real_world_map_block(victim_country_counts, victim_details_by_country)
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -607,6 +644,17 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     cursor: pointer;
   }}
   .map-download-btn:hover {{ background: var(--panel-border); }}
+  .map-details-panel {{
+    margin-top: 0.9rem;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    font-size: 0.85rem;
+  }}
+  .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
+  .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
+  .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
 </style>
 </head>
 <body>
