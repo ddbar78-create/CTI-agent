@@ -119,18 +119,29 @@
     cursor: pointer;
   }
   .map-download-btn:hover { background: var(--panel-border); }
+  .map-details-panel {
+    margin-top: 0.9rem;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  .map-details-header { font-weight: 600; margin-bottom: 0.6rem; }
+  .map-details-list { margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }
+  .map-details-list li { margin-bottom: 0.3rem; color: var(--text); }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <h1>CTI-agent — instrumentpanel</h1>
-    <div class="subtitle">Senast uppdaterad 2026-09-24 11:29 UTC · körs automatiskt varje timme</div>
+    <div class="subtitle">Senast uppdaterad 2026-09-24 11:40 UTC · körs automatiskt varje timme</div>
   </header>
 
   <div class="stat-row">
-    <div class="stat"><div class="stat-num">842</div><div class="stat-label">Artiklar/poster totalt</div></div>
-    <div class="stat"><div class="stat-num">41081</div><div class="stat-label">IOCs totalt</div></div>
+    <div class="stat"><div class="stat-num">843</div><div class="stat-label">Artiklar/poster totalt</div></div>
+    <div class="stat"><div class="stat-num">42711</div><div class="stat-label">IOCs totalt</div></div>
     <div class="stat"><div class="stat-num">25</div><div class="stat-label">Senaste ransomware-offer</div></div>
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">High/critical (LLM)</div></div>
     <div class="stat"><div class="stat-num">109</div><div class="stat-label">Artiklar med fulltext hämtad</div></div>
@@ -141,7 +152,7 @@
     <div class="chart-grid">
       <div class="chart-panel">
         <div class="chart-title">ThreatFox (hög volym)</div>
-        <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">12843</text><polyline fill="none" stroke="#e8a33d" stroke-width="2" points="45.0,48.4 139.0,15.0 233.0,99.9 327.0,111.8 421.0,111.6 515.0,135.9 609.0,139.5 703.0,120.2 797.0,98.4 891.0,62.0 985.0,85.1" /><circle cx="45.0" cy="48.4" r="2.5" fill="#e8a33d" /><circle cx="139.0" cy="15.0" r="2.5" fill="#e8a33d" /><circle cx="233.0" cy="99.9" r="2.5" fill="#e8a33d" /><circle cx="327.0" cy="111.8" r="2.5" fill="#e8a33d" /><circle cx="421.0" cy="111.6" r="2.5" fill="#e8a33d" /><circle cx="515.0" cy="135.9" r="2.5" fill="#e8a33d" /><circle cx="609.0" cy="139.5" r="2.5" fill="#e8a33d" /><circle cx="703.0" cy="120.2" r="2.5" fill="#e8a33d" /><circle cx="797.0" cy="98.4" r="2.5" fill="#e8a33d" /><circle cx="891.0" cy="62.0" r="2.5" fill="#e8a33d" /><circle cx="985.0" cy="85.1" r="2.5" fill="#e8a33d" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="139.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-15</text><text x="233.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="327.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-17</text><text x="421.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="515.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-19</text><text x="609.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="703.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-21</text><text x="797.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="891.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-23</text><text x="985.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#e8a33d"></span>ThreatFox</span></div>
+        <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">12843</text><polyline fill="none" stroke="#e8a33d" stroke-width="2" points="45.0,48.4 139.0,15.0 233.0,99.9 327.0,111.8 421.0,111.6 515.0,135.9 609.0,139.5 703.0,120.2 797.0,98.4 891.0,62.0 985.0,65.2" /><circle cx="45.0" cy="48.4" r="2.5" fill="#e8a33d" /><circle cx="139.0" cy="15.0" r="2.5" fill="#e8a33d" /><circle cx="233.0" cy="99.9" r="2.5" fill="#e8a33d" /><circle cx="327.0" cy="111.8" r="2.5" fill="#e8a33d" /><circle cx="421.0" cy="111.6" r="2.5" fill="#e8a33d" /><circle cx="515.0" cy="135.9" r="2.5" fill="#e8a33d" /><circle cx="609.0" cy="139.5" r="2.5" fill="#e8a33d" /><circle cx="703.0" cy="120.2" r="2.5" fill="#e8a33d" /><circle cx="797.0" cy="98.4" r="2.5" fill="#e8a33d" /><circle cx="891.0" cy="62.0" r="2.5" fill="#e8a33d" /><circle cx="985.0" cy="65.2" r="2.5" fill="#e8a33d" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="139.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-15</text><text x="233.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="327.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-17</text><text x="421.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="515.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-19</text><text x="609.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="703.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-21</text><text x="797.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="891.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-23</text><text x="985.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#e8a33d"></span>ThreatFox</span></div>
       </div>
       <div class="chart-panel">
         <div class="chart-title">Övriga källor</div>
@@ -155,32 +166,32 @@
     <div class="bar-row">
               <span class="bar-label">domain</span>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-              <span class="bar-count">21121</span>
+              <span class="bar-count">22329</span>
             </div>
 <div class="bar-row">
               <span class="bar-label">ip:port</span>
-              <div class="bar-track"><div class="bar-fill" style="width:39%"></div></div>
-              <span class="bar-count">8276</span>
+              <div class="bar-track"><div class="bar-fill" style="width:38%"></div></div>
+              <span class="bar-count">8406</span>
             </div>
 <div class="bar-row">
               <span class="bar-label">url</span>
               <div class="bar-track"><div class="bar-fill" style="width:27%"></div></div>
-              <span class="bar-count">5754</span>
+              <span class="bar-count">5926</span>
             </div>
 <div class="bar-row">
               <span class="bar-label">sha256_hash</span>
-              <div class="bar-track"><div class="bar-fill" style="width:21%"></div></div>
-              <span class="bar-count">4366</span>
+              <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+              <span class="bar-count">4469</span>
             </div>
 <div class="bar-row">
               <span class="bar-label">md5_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
-              <span class="bar-count">723</span>
+              <span class="bar-count">732</span>
             </div>
 <div class="bar-row">
               <span class="bar-label">sha1_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
-              <span class="bar-count">721</span>
+              <span class="bar-count">729</span>
             </div>
 <div class="bar-row">
               <span class="bar-label">cve</span>
@@ -211,12 +222,15 @@
       <button onclick="downloadMapAsPng()" class="map-download-btn">⬇ Ladda ner karta som PNG</button>
     </div>
     <div id="worldMap" class="world-map-container"></div>
+    <div id="worldMapDetails" class="map-details-panel">
+      <span class="dim">Klicka på en bubbla för att se vilka offer/grupper som ligger bakom siffran.</span>
+    </div>
     <p class="dim" style="margin-top:0.6rem;">Utanför kartans landslista: PE (1), OM (1), ML (1), MD (1)</p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
     <script>
     (function() {
-      const victimData = [{"country": "US", "n": 11, "lat": 39.8, "lon": -98.6}, {"country": "IT", "n": 3, "lat": 41.9, "lon": 12.6}, {"country": "DE", "n": 2, "lat": 51.2, "lon": 10.5}, {"country": "AR", "n": 2, "lat": -38.4, "lon": -63.6}, {"country": "PT", "n": 1, "lat": 39.4, "lon": -8.2}, {"country": "FR", "n": 1, "lat": 46.6, "lon": 2.2}, {"country": "CZ", "n": 1, "lat": 49.8, "lon": 15.5}, {"country": "BR", "n": 1, "lat": -14.2, "lon": -51.9}, {"country": "BG", "n": 1, "lat": 42.7, "lon": 25.5}];
+      const victimData = [{"country": "US", "n": 11, "lat": 39.8, "lon": -98.6, "victims": [{"group": "emperador", "victim": "OnTrac"}, {"group": "BrainCipher", "victim": "goldstarfinancial.com"}, {"group": "EndZone", "victim": "Trump Mobile"}, {"group": "Booba Project", "victim": "Washington County"}, {"group": "incransom", "victim": "Lemon Law"}, {"group": "SilentRansomGroup", "victim": "Clark Hill"}, {"group": "SilentRansomGroup", "victim": "Cozen O'Connor"}, {"group": "akira", "victim": "Coe Press Equipment"}, {"group": "kairos", "victim": "Krapf Group"}, {"group": "qilin", "victim": "The Fifty/50"}, {"group": "Booba Project", "victim": "Tulare Western High School"}]}, {"country": "IT", "n": 3, "lat": 41.9, "lon": 12.6, "victims": [{"group": "Booba Project", "victim": "COSEF - Consorzio di Sviluppo Economico del Friuli"}, {"group": "AuditTeam", "victim": "Pr***IT"}, {"group": "akira", "victim": "DI.C.S.EL. S.R.L."}]}, {"country": "DE", "n": 2, "lat": 51.2, "lon": 10.5, "victims": [{"group": "anubis", "victim": "Gaedke & Partner Steuerberatung"}, {"group": "shinyhunters", "victim": "Fresenius Medical Care"}]}, {"country": "AR", "n": 2, "lat": -38.4, "lon": -63.6, "victims": [{"group": "Barracuda", "victim": "Solucioning S.A."}, {"group": "titan", "victim": "Grupo Hospifar S.R.L."}]}, {"country": "PT", "n": 1, "lat": 39.4, "lon": -8.2, "victims": [{"group": "spacebears", "victim": "Tomix / Grupo JOPER"}]}, {"country": "FR", "n": 1, "lat": 46.6, "lon": 2.2, "victims": [{"group": "medusalocker", "victim": "Aokkef"}]}, {"country": "CZ", "n": 1, "lat": 49.8, "lon": 15.5, "victims": [{"group": "medusalocker", "victim": "Seznam"}]}, {"country": "BR", "n": 1, "lat": -14.2, "lon": -51.9, "victims": [{"group": "emperador", "victim": "RECEITA FEDERAL DO BRASIL"}]}, {"country": "BG", "n": 1, "lat": 42.7, "lon": 25.5, "victims": [{"group": "medusalocker", "victim": "Abv"}]}];
       const container = document.getElementById("worldMap");
       const width = container.clientWidth || 1000;
       const height = width * 0.5;
@@ -260,9 +274,24 @@
           .attr("transform", d => {
             const p = projection([d.lon, d.lat]);
             return `translate(${p[0]},${p[1]})`;
+          })
+          .style("cursor", "pointer")
+          .on("click", function(event, d) {
+            svg.selectAll("circle.bubble-main").attr("stroke-width", 1);
+            d3.select(this).select("circle.bubble-main").attr("stroke-width", 3);
+
+            const panel = document.getElementById("worldMapDetails");
+            const victimList = d.victims.map(v =>
+              `<li><strong>${v.group}</strong> → ${v.victim}</li>`
+            ).join("");
+            panel.innerHTML = `
+              <div class="map-details-header">${d.country} — ${d.n} rapporterade offer</div>
+              <ul class="map-details-list">${victimList || "<li>Ingen detaljerad offerinfo sparad ännu.</li>"}</ul>
+            `;
           });
 
         bubbles.append("circle")
+          .attr("class", "bubble-main")
           .attr("r", d => radius(d.n))
           .attr("fill", d => color(d.n))
           .attr("fill-opacity", 0.75)
@@ -451,22 +480,7 @@
       <table id="iocTable">
         <tbody><tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">960fef0096ae38ad37203acfc2e1a8b1e779b4b6  [Coinminer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
               <td class="mono ioc-value">be312034d50a5e2cf8e25bd4011ad2dbcb876910  [XWorm, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">b8644f66e695101b1a3ff5a57be09c073db7922f  [Logedrut, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">77b767fc5ff206df1eca760ffd3214e9df27135e  [Logedrut, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -481,6 +495,16 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">b8644f66e695101b1a3ff5a57be09c073db7922f  [Logedrut, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">77b767fc5ff206df1eca760ffd3214e9df27135e  [Logedrut, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
               <td class="mono ioc-value">a7ff7db40888f18e4123aeea4153f2f11c6cd950  [Venus Stealer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
@@ -489,394 +513,9 @@
               <td class="mono ioc-value">d64dfa1777f10233f6811cbb7053cb8d47fe9b4d  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">102.117.173.122:7443  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">47.118.26.230:9999  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">142.202.205.224:74  [Remcos, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">107.148.78.97:8084  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.48:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">101.35.217.145:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.48:5996  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.132.164.57:7007  [XWorm, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">101.35.217.145:8888  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">152.136.119.249:8084  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">91.92.33.76:80  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">206.189.104.97:80  [AMOS, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">91.121.235.123:1224  [BeaverTail, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">140.143.150.137:6379  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.27.143.19:80  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">102.220.163.36:2505  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">192.177.26.195:56001  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">3.70.2.18:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">102.220.161.92:2021  [XWorm, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">82.47.101.16:7000  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">85.11.182.104:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">185.137.122.215:8001  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">102.117.167.58:7443  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">20.124.84.92:3001  [Unknown RAT, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">206.189.10.124:8001  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">35.213.187.40:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">31.76.45.234:80  [Tsundere, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">74.208.146.77:2244  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">91.92.241.149:6606  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">111.229.248.198:8085  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">31.77.220.78:443  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.48:443  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">185.112.59.102:7707  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">185.215.151.9:2404  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.94.66.124:22  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">128.90.112.84:8081  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">139.129.18.13:9999  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">3.70.2.18:443  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">46.246.12.23:7045  [Houdini, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">196.251.107.252:22063  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">134.122.50.221:8001  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">121.43.102.230:9000  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">49.233.122.187:33333  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">120.27.20.98:55801  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">192.159.99.211:1996  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">130.61.85.204:443  [DanaBot, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">82.158.89.214:443  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.69.57:14646  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">3.70.2.18:80  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">195.177.94.29:56001  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">142.202.205.224:2404  [Remcos, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">101.35.217.145:80  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">177.22.117.74:9001  [DanaBot, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.69.239:4553  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">195.177.94.16:6606  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">161.35.197.52:9034  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">47.236.204.56:80  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.94.66.124:80  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">39.105.16.200:4321  [AdaptixC2, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">46.246.12.23:32722  [Houdini, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">35.213.187.40:22  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">192.253.229.23:443  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">117.72.32.75:5000  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">101.35.217.145:443  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">143.92.38.221:8151  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">5.78.212.208:22  [Havoc, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">45.207.211.207:4322  [AdaptixC2, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">94.154.43.83:8443  [MicroStealer, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">167.17.47.252:80  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">184.75.208.66:46048  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">47.86.184.71:10443  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.94.66.124:443  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">103.140.186.26:21290  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">188.166.111.101:8001  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">46.151.182.5:8080  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.71.242:14643  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.47:443  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">5.78.212.208:443  [Havoc, confidence 100]</td>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">960fef0096ae38ad37203acfc2e1a8b1e779b4b6  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -886,22 +525,92 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">2.27.160.141:61712  [AdaptixC2, confidence 75]</td>
+              <td class="mono ioc-value">35.213.187.40:443  [Cobalt Strike, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">185.127.94.179:443  [PureRAT, confidence 75]</td>
+              <td class="mono ioc-value">49.235.158.141:8085  [VShell, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">128.90.103.57:2015  [Remcos, confidence 100]</td>
+              <td class="mono ioc-value">188.166.111.101:8001  [Aisuru, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">101.35.217.145:22  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">156.254.20.47:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">3.70.2.18:443  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">134.122.200.153:8151  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">47.86.184.71:10443  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">27.14.2.173:3000  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">142.202.205.224:2404  [Remcos, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.112.59.102:7707  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">101.35.217.145:443  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">91.92.241.149:6606  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">45.207.211.207:4322  [AdaptixC2, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">81.70.21.163:18080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">140.143.150.137:6379  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">155.103.69.57:14646  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">192.159.99.211:1996  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">102.220.163.36:2505  [AsyncRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -911,57 +620,7 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.160.168.167:56003  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">106.75.249.202:10000  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">185.112.59.102:8808  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.47:5996  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">152.42.173.73:8001  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">202.146.222.156:443  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">66.179.29.5:8080  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">128.90.59.124:7070  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">159.65.83.2:9035  [Aisuru, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">138.197.31.70:7443  [Unknown malware, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">159.223.56.76:8001  [Aisuru, confidence 100]</td>
+              <td class="mono ioc-value">195.177.94.29:56002  [PureRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -976,12 +635,7 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">82.158.89.75:2053  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">81.70.21.163:18080  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">5.78.212.208:443  [Havoc, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -991,12 +645,7 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">85.11.182.104:22  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">185.241.211.244:443  [PureRAT, confidence 75]</td>
+              <td class="mono ioc-value">143.92.38.221:8151  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1006,67 +655,22 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">31.56.209.155:2407  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">134.122.204.114:8151  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">187.77.30.227:5005  [AdaptixC2, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">47.96.137.72:8084  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
               <td class="mono ioc-value">101.35.217.145:8081  [Cobalt Strike, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">37.244.231.39:4433  [DanaBot, confidence 75]</td>
+              <td class="mono ioc-value">195.177.94.16:6606  [AsyncRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">195.177.94.29:56002  [PureRAT, confidence 75]</td>
+              <td class="mono ioc-value">47.236.204.56:80  [VShell, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.69.239:4551  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.47:80  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">2.59.134.119:56005  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">104.243.248.63:3606  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">188.212.158.203:1145  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">81.70.21.163:5985  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">91.121.235.123:1224  [BeaverTail, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1076,52 +680,57 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">103.36.223.45:8084  [VShell, confidence 100]</td>
+              <td class="mono ioc-value">134.122.204.114:8151  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">49.235.158.141:8085  [VShell, confidence 100]</td>
+              <td class="mono ioc-value">85.11.182.104:8080  [Cobalt Strike, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">27.14.2.173:16601  [Unknown malware, confidence 100]</td>
+              <td class="mono ioc-value">202.146.222.156:443  [PureRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.47:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">82.47.101.16:7000  [AsyncRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">47.116.175.227:8084  [VShell, confidence 100]</td>
+              <td class="mono ioc-value">37.244.231.39:4433  [DanaBot, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">27.14.2.173:3000  [Unknown malware, confidence 100]</td>
+              <td class="mono ioc-value">134.122.50.221:8001  [Aisuru, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">152.42.173.73:8080  [Aisuru, confidence 100]</td>
+              <td class="mono ioc-value">152.42.173.73:8001  [Aisuru, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">168.144.98.150:8443  [Aisuru, confidence 100]</td>
+              <td class="mono ioc-value">2.59.134.119:56005  [PureRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">134.122.200.153:8151  [Unknown malware, confidence 100]</td>
+              <td class="mono ioc-value">128.90.103.57:2015  [Remcos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">35.213.187.40:443  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">185.127.94.179:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">82.158.89.214:443  [Cobalt Strike, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1131,7 +740,197 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">85.11.182.104:80  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">31.77.220.78:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">20.124.84.92:3001  [Unknown RAT, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">206.189.104.97:80  [AMOS, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">85.11.182.104:22  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">128.90.59.124:7070  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">101.35.217.145:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">101.35.217.145:22  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">138.197.31.70:7443  [Unknown malware, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">101.35.217.145:8888  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">152.136.119.249:8084  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">27.14.2.173:16601  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">111.229.248.198:8085  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">130.61.85.204:443  [DanaBot, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">184.75.208.66:46048  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.254.20.48:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">103.140.186.26:21290  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">82.158.89.75:2053  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">91.92.33.76:80  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">5.78.212.208:22  [Havoc, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.215.151.9:2404  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">177.22.117.74:9001  [DanaBot, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">107.148.78.97:8084  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">192.177.26.195:56001  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">102.117.167.58:7443  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">155.103.69.239:4551  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">155.103.71.242:14643  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">192.253.229.23:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.132.164.57:7007  [XWorm, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">106.75.249.202:10000  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">142.202.205.224:74  [Remcos, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.112.59.102:8808  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">31.76.45.234:80  [Tsundere, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.254.20.47:443  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">94.154.43.83:8443  [MicroStealer, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">66.179.29.5:8080  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">161.35.197.52:9034  [Aisuru, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">46.246.12.23:32722  [Houdini, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">35.213.187.40:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">168.144.98.150:8443  [Aisuru, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1139,34 +938,239 @@
               <td class="mono ioc-value">138.124.14.35:9091  [Evilginx, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">e7f0d98ed2fd14827712e1e9ad514a4dc494a77ef30ae8bf25c599da1d1c9bad  [Bashlite, confidence 100]</td>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">128.90.112.84:8081  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">121.43.102.230:9000  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">31.56.209.155:2407  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">46.246.12.23:7045  [Houdini, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">3.70.2.18:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">104.243.248.63:3606  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">101.35.217.145:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">159.223.56.76:8001  [Aisuru, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">139.129.18.13:9999  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">102.220.161.92:2021  [XWorm, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">155.103.69.239:4553  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.254.20.47:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.241.211.244:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">46.151.182.5:8080  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.94.66.124:443  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">47.116.175.227:8084  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">117.72.32.75:5000  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">188.212.158.203:1145  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">196.251.107.252:22063  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.160.168.167:56003  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">195.177.94.29:56001  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">3.70.2.18:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">49.233.122.187:33333  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.254.20.47:5996  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">159.65.83.2:9035  [Aisuru, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">167.17.47.252:80  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.137.122.215:8001  [Aisuru, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">120.27.20.98:55801  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">2.27.160.141:61712  [AdaptixC2, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.254.20.48:443  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">74.208.146.77:2244  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">103.36.223.45:8084  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">47.96.137.72:8084  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">102.117.173.122:7443  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.254.20.48:5996  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.94.66.124:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">81.70.21.163:5985  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.27.143.19:80  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">187.77.30.227:5005  [AdaptixC2, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">85.11.182.104:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">47.118.26.230:9999  [VShell, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">152.42.173.73:8080  [Aisuru, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.94.66.124:22  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">39.105.16.200:4321  [AdaptixC2, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">206.189.10.124:8001  [Aisuru, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">35.213.187.40:22  [Cobalt Strike, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">bedc5ef2bc2ad17fd0d627b2539a47e6ad55f9b83cfe3febaf8de2ee32e9c9af  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">2b5f0c927f5436d8c04d58bb8c9fba470cbbf4ce23eacf2d65e336ca2bb59d97  [XWorm, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">1a49a2c9c9a3522d55d2a19a44e7c8c67d8954d27a747ce4841281ab2703277d  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">c40e58e9eda2d0a753c5a6bce142b758d437d2878f5ae39d8486824881261128  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">88ec1d463f4a7241a6cd5638bd5538efab076ac2553e73437a2b6d0924328423  [AMOS, confidence 100]</td>
+              <td class="mono ioc-value">e8fa2f0d26171bb069a6137993ebf5459d230cf7101533b9fbb9e22754302267  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
@@ -1176,52 +1180,7 @@
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">ef45315889172143d932ea6dde28976a3af993ea81171edca137433ce1d6a824  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">517164c29c0e178b1bb4613d3d5ceb552329c9596791624d8277f2dc5ba37c50  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">5191cf625dfc209a347f137b50aea199e82040fd5ee9086fb3e2de73c133f3cb  [Logedrut, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">c4dc171f2513fcaf9d5ecc815a94aee4063b213ab380f80bd3ac422dee5205a7  [Logedrut, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">718d1345ec4633350c6f36e892b372d433dc66bd4befaa2139e0e70afe04bd88  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">2d8b09556b0e45a68e466079e1b3e9446c94d3e671d84aeef4ea5c200d8f6255  [Chaos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">bf879ba9f69342693eec32139d61a77a44676fd80cd6d34a269e0183f69bc989  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">c1c39007005154132774f01c3e9aeaf7cfdc9005fc71c264e5e9c4c0af0d6759  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">11930b03f4eabccdc20bbf11819e0cfa79b94c8119882a55f4a578e9e147aaea  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">5b66b317f4190b7d5835ee78b02c207ac6ade782564267f75a39cb2cbf46ed9f  [AMOS, confidence 100]</td>
+              <td class="mono ioc-value">1707c849c17706537c7db56edf5f08aeb5e2cfa2d3e9c144a96d75a6dac09268  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
@@ -1231,17 +1190,37 @@
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">394a184fccd33144c8916c99cc9fb4992cf9db5cb1b40317ff38b34e5a241c06  [Mirai, confidence 100]</td>
+              <td class="mono ioc-value">f5f1f8c3e7b883793800ab6ccf21b3e60bd0730f300b4595fe74a33adc17a63c  [Logedrut, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">23231395c4e817e8bbd3aaf5c6a4bb982c2283c2d9057d9e9c9854e4b74932d0  [Mirai, confidence 100]</td>
+              <td class="mono ioc-value">ac7e7f562436c49ec2d3dddbce6cad28f0372b2b25f15b456c3d5fcc06e5285a  [AsyncRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">d9ec29da13d670682f81f6bfb172bd3eea79486a0856578126889a8ed1a61db4  [AMOS, confidence 75]</td>
+              <td class="mono ioc-value">8a4ef80cf6dbce39425c82d90953189e14ff8fc4c69627a6f06d24565c3421ec  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d3569641df7649f6bbf4f60703db437a64c9b4f25bb53ea3998e16f1f261101a  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0b72672206cd0ae57cb7ad9e9b86006e4a73e32500286e3162f9c1c1c7bb229f  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">517164c29c0e178b1bb4613d3d5ceb552329c9596791624d8277f2dc5ba37c50  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e8309eb806c81ecdb99c121da6a85e44e66b6f1858fcb7bcf7eb1892decaf107  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
@@ -1251,182 +1230,27 @@
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">76d55f8fa49d8490c5bce91abc0388586c5a64d28d29c4985232414b4bddfd76  [Mirai, confidence 100]</td>
+              <td class="mono ioc-value">aa1c7587dc1edfa419a4b6a78efae6b6e6265038cf7124253502589805b55c25  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">5f9e08ceb5617bc563e618347f3cf902919bc07e105f6943ab58b61199f960dc  [Mirai, confidence 80]</td>
+              <td class="mono ioc-value">7556bcc9047c408e61dd0fc1ffb56b3d96f052064f69d0b84fb17dd365baba79  [Unknown Loader, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">eddbd0ecf7195d38fefae5b9d393abfa79e6f3f94bde19308ecef130a05a42e5  [Logedrut, confidence 95]</td>
+              <td class="mono ioc-value">718d1345ec4633350c6f36e892b372d433dc66bd4befaa2139e0e70afe04bd88  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">a7682d1edc81925c3d7d2738db2283c742144d8321cfaf1888cdb66c1cd6ae83  [Tsunami, confidence 100]</td>
+              <td class="mono ioc-value">e6d7d88169e89fdfcae948731fd46682f4947e92972af51aefbcd7c057247b7c  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">9121ad58f09f380d849ba89071899f8c48c436bac21f7a3aba084ea0861c16cd  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">b88cb5aa2aed19216d269e7cd08348ab1e1017af6a9a8e39375715d0c0705a89  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">6538f85f76b7fa8fd43ffec779f02a58b89e42b34af45d630af387a78b2a2616  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">a18aa476ad595ad3567df4fa98f3a615a3c6b6ac450c8dc3d2e95ce98c7634a7  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">1707c849c17706537c7db56edf5f08aeb5e2cfa2d3e9c144a96d75a6dac09268  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">72c0e5dcac59407ffa0186988fba092a92e6e98ae57d1b606586ee1e1d200a31  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">e9a7c47bd60a67a39e15eead4821210b4edba9368f140619b6f22c77cc874887  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">5086d80f6e009feaccedf2c69368ddae803e11a8d7ffaafb4b790177828abc90  [Bashlite, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">0de0aa09779fc1dc5339d362dcfc40453a0b8747d52913487088f54b45798af9  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">0e10b9ee5e135c9ce5f02b41cbbb3cb51ad5b7c83a241cab552fd4e8840aa1bd  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">02040009ebcecfee14b8ab21e737d154a7bf8c89641b4b8d54733ee82a8d80db  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">247a8bd16be5e5d8c26d4e0ba3697ad4abdf523e4424a8105b9688f98bfd4497  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">12d754a8f7876a3fb2b563f7f333813e4d386e9287bdd5776a353ee53dbf7b4a  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">1738feb28e36c80bdefcc8d644c579cdfdea9e75089bf1344729c698dbd62b16  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">4009159927381029ee587b5546ff046f5a1c1d2682fe75ec7bc90a658913517a  [Mirai, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">a3e786a3d2b8baa9c1fda58f2116542606e156bee898a6a2d485fd65790029f3  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">c78352eaf38880fbc3ce60b4eec4c577478d618c990bbe510dd1367ee3274824  [Bashlite, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">8f642489cee2a2ed21e6498d3cee13decad32834d24e094533b10d499f64b193  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">ad56d2df3c9614af56f49ee645989ccea45591c2c0c1a565e48f6a94cf75beab  [AMOS, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">b3cece7e7c9dfc37c02752be98080efbabbb7fec651d20521d78fd71eadda289  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">7d7ccd876375c5eebcf2c8b37d39bfe3eaf1f509fe1bb9ce478ece0d7abfd274  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">c13e3c3d658d17838c0b09f64abe9a8ad35e71cb4219dfea5829eaffdf6e9715  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">39f9dc4520e018356d2b6678d248f5c7b8c70449bc356a6e86cd243ccc0adc1d  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">6d85af515457833a879ce9442a4b538b57558e10676c57a098db083722c889e3  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">57fc974927b70736976b88fd369e7547892d8f227e7aa1a322e5b61aa562a93a  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">159b07fbb932c2306ee2cf110087bdca9f11d25a0eea18f36749d66a4fb50065  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">876cc349fd0bcea044f99178e7ab4911a2b078eba1612b7ad5db176e889451d7  [Bashlite, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">717e8d99fea593ff2ab47baf848f226b0675b82a332cb06c21d4ccf38f9a6fac  [Venus Stealer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">b92a53b7853807b3f417e8aaab19662f3451480743c3fc6831b8131a5859bfce  [AMOS, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">7d5b0d78f7db42e97a76c816797056eb7fb54f091670881f8be1d9069417b8a7  [Mirai, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">ccb05e8e1b680a6766c9cfffe71e5543f0b9b0432d2ea10d8f4661188ec5b951  [Meterpreter, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha256_hash">
-              <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">b9f239f6670f52d74ed55d1fbe7ca02feca1387e7aacd329abbcd1cf114e2b7d  [Coinminer, confidence 95]</td>
+              <td class="mono ioc-value">984154b2fe7ff4fae1bfa0136041b4d9605044042e12037d7de168098f07f0b4  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
@@ -1436,17 +1260,222 @@
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">6c326405d6be80549c0ccb6f57a318f1c553fea01ac24bfca03fe66dd5e545dd  [Mirai, confidence 100]</td>
+              <td class="mono ioc-value">1738feb28e36c80bdefcc8d644c579cdfdea9e75089bf1344729c698dbd62b16  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
-              <td class="mono ioc-value">f5f1f8c3e7b883793800ab6ccf21b3e60bd0730f300b4595fe74a33adc17a63c  [Logedrut, confidence 95]</td>
+              <td class="mono ioc-value">b88cb5aa2aed19216d269e7cd08348ab1e1017af6a9a8e39375715d0c0705a89  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c1284e45e618b6ce2fa48aa7257f3b1b5bd7fe542efd24ebfd9c488a4a5dd048  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">089fadf8fcee6e35649065940f346777ac0f2067761259bde81b6710fc89d6b8  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0de0aa09779fc1dc5339d362dcfc40453a0b8747d52913487088f54b45798af9  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">6cdc6333fb83f8dd8e4d86498122ff1845fdc0da46f616ed0e51a140f8d6eed9  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">64c175284dc211529b811795c61ba5b8e5f30d162ea7f15845edae945a6fd9a4  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">cd226b634e8dcefbf72f2465a922a9f33f235fa8fafa0d41bd1206bb56b5d475  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5eee1f6a29b6c1c13130ae1c2e7020dd83fc755d6b995c04e4db457e5c5a92af  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">a18aa476ad595ad3567df4fa98f3a615a3c6b6ac450c8dc3d2e95ce98c7634a7  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e09f58caf00bfa37fd4868916bcb1f06fb551e405b7717a9157fa61e3150bb8d  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">a3e786a3d2b8baa9c1fda58f2116542606e156bee898a6a2d485fd65790029f3  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">52e6b0c570b4a64dd91a791635eb86204cf2f5f78269fa1eed318a81ba5bfe34  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7667b3e5e69c6203451b915a7c3b8f2227630243dfaa6209b4beff8bcaa520ed  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5f9e08ceb5617bc563e618347f3cf902919bc07e105f6943ab58b61199f960dc  [Mirai, confidence 80]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c78352eaf38880fbc3ce60b4eec4c577478d618c990bbe510dd1367ee3274824  [Bashlite, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b16fc57e4c3512af307b2268fb91e6bf7e5673b2f488d384d945cf89c7de1ccd  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">2b5f0c927f5436d8c04d58bb8c9fba470cbbf4ce23eacf2d65e336ca2bb59d97  [XWorm, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7d7ccd876375c5eebcf2c8b37d39bfe3eaf1f509fe1bb9ce478ece0d7abfd274  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c5a918db3063e42f58361583bde2c1c3a70a2ae710dfd163d698164e3b708c60  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">47c365d4676ffd788011d0b56673f59cdb589c8d3d8217c721853517cba19202  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b37d1bf8dde710cae9095a46505286c689fefa1ef911b0b0709b3833749c6efc  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ec5326d6d0bc6e29ad4382a9d73b293ee18fff489311b915d98e0985b02bbdd0  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">cacb6c487a48887fd5567e4dc61dd799ab03edcc153608e7b8c0df9eb01c6cff  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e7f0d98ed2fd14827712e1e9ad514a4dc494a77ef30ae8bf25c599da1d1c9bad  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha256_hash">
               <td class="mono">sha256_hash</td>
               <td class="mono ioc-value">be4c116c7072b012dca6a5ba971d54800bdcc3bae7131f8aca621268b8527b74  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0e10b9ee5e135c9ce5f02b41cbbb3cb51ad5b7c83a241cab552fd4e8840aa1bd  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">2d8b09556b0e45a68e466079e1b3e9446c94d3e671d84aeef4ea5c200d8f6255  [Chaos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">2a018987d8fb348a3e5e05595afbcd4bfa5631b6e0df83219390cca2e5ea758a  [Koi Loader, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5191cf625dfc209a347f137b50aea199e82040fd5ee9086fb3e2de73c133f3cb  [Logedrut, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7d5b0d78f7db42e97a76c816797056eb7fb54f091670881f8be1d9069417b8a7  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">02040009ebcecfee14b8ab21e737d154a7bf8c89641b4b8d54733ee82a8d80db  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">4043c95c58dfa8dedb4f485ea59f849b150d5882f4be8ba36cb98ff9dd67fc4e  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">bf879ba9f69342693eec32139d61a77a44676fd80cd6d34a269e0183f69bc989  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">394a184fccd33144c8916c99cc9fb4992cf9db5cb1b40317ff38b34e5a241c06  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">1a49a2c9c9a3522d55d2a19a44e7c8c67d8954d27a747ce4841281ab2703277d  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8f642489cee2a2ed21e6498d3cee13decad32834d24e094533b10d499f64b193  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b3cece7e7c9dfc37c02752be98080efbabbb7fec651d20521d78fd71eadda289  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b92a53b7853807b3f417e8aaab19662f3451480743c3fc6831b8131a5859bfce  [AMOS, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ef45315889172143d932ea6dde28976a3af993ea81171edca137433ce1d6a824  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">876cc349fd0bcea044f99178e7ab4911a2b078eba1612b7ad5db176e889451d7  [Bashlite, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">79cea37456aa1276e5119f215ef82c53a9dca7d71e9d814164a636612504ab01  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8c0a34124a8a25c0e2bc81a124e428ab97f0eaaee34d4c5074f29992120421a8  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">159b07fbb932c2306ee2cf110087bdca9f11d25a0eea18f36749d66a4fb50065  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr></tbody>
       </table>
@@ -1646,6 +1675,46 @@
     <div class="table-scroll">
       <table>
         <tbody><tr>
+              <td class="mono">piotrfilanowski.pl</td>
+              <td class="mono dim ioc-value">www.piotrfilanowski.pl</td>
+            </tr>
+<tr>
+              <td class="mono">zenfa.store</td>
+              <td class="mono dim ioc-value">www.zenfa.store, www.zenfa.store.157-180-48-180.cpanel.site, zenfa.store.157-180-48-180.cpanel.site</td>
+            </tr>
+<tr>
+              <td class="mono">cloudelder.com</td>
+              <td class="mono dim ioc-value">cpanel.cloudelder.com, cpcalendars.cloudelder.com, cpcontacts.cloudelder.com, mail.cloudelder.com, webdisk.cloudelder.com, webmail.cloudelder.com, www.cloudelder.com</td>
+            </tr>
+<tr>
+              <td class="mono">barnbuilderpei.com</td>
+              <td class="mono dim ioc-value">www.barnbuilderpei.com</td>
+            </tr>
+<tr>
+              <td class="mono">amitieclinicamedica.com.br</td>
+              <td class="mono dim ioc-value">cpanel.amitieclinicamedica.com.br, ipv6.amitieclinicamedica.com.br, mail.amitieclinicamedica.com.br, webdisk.amitieclinicamedica.com.br, webmail.amitieclinicamedica.com.br, www.amitieclinicamedica.com.br</td>
+            </tr>
+<tr>
+              <td class="mono">sneakycleanco.com</td>
+              <td class="mono dim ioc-value">autoconfig.sneakycleanco.com, autodiscover.sneakycleanco.com, cpanel.sneakycleanco.com, cpcalendars.sneakycleanco.com, cpcontacts.sneakycleanco.com, mail.sneakycleanco.com, webdisk.sneakycleanco.com, webmail.sneakycleanco.com, www.sneakycleanco.com</td>
+            </tr>
+<tr>
+              <td class="mono">curanderos.club</td>
+              <td class="mono dim ioc-value">www.curanderos.club</td>
+            </tr>
+<tr>
+              <td class="mono">goldenvac.com.mx</td>
+              <td class="mono dim ioc-value">autodiscover.goldenvac.com.mx, cpanel.goldenvac.com.mx, cpcalendars.goldenvac.com.mx, cpcontacts.goldenvac.com.mx, ipseingenieria.com.goldenvac.com.mx, jmcconstructora.com.goldenvac.com.mx, mail.goldenvac.com.mx, webdisk.goldenvac.com.mx, webmail.goldenvac.com.mx, www.goldenvac.com.mx, www.ipseingenieria.com.goldenvac.com.mx, www.jmcconstructora.com.goldenvac.com.mx</td>
+            </tr>
+<tr>
+              <td class="mono">braino.co.in</td>
+              <td class="mono dim ioc-value">www.braino.co.in</td>
+            </tr>
+<tr>
+              <td class="mono">escoladobolo.com.br</td>
+              <td class="mono dim ioc-value">autodiscover.escoladobolo.com.br, cpanel.escoladobolo.com.br, cpcalendars.escoladobolo.com.br, cpcontacts.escoladobolo.com.br, escoladobolo.com.br.edusaloti-cursos.com.br, facebook.escoladobolo.com.br, lp.escoladobolo.com.br, mail.escoladobolo.com.br, mboss.escoladobolo.com.br, webdisk.escoladobolo.com.br, webmail.escoladobolo.com.br, www.escoladobolo.com.br, www.escoladobolo.com.br.edusaloti-cursos.com.br, www.lp.escoladobolo.com.br</td>
+            </tr>
+<tr>
               <td class="mono">10000call.co.com</td>
               <td class="mono dim ioc-value">www.10000call.co.com</td>
             </tr>
@@ -1684,46 +1753,6 @@
 <tr>
               <td class="mono">valcuore.org</td>
               <td class="mono dim ioc-value">www.valcuore.org</td>
-            </tr>
-<tr>
-              <td class="mono">soleresult.com</td>
-              <td class="mono dim ioc-value">cpanel.soleresult.com, cpcalendars.soleresult.com, cpcontacts.soleresult.com, m.soleresult.com, mail.soleresult.com, webdisk.soleresult.com, webmail.soleresult.com, www.soleresult.com</td>
-            </tr>
-<tr>
-              <td class="mono">sommelierdeideias.com.br</td>
-              <td class="mono dim ioc-value">www.sommelierdeideias.com.br</td>
-            </tr>
-<tr>
-              <td class="mono">legendslm.com</td>
-              <td class="mono dim ioc-value">www.legendslm.com</td>
-            </tr>
-<tr>
-              <td class="mono">1stclassautodetail.com</td>
-              <td class="mono dim ioc-value">pay.1stclassautodetail.com, www.1stclassautodetail.com, www.pay.1stclassautodetail.com</td>
-            </tr>
-<tr>
-              <td class="mono">bettyjournal.com</td>
-              <td class="mono dim ioc-value">mail.bettyjournal.com, www.bettyjournal.com</td>
-            </tr>
-<tr>
-              <td class="mono">icredit.top</td>
-              <td class="mono dim ioc-value">www.icredit.top</td>
-            </tr>
-<tr>
-              <td class="mono">ai4wm.com</td>
-              <td class="mono dim ioc-value">1.ai4wm.com, a.ai4wm.com, webmail.ai4wm.com, www.ai4wm.com</td>
-            </tr>
-<tr>
-              <td class="mono">dimacso.cl</td>
-              <td class="mono dim ioc-value">www.dimacso.cl</td>
-            </tr>
-<tr>
-              <td class="mono">k2demo.in</td>
-              <td class="mono dim ioc-value">www.k2demo.in</td>
-            </tr>
-<tr>
-              <td class="mono">cennutriment.fr</td>
-              <td class="mono dim ioc-value">pma.cennutriment.fr, www.cennutriment.fr</td>
             </tr></tbody>
       </table>
     </div>
@@ -1924,6 +1953,42 @@ This issue affects ADC: from 14.1 t...</td>
     <div class="table-scroll">
       <table>
         <tbody><tr>
+              <td class="mono">124.223.164.97</td>
+              <td class="mono dim">8081, 4444, 8140, 8089</td>
+              <td><span class="badge badge-critical">CVE-2024-7592, CVE-2026-15308, CVE-2026-3644, CVE-2026-4519, CVE-2026-3087, CVE-2025-13462, CVE-2009-3720, CVE-2025-13836, CVE-2026-0864, CVE-2026-7210, CVE-2024-9287, CVE-2025-12084, CVE-2026-6019, CVE-2009-2940, CVE-2023-27043, CVE-2025-12781, CVE-2021-32052, CVE-2025-13837, CVE-2024-6232, CVE-2020-29396</span></td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">121.43.102.230</td>
+              <td class="mono dim">1025, 8708, 2049, 14344, 15, 4118, 3098, 548, 5672, 23082, 3125, 13878, 45111, 1080, 12345, 4157, 1599, 23618, 2628, 79, 9299, 9306, 35002, 44643, 3174, 5222, 104, 4455, 5228, 8819, 44158, 135, 18060, 55949, 4242, 18070, 1177, 48803, 1200, 8883, 8886, 10426, 12496, 9939, 49368, 12000, 8912, 5858, 3301, 12526, 7415, 35589, 21255, 12562, 2323, 21279, 6432, 12583, 21295, 44340, 5432, 51001, 30011, 3552, 4321, 12107, 4436, 7001, 5987, 5991, 873, 17773, 4463, 12150, 12156, 8065, 21379, 65004, 8586, 8087, 30122, 50100, 3001, 61370, 60129, 8126, 9151, 1984, 9165, 465, 8150, 5597, 4064, 9188, 8680, 1515, 30700, 502, 503, 3065, 3070, 1023</td>
+              <td><span class="badge badge-critical">CVE-2017-15906, CVE-2021-31808, CVE-2007-2768, CVE-2018-19132, CVE-2018-19131, CVE-2021-31806, CVE-2021-41617, CVE-2018-10088, CVE-2020-14058, CVE-2019-12524, CVE-2020-11945, CVE-2020-15778, CVE-2026-32748, CVE-2019-6110, CVE-2016-3948, CVE-2021-36368, CVE-2023-51767, CVE-2025-54574, CVE-2016-3947, CVE-2022-41318, CVE-2026-33515, CVE-2025-26465, CVE-2019-12519, CVE-2021-31807, CVE-2021-28116, CVE-2023-5824, CVE-2024-45802, CVE-2025-59362, CVE-2019-18860, CVE-2016-4554, CVE-2020-15811, CVE-2020-15810, CVE-2021-28652, CVE-2021-28651, CVE-2025-62168, CVE-2018-15919, CVE-2020-8449, CVE-2023-50269, CVE-2023-48795, CVE-2023-38408, CVE-2018-1000024, CVE-2018-1000027, CVE-2019-12528, CVE-2019-12529, CVE-2023-46847, CVE-2023-46846, CVE-2019-12520, CVE-2019-12521, CVE-2019-12522, CVE-2019-12523, CVE-2021-46784, CVE-2019-12525, CVE-2019-12526, CVE-2020-14145, CVE-2026-60000, CVE-2026-60001, CVE-2026-60002, CVE-2025-32728, CVE-2020-8450, CVE-2016-4555, CVE-2016-4556, CVE-2016-4553, CVE-2024-37894, CVE-2020-8517, CVE-2023-46728, CVE-2020-25097, CVE-2019-18676, CVE-2019-18677, CVE-2016-10002, CVE-2019-18678, CVE-2019-18679, CVE-2023-46724, CVE-2019-13345, CVE-2026-33526, CVE-2026-47729, CVE-2021-33620, CVE-2016-10003, CVE-2016-2390, CVE-2026-59996, CVE-2026-59997, CVE-2026-59995, CVE-2026-59998, CVE-2026-59999, CVE-2023-49286, CVE-2023-49285, CVE-2023-49288, CVE-2026-35414, CVE-2020-24606, CVE-2019-6111, CVE-2023-51385, CVE-2018-20685, CVE-2026-50012, CVE-2018-15473, CVE-2026-35385, CVE-2026-35387, CVE-2016-4054, CVE-2016-20012, CVE-2016-4051, CVE-2026-35388, CVE-2016-4053, CVE-2016-4052, CVE-2008-3844, CVE-2020-15049, CVE-2024-25617, CVE-2019-6109</span></td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">65.108.13.120</td>
+              <td class="mono dim">22</td>
+              <td>—</td>
+              <td class="dim">static.120.13.108.65.clients.your-server.de</td>
+            </tr>
+<tr>
+              <td class="mono">23.94.66.124</td>
+              <td class="mono dim">22</td>
+              <td>—</td>
+              <td class="dim">23-94-66-124-host.colocrossing.com</td>
+            </tr>
+<tr>
+              <td class="mono">132.243.221.34</td>
+              <td class="mono dim">3389</td>
+              <td>—</td>
+              <td class="dim">vm198365.hosted-by.qwins.co</td>
+            </tr>
+<tr>
+              <td class="mono">177.201.238.71</td>
+              <td class="mono dim">137, 3389, 445, 135</td>
+              <td><span class="badge badge-critical">CVE-2020-0796</span></td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
               <td class="mono">93.177.77.234</td>
               <td class="mono dim">9000, 443, 3389</td>
               <td><span class="badge badge-critical">CVE-2023-44487, CVE-2025-23419, CVE-2021-3618</span></td>
@@ -2066,42 +2131,6 @@ This issue affects ADC: from 14.1 t...</td>
               <td class="mono dim">80, 443, 22</td>
               <td>—</td>
               <td class="dim">admin.jiagongchang.cc</td>
-            </tr>
-<tr>
-              <td class="mono">80.190.77.86</td>
-              <td class="mono dim">5985, 5986, 135, 5357, 80, 47001, 4444</td>
-              <td>—</td>
-              <td class="dim">vmi3515092.contaboserver.net</td>
-            </tr>
-<tr>
-              <td class="mono">91.219.239.100</td>
-              <td class="mono dim">80, 3389</td>
-              <td>—</td>
-              <td class="dim">ekheclunnoto-dedicated.serverastra.com</td>
-            </tr>
-<tr>
-              <td class="mono">115.190.170.185</td>
-              <td class="mono dim">80, 3333, 22</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">154.91.60.114</td>
-              <td class="mono dim">80, 8092</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">31.6.50.206</td>
-              <td class="mono dim">80, 443, 22</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">45.32.65.138</td>
-              <td class="mono dim">7777, 3333, 80, 5555, 8888, 443</td>
-              <td>—</td>
-              <td class="dim">45.32.65.138.vultrusercontent.com</td>
             </tr></tbody>
       </table>
     </div>
