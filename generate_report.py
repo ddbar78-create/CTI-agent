@@ -41,6 +41,7 @@ COUNTRY_CENTROIDS = {
     "IT": (41.9, 12.6), "NL": (52.1, 5.3), "BE": (50.5, 4.5),
     "CH": (46.8, 8.2), "AT": (47.5, 14.6), "SE": (60.1, 18.6),
     "NO": (60.5, 8.5), "DK": (56.3, 9.5), "FI": (61.9, 25.7),
+    "IS": (64.9, -19.0),
     "PL": (51.9, 19.1), "CZ": (49.8, 15.5), "GR": (39.1, 21.8),
     "RU": (61.5, 105.3), "UA": (48.4, 31.2), "TR": (38.9, 35.2),
     "IL": (31.0, 34.8), "SA": (23.9, 45.1), "AE": (23.4, 53.8),
@@ -88,7 +89,7 @@ def _real_world_map_block(country_counts: list, element_id: str = "worldMap") ->
     <div id="{element_id}" class="world-map-container"></div>
     {unplotted_note}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson-client/3.1.0/topojson-client.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
     <script>
     (function() {{
       const victimData = {data_json};
