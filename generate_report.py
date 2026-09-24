@@ -9,6 +9,7 @@ precis som cti.db, och kan publiceras gratis via GitHub Pages
 """
 
 import html
+import json
 import sqlite3
 from datetime import datetime, timezone
 
@@ -54,63 +55,136 @@ COUNTRY_CENTROIDS = {
 }
 
 
-def _svg_world_dot_map(country_counts: list, width: int = 1000, height: int = 480) -> str:
+def _real_world_map_block(country_counts: list, element_id: str = "worldMap") -> str:
     """
-    Ritar en enkel punktkarta (inget beroende av extern konturdata):
-    ett latitud/longitud-rutnät med en cirkel per land, storlek/opacitet
-    baserat på antal offer. Länder utan känd centroid listas separat.
+    Bygger ett HTML/JS-block som ritar en RIKTIG världskarta (faktiska
+    landgränser) med D3.js + en etablerad world-atlas TopoJSON-fil,
+    laddade via CDN i webbläsaren när sidan öppnas. Kräver internetuppkoppling
+    hos den som tittar på dashboarden (helt normalt för en webbsida).
+
+    Bubblor för varje land ritas ovanpå kartan baserat på COUNTRY_CENTROIDS.
+    En "Ladda ner som PNG"-knapp låter dig exportera kartan för presentationer.
     """
     if not country_counts:
         return '<p class="empty">Ingen geografisk data ännu.</p>'
 
-    plotted = [c for c in country_counts if c["country"] in COUNTRY_CENTROIDS]
+    data_points = [
+        {"country": c["country"], "n": c["n"], "lat": COUNTRY_CENTROIDS[c["country"]][0],
+         "lon": COUNTRY_CENTROIDS[c["country"]][1]}
+        for c in country_counts if c["country"] in COUNTRY_CENTROIDS
+    ]
     unplotted = [c for c in country_counts if c["country"] not in COUNTRY_CENTROIDS]
-
-    max_n = max((c["n"] for c in plotted), default=1)
-
-    def lon_to_x(lon):
-        return (lon + 180) / 360 * width
-
-    def lat_to_y(lat):
-        return (90 - lat) / 180 * height
-
-    parts = []
-    # Enkelt gradnät (var 30:e grad) för visuell referens
-    for lon in range(-180, 181, 30):
-        x = lon_to_x(lon)
-        parts.append(f'<line x1="{x:.1f}" y1="0" x2="{x:.1f}" y2="{height}" stroke="#1e2430" stroke-width="1"/>')
-    for lat in range(-90, 91, 30):
-        y = lat_to_y(lat)
-        parts.append(f'<line x1="0" y1="{y:.1f}" x2="{width}" y2="{y:.1f}" stroke="#1e2430" stroke-width="1"/>')
-    # Ekvatorn och nollmeridianen lite tydligare
-    parts.append(f'<line x1="0" y1="{lat_to_y(0):.1f}" x2="{width}" y2="{lat_to_y(0):.1f}" stroke="#2e3646" stroke-width="1.5"/>')
-    parts.append(f'<line x1="{lon_to_x(0):.1f}" y1="0" x2="{lon_to_x(0):.1f}" y2="{height}" stroke="#2e3646" stroke-width="1.5"/>')
-
-    for c in plotted:
-        lat, lon = COUNTRY_CENTROIDS[c["country"]]
-        x, y = lon_to_x(lon), lat_to_y(lat)
-        radius = 5 + (c["n"] / max_n) * 20
-        opacity = 0.35 + (c["n"] / max_n) * 0.5
-        parts.append(
-            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius:.1f}" '
-            f'fill="#d9534f" fill-opacity="{opacity:.2f}" stroke="#d9534f" stroke-width="1"/>'
-        )
-        parts.append(
-            f'<text x="{x:.1f}" y="{y - radius - 4:.1f}" font-size="11" fill="#d7dbe3" '
-            f'text-anchor="middle">{_esc(c["country"])} ({c["n"]})</text>'
-        )
-
-    map_svg = (
-        f'<svg viewBox="0 0 {width} {height}" width="100%" height="{height}" '
-        f'style="background:#0d1017; border-radius:6px;">' + "".join(parts) + "</svg>"
-    )
+    data_json = json.dumps(data_points)
 
     unplotted_note = ""
     if unplotted:
         listed = ", ".join(f'{_esc(c["country"])} ({c["n"]})' for c in unplotted)
         unplotted_note = f'<p class="dim" style="margin-top:0.6rem;">Utanför kartans landslista: {listed}</p>'
 
-    return map_svg + unplotted_note
+    return f"""
+    <div class="map-toolbar">
+      <button onclick="downloadMapAsPng()" class="map-download-btn">⬇ Ladda ner karta som PNG</button>
+    </div>
+    <div id="{element_id}" class="world-map-container"></div>
+    {unplotted_note}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson-client/3.1.0/topojson-client.min.js"></script>
+    <script>
+    (function() {{
+      const victimData = {data_json};
+      const container = document.getElementById("{element_id}");
+      const width = container.clientWidth || 1000;
+      const height = width * 0.5;
+
+      const svg = d3.select(container).append("svg")
+        .attr("viewBox", `0 0 ${{width}} ${{height}}`)
+        .attr("width", "100%")
+        .attr("height", height)
+        .style("background", "#0a0d13")
+        .style("border-radius", "8px");
+
+      svg.append("defs").html(`
+        <filter id="mapGlow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      `);
+
+      const projection = d3.geoNaturalEarth1();
+      const path = d3.geoPath(projection);
+
+      d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(world => {{
+        const countries = topojson.feature(world, world.objects.countries);
+        projection.fitSize([width, height], countries);
+
+        svg.append("g").selectAll("path")
+          .data(countries.features)
+          .join("path")
+          .attr("d", path)
+          .attr("fill", "#1c2433")
+          .attr("stroke", "#2e3646")
+          .attr("stroke-width", 0.6);
+
+        const maxN = d3.max(victimData, d => d.n) || 1;
+        const radius = d3.scalePow().exponent(0.5).domain([0, maxN]).range([5, 28]);
+        const color = d3.scaleLinear().domain([0, maxN]).range(["#e8a33d", "#d9534f"]);
+
+        const bubbles = svg.append("g").selectAll("g")
+          .data(victimData)
+          .join("g")
+          .attr("transform", d => {{
+            const p = projection([d.lon, d.lat]);
+            return `translate(${{p[0]}},${{p[1]}})`;
+          }});
+
+        bubbles.append("circle")
+          .attr("r", d => radius(d.n))
+          .attr("fill", d => color(d.n))
+          .attr("fill-opacity", 0.75)
+          .attr("stroke", d => color(d.n))
+          .attr("stroke-width", 1)
+          .attr("filter", "url(#mapGlow)");
+
+        bubbles.append("text")
+          .text(d => `${{d.country}} (${{d.n}})`)
+          .attr("y", d => -radius(d.n) - 6)
+          .attr("text-anchor", "middle")
+          .attr("font-size", 11)
+          .attr("font-weight", 600)
+          .attr("fill", "#e8ecf2")
+          .attr("style", "paint-order: stroke; stroke: #0a0d13; stroke-width: 3px;");
+      }}).catch(err => {{
+        container.innerHTML = '<p style="color:#7a8394; font-style:italic; padding:2rem;">Kunde inte ladda kartdata (kräver internetuppkoppling). Fel: ' + err + '</p>';
+      }});
+    }})();
+
+    function downloadMapAsPng() {{
+      const svgEl = document.querySelector("#{element_id} svg");
+      if (!svgEl) return;
+      const svgData = new XMLSerializer().serializeToString(svgEl);
+      const svgBlob = new Blob([svgData], {{type: "image/svg+xml;charset=utf-8"}});
+      const url = URL.createObjectURL(svgBlob);
+      const img = new Image();
+      img.onload = function() {{
+        const scale = 2;
+        const canvas = document.createElement("canvas");
+        canvas.width = svgEl.clientWidth * scale;
+        canvas.height = svgEl.clientHeight * scale;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#0a0d13";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(scale, scale);
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        const link = document.createElement("a");
+        link.download = "ransomware-varldskarta.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }};
+      img.src = url;
+    }}
+    </script>
+    """
 
 
 def _svg_trend_chart(dates: list, series: dict, width: int = 1000, height: int = 200) -> str:
@@ -386,7 +460,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         for d in domain_ages
     ) or '<tr><td colspan="4" class="empty">Ingen domänålder kontrollerad ännu (byggs upp gradvis).</td></tr>'
 
-    world_map_html = _svg_world_dot_map(victim_country_counts)
+    world_map_html = _real_world_map_block(victim_country_counts)
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -519,6 +593,19 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .table-scroll table {{ font-size: 0.85rem; }}
   .table-scroll td:first-child {{ padding-left: 0.9rem; }}
   footer {{ color: var(--text-dim); font-size: 0.78rem; margin-top: 3rem; }}
+  .world-map-container {{ width: 100%; }}
+  .map-toolbar {{ margin-bottom: 0.75rem; }}
+  .map-download-btn {{
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    padding: 0.5rem 0.9rem;
+    border-radius: 5px;
+    font-size: 0.82rem;
+    font-family: var(--sans);
+    cursor: pointer;
+  }}
+  .map-download-btn:hover {{ background: var(--panel-border); }}
 </style>
 </head>
 <body>
