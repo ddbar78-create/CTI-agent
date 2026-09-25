@@ -30,6 +30,53 @@ def _esc(value) -> str:
     return html.escape(str(value)) if value is not None else ""
 
 
+def _section(section_id: str, title: str, body_html: str) -> str:
+    """Wrappar en sektion med klickbar, ihopfällbar rubrik (för interaktivitet)."""
+    return f'''
+  <section id="{section_id}">
+    <h2 class="section-header" onclick="toggleSection('{section_id}')">
+      <span class="chevron" id="{section_id}-chevron">▾</span> {title}
+    </h2>
+    <div class="section-body" id="{section_id}-body">
+      {body_html}
+    </div>
+  </section>'''
+
+
+def _table_block(headers: list, rows_html: str, table_id: str, searchable: bool = False) -> str:
+    """
+    Bygger en tabell med valfria sorterbara kolumner och valfri sökruta.
+    headers: lista av (label, sort_type) där sort_type är "text", "number"
+    eller None (ingen sortering för den kolumnen).
+    """
+    ths = []
+    for i, (label, stype) in enumerate(headers):
+        if stype:
+            ths.append(
+                f'<th class="sortable" onclick="sortTable(\'{table_id}\', {i}, \'{stype}\')">'
+                f'{_esc(label)} <span class="sort-arrow"></span></th>'
+            )
+        else:
+            ths.append(f"<th>{_esc(label)}</th>")
+    thead = "<tr>" + "".join(ths) + "</tr>"
+
+    search_html = ""
+    if searchable:
+        search_html = (
+            f'<div class="controls">'
+            f'<input type="search" id="{table_id}Search" placeholder="Sök..." '
+            f'oninput="filterTable(\'{table_id}Search\', \'{table_id}\')"></div>'
+        )
+
+    return f'''{search_html}
+    <div class="table-scroll">
+      <table id="{table_id}">
+        <thead>{thead}</thead>
+        <tbody>{rows_html}</tbody>
+      </table>
+    </div>'''
+
+
 # Ungefärliga centroider (lat, lon) för länder som vanligen förekommer i
 # ransomware.live-data. Räcker inte alla världens länder att göra kartan
 # meningsfull, men täcker de vanligaste. Okända landskoder listas separat
@@ -214,7 +261,7 @@ def _real_world_map_block(country_counts: list, victim_details: dict, element_id
 
 def _svg_trend_chart(dates: list, series: dict, width: int = 1000, height: int = 200) -> str:
     """
-    Bygger en enkel, beroendefri SVG-linjegraf.
+    Bygger en enkel, beroendefri SVG-linjegraf MED hover-tooltips.
     series: {namn: (lista_med_värden, färg)} — alla listor måste vara lika
     långa som dates. Varje anrop ritar sin egen skala (max = högsta värdet
     bland de serier som skickas in), så ge inte in serier med väldigt olika
@@ -243,12 +290,18 @@ def _svg_trend_chart(dates: list, series: dict, width: int = 1000, height: int =
         f'<text x="4" y="{pad_t + 4}" font-size="10" fill="#7a8394">{max_val}</text>',
     ]
 
-    for values, color in series.values():
+    for name, (values, color) in series.items():
         points = " ".join(f"{px(i):.1f},{py(v):.1f}" for i, v in enumerate(values))
         parts.append(f'<polyline fill="none" stroke="{color}" stroke-width="2" points="{points}" />')
         for i, v in enumerate(values):
-            if v:
-                parts.append(f'<circle cx="{px(i):.1f}" cy="{py(v):.1f}" r="2.5" fill="{color}" />')
+            # Synlig liten prick
+            parts.append(f'<circle cx="{px(i):.1f}" cy="{py(v):.1f}" r="2.5" fill="{color}" style="pointer-events:none;" />')
+            # Osynlig större "hit area" för enklare hovring, bär tooltip-datan
+            tooltip_text = _esc(f"{name} · {dates[i]}: {v}")
+            parts.append(
+                f'<circle class="chart-point" cx="{px(i):.1f}" cy="{py(v):.1f}" r="9" '
+                f'fill="transparent" data-tooltip="{tooltip_text}" />'
+            )
 
     step = max(1, n // 8)
     for i in range(0, n, step):
@@ -421,9 +474,10 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-    # --- Bygg HTML ---
+    # --- Bygg HTML-innehåll för varje sektion ---
+
     breakdown_html = "\n".join(
-        f'''<div class="bar-row">
+        f'''<div class="bar-row" onclick="filterIocsByType('{_esc(r["ioc_type"])}')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">{_esc(r["ioc_type"])}</span>
               <div class="bar-track"><div class="bar-fill" style="width:{max(4, r["n"] / max_type_count * 100):.0f}%"></div></div>
               <span class="bar-count">{r["n"]}</span>
@@ -434,7 +488,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     victims_html = "\n".join(
         f'''<tr>
               <td>{_esc(v["title"])}</td>
-              <td class="dim">{_esc(v["published"] or v["fetched_at"])[:10]}</td>
+              <td class="dim" data-sort="{_esc(v["published"] or v["fetched_at"])}">{_esc(v["published"] or v["fetched_at"])[:10]}</td>
             </tr>'''
         for v in ransomware_victims
     ) or '<tr><td colspan="2" class="empty">Inga ransomware-aviseringar ännu.</td></tr>'
@@ -489,8 +543,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     cve_html = "\n".join(
         f'''<tr>
               <td class="mono">{_esc(c["cve_id"])}</td>
-              <td>{_cve_badge(c)}</td>
-              <td class="dim">{_esc(c["cvss"]) if c["cvss"] else "—"}</td>
+              <td data-sort="{(c["kev"] or 0) * 1000 + (c["epss"] or 0) * 100:.2f}">{_cve_badge(c)}</td>
+              <td class="dim" data-sort="{c["cvss"] or 0}">{_esc(c["cvss"]) if c["cvss"] else "—"}</td>
               <td class="dim">{_esc((c["summary"] or "")[:90])}{"..." if c["summary"] and len(c["summary"]) > 90 else ""}</td>
             </tr>'''
         for c in cve_priorities
@@ -516,7 +570,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     domain_age_html = "\n".join(
         f'''<tr>
               <td class="mono">{_esc(d["domain"])}</td>
-              <td>{_age_badge(d["age_days"])}</td>
+              <td data-sort="{d["age_days"] if d["age_days"] is not None else 999999}">{_age_badge(d["age_days"])}</td>
               <td class="dim">{_esc(d["registered_date"]) or "—"}</td>
               <td class="dim">{_esc(d["registrar"]) or "—"}</td>
             </tr>'''
@@ -574,6 +628,55 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         },
     )
 
+    # --- Bygg sektionerna (id, titel, innehåll) — används för både
+    # innehållsförteckningen och själva sidan ---
+    ioc_search_control = (
+        f'<div class="controls">'
+        f'<select id="typeFilter" onchange="filterIocs()"><option value="">Alla typer</option>{filter_options}</select>'
+        f'<input type="search" id="iocSearch" placeholder="Sök värde..." oninput="filterIocs()"></div>'
+    )
+
+    sections = [
+        ("sec-trend", "Trend, senaste dagarna", f'''
+            <div class="chart-grid">
+              <div class="chart-panel">
+                <div class="chart-title">ThreatFox (hög volym)</div>
+                {threatfox_chart_html}
+              </div>
+              <div class="chart-panel">
+                <div class="chart-title">Övriga källor</div>
+                {other_sources_chart_html}
+              </div>
+            </div>'''),
+        ("sec-attack", "Malware-familjer mot MITRE ATT&CK", attack_html),
+        ("sec-ioctypes", "IOC-typer i databasen (klicka för att filtrera)", breakdown_html),
+        ("sec-map", "Geografisk spridning — ransomware-offer", world_map_html),
+        ("sec-ransomware", "Senaste ransomware-offeraviseringar",
+            _table_block([("Offer", "text"), ("Datum", "text")], victims_html, "ransomwareTable", searchable=True)),
+        ("sec-severity", "Hög/kritisk allvarlighet (LLM-flaggat)",
+            _table_block([("Nivå", None), ("Titel", None), ("Aktör", None), ("Sektor", None)], severity_html, "severityTable")),
+        ("sec-iocs", "Senaste IOCs",
+            ioc_search_control + _table_block(
+                [("Typ", "text"), ("Värde", "text"), ("Källa", "text")], iocs_html, "iocTable"
+            ).replace('<div class="controls">\n    ', "")),
+        ("sec-domainage", "Domänålder (RDAP/WHOIS) — nyregistrerade domäner flaggade",
+            _table_block([("Domän", "text"), ("Ålder", "number"), ("Registrerad", "text"), ("Registrar", "text")], domain_age_html, "domainAgeTable")),
+        ("sec-crtsh", "Relaterad infrastruktur (Certificate Transparency, crt.sh)",
+            _table_block([("Domän", "text"), ("Relaterade domäner", None)], domain_infra_html, "crtshTable")),
+        ("sec-cve", "CVE-prioritering (EPSS + KEV via Shodan CVEDB)",
+            _table_block([("CVE", "text"), ("Status", "number"), ("CVSS", "number"), ("Sammanfattning", None)], cve_html, "cveTable", searchable=True)),
+        ("sec-shodan", "IP-berikning (Shodan InternetDB) — öppna portar & kända CVE:er",
+            _table_block([("IP", "text"), ("Portar", None), ("CVE:er", None), ("Hostnames", None)], shodan_html, "shodanTable")),
+        ("sec-articles", "Senaste artiklar (RSS / Telegram)",
+            _table_block([("Källa", "text"), ("Titel", "text"), ("Fulltext", None)], articles_html, "articlesTable", searchable=True)),
+    ]
+
+    toc_html = "".join(
+        f'<a href="#{sid}" class="toc-link">{title.split("(")[0].split(",")[0].strip()}</a>'
+        for sid, title, _ in sections
+    )
+    sections_html = "".join(_section(sid, title, body) for sid, title, body in sections)
+
     html_doc = f"""<!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -603,7 +706,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     line-height: 1.5;
   }}
   .wrap {{ max-width: 1100px; margin: 0 auto; }}
-  header {{ margin-bottom: 2.5rem; }}
+  header {{ margin-bottom: 1.25rem; }}
   h1 {{
     font-size: 1.5rem;
     font-weight: 600;
@@ -611,6 +714,18 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     letter-spacing: -0.01em;
   }}
   .subtitle {{ color: var(--text-dim); font-size: 0.9rem; }}
+  .toc {{
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 1.75rem; padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--panel-border);
+    position: sticky; top: 0; background: var(--bg); z-index: 10; padding-top: 0.5rem;
+  }}
+  .toc-link {{
+    font-size: 0.78rem; color: var(--text-dim); background: var(--panel);
+    border: 1px solid var(--panel-border); padding: 0.3rem 0.7rem; border-radius: 20px;
+    text-decoration: none; white-space: nowrap;
+  }}
+  .toc-link:hover {{ color: var(--text); border-color: var(--blue); text-decoration: none; }}
   .stat-row {{
     display: flex;
     gap: 1px;
@@ -626,16 +741,36 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   }}
   .stat-num {{ font-size: 1.8rem; font-weight: 600; font-family: var(--mono); }}
   .stat-label {{ font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; }}
-  section {{ margin-bottom: 2.5rem; }}
-  h2 {{
+  section {{ margin-bottom: 1.5rem; scroll-margin-top: 4.5rem; }}
+  h2.section-header {{
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--text);
     margin: 0 0 0.9rem;
     padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--panel-border);
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }}
+  h2.section-header:hover {{ color: var(--blue); }}
+  .chevron {{ display: inline-block; transition: transform 0.15s; font-size: 0.8rem; }}
+  .chevron.collapsed {{ transform: rotate(-90deg); }}
+  .section-body {{ overflow: hidden; }}
+  .section-body.collapsed {{ display: none; }}
   table {{ width: 100%; border-collapse: collapse; font-size: 0.88rem; }}
+  th {{
+    text-align: left; padding: 0.5rem; font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 0.03em; color: var(--text-dim); border-bottom: 1px solid var(--panel-border);
+    position: sticky; top: 0; background: var(--panel);
+  }}
+  th.sortable {{ cursor: pointer; user-select: none; }}
+  th.sortable:hover {{ color: var(--text); }}
+  .sort-arrow::after {{ content: "⇅"; opacity: 0.4; font-size: 0.7rem; margin-left: 0.2rem; }}
+  th[data-sort-dir="asc"] .sort-arrow::after {{ content: "↑"; opacity: 1; }}
+  th[data-sort-dir="desc"] .sort-arrow::after {{ content: "↓"; opacity: 1; }}
   td {{ padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--panel-border); vertical-align: top; }}
   tr:last-child td {{ border-bottom: none; }}
   a {{ color: var(--blue); text-decoration: none; }}
@@ -656,7 +791,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .badge-high {{ background: rgba(232,163,61,0.15); color: var(--amber); }}
   .badge-critical {{ background: rgba(217,83,79,0.18); color: var(--red); }}
   .badge-full-text {{ background: rgba(91,141,214,0.15); color: var(--blue); }}
-  .bar-row {{ display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem; }}
+  .bar-row {{ display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem; cursor: pointer; padding: 0.15rem; border-radius: 4px; }}
+  .bar-row:hover {{ background: var(--panel); }}
   .bar-label {{ width: 90px; flex-shrink: 0; color: var(--text-dim); font-family: var(--mono); }}
   .bar-track {{ flex: 1; background: var(--panel-border); border-radius: 3px; height: 8px; overflow: hidden; }}
   .bar-fill {{ background: var(--amber); height: 100%; }}
@@ -667,6 +803,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .chart-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }}
   .chart-panel {{ background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px; padding: 1rem; }}
   .chart-title {{ font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem; }}
+  .chart-point {{ cursor: crosshair; }}
   @media (max-width: 700px) {{ .chart-grid {{ grid-template-columns: 1fr; }} }}
   select, input[type="search"] {{
     background: var(--panel);
@@ -720,14 +857,23 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .attack-techniques {{ font-size: 0.82rem; margin-bottom: 0.4rem; }}
   .attack-techniques a {{ margin-right: 0.3rem; }}
   .attack-families {{ font-size: 0.8rem; }}
+  .chart-tooltip {{
+    position: absolute; display: none; background: #1c2330;
+    border: 1px solid var(--panel-border); padding: 0.35rem 0.6rem;
+    border-radius: 4px; font-size: 0.78rem; color: var(--text);
+    pointer-events: none; z-index: 100; white-space: nowrap;
+  }}
 </style>
 </head>
 <body>
+<div id="chartTooltip" class="chart-tooltip"></div>
 <div class="wrap">
   <header>
     <h1>CTI-agent — instrumentpanel</h1>
     <div class="subtitle">Senast uppdaterad {generated_at} · körs automatiskt varje timme</div>
   </header>
+
+  <nav class="toc">{toc_html}</nav>
 
   <div class="stat-row">
     <div class="stat"><div class="stat-num">{stats}</div><div class="stat-label">Artiklar/poster totalt</div></div>
@@ -737,122 +883,57 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <div class="stat"><div class="stat-num">{full_text_count}</div><div class="stat-label">Artiklar med fulltext hämtad</div></div>
   </div>
 
-  <section>
-    <h2>Trend, senaste {len(daily_rows)} dagarna</h2>
-    <div class="chart-grid">
-      <div class="chart-panel">
-        <div class="chart-title">ThreatFox (hög volym)</div>
-        {threatfox_chart_html}
-      </div>
-      <div class="chart-panel">
-        <div class="chart-title">Övriga källor</div>
-        {other_sources_chart_html}
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Malware-familjer mot MITRE ATT&amp;CK (kategoribaserad approximation)</h2>
-    {attack_html}
-  </section>
-
-  <section>
-    <h2>IOC-typer i databasen</h2>
-    {breakdown_html}
-  </section>
-
-  <section>
-    <h2>Geografisk spridning — ransomware-offer</h2>
-    {world_map_html}
-  </section>
-
-  <section>
-    <h2>Senaste ransomware-offeraviseringar</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{victims_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Hög/kritisk allvarlighet (LLM-flaggat)</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{severity_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Senaste IOCs</h2>
-    <div class="controls">
-      <select id="typeFilter" onchange="filterIocs()">
-        <option value="">Alla typer</option>
-        {filter_options}
-      </select>
-      <input type="search" id="iocSearch" placeholder="Sök värde..." oninput="filterIocs()">
-    </div>
-    <div class="table-scroll">
-      <table id="iocTable">
-        <tbody>{iocs_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Domänålder (RDAP/WHOIS) — nyregistrerade domäner flaggade</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{domain_age_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Relaterad infrastruktur (Certificate Transparency, crt.sh)</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{domain_infra_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>CVE-prioritering (EPSS + KEV via Shodan CVEDB)</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{cve_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>IP-berikning (Shodan InternetDB) — öppna portar &amp; kända CVE:er</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{shodan_html}</tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Senaste artiklar (RSS / Telegram)</h2>
-    <div class="table-scroll">
-      <table>
-        <tbody>{articles_html}</tbody>
-      </table>
-    </div>
-  </section>
+  {sections_html}
 
   <footer>Genererad av cti-agent. Data från RSS-källor, ThreatFox (abuse.ch), Telegram och ransomware.live.</footer>
 </div>
 
 <script>
+// --- Ihopfällbara sektioner ---
+function toggleSection(id) {{
+  document.getElementById(id + '-body').classList.toggle('collapsed');
+  document.getElementById(id + '-chevron').classList.toggle('collapsed');
+}}
+
+// --- Generisk tabellsortering ---
+function sortTable(tableId, colIndex, type) {{
+  const table = document.getElementById(tableId);
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const headers = table.querySelectorAll('th');
+  const header = headers[colIndex];
+  const asc = header.getAttribute('data-sort-dir') !== 'asc';
+  headers.forEach(th => th.removeAttribute('data-sort-dir'));
+  header.setAttribute('data-sort-dir', asc ? 'asc' : 'desc');
+
+  rows.sort((a, b) => {{
+    const aCell = a.children[colIndex];
+    const bCell = b.children[colIndex];
+    let av = aCell ? (aCell.getAttribute('data-sort') ?? aCell.textContent.trim()) : '';
+    let bv = bCell ? (bCell.getAttribute('data-sort') ?? bCell.textContent.trim()) : '';
+    if (type === 'number') {{
+      av = parseFloat(av) || 0;
+      bv = parseFloat(bv) || 0;
+      return asc ? av - bv : bv - av;
+    }}
+    return asc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+  }});
+  rows.forEach(r => tbody.appendChild(r));
+}}
+
+// --- Generisk tabellsökning (enkla tabeller utan typfilter) ---
+function filterTable(inputId, tableId) {{
+  const search = document.getElementById(inputId).value.toLowerCase();
+  document.querySelectorAll('#' + tableId + ' tbody tr').forEach(row => {{
+    row.style.display = row.textContent.toLowerCase().includes(search) ? '' : 'none';
+  }});
+}}
+
+// --- IOC-tabellens kombinerade typ+sök-filter ---
 function filterIocs() {{
   const type = document.getElementById('typeFilter').value.toLowerCase();
   const search = document.getElementById('iocSearch').value.toLowerCase();
-  const rows = document.querySelectorAll('#iocTable tr[data-type]');
+  const rows = document.querySelectorAll('#iocTable tbody tr[data-type]');
   rows.forEach(row => {{
     const rowType = row.getAttribute('data-type').toLowerCase();
     const text = row.textContent.toLowerCase();
@@ -861,6 +942,35 @@ function filterIocs() {{
     row.style.display = (matchesType && matchesSearch) ? '' : 'none';
   }});
 }}
+
+// Klick på en stapel i IOC-typ-diagrammet filtrerar direkt och hoppar till listan
+function filterIocsByType(type) {{
+  document.getElementById('typeFilter').value = type;
+  filterIocs();
+  document.getElementById('sec-iocs').scrollIntoView({{behavior: 'smooth', block: 'start'}});
+}}
+
+// --- Hover-tooltips på trendgraferna ---
+(function() {{
+  const tooltip = document.getElementById('chartTooltip');
+  document.addEventListener('mouseover', e => {{
+    if (e.target.classList && e.target.classList.contains('chart-point')) {{
+      tooltip.textContent = e.target.getAttribute('data-tooltip');
+      tooltip.style.display = 'block';
+    }}
+  }});
+  document.addEventListener('mousemove', e => {{
+    if (e.target.classList && e.target.classList.contains('chart-point')) {{
+      tooltip.style.left = (e.pageX + 12) + 'px';
+      tooltip.style.top = (e.pageY - 28) + 'px';
+    }}
+  }});
+  document.addEventListener('mouseout', e => {{
+    if (e.target.classList && e.target.classList.contains('chart-point')) {{
+      tooltip.style.display = 'none';
+    }}
+  }});
+}})();
 </script>
 </body>
 </html>"""
