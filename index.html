@@ -27,7 +27,7 @@
     line-height: 1.5;
   }
   .wrap { max-width: 1100px; margin: 0 auto; }
-  header { margin-bottom: 2.5rem; }
+  header { margin-bottom: 1.25rem; }
   h1 {
     font-size: 1.5rem;
     font-weight: 600;
@@ -35,6 +35,18 @@
     letter-spacing: -0.01em;
   }
   .subtitle { color: var(--text-dim); font-size: 0.9rem; }
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 1.75rem; padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--panel-border);
+    position: sticky; top: 0; background: var(--bg); z-index: 10; padding-top: 0.5rem;
+  }
+  .toc-link {
+    font-size: 0.78rem; color: var(--text-dim); background: var(--panel);
+    border: 1px solid var(--panel-border); padding: 0.3rem 0.7rem; border-radius: 20px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .toc-link:hover { color: var(--text); border-color: var(--blue); text-decoration: none; }
   .stat-row {
     display: flex;
     gap: 1px;
@@ -50,16 +62,36 @@
   }
   .stat-num { font-size: 1.8rem; font-weight: 600; font-family: var(--mono); }
   .stat-label { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; }
-  section { margin-bottom: 2.5rem; }
-  h2 {
+  section { margin-bottom: 1.5rem; scroll-margin-top: 4.5rem; }
+  h2.section-header {
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--text);
     margin: 0 0 0.9rem;
     padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--panel-border);
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+  h2.section-header:hover { color: var(--blue); }
+  .chevron { display: inline-block; transition: transform 0.15s; font-size: 0.8rem; }
+  .chevron.collapsed { transform: rotate(-90deg); }
+  .section-body { overflow: hidden; }
+  .section-body.collapsed { display: none; }
   table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th {
+    text-align: left; padding: 0.5rem; font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 0.03em; color: var(--text-dim); border-bottom: 1px solid var(--panel-border);
+    position: sticky; top: 0; background: var(--panel);
+  }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--text); }
+  .sort-arrow::after { content: "⇅"; opacity: 0.4; font-size: 0.7rem; margin-left: 0.2rem; }
+  th[data-sort-dir="asc"] .sort-arrow::after { content: "↑"; opacity: 1; }
+  th[data-sort-dir="desc"] .sort-arrow::after { content: "↓"; opacity: 1; }
   td { padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--panel-border); vertical-align: top; }
   tr:last-child td { border-bottom: none; }
   a { color: var(--blue); text-decoration: none; }
@@ -80,7 +112,8 @@
   .badge-high { background: rgba(232,163,61,0.15); color: var(--amber); }
   .badge-critical { background: rgba(217,83,79,0.18); color: var(--red); }
   .badge-full-text { background: rgba(91,141,214,0.15); color: var(--blue); }
-  .bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem; }
+  .bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.85rem; cursor: pointer; padding: 0.15rem; border-radius: 4px; }
+  .bar-row:hover { background: var(--panel); }
   .bar-label { width: 90px; flex-shrink: 0; color: var(--text-dim); font-family: var(--mono); }
   .bar-track { flex: 1; background: var(--panel-border); border-radius: 3px; height: 8px; overflow: hidden; }
   .bar-fill { background: var(--amber); height: 100%; }
@@ -91,6 +124,7 @@
   .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .chart-panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px; padding: 1rem; }
   .chart-title { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+  .chart-point { cursor: crosshair; }
   @media (max-width: 700px) { .chart-grid { grid-template-columns: 1fr; } }
   select, input[type="search"] {
     background: var(--panel);
@@ -144,95 +178,112 @@
   .attack-techniques { font-size: 0.82rem; margin-bottom: 0.4rem; }
   .attack-techniques a { margin-right: 0.3rem; }
   .attack-families { font-size: 0.8rem; }
+  .chart-tooltip {
+    position: absolute; display: none; background: #1c2330;
+    border: 1px solid var(--panel-border); padding: 0.35rem 0.6rem;
+    border-radius: 4px; font-size: 0.78rem; color: var(--text);
+    pointer-events: none; z-index: 100; white-space: nowrap;
+  }
 </style>
 </head>
 <body>
+<div id="chartTooltip" class="chart-tooltip"></div>
 <div class="wrap">
   <header>
     <h1>CTI-agent — instrumentpanel</h1>
-    <div class="subtitle">Senast uppdaterad 2026-09-25 05:48 UTC · körs automatiskt varje timme</div>
+    <div class="subtitle">Senast uppdaterad 2026-09-25 06:28 UTC · körs automatiskt varje timme</div>
   </header>
 
+  <nav class="toc"><a href="#sec-trend" class="toc-link">Trend</a><a href="#sec-attack" class="toc-link">Malware-familjer mot MITRE ATT&CK</a><a href="#sec-ioctypes" class="toc-link">IOC-typer i databasen</a><a href="#sec-map" class="toc-link">Geografisk spridning — ransomware-offer</a><a href="#sec-ransomware" class="toc-link">Senaste ransomware-offeraviseringar</a><a href="#sec-severity" class="toc-link">Hög/kritisk allvarlighet</a><a href="#sec-iocs" class="toc-link">Senaste IOCs</a><a href="#sec-domainage" class="toc-link">Domänålder</a><a href="#sec-crtsh" class="toc-link">Relaterad infrastruktur</a><a href="#sec-cve" class="toc-link">CVE-prioritering</a><a href="#sec-shodan" class="toc-link">IP-berikning</a><a href="#sec-articles" class="toc-link">Senaste artiklar</a></nav>
+
   <div class="stat-row">
-    <div class="stat"><div class="stat-num">888</div><div class="stat-label">Artiklar/poster totalt</div></div>
-    <div class="stat"><div class="stat-num">46596</div><div class="stat-label">IOCs totalt</div></div>
+    <div class="stat"><div class="stat-num">889</div><div class="stat-label">Artiklar/poster totalt</div></div>
+    <div class="stat"><div class="stat-num">47967</div><div class="stat-label">IOCs totalt</div></div>
     <div class="stat"><div class="stat-num">25</div><div class="stat-label">Senaste ransomware-offer</div></div>
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">High/critical (LLM)</div></div>
     <div class="stat"><div class="stat-num">116</div><div class="stat-label">Artiklar med fulltext hämtad</div></div>
   </div>
 
-  <section>
-    <h2>Trend, senaste 12 dagarna</h2>
-    <div class="chart-grid">
-      <div class="chart-panel">
-        <div class="chart-title">ThreatFox (hög volym)</div>
-        <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">14748</text><polyline fill="none" stroke="#e8a33d" stroke-width="2" points="45.0,64.4 130.5,35.3 215.9,109.3 301.4,119.5 386.8,119.4 472.3,140.6 557.7,143.7 643.2,126.9 728.6,107.9 814.1,76.2 899.5,15.0 985.0,142.3" /><circle cx="45.0" cy="64.4" r="2.5" fill="#e8a33d" /><circle cx="130.5" cy="35.3" r="2.5" fill="#e8a33d" /><circle cx="215.9" cy="109.3" r="2.5" fill="#e8a33d" /><circle cx="301.4" cy="119.5" r="2.5" fill="#e8a33d" /><circle cx="386.8" cy="119.4" r="2.5" fill="#e8a33d" /><circle cx="472.3" cy="140.6" r="2.5" fill="#e8a33d" /><circle cx="557.7" cy="143.7" r="2.5" fill="#e8a33d" /><circle cx="643.2" cy="126.9" r="2.5" fill="#e8a33d" /><circle cx="728.6" cy="107.9" r="2.5" fill="#e8a33d" /><circle cx="814.1" cy="76.2" r="2.5" fill="#e8a33d" /><circle cx="899.5" cy="15.0" r="2.5" fill="#e8a33d" /><circle cx="985.0" cy="142.3" r="2.5" fill="#e8a33d" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="130.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-15</text><text x="215.9" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="301.4" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-17</text><text x="386.8" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="472.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-19</text><text x="557.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="643.2" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-21</text><text x="728.6" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="814.1" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-23</text><text x="899.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="985.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-25</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#e8a33d"></span>ThreatFox</span></div>
-      </div>
-      <div class="chart-panel">
-        <div class="chart-title">Övriga källor</div>
-        <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">62</text><polyline fill="none" stroke="#5b8dd6" stroke-width="2" points="45.0,121.4 130.5,118.8 215.9,111.2 301.4,118.8 386.8,113.8 472.3,141.6 557.7,166.9 643.2,126.4 728.6,96.0 814.1,108.7 899.5,116.3 985.0,169.5" /><circle cx="45.0" cy="121.4" r="2.5" fill="#5b8dd6" /><circle cx="130.5" cy="118.8" r="2.5" fill="#5b8dd6" /><circle cx="215.9" cy="111.2" r="2.5" fill="#5b8dd6" /><circle cx="301.4" cy="118.8" r="2.5" fill="#5b8dd6" /><circle cx="386.8" cy="113.8" r="2.5" fill="#5b8dd6" /><circle cx="472.3" cy="141.6" r="2.5" fill="#5b8dd6" /><circle cx="557.7" cy="166.9" r="2.5" fill="#5b8dd6" /><circle cx="643.2" cy="126.4" r="2.5" fill="#5b8dd6" /><circle cx="728.6" cy="96.0" r="2.5" fill="#5b8dd6" /><circle cx="814.1" cy="108.7" r="2.5" fill="#5b8dd6" /><circle cx="899.5" cy="116.3" r="2.5" fill="#5b8dd6" /><circle cx="985.0" cy="169.5" r="2.5" fill="#5b8dd6" /><polyline fill="none" stroke="#8b6fd6" stroke-width="2" points="45.0,15.0 130.5,129.0 215.9,108.7 301.4,60.6 386.8,111.2 472.3,172.0 557.7,172.0 643.2,139.1 728.6,103.6 814.1,126.4 899.5,136.5 985.0,164.4" /><circle cx="45.0" cy="15.0" r="2.5" fill="#8b6fd6" /><circle cx="130.5" cy="129.0" r="2.5" fill="#8b6fd6" /><circle cx="215.9" cy="108.7" r="2.5" fill="#8b6fd6" /><circle cx="301.4" cy="60.6" r="2.5" fill="#8b6fd6" /><circle cx="386.8" cy="111.2" r="2.5" fill="#8b6fd6" /><circle cx="643.2" cy="139.1" r="2.5" fill="#8b6fd6" /><circle cx="728.6" cy="103.6" r="2.5" fill="#8b6fd6" /><circle cx="814.1" cy="126.4" r="2.5" fill="#8b6fd6" /><circle cx="899.5" cy="136.5" r="2.5" fill="#8b6fd6" /><circle cx="985.0" cy="164.4" r="2.5" fill="#8b6fd6" /><polyline fill="none" stroke="#4fb3a9" stroke-width="2" points="45.0,172.0 130.5,164.4 215.9,172.0 301.4,164.4 386.8,172.0 472.3,172.0 557.7,172.0 643.2,166.9 728.6,159.3 814.1,169.5 899.5,164.4 985.0,166.9" /><circle cx="130.5" cy="164.4" r="2.5" fill="#4fb3a9" /><circle cx="301.4" cy="164.4" r="2.5" fill="#4fb3a9" /><circle cx="643.2" cy="166.9" r="2.5" fill="#4fb3a9" /><circle cx="728.6" cy="159.3" r="2.5" fill="#4fb3a9" /><circle cx="814.1" cy="169.5" r="2.5" fill="#4fb3a9" /><circle cx="899.5" cy="164.4" r="2.5" fill="#4fb3a9" /><circle cx="985.0" cy="166.9" r="2.5" fill="#4fb3a9" /><polyline fill="none" stroke="#d9534f" stroke-width="2" points="45.0,134.0 130.5,25.1 215.9,108.7 301.4,118.8 386.8,78.3 472.3,129.0 557.7,139.1 643.2,123.9 728.6,108.7 814.1,103.6 899.5,108.7 985.0,154.3" /><circle cx="45.0" cy="134.0" r="2.5" fill="#d9534f" /><circle cx="130.5" cy="25.1" r="2.5" fill="#d9534f" /><circle cx="215.9" cy="108.7" r="2.5" fill="#d9534f" /><circle cx="301.4" cy="118.8" r="2.5" fill="#d9534f" /><circle cx="386.8" cy="78.3" r="2.5" fill="#d9534f" /><circle cx="472.3" cy="129.0" r="2.5" fill="#d9534f" /><circle cx="557.7" cy="139.1" r="2.5" fill="#d9534f" /><circle cx="643.2" cy="123.9" r="2.5" fill="#d9534f" /><circle cx="728.6" cy="108.7" r="2.5" fill="#d9534f" /><circle cx="814.1" cy="103.6" r="2.5" fill="#d9534f" /><circle cx="899.5" cy="108.7" r="2.5" fill="#d9534f" /><circle cx="985.0" cy="154.3" r="2.5" fill="#d9534f" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="130.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-15</text><text x="215.9" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="301.4" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-17</text><text x="386.8" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="472.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-19</text><text x="557.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="643.2" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-21</text><text x="728.6" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="814.1" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-23</text><text x="899.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="985.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-25</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5b8dd6"></span>RSS-artiklar</span><span class="legend-item"><span class="legend-dot" style="background:#8b6fd6"></span>RSS/regex-IOCs</span><span class="legend-item"><span class="legend-dot" style="background:#4fb3a9"></span>Telegram</span><span class="legend-item"><span class="legend-dot" style="background:#d9534f"></span>Ransomware-offer</span></div>
-      </div>
+  
+  <section id="sec-trend">
+    <h2 class="section-header" onclick="toggleSection('sec-trend')">
+      <span class="chevron" id="sec-trend-chevron">▾</span> Trend, senaste dagarna
+    </h2>
+    <div class="section-body" id="sec-trend-body">
+      
+            <div class="chart-grid">
+              <div class="chart-panel">
+                <div class="chart-title">ThreatFox (hög volym)</div>
+                <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">14748</text><polyline fill="none" stroke="#e8a33d" stroke-width="2" points="45.0,64.4 130.5,35.3 215.9,109.3 301.4,119.5 386.8,119.4 472.3,140.6 557.7,143.7 643.2,126.9 728.6,107.9 814.1,76.2 899.5,15.0 985.0,127.7" /><circle cx="45.0" cy="64.4" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="64.4" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-14: 10107" /><circle cx="130.5" cy="35.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="130.5" cy="35.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-15: 12843" /><circle cx="215.9" cy="109.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="215.9" cy="109.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-16: 5894" /><circle cx="301.4" cy="119.5" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="301.4" cy="119.5" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-17: 4928" /><circle cx="386.8" cy="119.4" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="386.8" cy="119.4" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-18: 4940" /><circle cx="472.3" cy="140.6" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="472.3" cy="140.6" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-19: 2949" /><circle cx="557.7" cy="143.7" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="557.7" cy="143.7" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-20: 2656" /><circle cx="643.2" cy="126.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="643.2" cy="126.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-21: 4234" /><circle cx="728.6" cy="107.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="728.6" cy="107.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-22: 6023" /><circle cx="814.1" cy="76.2" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="814.1" cy="76.2" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-23: 9001" /><circle cx="899.5" cy="15.0" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="899.5" cy="15.0" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-24: 14748" /><circle cx="985.0" cy="127.7" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="127.7" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-25: 4159" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="130.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-15</text><text x="215.9" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="301.4" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-17</text><text x="386.8" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="472.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-19</text><text x="557.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="643.2" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-21</text><text x="728.6" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="814.1" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-23</text><text x="899.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="985.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-25</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#e8a33d"></span>ThreatFox</span></div>
+              </div>
+              <div class="chart-panel">
+                <div class="chart-title">Övriga källor</div>
+                <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">62</text><polyline fill="none" stroke="#5b8dd6" stroke-width="2" points="45.0,121.4 130.5,118.8 215.9,111.2 301.4,118.8 386.8,113.8 472.3,141.6 557.7,166.9 643.2,126.4 728.6,96.0 814.1,108.7 899.5,116.3 985.0,169.5" /><circle cx="45.0" cy="121.4" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="121.4" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-14: 20" /><circle cx="130.5" cy="118.8" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="130.5" cy="118.8" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-15: 21" /><circle cx="215.9" cy="111.2" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="215.9" cy="111.2" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-16: 24" /><circle cx="301.4" cy="118.8" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="301.4" cy="118.8" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-17: 21" /><circle cx="386.8" cy="113.8" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="386.8" cy="113.8" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-18: 23" /><circle cx="472.3" cy="141.6" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="472.3" cy="141.6" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-19: 12" /><circle cx="557.7" cy="166.9" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="557.7" cy="166.9" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-20: 2" /><circle cx="643.2" cy="126.4" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="643.2" cy="126.4" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-21: 18" /><circle cx="728.6" cy="96.0" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="728.6" cy="96.0" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-22: 30" /><circle cx="814.1" cy="108.7" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="814.1" cy="108.7" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-23: 25" /><circle cx="899.5" cy="116.3" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="899.5" cy="116.3" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-24: 22" /><circle cx="985.0" cy="169.5" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="169.5" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-25: 1" /><polyline fill="none" stroke="#8b6fd6" stroke-width="2" points="45.0,15.0 130.5,129.0 215.9,108.7 301.4,60.6 386.8,111.2 472.3,172.0 557.7,172.0 643.2,139.1 728.6,103.6 814.1,126.4 899.5,136.5 985.0,164.4" /><circle cx="45.0" cy="15.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="15.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-14: 62" /><circle cx="130.5" cy="129.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="130.5" cy="129.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-15: 17" /><circle cx="215.9" cy="108.7" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="215.9" cy="108.7" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-16: 25" /><circle cx="301.4" cy="60.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="301.4" cy="60.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-17: 44" /><circle cx="386.8" cy="111.2" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="386.8" cy="111.2" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-18: 24" /><circle cx="472.3" cy="172.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="472.3" cy="172.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-19: 0" /><circle cx="557.7" cy="172.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="557.7" cy="172.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-20: 0" /><circle cx="643.2" cy="139.1" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="643.2" cy="139.1" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-21: 13" /><circle cx="728.6" cy="103.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="728.6" cy="103.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-22: 27" /><circle cx="814.1" cy="126.4" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="814.1" cy="126.4" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-23: 18" /><circle cx="899.5" cy="136.5" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="899.5" cy="136.5" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-24: 14" /><circle cx="985.0" cy="164.4" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="164.4" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-25: 3" /><polyline fill="none" stroke="#4fb3a9" stroke-width="2" points="45.0,172.0 130.5,164.4 215.9,172.0 301.4,164.4 386.8,172.0 472.3,172.0 557.7,172.0 643.2,166.9 728.6,159.3 814.1,169.5 899.5,164.4 985.0,166.9" /><circle cx="45.0" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-14: 0" /><circle cx="130.5" cy="164.4" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="130.5" cy="164.4" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-15: 3" /><circle cx="215.9" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="215.9" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-16: 0" /><circle cx="301.4" cy="164.4" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="301.4" cy="164.4" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-17: 3" /><circle cx="386.8" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="386.8" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-18: 0" /><circle cx="472.3" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="472.3" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-19: 0" /><circle cx="557.7" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="557.7" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-20: 0" /><circle cx="643.2" cy="166.9" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="643.2" cy="166.9" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-21: 2" /><circle cx="728.6" cy="159.3" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="728.6" cy="159.3" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-22: 5" /><circle cx="814.1" cy="169.5" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="814.1" cy="169.5" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-23: 1" /><circle cx="899.5" cy="164.4" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="899.5" cy="164.4" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-24: 3" /><circle cx="985.0" cy="166.9" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="166.9" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-25: 2" /><polyline fill="none" stroke="#d9534f" stroke-width="2" points="45.0,134.0 130.5,25.1 215.9,108.7 301.4,118.8 386.8,78.3 472.3,129.0 557.7,139.1 643.2,123.9 728.6,108.7 814.1,103.6 899.5,108.7 985.0,154.3" /><circle cx="45.0" cy="134.0" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="134.0" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-14: 15" /><circle cx="130.5" cy="25.1" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="130.5" cy="25.1" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-15: 58" /><circle cx="215.9" cy="108.7" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="215.9" cy="108.7" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-16: 25" /><circle cx="301.4" cy="118.8" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="301.4" cy="118.8" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-17: 21" /><circle cx="386.8" cy="78.3" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="386.8" cy="78.3" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-18: 37" /><circle cx="472.3" cy="129.0" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="472.3" cy="129.0" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-19: 17" /><circle cx="557.7" cy="139.1" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="557.7" cy="139.1" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-20: 13" /><circle cx="643.2" cy="123.9" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="643.2" cy="123.9" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-21: 19" /><circle cx="728.6" cy="108.7" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="728.6" cy="108.7" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-22: 25" /><circle cx="814.1" cy="103.6" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="814.1" cy="103.6" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-23: 27" /><circle cx="899.5" cy="108.7" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="899.5" cy="108.7" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-24: 25" /><circle cx="985.0" cy="154.3" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="154.3" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-25: 7" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="130.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-15</text><text x="215.9" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="301.4" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-17</text><text x="386.8" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="472.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-19</text><text x="557.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="643.2" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-21</text><text x="728.6" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="814.1" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-23</text><text x="899.5" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="985.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-25</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5b8dd6"></span>RSS-artiklar</span><span class="legend-item"><span class="legend-dot" style="background:#8b6fd6"></span>RSS/regex-IOCs</span><span class="legend-item"><span class="legend-dot" style="background:#4fb3a9"></span>Telegram</span><span class="legend-item"><span class="legend-dot" style="background:#d9534f"></span>Ransomware-offer</span></div>
+              </div>
+            </div>
     </div>
   </section>
-
-  <section>
-    <h2>Malware-familjer mot MITRE ATT&amp;CK (kategoribaserad approximation)</h2>
-    
+  <section id="sec-attack">
+    <h2 class="section-header" onclick="toggleSection('sec-attack')">
+      <span class="chevron" id="sec-attack-chevron">▾</span> Malware-familjer mot MITRE ATT&CK
+    </h2>
+    <div class="section-body" id="sec-attack-body">
+      
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Loader / Dropper</span>
-              <span class="dim">16340 IOCs</span>
+              <span class="dim">17297 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1027/" target="_blank" rel="noopener">T1027 Obfuscated Files or Information</a> · <a href="https://attack.mitre.org/techniques/T1105/" target="_blank" rel="noopener">T1105 Ingress Tool Transfer</a> · <a href="https://attack.mitre.org/techniques/T1055/" target="_blank" rel="noopener">T1055 Process Injection</a></div>
-            <div class="attack-families dim">Unknown Loader (11166), ClearFake (5122), GUIDLOADER (21), Koi Loader (18), GCleaner (12), Colibri Loader (1)</div>
+            <div class="attack-families dim">Unknown Loader (12024), ClearFake (5217), GUIDLOADER (21), Koi Loader (18), GCleaner (15), Colibri Loader (2)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Okategoriserad skadlig kod</span>
-              <span class="dim">15500 IOCs</span>
+              <span class="dim">15699 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1105/" target="_blank" rel="noopener">T1105 Ingress Tool Transfer</a> · <a href="https://attack.mitre.org/techniques/T1071/" target="_blank" rel="noopener">T1071 Application Layer Protocol (C2)</a></div>
-            <div class="attack-families dim">IClickFix (6859), Unknown malware (3628), Remus (1468), Aisuru (563), Mozi (406), vSkimmer (282), MacSync (172), Bashlite (172), xmrig (142), CECbot (122), Logedrut (120), KongTuke (109)</div>
+            <div class="attack-families dim">IClickFix (6929), Unknown malware (3703), Remus (1480), Aisuru (564), Mozi (415), vSkimmer (282), Bashlite (177), MacSync (172), xmrig (142), Logedrut (123), CECbot (122), KongTuke (111)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>RAT (fjärrstyrning)</span>
-              <span class="dim">8745 IOCs</span>
+              <span class="dim">8876 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1219/" target="_blank" rel="noopener">T1219 Remote Access Software</a> · <a href="https://attack.mitre.org/techniques/T1071/" target="_blank" rel="noopener">T1071 Application Layer Protocol (C2)</a> · <a href="https://attack.mitre.org/techniques/T1056/" target="_blank" rel="noopener">T1056 Input Capture</a></div>
-            <div class="attack-families dim">VShell (2306), Cobalt Strike (2186), Remcos (1233), PureRAT (708), AsyncRAT (534), ValleyRAT (380), AdaptixC2 (302), XWorm (266), Quasar RAT (229), TonRAT (146), DCRat (133), Unknown RAT (93)</div>
+            <div class="attack-families dim">VShell (2330), Cobalt Strike (2208), Remcos (1254), PureRAT (728), AsyncRAT (548), ValleyRAT (396), AdaptixC2 (305), XWorm (266), Quasar RAT (229), TonRAT (146), DCRat (134), Unknown RAT (93)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Stealer (infostealer)</span>
-              <span class="dim">3061 IOCs</span>
+              <span class="dim">3113 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1555/" target="_blank" rel="noopener">T1555 Credentials from Password Stores</a> · <a href="https://attack.mitre.org/techniques/T1005/" target="_blank" rel="noopener">T1005 Data from Local System</a> · <a href="https://attack.mitre.org/techniques/T1539/" target="_blank" rel="noopener">T1539 Steal Web Session Cookie</a></div>
-            <div class="attack-families dim">Vidar (1097), AMOS (1032), Unknown Stealer (287), Venus Stealer (105), Stealc (98), Formbook (68), Agent Tesla (63), SalatStealer (61), Luca Stealer (42), MicroStealer (33), ACR Stealer (22), SVCStealer (22)</div>
+            <div class="attack-families dim">Vidar (1108), AMOS (1063), Unknown Stealer (288), Venus Stealer (105), Stealc (100), Formbook (68), SalatStealer (63), Agent Tesla (63), Luca Stealer (42), MicroStealer (33), SVCStealer (25), ACR Stealer (23)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Botnet / DDoS</span>
-              <span class="dim">2263 IOCs</span>
+              <span class="dim">2289 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1498/" target="_blank" rel="noopener">T1498 Network Denial of Service</a> · <a href="https://attack.mitre.org/techniques/T1110/" target="_blank" rel="noopener">T1110 Brute Force (standard-IoT-lösenord)</a> · <a href="https://attack.mitre.org/techniques/T1584/" target="_blank" rel="noopener">T1584 Compromise Infrastructure</a></div>
-            <div class="attack-families dim">Mirai (2263)</div>
+            <div class="attack-families dim">Mirai (2289)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Coinminer</span>
-              <span class="dim">198 IOCs</span>
+              <span class="dim">201 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1496/" target="_blank" rel="noopener">T1496 Resource Hijacking</a></div>
-            <div class="attack-families dim">Coinminer (198)</div>
+            <div class="attack-families dim">Coinminer (201)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Ransomware</span>
-              <span class="dim">67 IOCs</span>
+              <span class="dim">70 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1486/" target="_blank" rel="noopener">T1486 Data Encrypted for Impact</a> · <a href="https://attack.mitre.org/techniques/T1210/" target="_blank" rel="noopener">T1210 Exploitation of Remote Services (EternalBlue)</a> · <a href="https://attack.mitre.org/techniques/T1021/" target="_blank" rel="noopener">T1021 Remote Services (SMB-spridning)</a></div>
-            <div class="attack-families dim">WannaCryptor (57), Troldesh (10)</div>
+            <div class="attack-families dim">WannaCryptor (60), Troldesh (10)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
@@ -242,65 +293,71 @@
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1071/" target="_blank" rel="noopener">T1071 Application Layer Protocol (C2)</a> · <a href="https://attack.mitre.org/techniques/T1547/" target="_blank" rel="noopener">T1547 Boot or Logon Autostart Execution</a></div>
             <div class="attack-families dim">YiBackdoor (24)</div>
           </div>
+    </div>
   </section>
-
-  <section>
-    <h2>IOC-typer i databasen</h2>
-    <div class="bar-row">
+  <section id="sec-ioctypes">
+    <h2 class="section-header" onclick="toggleSection('sec-ioctypes')">
+      <span class="chevron" id="sec-ioctypes-chevron">▾</span> IOC-typer i databasen (klicka för att filtrera)
+    </h2>
+    <div class="section-body" id="sec-ioctypes-body">
+      <div class="bar-row" onclick="filterIocsByType('domain')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">domain</span>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-              <span class="bar-count">26037</span>
+              <span class="bar-count">27058</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('ip:port')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">ip:port</span>
-              <div class="bar-track"><div class="bar-fill" style="width:31%"></div></div>
-              <span class="bar-count">8028</span>
+              <div class="bar-track"><div class="bar-fill" style="width:30%"></div></div>
+              <span class="bar-count">8146</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('url')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">url</span>
               <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
-              <span class="bar-count">6047</span>
+              <span class="bar-count">6146</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('sha256_hash')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">sha256_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:19%"></div></div>
-              <span class="bar-count">4943</span>
+              <span class="bar-count">5048</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('md5_hash')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">md5_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
-              <span class="bar-count">712</span>
+              <span class="bar-count">726</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('sha1_hash')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">sha1_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
-              <span class="bar-count">709</span>
+              <span class="bar-count">723</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('cve')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">cve</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
               <span class="bar-count">111</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('sha256')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">sha256</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
               <span class="bar-count">5</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('ipv4')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">ipv4</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
               <span class="bar-count">3</span>
             </div>
-<div class="bar-row">
+<div class="bar-row" onclick="filterIocsByType('md5')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">md5</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
               <span class="bar-count">1</span>
             </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Geografisk spridning — ransomware-offer</h2>
-    
+  <section id="sec-map">
+    <h2 class="section-header" onclick="toggleSection('sec-map')">
+      <span class="chevron" id="sec-map-chevron">▾</span> Geografisk spridning — ransomware-offer
+    </h2>
+    <div class="section-body" id="sec-map-body">
+      
     <div class="map-toolbar">
       <button onclick="downloadMapAsPng()" class="map-download-btn">⬇ Ladda ner karta som PNG</button>
     </div>
@@ -422,131 +479,141 @@
     }
     </script>
     
+    </div>
   </section>
-
-  <section>
-    <h2>Senaste ransomware-offeraviseringar</h2>
+  <section id="sec-ransomware">
+    <h2 class="section-header" onclick="toggleSection('sec-ransomware')">
+      <span class="chevron" id="sec-ransomware-chevron">▾</span> Senaste ransomware-offeraviseringar
+    </h2>
+    <div class="section-body" id="sec-ransomware-body">
+      <div class="controls"><input type="search" id="ransomwareTableSearch" placeholder="Sök..." oninput="filterTable('ransomwareTableSearch', 'ransomwareTable')"></div>
     <div class="table-scroll">
-      <table>
+      <table id="ransomwareTable">
+        <thead><tr><th class="sortable" onclick="sortTable('ransomwareTable', 0, 'text')">Offer <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('ransomwareTable', 1, 'text')">Datum <span class="sort-arrow"></span></th></tr></thead>
         <tbody><tr>
               <td>pear: Indroj Medical Group Inc. (US)</td>
-              <td class="dim">2026-09-22</td>
+              <td class="dim" data-sort="2026-09-22T00:00:00+00:00">2026-09-22</td>
             </tr>
 <tr>
               <td>pear: Martin Lawrence Galleries (US)</td>
-              <td class="dim">2026-09-22</td>
+              <td class="dim" data-sort="2026-09-22T00:00:00+00:00">2026-09-22</td>
             </tr>
 <tr>
               <td>pear: Westside GI (US)</td>
-              <td class="dim">2026-09-22</td>
+              <td class="dim" data-sort="2026-09-22T00:00:00+00:00">2026-09-22</td>
             </tr>
 <tr>
               <td>Spirals: Armada Credit Bureau (UG)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T22:23:54.647205+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>incransom: bnlawmacau.com www.bn-ip.com (MO)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T16:49:16.111000+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>rhysida: NEAD Pro ()</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T18:01:13.290204+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>krybit: efada.sa (SA)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T20:00:52.235789+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>akira: Wallatec ()</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T00:00:00+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>Wallstreet: Catholic University of El Salvador (SV)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T14:20:22+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>qilin: Zig Inge Group (AU)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T14:21:39.485742+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>qilin: Inversiones Bolívar (CO)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T14:22:30.698991+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>qilin: All Tech Machine &amp; Engineering (US)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T14:23:09.958269+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>qilin: Dao Group ()</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T14:23:48.281233+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>Wallstreet: Prater &amp; Ridley Attorneys At Law (US)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T14:37:28+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>incransom: welgenone.com (US)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T16:12:30.963000+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>incransom: ukbjja.org (GB)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T16:33:15.006000+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>dragonforce: Arizona Vascular Medical Equipment, Inc (US)</td>
-              <td class="dim">2026-09-23</td>
+              <td class="dim" data-sort="2026-09-23T09:44:04.550371+00:00">2026-09-23</td>
             </tr>
 <tr>
               <td>dragonforce: BMGP Groupe (FR)</td>
-              <td class="dim">2026-09-23</td>
+              <td class="dim" data-sort="2026-09-23T09:46:55.488787+00:00">2026-09-23</td>
             </tr>
 <tr>
               <td>dragonforce: Elite Industech Co., Ltd (TH)</td>
-              <td class="dim">2026-09-23</td>
+              <td class="dim" data-sort="2026-09-23T09:50:00.421940+00:00">2026-09-23</td>
             </tr>
 <tr>
               <td>ImNotAVillain: Italy (IT)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T00:00:00+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>akira: Strack Companies (US)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T00:00:00+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>qilin: Agora coopérative agricole (FR)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T00:00:00+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>incransom: Grupo Caberj (BR)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T11:30:00+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>krybit: www.jonesthegrocer.com (AU)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T12:08:22.858415+00:00">2026-09-24</td>
             </tr>
 <tr>
               <td>krybit: airtanzania.co.tz / airtanzania.com (TZ)</td>
-              <td class="dim">2026-09-24</td>
+              <td class="dim" data-sort="2026-09-24T12:09:03.264858+00:00">2026-09-24</td>
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Hög/kritisk allvarlighet (LLM-flaggat)</h2>
+  <section id="sec-severity">
+    <h2 class="section-header" onclick="toggleSection('sec-severity')">
+      <span class="chevron" id="sec-severity-chevron">▾</span> Hög/kritisk allvarlighet (LLM-flaggat)
+    </h2>
+    <div class="section-body" id="sec-severity-body">
+      
     <div class="table-scroll">
-      <table>
+      <table id="severityTable">
+        <thead><tr><th>Nivå</th><th>Titel</th><th>Aktör</th><th>Sektor</th></tr></thead>
         <tbody><tr><td colspan="4" class="empty">Inga high/critical-flaggade artiklar ännu (kräver ANTHROPIC_API_KEY).</td></tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Senaste IOCs</h2>
-    <div class="controls">
-      <select id="typeFilter" onchange="filterIocs()">
-        <option value="">Alla typer</option>
-        <option value="cve">cve</option>
+  <section id="sec-iocs">
+    <h2 class="section-header" onclick="toggleSection('sec-iocs')">
+      <span class="chevron" id="sec-iocs-chevron">▾</span> Senaste IOCs
+    </h2>
+    <div class="section-body" id="sec-iocs-body">
+      <div class="controls"><select id="typeFilter" onchange="filterIocs()"><option value="">Alla typer</option><option value="cve">cve</option>
 <option value="domain">domain</option>
 <option value="ip:port">ip:port</option>
 <option value="ipv4">ipv4</option>
@@ -555,35 +622,23 @@
 <option value="sha1_hash">sha1_hash</option>
 <option value="sha256">sha256</option>
 <option value="sha256_hash">sha256_hash</option>
-<option value="url">url</option>
-      </select>
-      <input type="search" id="iocSearch" placeholder="Sök värde..." oninput="filterIocs()">
-    </div>
+<option value="url">url</option></select><input type="search" id="iocSearch" placeholder="Sök värde..." oninput="filterIocs()"></div>
     <div class="table-scroll">
       <table id="iocTable">
+        <thead><tr><th class="sortable" onclick="sortTable('iocTable', 0, 'text')">Typ <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('iocTable', 1, 'text')">Värde <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('iocTable', 2, 'text')">Källa <span class="sort-arrow"></span></th></tr></thead>
         <tbody><tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">1ca26b57598f79603d7e4da730c98965  [DBoxAgent, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">c9dd06b54122a3c7b27299720b403a92  [ValleyRAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">31edc1eef538fdb429601d26422834b3  [Nanocore RAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
               <td class="mono ioc-value">55d635733571cf404f3af64646dc97e9  [GCleaner, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">c87cdff96cf2f30bd7665a151e6ee3a5  [ValleyRAT, confidence 95]</td>
+              <td class="mono ioc-value">f5ec29d01c9adb0ecabb2da6bc8fb81a  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">6200240443329003bc9e2b3ddfbe34da  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
@@ -598,22 +653,22 @@
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">c705fea2fd2e6c119c1138f1b74cd798  [SVCStealer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
               <td class="mono ioc-value">0c7dd3b979c3fdeba56c6ae312345548  [CrossRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">f5ec29d01c9adb0ecabb2da6bc8fb81a  [WannaCryptor, confidence 95]</td>
+              <td class="mono ioc-value">c87cdff96cf2f30bd7665a151e6ee3a5  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">e629a420112f2bcb593f5467a362a91a  [Shim RAT, confidence 95]</td>
+              <td class="mono ioc-value">c705fea2fd2e6c119c1138f1b74cd798  [SVCStealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">31edc1eef538fdb429601d26422834b3  [Nanocore RAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
@@ -623,7 +678,12 @@
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">6200240443329003bc9e2b3ddfbe34da  [ValleyRAT, confidence 95]</td>
+              <td class="mono ioc-value">1ca26b57598f79603d7e4da730c98965  [DBoxAgent, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">e629a420112f2bcb593f5467a362a91a  [Shim RAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
@@ -631,9 +691,9 @@
               <td class="mono ioc-value">78ad2cce134fd6e9819489fabdfeffa1  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">64a0d5786d516194a42776f23e584a07d2c02080  [ValleyRAT, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">c9dd06b54122a3c7b27299720b403a92  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -643,17 +703,7 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">668dd8566eacd7b89dab013b36cccf0f94be8c4a  [GCleaner, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
               <td class="mono ioc-value">fcefcb26f4021203c5898545c4ce043ad9cc83a2  [Coinminer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">f9c83110b111ffbf8ff129c251dcdf1494504f99  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -663,7 +713,32 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">aafeaf4892cd200b9dd7b9e03259b49204d2973b  [WannaCryptor, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
               <td class="mono ioc-value">0eedde175f5d230ee129dc4add72be8a32e7c05a  [SVCStealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">dd63f54137cd8c2ba7bb43cb6a45db5b2238698c  [Shim RAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">64a0d5786d516194a42776f23e584a07d2c02080  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">668dd8566eacd7b89dab013b36cccf0f94be8c4a  [GCleaner, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">2c760321782a419ada907cb66b2653f6e16ff17f  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -678,17 +753,7 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">2c760321782a419ada907cb66b2653f6e16ff17f  [ValleyRAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">dd63f54137cd8c2ba7bb43cb6a45db5b2238698c  [Shim RAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">aafeaf4892cd200b9dd7b9e03259b49204d2973b  [WannaCryptor, confidence 95]</td>
+              <td class="mono ioc-value">f9c83110b111ffbf8ff129c251dcdf1494504f99  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -703,217 +768,7 @@
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">http://202.47.54.27:45758/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/04FB-fF/9-029D-Fb4cA6-c476eD0-9E14-E-B/704-fEc9-A7C  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://103.82.121.182:52844/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://kittiesmc.com/ws  [Unknown Stealer, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://72.255.32.109:53235/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/641-2F8-9A55003e-796bc-91/bC1-D-455e5f  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://interseq.at/lom2/api  [Unknown malware, confidence 80]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/djhgrgfd375654/hfgd645j  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://myanmar001.xyz/implant.exe  [Sliver, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://212.109.218.20/gate.php  [Colibri Loader, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://119.152.228.80:36317/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://spiohop.shop:9932/categories  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://fuarnpp.shop:5627/documents  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://taxisdesvignobles-sancerre.fr/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://myauroracare.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://190.196.253.43:11724/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://fgashub.shop:9932/transactions  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://ai.lzgqin.cc.cd/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://172.236.209.126  [Vidar, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://leebin101.com/r  [SnappyClient, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://39.100.66.238:80/GrLX  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://homecor.click:6527/addresses  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://123.254.106.168/?h=123.254.106.168&amp;p=80&amp;t=ws&amp;a=w64&amp;stage=true  [VShell, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://103.26.83.108:55431/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://kurtvandemotter.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://123.254.106.168/?h=123.254.106.168&amp;p=80&amp;t=tcp&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://sites.google.com/view/antibot172881  [IClickFix, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/641-2F8-9A55003e-796bc-91/481-ba2c-81EE  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://tlssnv.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://39.100.66.238:80/ptj  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://solarsavercanada.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://rmp.computer/123.exe  [SalatStealer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://ioelche.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://89.46.235.116:9443/  [Metaencryptor, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
               <td class="mono ioc-value">http://193.160.32.138:8085/?h=193.160.32.138&amp;p=8085&amp;t=ws&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://izoterika.online/matrix_app.apk  [Unknown malware, confidence 80]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/641-2F8-9A55003e-796bc-91/AC8ED-D-b-8  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://t.me/jj43w  [Vidar, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://tasaam.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://fj9988.com/VoltTrade.apk  [Unknown malware, confidence 80]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://123.254.106.168/?h=123.254.106.168&amp;p=80&amp;t=tcp&amp;a=w64&amp;stage=true  [VShell, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://175.107.217.82:48392/Mozi.a  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://59.103.106.211:60515/Mozi.m  [Mozi, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
@@ -923,17 +778,37 @@
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://ikcs.com.tn/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">http://fuarnpp.shop:5627/documents  [Remus, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://delta-canvas.com/zxc/kito  [AMOS, confidence 90]</td>
+              <td class="mono ioc-value">https://nordicbeehive.se/  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://d2z54pvih3anpa.cloudfront.net/ajax/libs/jquery/3.7.1/jquery.min.js  [Cobalt Strike, confidence 100]</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/dsteru3421/6-1-2Cb78C4-94a6-98C4C59-2-6/98d-b-C47290777173  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://203.99.56.135:39928/Mozi.m  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://175.107.217.82:48392/Mozi.a  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/8615c4a4bb56/ea21e91342e4  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://leebin101.com/g.php  [SnappyClient, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
@@ -943,12 +818,322 @@
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://e-bizsoft.al/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/641-2F8-9A55003e-796bc-91/bC1-D-455e5f  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://modestorecovery.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://ikcs.com.tn/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://openai-credits.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://tindevil.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://223.123.73.173:35250/Mozi.a  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://v.teruishuo.net:8443/?h=v.teruishuo.net&amp;p=8443&amp;t=tcp&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://puytrewdv.com  [Unknown Loader, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://strategyvote.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://sites.google.com/view/antibot172881  [IClickFix, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://quiunch.click:6271/events  [Remus, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://31.56.19.29  [Stealc, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://taxisdesvignobles-sancerre.fr/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://gt.234-e.com  [Vidar, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://www.raideurs.eu/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://119.152.228.80:36317/Mozi.m  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://myauroracare.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://fj9988.com/VoltTrade.apk  [Unknown malware, confidence 80]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://www.rivistalibera.it/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://leebin101.com/  [SnappyClient, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://tasaam.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://ioelche.com/  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
               <td class="mono ioc-value">https://delta-canvas.com/zxc/mdw  [AMOS, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://kipthen.shop:9932/teams  [Remus, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://marcynunes.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://103.26.83.108:55431/Mozi.m  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://89.46.235.116:9443/  [Metaencryptor, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://claudedev.net/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/djhgrgfd375654/hfgd645j  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://89.46.235.116:80/  [Metaencryptor, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://cloudeccentric.cc  [Unknown malware, confidence 80]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://petcarv.click:8239/users  [Remus, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://124.29.194.194:43904/Mozi.7  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://www.cedipay.cash/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://delta-canvas.com/zxc/kito  [AMOS, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://e-bizsoft.al/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://xx.234-e.com/  [Vidar, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://123.254.106.168/?h=123.254.106.168&amp;p=80&amp;t=ws&amp;a=w64&amp;stage=true  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://104.248.194.193/api/metrics/run  [AMOS, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://listingmetro.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://t.me/jj43w  [Vidar, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://jxewele.shop:4262/imports  [Remus, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://116.202.242.242:8002/FasAlz1785594302  [XMRIG, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/04FB-fF/9-029D-Fb4cA6-c476eD0-9E14-E-B/704-fEc9-A7C  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://72.255.32.109:53235/Mozi.m  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://rmp.computer/123.exe  [SalatStealer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://tfoyses.shop:3452/events  [Remus, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://91.92.43.245/  [Unknown Loader, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://39.100.66.238:80/GrLX  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://pub-22c5fb19472741eba9206c96fcd10f9c.r2.dev  [Unknown Loader, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://rooshnaf.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://59.103.106.211:60515/Mozi.m  [Mozi, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://d2z54pvih3anpa.cloudfront.net/ajax/libs/jquery/3.7.1/jquery.min.js  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://spiohop.shop:9932/categories  [Remus, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/641-2F8-9A55003e-796bc-91/481-ba2c-81EE  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://vpanel.v-panel.asia/  [Vidar, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/B87Ea4-10EF-4708-e7C84d-BCA5/20d37Eb6-6b-7  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://104.248.194.193/contact  [AMOS, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://gorsegazette.co/profile/router-validator.js  [SmartApeSG, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://123.254.106.168/?h=123.254.106.168&amp;p=80&amp;t=tcp&amp;a=w64&amp;stage=true  [VShell, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://solarsavercanada.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/641-2F8-9A55003e-796bc-91/AC8ED-D-b-8  [ClearFake, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://tlssnv.com/  [Unknown malware, confidence 90]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://bet303.games/  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
@@ -963,157 +1148,7 @@
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">http://31.56.19.29  [Stealc, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://cloudeccentric.cc  [Unknown malware, confidence 80]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://leebin101.com/g.php  [SnappyClient, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://phetsre.shop:3452/documents  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://openai-credits.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://kipthen.shop:9932/teams  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://jxewele.shop:4262/imports  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://104.248.194.193/api/metrics/run  [AMOS, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://t.me/nts33p  [Vidar, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://gt.234-e.com  [Vidar, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://petcarv.click:8239/users  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://tindevil.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://idcool.codes/7z  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://203.99.56.135:39928/Mozi.m  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://nordicbeehive.se/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://claudedev.net/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/B87Ea4-10EF-4708-e7C84d-BCA5/20d37Eb6-6b-7  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://gt.1jp88.org/  [Vidar, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/dsteru3421/6-1-2Cb78C4-94a6-98C4C59-2-6/98d-b-C47290777173  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://124.29.194.194:43904/Mozi.7  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/dsteru3421/djjghryer46657l/gffdj5643  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://xx.234-e.com/  [Vidar, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://104.248.194.193/contact  [AMOS, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://unboundcreativepodcast.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://quiunch.click:6271/files  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://panaderiacoronado.com/temp/Crpihqyx.exe  [Unknown malware, confidence 85]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://gorsegazette.co/profile/router-validator.js  [SmartApeSG, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://89.46.235.116:80/  [Metaencryptor, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://116.202.242.242:8002/FasAlz1785594302  [XMRIG, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://107.151.233.120:8084/?h=107.151.233.120&amp;p=8084&amp;t=ws&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://puytrewdv.com  [Unknown Loader, confidence 100]</td>
+              <td class="mono ioc-value">http://39.100.66.238:80/ptj  [Cobalt Strike, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
@@ -1123,82 +1158,32 @@
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://modestorecovery.com/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">https://ai.lzgqin.cc.cd/  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://leebin101.com/  [SnappyClient, confidence 100]</td>
+              <td class="mono ioc-value">https://unboundcreativepodcast.com/  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://www.rivistalibera.it/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">http://107.151.233.120:8084/?h=107.151.233.120&amp;p=8084&amp;t=ws&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://pub-22c5fb19472741eba9206c96fcd10f9c.r2.dev  [Unknown Loader, confidence 100]</td>
+              <td class="mono ioc-value">https://kurtvandemotter.com/  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://www.cedipay.cash/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">https://izoterika.online/matrix_app.apk  [Unknown malware, confidence 80]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/retwiry2536/8615c4a4bb56/ea21e91342e4  [ClearFake, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://opti-pc.com/telechargement/OptiPC-Setup-1.0.0.exe  [Unknown malware, confidence 80]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://223.123.73.173:35250/Mozi.a  [Mozi, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://tfoyses.shop:3452/events  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://listingmetro.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://quiunch.click:6271/events  [Remus, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://strategyvote.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://marcynunes.com/  [Unknown malware, confidence 90]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://91.92.43.245/  [Unknown Loader, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">http://v.teruishuo.net:8443/?h=v.teruishuo.net&amp;p=8443&amp;t=tcp&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="url">
-              <td class="mono">url</td>
-              <td class="mono ioc-value">https://www.raideurs.eu/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">https://panaderiacoronado.com/temp/Crpihqyx.exe  [Unknown malware, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
@@ -1208,227 +1193,72 @@
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://rooshnaf.com/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">http://quiunch.click:6271/files  [Remus, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://vpanel.v-panel.asia/  [Vidar, confidence 100]</td>
+              <td class="mono ioc-value">http://123.254.106.168/?h=123.254.106.168&amp;p=80&amp;t=tcp&amp;a=w32&amp;stage=true  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="url">
               <td class="mono">url</td>
-              <td class="mono ioc-value">https://bet303.games/  [Unknown malware, confidence 90]</td>
+              <td class="mono ioc-value">http://idcool.codes/7z  [Unknown malware, confidence 90]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">102.220.163.36:2505  [AsyncRAT, confidence 75]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://interseq.at/lom2/api  [Unknown malware, confidence 80]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">85.11.182.104:8080  [Cobalt Strike, confidence 100]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://opti-pc.com/telechargement/OptiPC-Setup-1.0.0.exe  [Unknown malware, confidence 80]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">91.92.40.117:56003  [PureRAT, confidence 75]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://leebin101.com/r  [SnappyClient, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">104.248.194.193:80  [AMOS, confidence 90]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://testingcf.jsdelivr.net/gh/dsteru3421/djjghryer46657l/gffdj5643  [ClearFake, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">81.70.21.163:4444  [Cobalt Strike, confidence 100]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://kittiesmc.com/ws  [Unknown Stealer, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.69.85:14642  [Remcos, confidence 100]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://190.196.253.43:11724/Mozi.m  [Mozi, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">142.202.205.224:74  [Remcos, confidence 75]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://t.me/nts33p  [Vidar, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">85.11.182.104:80  [Cobalt Strike, confidence 100]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://gt.1jp88.org/  [Vidar, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">178.92.163.217:443  [Unknown malware, confidence 75]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://212.109.218.20/gate.php  [Colibri Loader, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">181.215.242.58:56001  [PureRAT, confidence 75]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">http://myanmar001.xyz/implant.exe  [Sliver, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.71.242:14643  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">209.38.82.85:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">181.215.242.58:56003  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">176.126.114.42:2404  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.71.108:888  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.27.143.19:443  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">47.96.137.72:8084  [VShell, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">146.19.49.35:33474  [RedLine Stealer, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">82.156.186.185:18443  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">146.190.120.19:7443  [Unknown malware, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">128.90.122.7:2015  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">66.179.29.5:8080  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.132.164.72:80  [AsyncRAT, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">135.136.158.9:2430  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">109.238.86.106:6606  [AsyncRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">128.90.103.193:2015  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">202.61.160.183:446  [ValleyRAT, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">87.120.244.231:3002  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">188.253.26.190:443  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">23.27.143.19:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.71.108:34890  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.236.76.31:56002  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.24.106:50918  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">85.11.182.104:22  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">87.120.244.231:80  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.24.106:888  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">91.92.40.117:56001  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">93.152.214.199:8443  [Evilginx, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">134.122.204.169:4169  [Unknown malware, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.236.76.31:56001  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">45.139.104.194:3410  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">77.91.71.18:31337  [Remcos, confidence 100]</td>
+<tr data-type="url">
+              <td class="mono">url</td>
+              <td class="mono ioc-value">https://172.236.209.126  [Vidar, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1438,7 +1268,22 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">155.103.69.57:14646  [Remcos, confidence 100]</td>
+              <td class="mono ioc-value">5.175.169.212:7777  [DCRat, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">196.251.107.252:22063  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">209.87.166.139:56003  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">43.228.157.233:6767  [AsyncRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1448,32 +1293,7 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">156.254.20.48:8080  [Cobalt Strike, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.71.108:50918  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">168.231.121.175:5263  [Remus, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">139.64.164.252:443  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">217.60.103.120:2404  [Remcos, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">124.222.21.29:8888  [Unknown malware, confidence 100]</td>
+              <td class="mono ioc-value">185.112.59.102:7707  [AsyncRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1483,42 +1303,17 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">177.22.119.68:9001  [DanaBot, confidence 75]</td>
+              <td class="mono ioc-value">45.139.104.194:3410  [Remcos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">195.177.94.253:4332  [Remcos, confidence 100]</td>
+              <td class="mono ioc-value">178.92.163.217:443  [Unknown malware, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">77.239.107.93:443  [PureRAT, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">207.211.189.214:443  [DanaBot, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">39.105.16.200:4321  [AdaptixC2, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.71.108:80  [Unknown malware, confidence 100]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">43.136.69.37:443  [Cobalt Strike, confidence 75]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="ip:port">
-              <td class="mono">ip:port</td>
-              <td class="mono ioc-value">46.246.12.23:7045  [Houdini, confidence 75]</td>
+              <td class="mono ioc-value">87.120.244.231:22  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1528,22 +1323,162 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.24.106:34890  [Unknown malware, confidence 100]</td>
+              <td class="mono ioc-value">27.14.2.173:8088  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">39.96.15.121:8083  [VShell, confidence 100]</td>
+              <td class="mono ioc-value">2.27.160.141:61712  [AdaptixC2, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">82.23.246.136:6136  [Unknown malware, confidence 75]</td>
+              <td class="mono ioc-value">143.244.141.187:5003  [Remus, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">46.246.12.23:32722  [Houdini, confidence 75]</td>
+              <td class="mono ioc-value">77.91.71.18:31337  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">102.220.163.36:2505  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">135.136.158.9:2430  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.27.143.19:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">31.76.45.234:80  [Tsundere, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">87.120.244.231:8443  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">139.196.50.117:8839  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">209.38.82.85:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">188.212.158.203:1145  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">39.105.16.200:4321  [AdaptixC2, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">2.59.134.119:56001  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">138.124.14.35:9091  [Evilginx, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">43.156.187.96:2404  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">168.231.121.175:5263  [Remus, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">155.103.71.242:14643  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">85.11.182.104:443  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">142.202.205.224:74  [Remcos, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">109.238.86.106:6606  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">139.64.164.252:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">23.132.164.72:443  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">85.11.182.104:8080  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">77.239.107.93:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">188.253.26.190:443  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.112.59.102:8808  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">134.122.204.169:4169  [Unknown malware, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">138.197.31.70:7443  [Unknown malware, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">122.10.71.108:8888  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">27.14.2.173:3000  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">91.92.40.117:56001  [PureRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
@@ -1553,210 +1488,350 @@
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">122.10.24.106:443  [Unknown malware, confidence 100]</td>
+              <td class="mono ioc-value">89.127.235.142:7443  [Unknown malware, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="ip:port">
               <td class="mono">ip:port</td>
-              <td class="mono ioc-value">139.196.50.117:8839  [Cobalt Strike, confidence 75]</td>
+              <td class="mono ioc-value">81.70.21.163:8088  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">103.38.236.70:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">155.103.69.85:14642  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">81.70.21.163:4444  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">85.11.182.104:80  [Cobalt Strike, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">87.120.244.231:3001  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">181.215.242.58:56003  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">82.156.186.185:18443  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">158.94.210.177:6606  [AsyncRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">103.48.84.225:3306  [AsyncRAT, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">128.90.122.7:2015  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">122.10.24.106:888  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">217.60.103.120:2404  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">15.235.149.212:56003  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">103.48.84.225:80  [AsyncRAT, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">122.10.24.106:8888  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">156.236.76.31:56001  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">102.117.173.122:7443  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">84.38.133.167:7474  [Remcos, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">42.51.44.173:18888  [Cobalt Strike, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">93.152.214.199:8443  [Evilginx, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">122.10.24.106:50918  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">124.222.21.29:8888  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">94.154.32.44:443  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">181.215.242.58:56001  [PureRAT, confidence 75]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">87.120.244.231:3002  [Unknown malware, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="ip:port">
+              <td class="mono">ip:port</td>
+              <td class="mono ioc-value">185.127.94.179:443  [PureRAT, confidence 75]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Domänålder (RDAP/WHOIS) — nyregistrerade domäner flaggade</h2>
+  <section id="sec-domainage">
+    <h2 class="section-header" onclick="toggleSection('sec-domainage')">
+      <span class="chevron" id="sec-domainage-chevron">▾</span> Domänålder (RDAP/WHOIS) — nyregistrerade domäner flaggade
+    </h2>
+    <div class="section-body" id="sec-domainage-body">
+      
     <div class="table-scroll">
-      <table>
+      <table id="domainAgeTable">
+        <thead><tr><th class="sortable" onclick="sortTable('domainAgeTable', 0, 'text')">Domän <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('domainAgeTable', 1, 'number')">Ålder <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('domainAgeTable', 2, 'text')">Registrerad <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('domainAgeTable', 3, 'text')">Registrar <span class="sort-arrow"></span></th></tr></thead>
         <tbody><tr>
               <td class="mono">hollyarcade.org</td>
-              <td><span class="badge badge-critical">2 dagar — NY</span></td>
+              <td data-sort="2"><span class="badge badge-critical">2 dagar — NY</span></td>
               <td class="dim">2026-09-22</td>
               <td class="dim">Spaceship, Inc.</td>
             </tr>
 <tr>
               <td class="mono">metricsfeedware.com</td>
-              <td><span class="badge badge-critical">3 dagar — NY</span></td>
+              <td data-sort="3"><span class="badge badge-critical">3 dagar — NY</span></td>
               <td class="dim">2026-09-19</td>
               <td class="dim">Key-Systems GmbH</td>
             </tr>
 <tr>
               <td class="mono">fifa555god.com</td>
-              <td><span class="badge badge-critical">4 dagar — NY</span></td>
+              <td data-sort="4"><span class="badge badge-critical">4 dagar — NY</span></td>
               <td class="dim">2026-09-18</td>
               <td class="dim">NameCheap, Inc.</td>
             </tr>
 <tr>
               <td class="mono">solarwinds-in.com</td>
-              <td><span class="badge badge-critical">4 dagar — NY</span></td>
+              <td data-sort="4"><span class="badge badge-critical">4 dagar — NY</span></td>
               <td class="dim">2026-09-18</td>
               <td class="dim">Key-Systems GmbH</td>
             </tr>
 <tr>
               <td class="mono">api-relay.cc</td>
-              <td><span class="badge badge-critical">6 dagar — NY</span></td>
+              <td data-sort="6"><span class="badge badge-critical">6 dagar — NY</span></td>
               <td class="dim">2026-09-16</td>
               <td class="dim">NameSilo, LLC</td>
             </tr>
 <tr>
+              <td class="mono">grove-kaee-j4jgh.lol</td>
+              <td data-sort="6"><span class="badge badge-critical">6 dagar — NY</span></td>
+              <td class="dim">2026-09-18</td>
+              <td class="dim">Eranet International Limited</td>
+            </tr>
+<tr>
               <td class="mono">sifang.buzz</td>
-              <td><span class="badge badge-critical">10 dagar — NY</span></td>
+              <td data-sort="10"><span class="badge badge-critical">10 dagar — NY</span></td>
               <td class="dim">2026-09-12</td>
               <td class="dim">Spaceship, Inc.</td>
             </tr>
 <tr>
               <td class="mono">avenix.lol</td>
-              <td><span class="badge badge-critical">10 dagar — NY</span></td>
+              <td data-sort="10"><span class="badge badge-critical">10 dagar — NY</span></td>
               <td class="dim">2026-09-12</td>
               <td class="dim">NameCheap, Inc.</td>
             </tr>
 <tr>
               <td class="mono">c2.sunwin.sixtyseven.co.in</td>
-              <td><span class="badge badge-critical">13 dagar — NY</span></td>
+              <td data-sort="13"><span class="badge badge-critical">13 dagar — NY</span></td>
               <td class="dim">2026-09-11</td>
               <td class="dim">Spaceship, Inc.</td>
             </tr>
 <tr>
               <td class="mono">ptzhc3.pw</td>
-              <td><span class="badge badge-critical">21 dagar — NY</span></td>
+              <td data-sort="21"><span class="badge badge-critical">21 dagar — NY</span></td>
               <td class="dim">2026-09-01</td>
               <td class="dim">Dynadot Inc</td>
             </tr>
 <tr>
               <td class="mono">trombler312.life</td>
-              <td><span class="badge badge-high">31 dagar</span></td>
+              <td data-sort="31"><span class="badge badge-high">31 dagar</span></td>
               <td class="dim">2026-08-21</td>
               <td class="dim">PDR Ltd. d/b/a PublicDomainRegistry.com</td>
             </tr>
 <tr>
               <td class="mono">789joker.com</td>
-              <td><span class="badge badge-high">59 dagar</span></td>
+              <td data-sort="59"><span class="badge badge-high">59 dagar</span></td>
               <td class="dim">2026-07-24</td>
               <td class="dim">Sav.com, LLC</td>
             </tr>
 <tr>
               <td class="mono">ngo999.com</td>
-              <td><span class="badge badge-high">64 dagar</span></td>
+              <td data-sort="64"><span class="badge badge-high">64 dagar</span></td>
               <td class="dim">2026-07-20</td>
               <td class="dim">NameCheap, Inc.</td>
             </tr>
 <tr>
               <td class="mono">spairobeauty.com</td>
-              <td><span class="badge badge-high">76 dagar</span></td>
+              <td data-sort="76"><span class="badge badge-high">76 dagar</span></td>
               <td class="dim">2026-07-07</td>
               <td class="dim">HOSTINGER operations, UAB</td>
             </tr>
 <tr>
               <td class="mono">ao88mi.com</td>
-              <td><span class="badge badge-high">76 dagar</span></td>
+              <td data-sort="76"><span class="badge badge-high">76 dagar</span></td>
               <td class="dim">2026-07-10</td>
               <td class="dim">Spaceship, Inc.</td>
             </tr>
 <tr>
               <td class="mono">gpixx.xyz</td>
-              <td><span class="badge badge-high">97 dagar</span></td>
+              <td data-sort="97"><span class="badge badge-high">97 dagar</span></td>
               <td class="dim">2026-06-16</td>
               <td class="dim">PDR Ltd. d/b/a PublicDomainRegistry.com</td>
             </tr>
 <tr>
               <td class="mono">bibisafricanhairbraids.com</td>
-              <td><span class="badge badge-high">102 dagar</span></td>
+              <td data-sort="102"><span class="badge badge-high">102 dagar</span></td>
               <td class="dim">2026-06-12</td>
               <td class="dim">Gname.com Pte. Ltd.</td>
             </tr>
 <tr>
               <td class="mono">impressiveaudiotint.com</td>
-              <td><span class="badge badge-high">111 dagar</span></td>
+              <td data-sort="111"><span class="badge badge-high">111 dagar</span></td>
               <td class="dim">2026-06-04</td>
               <td class="dim">Gname.com Pte. Ltd.</td>
             </tr>
 <tr>
               <td class="mono">homebasedbusinessblog.com</td>
-              <td><span class="badge badge-high">112 dagar</span></td>
+              <td data-sort="112"><span class="badge badge-high">112 dagar</span></td>
               <td class="dim">2026-06-02</td>
               <td class="dim">DomainSpot LLC</td>
             </tr>
 <tr>
               <td class="mono">fun-family-adventures-from-buffalo.com</td>
-              <td><span class="badge badge-high">125 dagar</span></td>
+              <td data-sort="125"><span class="badge badge-high">125 dagar</span></td>
               <td class="dim">2026-05-21</td>
               <td class="dim">Gname.com Pte. Ltd.</td>
             </tr>
 <tr>
+              <td class="mono">paripalse.com</td>
+              <td data-sort="129"><span class="badge badge-high">129 dagar</span></td>
+              <td class="dim">2026-05-18</td>
+              <td class="dim">NameCheap, Inc.</td>
+            </tr>
+<tr>
               <td class="mono">vindipendent.com</td>
-              <td><span class="badge badge-high">169 dagar</span></td>
+              <td data-sort="169"><span class="badge badge-high">169 dagar</span></td>
               <td class="dim">2026-04-08</td>
               <td class="dim">Amazon Registrar, Inc.</td>
             </tr>
 <tr>
               <td class="mono">bentokangamba.com</td>
-              <td><span class="badge badge-high">172 dagar</span></td>
+              <td data-sort="172"><span class="badge badge-high">172 dagar</span></td>
               <td class="dim">2026-04-02</td>
               <td class="dim">Name.com, Inc.</td>
             </tr>
 <tr>
+              <td class="mono">harmonyandharvest.org</td>
+              <td data-sort="175"><span class="badge badge-high">175 dagar</span></td>
+              <td class="dim">2026-04-03</td>
+              <td class="dim">HOSTINGER operations, UAB</td>
+            </tr>
+<tr>
               <td class="mono">pamplonacopper.com</td>
-              <td><span class="dim mono">190 dagar</span></td>
+              <td data-sort="190"><span class="dim mono">190 dagar</span></td>
               <td class="dim">2026-03-15</td>
               <td class="dim">DropCatch.com 576 LLC</td>
             </tr>
 <tr>
               <td class="mono">moneyhub-walletdrive.click</td>
-              <td><span class="dim mono">201 dagar</span></td>
+              <td data-sort="201"><span class="dim mono">201 dagar</span></td>
               <td class="dim">2026-03-06</td>
               <td class="dim">Dynadot, LLC</td>
             </tr>
 <tr>
               <td class="mono">lianacosmetic.com</td>
-              <td><span class="dim mono">211 dagar</span></td>
+              <td data-sort="211"><span class="dim mono">211 dagar</span></td>
               <td class="dim">2026-02-22</td>
               <td class="dim">CSL Computer Service Langenbach GmbH d/b/a joker.com</td>
             </tr>
 <tr>
               <td class="mono">sfsckotli.org</td>
-              <td><span class="dim mono">211 dagar</span></td>
+              <td data-sort="211"><span class="dim mono">211 dagar</span></td>
               <td class="dim">2026-02-25</td>
               <td class="dim">GoDaddy.com, LLC</td>
             </tr>
 <tr>
               <td class="mono">nytenymalagasy.com</td>
-              <td><span class="dim mono">215 dagar</span></td>
+              <td data-sort="215"><span class="dim mono">215 dagar</span></td>
               <td class="dim">2026-02-20</td>
               <td class="dim">Ligne Web Services SAS dba LWS</td>
             </tr>
 <tr>
               <td class="mono">lokkiutrading.online</td>
-              <td><span class="dim mono">250 dagar</span></td>
+              <td data-sort="250"><span class="dim mono">250 dagar</span></td>
               <td class="dim">2026-01-14</td>
               <td class="dim">HOSTINGER operations, UAB</td>
-            </tr>
-<tr>
-              <td class="mono">kmjzholdings.com</td>
-              <td><span class="dim mono">250 dagar</span></td>
-              <td class="dim">2026-01-15</td>
-              <td class="dim">GoDaddy.com, LLC</td>
-            </tr>
-<tr>
-              <td class="mono">infoshouse.com</td>
-              <td><span class="dim mono">259 dagar</span></td>
-              <td class="dim">2026-01-08</td>
-              <td class="dim">GoDaddy.com, LLC</td>
-            </tr>
-<tr>
-              <td class="mono">jpshio777.vip</td>
-              <td><span class="dim mono">281 dagar</span></td>
-              <td class="dim">2025-12-16</td>
-              <td class="dim">NameCheap, Inc.</td>
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Relaterad infrastruktur (Certificate Transparency, crt.sh)</h2>
+  <section id="sec-crtsh">
+    <h2 class="section-header" onclick="toggleSection('sec-crtsh')">
+      <span class="chevron" id="sec-crtsh-chevron">▾</span> Relaterad infrastruktur (Certificate Transparency, crt.sh)
+    </h2>
+    <div class="section-body" id="sec-crtsh-body">
+      
     <div class="table-scroll">
-      <table>
+      <table id="crtshTable">
+        <thead><tr><th class="sortable" onclick="sortTable('crtshTable', 0, 'text')">Domän <span class="sort-arrow"></span></th><th>Relaterade domäner</th></tr></thead>
         <tbody><tr>
               <td class="mono">cenasasl.es</td>
               <td class="mono dim ioc-value">www.cenasasl.es</td>
@@ -1839,203 +1914,261 @@
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>CVE-prioritering (EPSS + KEV via Shodan CVEDB)</h2>
+  <section id="sec-cve">
+    <h2 class="section-header" onclick="toggleSection('sec-cve')">
+      <span class="chevron" id="sec-cve-chevron">▾</span> CVE-prioritering (EPSS + KEV via Shodan CVEDB)
+    </h2>
+    <div class="section-body" id="sec-cve-body">
+      <div class="controls"><input type="search" id="cveTableSearch" placeholder="Sök..." oninput="filterTable('cveTableSearch', 'cveTable')"></div>
     <div class="table-scroll">
-      <table>
+      <table id="cveTable">
+        <thead><tr><th class="sortable" onclick="sortTable('cveTable', 0, 'text')">CVE <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('cveTable', 1, 'number')">Status <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('cveTable', 2, 'number')">CVSS <span class="sort-arrow"></span></th><th>Sammanfattning</th></tr></thead>
         <tbody><tr>
               <td class="mono">CVE-2026-20079</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">10.0</td>
+              <td data-sort="1075.75"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="10.0">10.0</td>
               <td class="dim">A vulnerability in the web interface of Cisco Secure Firewall Management Center (FMC) Soft...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-45498</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">4.0</td>
+              <td data-sort="1063.08"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="4.0">4.0</td>
               <td class="dim">Microsoft Defender Denial of Service Vulnerability</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-9586</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">9.3</td>
+              <td data-sort="1011.85"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="9.3">9.3</td>
               <td class="dim">An unauthenticated SQL injection vulnerability exists in Sangoma Switchvox SMB Edition 8.3...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-82329</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">9.8</td>
+              <td data-sort="1007.67"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="9.8">9.8</td>
               <td class="dim">JFrog Artifactory contains an authentication weakness that, under default configuration, m...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-19490</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">9.3</td>
+              <td data-sort="1005.60"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="9.3">9.3</td>
               <td class="dim">Vulnerability in NetScaler ADC and NetScaler Gateway.
 
 This issue affects ADC: from 14.1 t...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-83548</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">10.0</td>
+              <td data-sort="1004.67"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="10.0">10.0</td>
               <td class="dim">A Pre-authentication SSRF vulnerability exists in the SMA1000 Appliance Work Place interfa...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-75650</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">10.0</td>
+              <td data-sort="1002.15"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="10.0">10.0</td>
               <td class="dim">Adobe Commerce is affected by an Improper Neutralization of Special Elements Used in a Tem...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-82078</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">9.4</td>
+              <td data-sort="1001.69"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="9.4">9.4</td>
               <td class="dim">An unsafe dynamic class loading vulnerability exists in the database connection utilities ...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-81578</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">8.8</td>
+              <td data-sort="1001.62"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="8.8">8.8</td>
               <td class="dim">An improper access control vulnerability exists in the web management interface of PaperCu...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-85046</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">8.8</td>
+              <td data-sort="1001.26"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="8.8">8.8</td>
               <td class="dim">Type confusion in V8 in Google Chrome prior to 152.0.7977.82 allowed a remote attacker to ...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-85706</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">10.0</td>
+              <td data-sort="1001.15"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="10.0">10.0</td>
               <td class="dim">GitLab has remediated an issue in GitLab CE/EE affecting all versions from 18.7 before 19....</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-42016</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">8.1</td>
+              <td data-sort="1000.89"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="8.1">8.1</td>
               <td class="dim">JFrog Artifactory (Self Hosted) versions before 7.133.11 are vulnerable to a privilege esc...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-87491</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">8.8</td>
+              <td data-sort="1000.86"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="8.8">8.8</td>
               <td class="dim">Out of bounds write in V8 in Google Chrome prior to 153.0.8010.36 allowed a remote attacke...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-86218</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">10.0</td>
+              <td data-sort="1000.74"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="10.0">10.0</td>
               <td class="dim">N-central is vulnerable to a pre-auth remote code execution This issue affects N-central: ...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-93616</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">9.8</td>
+              <td data-sort="1000.00"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="9.8">9.8</td>
               <td class="dim">A directory traversal and file upload vulnerability allows an unauthenticated attacker to ...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-94127</td>
-              <td><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
-              <td class="dim">9.3</td>
+              <td data-sort="1000.00"><span class="badge badge-critical">KEV — aktivt utnyttjad</span></td>
+              <td class="dim" data-sort="9.3">9.3</td>
               <td class="dim">When a BIG-IP APM access policy and an OAuth profile is configured on a virtual server, sp...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-14894</td>
-              <td><span class="dim mono">EPSS 5.3%</span></td>
-              <td class="dim">9.8</td>
+              <td data-sort="5.27"><span class="dim mono">EPSS 5.3%</span></td>
+              <td class="dim" data-sort="9.8">9.8</td>
               <td class="dim">The Super Forms – Drag &amp; Drop Form Builder plugin for WordPress is vulnerable to Arbitrary...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2022-3437</td>
-              <td><span class="dim mono">EPSS 3.7%</span></td>
-              <td class="dim">6.5</td>
+              <td data-sort="3.69"><span class="dim mono">EPSS 3.7%</span></td>
+              <td class="dim" data-sort="6.5">6.5</td>
               <td class="dim">A heap-based buffer overflow vulnerability was found in Samba within the GSSAPI unwrap_des...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2021-31886</td>
-              <td><span class="dim mono">EPSS 3.0%</span></td>
-              <td class="dim">9.8</td>
+              <td data-sort="3.05"><span class="dim mono">EPSS 3.0%</span></td>
+              <td class="dim" data-sort="9.8">9.8</td>
               <td class="dim">A vulnerability has been identified in APOGEE MBC (PPC) (BACnet) (All versions), APOGEE MB...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-86296</td>
-              <td><span class="dim mono">EPSS 1.3%</span></td>
-              <td class="dim">9.3</td>
+              <td data-sort="1.35"><span class="dim mono">EPSS 1.3%</span></td>
+              <td class="dim" data-sort="9.3">9.3</td>
               <td class="dim">A vulnerability was determined in D-Link DIR-822A A_101. This vulnerability affects the fu...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-18574</td>
-              <td><span class="dim mono">EPSS 1.0%</span></td>
-              <td class="dim">9.3</td>
+              <td data-sort="0.99"><span class="dim mono">EPSS 1.0%</span></td>
+              <td class="dim" data-sort="9.3">9.3</td>
               <td class="dim">An authentication bypass vulnerability in Check Point Security Management Server and Multi...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-43760</td>
-              <td><span class="dim mono">EPSS 1.0%</span></td>
-              <td class="dim">8.6</td>
+              <td data-sort="0.97"><span class="dim mono">EPSS 1.0%</span></td>
+              <td class="dim" data-sort="8.6">8.6</td>
               <td class="dim">An access issue was addressed with improved access restrictions. This issue is fixed in ma...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-43715</td>
-              <td><span class="dim mono">EPSS 0.9%</span></td>
-              <td class="dim">8.8</td>
+              <td data-sort="0.89"><span class="dim mono">EPSS 0.9%</span></td>
+              <td class="dim" data-sort="8.8">8.8</td>
               <td class="dim">A use-after-free issue was addressed with improved memory management. This issue is fixed ...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-65660</td>
-              <td><span class="dim mono">EPSS 0.8%</span></td>
-              <td class="dim">8.8</td>
+              <td data-sort="0.81"><span class="dim mono">EPSS 0.8%</span></td>
+              <td class="dim" data-sort="8.8">8.8</td>
               <td class="dim">Improper control of generation of code (&#x27;code injection&#x27;) in Microsoft Office SharePoint a...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-43661</td>
-              <td><span class="dim mono">EPSS 0.6%</span></td>
-              <td class="dim">7.5</td>
+              <td data-sort="0.63"><span class="dim mono">EPSS 0.6%</span></td>
+              <td class="dim" data-sort="7.5">7.5</td>
               <td class="dim">A buffer overflow issue was addressed with improved memory handling. This issue is fixed i...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-86242</td>
-              <td><span class="dim mono">EPSS 0.6%</span></td>
-              <td class="dim">8.1</td>
+              <td data-sort="0.62"><span class="dim mono">EPSS 0.6%</span></td>
+              <td class="dim" data-sort="8.1">8.1</td>
               <td class="dim">Bifrost HTTP transport before 2.0.0 accepts an enabled custom plugin whose path is an HTTP...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-69414</td>
-              <td><span class="dim mono">EPSS 0.6%</span></td>
-              <td class="dim">7.8</td>
+              <td data-sort="0.56"><span class="dim mono">EPSS 0.6%</span></td>
+              <td class="dim" data-sort="7.8">7.8</td>
               <td class="dim">Microsoft is aware of an elevation of privilege in the Microsoft Malware Protection Engine...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-64780</td>
-              <td><span class="dim mono">EPSS 0.6%</span></td>
-              <td class="dim">4.3</td>
+              <td data-sort="0.55"><span class="dim mono">EPSS 0.6%</span></td>
+              <td class="dim" data-sort="4.3">4.3</td>
               <td class="dim">The issue was addressed with improved checks. This issue is fixed in Safari 26.6.1, iOS 18...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-64781</td>
-              <td><span class="dim mono">EPSS 0.6%</span></td>
-              <td class="dim">4.3</td>
+              <td data-sort="0.55"><span class="dim mono">EPSS 0.6%</span></td>
+              <td class="dim" data-sort="4.3">4.3</td>
               <td class="dim">The issue was addressed with improved input validation. This issue is fixed in Safari 26.6...</td>
             </tr>
 <tr>
               <td class="mono">CVE-2026-85878</td>
-              <td><span class="dim mono">EPSS 0.5%</span></td>
-              <td class="dim">9.9</td>
+              <td data-sort="0.55"><span class="dim mono">EPSS 0.5%</span></td>
+              <td class="dim" data-sort="9.9">9.9</td>
               <td class="dim">Improper authorization in Azure Database for PostgreSQL allows an authorized attacker to e...</td>
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>IP-berikning (Shodan InternetDB) — öppna portar &amp; kända CVE:er</h2>
+  <section id="sec-shodan">
+    <h2 class="section-header" onclick="toggleSection('sec-shodan')">
+      <span class="chevron" id="sec-shodan-chevron">▾</span> IP-berikning (Shodan InternetDB) — öppna portar & kända CVE:er
+    </h2>
+    <div class="section-body" id="sec-shodan-body">
+      
     <div class="table-scroll">
-      <table>
+      <table id="shodanTable">
+        <thead><tr><th class="sortable" onclick="sortTable('shodanTable', 0, 'text')">IP <span class="sort-arrow"></span></th><th>Portar</th><th>CVE:er</th><th>Hostnames</th></tr></thead>
         <tbody><tr>
+              <td class="mono">188.253.26.190</td>
+              <td class="mono dim">80, 22</td>
+              <td><span class="badge badge-critical">CVE-2023-44487, CVE-2025-23419</span></td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">207.189.27.144</td>
+              <td class="mono dim">80, 8041, 3389</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">46.151.182.5</td>
+              <td class="mono dim">3389</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">154.91.63.98</td>
+              <td class="mono dim">80</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">45.139.104.194</td>
+              <td class="mono dim">3389, 135</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">154.91.58.106</td>
+              <td class="mono dim">80</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">192.253.229.23</td>
+              <td class="mono dim">80, 443, 3389</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">91.92.41.153</td>
+              <td class="mono dim">3389</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
               <td class="mono">43.138.153.161</td>
               <td class="mono dim">30027, 22</td>
               <td><span class="badge badge-critical">CVE-2026-59996, CVE-2026-59997, CVE-2026-59995, CVE-2025-26465, CVE-2026-59999, CVE-2026-73282, CVE-2026-73283, CVE-2026-73281, CVE-2026-60000, CVE-2026-60001, CVE-2026-60002, CVE-2007-2768, CVE-2025-32728, CVE-2019-16905, CVE-2026-35414, CVE-2020-14145, CVE-2021-41617, CVE-2023-51385, CVE-2026-59998, CVE-2026-35385, CVE-2026-35387, CVE-2016-20012, CVE-2026-35388, CVE-2020-15778, CVE-2008-3844, CVE-2021-36368, CVE-2023-51767, CVE-2023-48795, CVE-2023-38408</span></td>
@@ -2166,63 +2299,20 @@ This issue affects ADC: from 14.1 t...</td>
               <td class="mono dim">80, 443</td>
               <td>—</td>
               <td class="dim">ec2-54-244-240-205.us-west-2.compute.amazonaws.com, theychat.net</td>
-            </tr>
-<tr>
-              <td class="mono">177.22.117.74</td>
-              <td class="mono dim">2000, 21</td>
-              <td>—</td>
-              <td class="dim">177-22-117-74.dyn.wntelecom.net.br</td>
-            </tr>
-<tr>
-              <td class="mono">154.91.62.109</td>
-              <td class="mono dim">80, 8094</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">154.91.58.105</td>
-              <td class="mono dim">80</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">123.207.214.140</td>
-              <td class="mono dim">2000</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">142.93.126.132</td>
-              <td class="mono dim">8081, 1801, 5357, 5985</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">196.251.121.250</td>
-              <td class="mono dim">2404</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">144.172.117.212</td>
-              <td class="mono dim">8041, 3389</td>
-              <td>—</td>
-              <td class="dim">212.117.172.144.static.cloudzy.com</td>
-            </tr>
-<tr>
-              <td class="mono">154.91.61.99</td>
-              <td class="mono dim">80</td>
-              <td>—</td>
-              <td class="dim">—</td>
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
-
-  <section>
-    <h2>Senaste artiklar (RSS / Telegram)</h2>
+  <section id="sec-articles">
+    <h2 class="section-header" onclick="toggleSection('sec-articles')">
+      <span class="chevron" id="sec-articles-chevron">▾</span> Senaste artiklar (RSS / Telegram)
+    </h2>
+    <div class="section-body" id="sec-articles-body">
+      <div class="controls"><input type="search" id="articlesTableSearch" placeholder="Sök..." oninput="filterTable('articlesTableSearch', 'articlesTable')"></div>
     <div class="table-scroll">
-      <table>
+      <table id="articlesTable">
+        <thead><tr><th class="sortable" onclick="sortTable('articlesTable', 0, 'text')">Källa <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('articlesTable', 1, 'text')">Titel <span class="sort-arrow"></span></th><th>Fulltext</th></tr></thead>
         <tbody><tr>
               <td class="dim">Telegram @vxunderground</td>
               <td><a href="https://t.me/vxunderground/9458" target="_blank" rel="noopener">Yeah, so I decided to check out the Steam goop people were DMing me about.  Basically there is somet</a></td>
@@ -2425,16 +2515,58 @@ This issue affects ADC: from 14.1 t...</td>
             </tr></tbody>
       </table>
     </div>
+    </div>
   </section>
 
   <footer>Genererad av cti-agent. Data från RSS-källor, ThreatFox (abuse.ch), Telegram och ransomware.live.</footer>
 </div>
 
 <script>
+// --- Ihopfällbara sektioner ---
+function toggleSection(id) {
+  document.getElementById(id + '-body').classList.toggle('collapsed');
+  document.getElementById(id + '-chevron').classList.toggle('collapsed');
+}
+
+// --- Generisk tabellsortering ---
+function sortTable(tableId, colIndex, type) {
+  const table = document.getElementById(tableId);
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const headers = table.querySelectorAll('th');
+  const header = headers[colIndex];
+  const asc = header.getAttribute('data-sort-dir') !== 'asc';
+  headers.forEach(th => th.removeAttribute('data-sort-dir'));
+  header.setAttribute('data-sort-dir', asc ? 'asc' : 'desc');
+
+  rows.sort((a, b) => {
+    const aCell = a.children[colIndex];
+    const bCell = b.children[colIndex];
+    let av = aCell ? (aCell.getAttribute('data-sort') ?? aCell.textContent.trim()) : '';
+    let bv = bCell ? (bCell.getAttribute('data-sort') ?? bCell.textContent.trim()) : '';
+    if (type === 'number') {
+      av = parseFloat(av) || 0;
+      bv = parseFloat(bv) || 0;
+      return asc ? av - bv : bv - av;
+    }
+    return asc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+  });
+  rows.forEach(r => tbody.appendChild(r));
+}
+
+// --- Generisk tabellsökning (enkla tabeller utan typfilter) ---
+function filterTable(inputId, tableId) {
+  const search = document.getElementById(inputId).value.toLowerCase();
+  document.querySelectorAll('#' + tableId + ' tbody tr').forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(search) ? '' : 'none';
+  });
+}
+
+// --- IOC-tabellens kombinerade typ+sök-filter ---
 function filterIocs() {
   const type = document.getElementById('typeFilter').value.toLowerCase();
   const search = document.getElementById('iocSearch').value.toLowerCase();
-  const rows = document.querySelectorAll('#iocTable tr[data-type]');
+  const rows = document.querySelectorAll('#iocTable tbody tr[data-type]');
   rows.forEach(row => {
     const rowType = row.getAttribute('data-type').toLowerCase();
     const text = row.textContent.toLowerCase();
@@ -2443,6 +2575,35 @@ function filterIocs() {
     row.style.display = (matchesType && matchesSearch) ? '' : 'none';
   });
 }
+
+// Klick på en stapel i IOC-typ-diagrammet filtrerar direkt och hoppar till listan
+function filterIocsByType(type) {
+  document.getElementById('typeFilter').value = type;
+  filterIocs();
+  document.getElementById('sec-iocs').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+// --- Hover-tooltips på trendgraferna ---
+(function() {
+  const tooltip = document.getElementById('chartTooltip');
+  document.addEventListener('mouseover', e => {
+    if (e.target.classList && e.target.classList.contains('chart-point')) {
+      tooltip.textContent = e.target.getAttribute('data-tooltip');
+      tooltip.style.display = 'block';
+    }
+  });
+  document.addEventListener('mousemove', e => {
+    if (e.target.classList && e.target.classList.contains('chart-point')) {
+      tooltip.style.left = (e.pageX + 12) + 'px';
+      tooltip.style.top = (e.pageY - 28) + 'px';
+    }
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.classList && e.target.classList.contains('chart-point')) {
+      tooltip.style.display = 'none';
+    }
+  });
+})();
 </script>
 </body>
 </html>
