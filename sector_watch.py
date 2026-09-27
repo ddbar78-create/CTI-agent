@@ -9,10 +9,16 @@ tänkt att redigeras.
 """
 
 WATCHED_SECTORS = {
+    # De två första prioriteras högst upp på dashboarden (ordningen i denna
+    # dict avgör visningsordningen).
     "Transport & logistik": [
         "transport", "logistics", "logistik", "shipping", "maritime", "sjöfart",
         "railway", "rail", "tåg", "aviation", "airline", "flyg", "trucking",
         "haulage", "port", "hamn", "freight", "fraktbolag", "spedition",
+    ],
+    "Offentlig sektor": [
+        "government", "myndighet", "municipality", "kommun", "county", "region",
+        "public sector", "polis", "police",
     ],
     "Sjukvård": [
         "healthcare", "hospital", "sjukvård", "sjukhus", "medical", "clinic",
@@ -24,10 +30,6 @@ WATCHED_SECTORS = {
     ],
     "Finans": [
         "bank", "finance", "finans", "insurance", "försäkring", "fintech",
-    ],
-    "Offentlig sektor": [
-        "government", "myndighet", "municipality", "kommun", "county", "region",
-        "public sector", "polis", "police",
     ],
     # Lägg till fler sektorer här efter eget behov, t.ex.:
     # "Utbildning": ["school", "university", "skola", "universitet"],
