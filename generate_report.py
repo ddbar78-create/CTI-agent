@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 
 from storage import DB_PATH
 from attack_mapping import parse_family_from_value, classify_family
+from sector_watch import classify_sector, WATCHED_SECTORS
 
 OUTPUT_PATH = "index.html"
 
@@ -470,6 +471,31 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             "family": family, "count": count, "category": category, "techniques": techniques,
         })
 
+    # Sektorbevakning: matcha ransomware-offer (har redan ett sektorfält
+    # från ransomware.live) och RSS/Telegram-artiklar mot bevakade sektorer.
+    # Ren nyckelordsmatchning av redan insamlad data.
+    sector_victim_rows = _rows(
+        conn,
+        "SELECT group_name, victim, country, sector, attack_date FROM ransomware_victims",
+    )
+    sector_article_rows = _rows(
+        conn,
+        """
+        SELECT title, link, feed, summary, full_text FROM articles
+        WHERE feed != 'ransomware.live' AND feed NOT LIKE 'ThreatFox%'
+        ORDER BY id DESC LIMIT 300
+        """,
+    )
+
+    sector_matches: dict = {s: {"victims": [], "articles": []} for s in WATCHED_SECTORS}
+    for v in sector_victim_rows:
+        for sector in classify_sector(v["sector"] or ""):
+            sector_matches[sector]["victims"].append(v)
+    for a in sector_article_rows:
+        text_to_check = f"{a['title']} {a['summary']} {a['full_text'] or ''}"
+        for sector in classify_sector(text_to_check):
+            sector_matches[sector]["articles"].append(a)
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -605,6 +631,37 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
           </div>''')
     attack_html = "".join(attack_html_parts) or '<p class="empty">Ingen ThreatFox-data att analysera ännu.</p>'
 
+    sector_html_parts = []
+    for sector, matches in sector_matches.items():
+        victims = matches["victims"]
+        articles = matches["articles"]
+        total = len(victims) + len(articles)
+        if total == 0:
+            items_html = '<p class="empty">Inga träffar ännu för den här sektorn.</p>'
+        else:
+            item_lines = []
+            for v in victims[:8]:
+                item_lines.append(
+                    f'<li>🔴 <strong>{_esc(v["group_name"])}</strong> → '
+                    f'{_esc(v["victim"])} ({_esc(v["country"])}) — ransomware-offer</li>'
+                )
+            for a in articles[:8]:
+                item_lines.append(
+                    f'<li>📰 <a href="{_esc(a["link"])}" target="_blank" rel="noopener">'
+                    f'{_esc(a["title"])}</a> <span class="dim">({_esc(a["feed"])})</span></li>'
+                )
+            items_html = f'<ul class="sector-list">{"".join(item_lines)}</ul>'
+
+        sector_html_parts.append(f'''
+          <div class="attack-category">
+            <div class="attack-category-header">
+              <span>{_esc(sector)}</span>
+              <span class="dim">{len(victims)} offer · {len(articles)} artiklar</span>
+            </div>
+            {items_html}
+          </div>''')
+    sector_html = "".join(sector_html_parts)
+
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
         f'<option value="{_esc(t)}">{_esc(t)}</option>' for t in ioc_types_for_filter
@@ -649,6 +706,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
               </div>
             </div>'''),
         ("sec-attack", "Malware-familjer mot MITRE ATT&CK", attack_html),
+        ("sec-sectors", "Sektorbevakning", sector_html),
         ("sec-ioctypes", "IOC-typer i databasen (klicka för att filtrera)", breakdown_html),
         ("sec-map", "Geografisk spridning — ransomware-offer", world_map_html),
         ("sec-ransomware", "Senaste ransomware-offeraviseringar",
@@ -857,6 +915,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .attack-techniques {{ font-size: 0.82rem; margin-bottom: 0.4rem; }}
   .attack-techniques a {{ margin-right: 0.3rem; }}
   .attack-families {{ font-size: 0.8rem; }}
+  .sector-list {{ list-style: none; margin: 0; padding: 0; font-size: 0.85rem; }}
+  .sector-list li {{ margin-bottom: 0.4rem; }}
   .chart-tooltip {{
     position: absolute; display: none; background: #1c2330;
     border: 1px solid var(--panel-border); padding: 0.35rem 0.6rem;
