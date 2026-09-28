@@ -15,7 +15,9 @@ from datetime import datetime, timezone
 
 from storage import DB_PATH
 from attack_mapping import parse_family_from_value, classify_family
-from sector_watch import classify_sector, WATCHED_SECTORS
+from sector_watch import (
+    classify_sector, WATCHED_SECTORS, is_nordic_country, is_nordic_article,
+)
 
 OUTPUT_PATH = "index.html"
 
@@ -476,25 +478,37 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     # Ren nyckelordsmatchning av redan insamlad data.
     sector_victim_rows = _rows(
         conn,
-        "SELECT group_name, victim, country, sector, attack_date FROM ransomware_victims",
+        """
+        SELECT group_name, victim, country, sector, attack_date
+        FROM ransomware_victims ORDER BY id DESC
+        """,
     )
     sector_article_rows = _rows(
         conn,
         """
         SELECT title, link, feed, summary, full_text FROM articles
         WHERE feed != 'ransomware.live' AND feed NOT LIKE 'ThreatFox%'
-        ORDER BY id DESC LIMIT 300
+        ORDER BY id DESC LIMIT 500
         """,
     )
 
     sector_matches: dict = {s: {"victims": [], "articles": []} for s in WATCHED_SECTORS}
     for v in sector_victim_rows:
-        for sector in classify_sector(v["sector"] or ""):
+        v["nordic"] = is_nordic_country(v["country"])
+        # Sektorfältet OCH offernamnet (t.ex. "Port of Tanjung Pelepas")
+        for sector in classify_sector(f"{v['sector'] or ''} {v['victim'] or ''}"):
             sector_matches[sector]["victims"].append(v)
     for a in sector_article_rows:
-        text_to_check = f"{a['title']} {a['summary']} {a['full_text'] or ''}"
+        # Fulltexten kan innehålla brus (sidomenyer m.m.), så bara början används
+        text_to_check = f"{a['title']} {a['summary']} {(a['full_text'] or '')[:1500]}"
+        a["nordic"] = is_nordic_article(a["feed"], text_to_check)
         for sector in classify_sector(text_to_check):
             sector_matches[sector]["articles"].append(a)
+
+    # Nordiska träffar först inom varje sektor (stabil sortering)
+    for m in sector_matches.values():
+        m["victims"].sort(key=lambda x: not x["nordic"])
+        m["articles"].sort(key=lambda x: not x["nordic"])
 
     conn.close()
 
@@ -631,36 +645,76 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
           </div>''')
     attack_html = "".join(attack_html_parts) or '<p class="empty">Ingen ThreatFox-data att analysera ännu.</p>'
 
-    sector_html_parts = []
-    for sector, matches in sector_matches.items():
+    def _render_sector_card(title: str, matches: dict, focus: bool = False, empty_text: str = "") -> str:
         victims = matches["victims"]
         articles = matches["articles"]
-        total = len(victims) + len(articles)
-        if total == 0:
-            items_html = '<p class="empty">Inga träffar ännu för den här sektorn.</p>'
+        nordic_count = sum(1 for x in victims + articles if x["nordic"])
+        if not victims and not articles:
+            items_html = f'<p class="empty">{empty_text or "Inga träffar ännu för den här sektorn."}</p>'
         else:
             item_lines = []
-            for v in victims[:8]:
+            for v in victims[:30]:
+                flag = 1 if v["nordic"] else 0
+                badge = '<span class="nordic-badge">Norden</span>' if flag else ""
                 item_lines.append(
-                    f'<li>🔴 <strong>{_esc(v["group_name"])}</strong> → '
-                    f'{_esc(v["victim"])} ({_esc(v["country"])}) — ransomware-offer</li>'
+                    f'<li data-nordic="{flag}">🔴 <strong>{_esc(v["group_name"])}</strong> → '
+                    f'{_esc(v["victim"])} ({_esc(v["country"])}) — ransomware-offer{badge}</li>'
                 )
-            for a in articles[:8]:
+            for a in articles[:30]:
+                flag = 1 if a["nordic"] else 0
+                badge = '<span class="nordic-badge">Norden</span>' if flag else ""
                 item_lines.append(
-                    f'<li>📰 <a href="{_esc(a["link"])}" target="_blank" rel="noopener">'
-                    f'{_esc(a["title"])}</a> <span class="dim">({_esc(a["feed"])})</span></li>'
+                    f'<li data-nordic="{flag}">📰 <a href="{_esc(a["link"])}" target="_blank" rel="noopener">'
+                    f'{_esc(a["title"])}</a> <span class="dim">({_esc(a["feed"])})</span>{badge}</li>'
                 )
             items_html = f'<ul class="sector-list">{"".join(item_lines)}</ul>'
 
-        sector_html_parts.append(f'''
-          <div class="attack-category">
+        css_class = "attack-category sector-card focus" if focus else "attack-category sector-card"
+        return f'''
+          <div class="{css_class}">
             <div class="attack-category-header">
-              <span>{_esc(sector)}</span>
-              <span class="dim">{len(victims)} offer · {len(articles)} artiklar</span>
+              <span>{_esc(title)}</span>
+              <span class="dim">{len(victims)} offer · {len(articles)} artiklar · {nordic_count} nordiska</span>
             </div>
             {items_html}
-          </div>''')
-    sector_html = "".join(sector_html_parts)
+            <p class="empty sector-empty-note" style="display:none;">Inga nordiska träffar för den här sektorn.</p>
+          </div>'''
+
+    nordic_empty_text = (
+        "Inga nordiska träffar ännu. De dyker upp här när ransomware-offer från "
+        "SE/NO/DK/FI/IS rapporteras, eller när nordiska källor (CERT-SE, NSM, DKCERT, "
+        "NCSC-FI) eller artiklar som nämner Norden matchar sektorn."
+    )
+
+    # Två fokuskort högst upp: nordiska träffar för offentlig sektor och transport
+    focus_specs = [
+        ("Norden — offentlig sektor", "Offentlig sektor"),
+        ("Norden — transport & logistik", "Transport & logistik"),
+    ]
+    sector_html_parts = []
+    for focus_title, base_sector in focus_specs:
+        base = sector_matches.get(base_sector)
+        if base is None:
+            continue
+        nordic_subset = {
+            "victims": [v for v in base["victims"] if v["nordic"]],
+            "articles": [a for a in base["articles"] if a["nordic"]],
+        }
+        sector_html_parts.append(
+            _render_sector_card(focus_title, nordic_subset, focus=True, empty_text=nordic_empty_text)
+        )
+
+    # Därefter alla bevakade sektorer globalt (nordiska träffar märkta och först)
+    sector_html_parts.append('<div class="sector-divider dim">Alla sektorer — globalt (nordiska träffar märkta och först)</div>')
+    for sector, matches in sector_matches.items():
+        sector_html_parts.append(_render_sector_card(sector, matches))
+
+    sector_controls = (
+        '<div class="controls"><label class="nordic-toggle">'
+        '<input type="checkbox" id="nordicOnly" onchange="applyNordicFilter()"> '
+        'Visa bara Norden (SE, NO, DK, FI, IS) i alla sektorer</label></div>'
+    )
+    sector_html = sector_controls + "".join(sector_html_parts)
 
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
@@ -915,8 +969,16 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .attack-techniques {{ font-size: 0.82rem; margin-bottom: 0.4rem; }}
   .attack-techniques a {{ margin-right: 0.3rem; }}
   .attack-families {{ font-size: 0.8rem; }}
-  .sector-list {{ list-style: none; margin: 0; padding: 0; font-size: 0.85rem; }}
+  .sector-list {{ list-style: none; margin: 0; padding: 0; font-size: 0.85rem; max-height: 260px; overflow-y: auto; }}
   .sector-list li {{ margin-bottom: 0.4rem; }}
+  .sector-card.focus {{ border-color: #4fb3a9; border-left-width: 3px; }}
+  .sector-divider {{ margin: 1.2rem 0 0.7rem; padding-top: 0.9rem; border-top: 1px solid var(--panel-border); }}
+  .nordic-badge {{
+    display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.45rem;
+    font-size: 0.68rem; font-weight: 600; border-radius: 3px;
+    background: rgba(79,179,169,0.15); color: #4fb3a9;
+  }}
+  .nordic-toggle {{ display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; }}
   .chart-tooltip {{
     position: absolute; display: none; background: #1c2330;
     border: 1px solid var(--panel-border); padding: 0.35rem 0.6rem;
@@ -1000,6 +1062,21 @@ function filterIocs() {{
     const matchesType = !type || rowType === type;
     const matchesSearch = !search || text.includes(search);
     row.style.display = (matchesType && matchesSearch) ? '' : 'none';
+  }});
+}}
+
+// --- Norden-brytare i sektorbevakningen ---
+function applyNordicFilter() {{
+  const only = document.getElementById('nordicOnly').checked;
+  document.querySelectorAll('.sector-card').forEach(card => {{
+    let visible = 0;
+    card.querySelectorAll('li[data-nordic]').forEach(li => {{
+      const show = !only || li.getAttribute('data-nordic') === '1';
+      li.style.display = show ? '' : 'none';
+      if (show) visible++;
+    }});
+    const note = card.querySelector('.sector-empty-note');
+    if (note) note.style.display = (only && visible === 0) ? '' : 'none';
   }});
 }}
 
