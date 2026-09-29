@@ -188,6 +188,13 @@
     background: rgba(79,179,169,0.15); color: #4fb3a9;
   }
   .nordic-toggle { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; }
+  .watch-card.alert { border-color: var(--red); border-left-width: 3px; }
+  .watch-kind { font-size: 0.7rem; font-weight: 600; padding: 0.05rem 0.45rem; border-radius: 3px; margin-right: 0.3rem; }
+  .watch-critical { background: rgba(217,83,79,0.18); color: var(--red); }
+  .watch-high { background: rgba(232,163,61,0.15); color: var(--amber); }
+  .watch-info { background: rgba(91,141,214,0.15); color: var(--blue); }
+  .watch-critical-count { color: var(--red); font-weight: 600; }
+  code { font-family: var(--mono); background: var(--panel-border); padding: 0.05rem 0.35rem; border-radius: 3px; font-size: 0.8rem; }
   .chart-tooltip {
     position: absolute; display: none; background: #1c2330;
     border: 1px solid var(--panel-border); padding: 0.35rem 0.6rem;
@@ -201,14 +208,14 @@
 <div class="wrap">
   <header>
     <h1>CTI-agent — instrumentpanel</h1>
-    <div class="subtitle">Senast uppdaterad 2026-09-29 04:08 UTC · körs automatiskt varje timme</div>
+    <div class="subtitle">Senast uppdaterad 2026-09-29 06:47 UTC · körs automatiskt varje timme</div>
   </header>
 
-  <nav class="toc"><a href="#sec-trend" class="toc-link">Trend</a><a href="#sec-attack" class="toc-link">Malware-familjer mot MITRE ATT&CK</a><a href="#sec-sectors" class="toc-link">Sektorbevakning</a><a href="#sec-ioctypes" class="toc-link">IOC-typer i databasen</a><a href="#sec-map" class="toc-link">Geografisk spridning — ransomware-offer</a><a href="#sec-ransomware" class="toc-link">Senaste ransomware-offeraviseringar</a><a href="#sec-severity" class="toc-link">Hög/kritisk allvarlighet</a><a href="#sec-iocs" class="toc-link">Senaste IOCs</a><a href="#sec-domainage" class="toc-link">Domänålder</a><a href="#sec-crtsh" class="toc-link">Relaterad infrastruktur</a><a href="#sec-cve" class="toc-link">CVE-prioritering</a><a href="#sec-shodan" class="toc-link">IP-berikning</a><a href="#sec-articles" class="toc-link">Senaste artiklar</a></nav>
+  <nav class="toc"><a href="#sec-trend" class="toc-link">Trend</a><a href="#sec-watchlist" class="toc-link">Bevakningslista</a><a href="#sec-attack" class="toc-link">Malware-familjer mot MITRE ATT&CK</a><a href="#sec-sectors" class="toc-link">Sektorbevakning</a><a href="#sec-ioctypes" class="toc-link">IOC-typer i databasen</a><a href="#sec-map" class="toc-link">Geografisk spridning — ransomware-offer</a><a href="#sec-ransomware" class="toc-link">Senaste ransomware-offeraviseringar</a><a href="#sec-severity" class="toc-link">Hög/kritisk allvarlighet</a><a href="#sec-iocs" class="toc-link">Senaste IOCs</a><a href="#sec-domainage" class="toc-link">Domänålder</a><a href="#sec-crtsh" class="toc-link">Relaterad infrastruktur</a><a href="#sec-cve" class="toc-link">CVE-prioritering</a><a href="#sec-shodan" class="toc-link">IP-berikning</a><a href="#sec-articles" class="toc-link">Senaste artiklar</a></nav>
 
   <div class="stat-row">
     <div class="stat"><div class="stat-num">1355</div><div class="stat-label">Artiklar/poster totalt</div></div>
-    <div class="stat"><div class="stat-num">62924</div><div class="stat-label">IOCs totalt</div></div>
+    <div class="stat"><div class="stat-num">62892</div><div class="stat-label">IOCs totalt</div></div>
     <div class="stat"><div class="stat-num">25</div><div class="stat-label">Senaste ransomware-offer</div></div>
     <div class="stat"><div class="stat-num">0</div><div class="stat-label">High/critical (LLM)</div></div>
     <div class="stat"><div class="stat-num">177</div><div class="stat-label">Artiklar med fulltext hämtad</div></div>
@@ -224,13 +231,28 @@
             <div class="chart-grid">
               <div class="chart-panel">
                 <div class="chart-title">ThreatFox (hög volym)</div>
-                <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">14748</text><polyline fill="none" stroke="#e8a33d" stroke-width="2" points="45.0,64.4 107.7,35.3 170.3,109.3 233.0,119.5 295.7,119.4 358.3,140.6 421.0,143.7 483.7,126.9 546.3,107.9 609.0,76.2 671.7,15.0 734.3,65.6 797.0,97.3 859.7,53.5 922.3,126.2 985.0,163.9" /><circle cx="45.0" cy="64.4" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="64.4" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-14: 10107" /><circle cx="107.7" cy="35.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="107.7" cy="35.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-15: 12843" /><circle cx="170.3" cy="109.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="170.3" cy="109.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-16: 5894" /><circle cx="233.0" cy="119.5" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="233.0" cy="119.5" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-17: 4928" /><circle cx="295.7" cy="119.4" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="295.7" cy="119.4" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-18: 4940" /><circle cx="358.3" cy="140.6" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="358.3" cy="140.6" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-19: 2949" /><circle cx="421.0" cy="143.7" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="421.0" cy="143.7" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-20: 2656" /><circle cx="483.7" cy="126.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="483.7" cy="126.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-21: 4234" /><circle cx="546.3" cy="107.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="546.3" cy="107.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-22: 6023" /><circle cx="609.0" cy="76.2" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="609.0" cy="76.2" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-23: 9001" /><circle cx="671.7" cy="15.0" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="671.7" cy="15.0" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-24: 14748" /><circle cx="734.3" cy="65.6" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="734.3" cy="65.6" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-25: 9991" /><circle cx="797.0" cy="97.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="797.0" cy="97.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-26: 7016" /><circle cx="859.7" cy="53.5" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="859.7" cy="53.5" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-27: 11134" /><circle cx="922.3" cy="126.2" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="922.3" cy="126.2" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-28: 4303" /><circle cx="985.0" cy="163.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="163.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-29: 764" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="170.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="295.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="421.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="546.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="671.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="797.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-26</text><text x="922.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-28</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#e8a33d"></span>ThreatFox</span></div>
+                <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">14748</text><polyline fill="none" stroke="#e8a33d" stroke-width="2" points="45.0,64.4 107.7,35.3 170.3,109.3 233.0,119.5 295.7,119.4 358.3,140.6 421.0,143.7 483.7,126.9 546.3,107.9 609.0,76.2 671.7,15.0 734.3,65.6 797.0,97.3 859.7,53.5 922.3,126.2 985.0,156.6" /><circle cx="45.0" cy="64.4" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="64.4" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-14: 10107" /><circle cx="107.7" cy="35.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="107.7" cy="35.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-15: 12843" /><circle cx="170.3" cy="109.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="170.3" cy="109.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-16: 5894" /><circle cx="233.0" cy="119.5" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="233.0" cy="119.5" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-17: 4928" /><circle cx="295.7" cy="119.4" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="295.7" cy="119.4" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-18: 4940" /><circle cx="358.3" cy="140.6" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="358.3" cy="140.6" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-19: 2949" /><circle cx="421.0" cy="143.7" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="421.0" cy="143.7" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-20: 2656" /><circle cx="483.7" cy="126.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="483.7" cy="126.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-21: 4234" /><circle cx="546.3" cy="107.9" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="546.3" cy="107.9" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-22: 6023" /><circle cx="609.0" cy="76.2" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="609.0" cy="76.2" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-23: 9001" /><circle cx="671.7" cy="15.0" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="671.7" cy="15.0" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-24: 14748" /><circle cx="734.3" cy="65.6" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="734.3" cy="65.6" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-25: 9991" /><circle cx="797.0" cy="97.3" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="797.0" cy="97.3" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-26: 7016" /><circle cx="859.7" cy="53.5" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="859.7" cy="53.5" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-27: 11134" /><circle cx="922.3" cy="126.2" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="922.3" cy="126.2" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-28: 4303" /><circle cx="985.0" cy="156.6" r="2.5" fill="#e8a33d" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="156.6" r="9" fill="transparent" data-tooltip="ThreatFox · 2026-09-29: 1448" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="170.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="295.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="421.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="546.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="671.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="797.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-26</text><text x="922.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-28</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#e8a33d"></span>ThreatFox</span></div>
               </div>
               <div class="chart-panel">
                 <div class="chart-title">Övriga källor</div>
                 <svg viewBox="0 0 1000 200" width="100%" height="200"><line x1="45" y1="15" x2="45" y2="172" stroke="#262d3a" /><line x1="45" y1="172" x2="985" y2="172" stroke="#262d3a" /><text x="4" y="19" font-size="10" fill="#7a8394">343</text><polyline fill="none" stroke="#5b8dd6" stroke-width="2" points="45.0,162.8 107.7,162.4 170.3,161.0 233.0,162.4 295.7,161.5 358.3,166.5 421.0,171.1 483.7,163.8 546.3,158.3 609.0,160.6 671.7,161.9 734.3,162.4 797.0,167.0 859.7,169.7 922.3,15.0 985.0,171.5" /><circle cx="45.0" cy="162.8" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="162.8" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-14: 20" /><circle cx="107.7" cy="162.4" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="107.7" cy="162.4" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-15: 21" /><circle cx="170.3" cy="161.0" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="170.3" cy="161.0" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-16: 24" /><circle cx="233.0" cy="162.4" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="233.0" cy="162.4" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-17: 21" /><circle cx="295.7" cy="161.5" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="295.7" cy="161.5" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-18: 23" /><circle cx="358.3" cy="166.5" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="358.3" cy="166.5" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-19: 12" /><circle cx="421.0" cy="171.1" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="421.0" cy="171.1" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-20: 2" /><circle cx="483.7" cy="163.8" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="483.7" cy="163.8" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-21: 18" /><circle cx="546.3" cy="158.3" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="546.3" cy="158.3" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-22: 30" /><circle cx="609.0" cy="160.6" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="609.0" cy="160.6" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-23: 25" /><circle cx="671.7" cy="161.9" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="671.7" cy="161.9" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-24: 22" /><circle cx="734.3" cy="162.4" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="734.3" cy="162.4" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-25: 21" /><circle cx="797.0" cy="167.0" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="797.0" cy="167.0" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-26: 11" /><circle cx="859.7" cy="169.7" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="859.7" cy="169.7" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-27: 5" /><circle cx="922.3" cy="15.0" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="922.3" cy="15.0" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-28: 343" /><circle cx="985.0" cy="171.5" r="2.5" fill="#5b8dd6" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="171.5" r="9" fill="transparent" data-tooltip="RSS-artiklar · 2026-09-29: 1" /><polyline fill="none" stroke="#8b6fd6" stroke-width="2" points="45.0,143.6 107.7,164.2 170.3,160.6 233.0,151.9 295.7,161.0 358.3,172.0 421.0,172.0 483.7,166.0 546.3,159.6 609.0,163.8 671.7,165.6 734.3,164.2 797.0,170.2 859.7,170.6 922.3,64.9 985.0,170.6" /><circle cx="45.0" cy="143.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="143.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-14: 62" /><circle cx="107.7" cy="164.2" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="107.7" cy="164.2" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-15: 17" /><circle cx="170.3" cy="160.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="170.3" cy="160.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-16: 25" /><circle cx="233.0" cy="151.9" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="233.0" cy="151.9" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-17: 44" /><circle cx="295.7" cy="161.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="295.7" cy="161.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-18: 24" /><circle cx="358.3" cy="172.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="358.3" cy="172.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-19: 0" /><circle cx="421.0" cy="172.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="421.0" cy="172.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-20: 0" /><circle cx="483.7" cy="166.0" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="483.7" cy="166.0" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-21: 13" /><circle cx="546.3" cy="159.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="546.3" cy="159.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-22: 27" /><circle cx="609.0" cy="163.8" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="609.0" cy="163.8" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-23: 18" /><circle cx="671.7" cy="165.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="671.7" cy="165.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-24: 14" /><circle cx="734.3" cy="164.2" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="734.3" cy="164.2" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-25: 17" /><circle cx="797.0" cy="170.2" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="797.0" cy="170.2" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-26: 4" /><circle cx="859.7" cy="170.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="859.7" cy="170.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-27: 3" /><circle cx="922.3" cy="64.9" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="922.3" cy="64.9" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-28: 234" /><circle cx="985.0" cy="170.6" r="2.5" fill="#8b6fd6" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="170.6" r="9" fill="transparent" data-tooltip="RSS/regex-IOCs · 2026-09-29: 3" /><polyline fill="none" stroke="#4fb3a9" stroke-width="2" points="45.0,172.0 107.7,170.6 170.3,172.0 233.0,170.6 295.7,172.0 358.3,172.0 421.0,172.0 483.7,171.1 546.3,169.7 609.0,171.5 671.7,170.6 734.3,171.1 797.0,172.0 859.7,172.0 922.3,170.6 985.0,172.0" /><circle cx="45.0" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-14: 0" /><circle cx="107.7" cy="170.6" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="107.7" cy="170.6" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-15: 3" /><circle cx="170.3" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="170.3" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-16: 0" /><circle cx="233.0" cy="170.6" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="233.0" cy="170.6" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-17: 3" /><circle cx="295.7" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="295.7" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-18: 0" /><circle cx="358.3" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="358.3" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-19: 0" /><circle cx="421.0" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="421.0" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-20: 0" /><circle cx="483.7" cy="171.1" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="483.7" cy="171.1" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-21: 2" /><circle cx="546.3" cy="169.7" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="546.3" cy="169.7" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-22: 5" /><circle cx="609.0" cy="171.5" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="609.0" cy="171.5" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-23: 1" /><circle cx="671.7" cy="170.6" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="671.7" cy="170.6" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-24: 3" /><circle cx="734.3" cy="171.1" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="734.3" cy="171.1" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-25: 2" /><circle cx="797.0" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="797.0" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-26: 0" /><circle cx="859.7" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="859.7" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-27: 0" /><circle cx="922.3" cy="170.6" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="922.3" cy="170.6" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-28: 3" /><circle cx="985.0" cy="172.0" r="2.5" fill="#4fb3a9" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="172.0" r="9" fill="transparent" data-tooltip="Telegram · 2026-09-29: 0" /><polyline fill="none" stroke="#d9534f" stroke-width="2" points="45.0,165.1 107.7,145.5 170.3,160.6 233.0,162.4 295.7,155.1 358.3,164.2 421.0,166.0 483.7,163.3 546.3,160.6 609.0,159.6 671.7,160.6 734.3,157.8 797.0,167.4 859.7,168.8 922.3,153.2 985.0,170.2" /><circle cx="45.0" cy="165.1" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="45.0" cy="165.1" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-14: 15" /><circle cx="107.7" cy="145.5" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="107.7" cy="145.5" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-15: 58" /><circle cx="170.3" cy="160.6" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="170.3" cy="160.6" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-16: 25" /><circle cx="233.0" cy="162.4" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="233.0" cy="162.4" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-17: 21" /><circle cx="295.7" cy="155.1" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="295.7" cy="155.1" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-18: 37" /><circle cx="358.3" cy="164.2" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="358.3" cy="164.2" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-19: 17" /><circle cx="421.0" cy="166.0" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="421.0" cy="166.0" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-20: 13" /><circle cx="483.7" cy="163.3" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="483.7" cy="163.3" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-21: 19" /><circle cx="546.3" cy="160.6" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="546.3" cy="160.6" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-22: 25" /><circle cx="609.0" cy="159.6" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="609.0" cy="159.6" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-23: 27" /><circle cx="671.7" cy="160.6" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="671.7" cy="160.6" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-24: 25" /><circle cx="734.3" cy="157.8" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="734.3" cy="157.8" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-25: 31" /><circle cx="797.0" cy="167.4" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="797.0" cy="167.4" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-26: 10" /><circle cx="859.7" cy="168.8" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="859.7" cy="168.8" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-27: 7" /><circle cx="922.3" cy="153.2" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="922.3" cy="153.2" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-28: 41" /><circle cx="985.0" cy="170.2" r="2.5" fill="#d9534f" style="pointer-events:none;" /><circle class="chart-point" cx="985.0" cy="170.2" r="9" fill="transparent" data-tooltip="Ransomware-offer · 2026-09-29: 4" /><text x="45.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-14</text><text x="170.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-16</text><text x="295.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-18</text><text x="421.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-20</text><text x="546.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-22</text><text x="671.7" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-24</text><text x="797.0" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-26</text><text x="922.3" y="194" font-size="10" fill="#7a8394" text-anchor="middle">09-28</text></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#5b8dd6"></span>RSS-artiklar</span><span class="legend-item"><span class="legend-dot" style="background:#8b6fd6"></span>RSS/regex-IOCs</span><span class="legend-item"><span class="legend-dot" style="background:#4fb3a9"></span>Telegram</span><span class="legend-item"><span class="legend-dot" style="background:#d9534f"></span>Ransomware-offer</span></div>
               </div>
             </div>
+    </div>
+  </section>
+  <section id="sec-watchlist">
+    <h2 class="section-header" onclick="toggleSection('sec-watchlist')">
+      <span class="chevron" id="sec-watchlist-chevron">▾</span> Bevakningslista
+    </h2>
+    <div class="section-body" id="sec-watchlist-body">
+      <p class="dim" style="white-space:normal; margin-bottom:0.9rem;">Träffar sparas permanent och rensas aldrig. Ändra vilka organisationer och domäner som bevakas i <code>watchlist.py</code>. Imitationsjakten är medvetet bred och kan ge enstaka falska träffar.</p>
+          <div class="attack-category watch-card">
+            <div class="attack-category-header">
+              <span>Exempelkommun (ändra mig)</span>
+              <span class="dim">0 träffar</span>
+            </div>
+            <p class="empty">Inga träffar — bra. Bevakar: exempelkommun.example, Exempelkommun</p>
+          </div>
     </div>
   </section>
   <section id="sec-attack">
@@ -242,50 +264,50 @@
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Loader / Dropper</span>
-              <span class="dim">29432 IOCs</span>
+              <span class="dim">29486 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1027/" target="_blank" rel="noopener">T1027 Obfuscated Files or Information</a> · <a href="https://attack.mitre.org/techniques/T1105/" target="_blank" rel="noopener">T1105 Ingress Tool Transfer</a> · <a href="https://attack.mitre.org/techniques/T1055/" target="_blank" rel="noopener">T1055 Process Injection</a></div>
-            <div class="attack-families dim">Unknown Loader (22857), ClearFake (6467), GCleaner (48), GUIDLOADER (21), Koi Loader (18), HijackLoader (9), Colibri Loader (6), KrustyLoader (6)</div>
+            <div class="attack-families dim">Unknown Loader (22860), ClearFake (6518), GCleaner (48), GUIDLOADER (21), Koi Loader (18), HijackLoader (9), Colibri Loader (6), KrustyLoader (6)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Okategoriserad skadlig kod</span>
-              <span class="dim">19762 IOCs</span>
+              <span class="dim">19640 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1105/" target="_blank" rel="noopener">T1105 Ingress Tool Transfer</a> · <a href="https://attack.mitre.org/techniques/T1071/" target="_blank" rel="noopener">T1071 Application Layer Protocol (C2)</a></div>
-            <div class="attack-families dim">IClickFix (11193), Unknown malware (4077), Remus (1300), Mozi (503), Aisuru (441), Bashlite (248), vSkimmer (235), Potassium (127), KongTuke (126), Logedrut (126), Havoc (103), DanaBot (97)</div>
+            <div class="attack-families dim">IClickFix (11125), Unknown malware (4054), Remus (1287), Mozi (500), Aisuru (443), Bashlite (259), vSkimmer (188), Potassium (131), KongTuke (127), Logedrut (126), DanaBot (107), Havoc (103)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>RAT (fjärrstyrning)</span>
-              <span class="dim">6134 IOCs</span>
+              <span class="dim">6085 IOCs</span>
             </div>
-            <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1219/" target="_blank" rel="noopener">T1219 Remote Access Software</a> · <a href="https://attack.mitre.org/techniques/T1071/" target="_blank" rel="noopener">T1071 Application Layer Protocol (C2)</a> · <a href="https://attack.mitre.org/techniques/T1055/" target="_blank" rel="noopener">T1055 Process Injection</a></div>
-            <div class="attack-families dim">Cobalt Strike (1529), VShell (1524), PureRAT (616), Remcos (615), AsyncRAT (608), ValleyRAT (309), AdaptixC2 (258), Unknown RAT (128), XWorm (123), Quasar RAT (93), DCRat (63), Nanocore RAT (54)</div>
+            <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1219/" target="_blank" rel="noopener">T1219 Remote Access Software</a> · <a href="https://attack.mitre.org/techniques/T1071/" target="_blank" rel="noopener">T1071 Application Layer Protocol (C2)</a> · <a href="https://attack.mitre.org/techniques/T1056/" target="_blank" rel="noopener">T1056 Input Capture</a></div>
+            <div class="attack-families dim">VShell (1513), Cobalt Strike (1503), Remcos (629), PureRAT (618), AsyncRAT (593), ValleyRAT (329), AdaptixC2 (249), Unknown RAT (136), XWorm (119), Quasar RAT (89), DCRat (64), Nanocore RAT (54)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Stealer (infostealer)</span>
-              <span class="dim">3766 IOCs</span>
+              <span class="dim">3814 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1555/" target="_blank" rel="noopener">T1555 Credentials from Password Stores (macOS Keychain)</a> · <a href="https://attack.mitre.org/techniques/T1005/" target="_blank" rel="noopener">T1005 Data from Local System</a></div>
-            <div class="attack-families dim">AMOS (1435), Vidar (1193), ACR Stealer (385), Stealc (116), Lumma Stealer (113), Unknown Stealer (107), Venus Stealer (87), SalatStealer (71), Luca Stealer (42), SVCStealer (37), MicroStealer (33), Formbook (32)</div>
+            <div class="attack-families dim">AMOS (1455), Vidar (1254), ACR Stealer (385), Stealc (115), Lumma Stealer (113), Unknown Stealer (107), Venus Stealer (84), SalatStealer (70), Luca Stealer (42), SVCStealer (37), MicroStealer (33), Formbook (23)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Botnet / DDoS</span>
-              <span class="dim">2816 IOCs</span>
+              <span class="dim">2855 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1498/" target="_blank" rel="noopener">T1498 Network Denial of Service</a> · <a href="https://attack.mitre.org/techniques/T1110/" target="_blank" rel="noopener">T1110 Brute Force (standard-IoT-lösenord)</a> · <a href="https://attack.mitre.org/techniques/T1584/" target="_blank" rel="noopener">T1584 Compromise Infrastructure</a></div>
-            <div class="attack-families dim">Mirai (2816)</div>
+            <div class="attack-families dim">Mirai (2855)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
               <span>Coinminer</span>
-              <span class="dim">309 IOCs</span>
+              <span class="dim">307 IOCs</span>
             </div>
             <div class="attack-techniques"><a href="https://attack.mitre.org/techniques/T1496/" target="_blank" rel="noopener">T1496 Resource Hijacking</a></div>
-            <div class="attack-families dim">Coinminer (309)</div>
+            <div class="attack-families dim">Coinminer (307)</div>
           </div>
           <div class="attack-category">
             <div class="attack-category-header">
@@ -369,32 +391,32 @@
       <div class="bar-row" onclick="filterIocsByType('domain')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">domain</span>
               <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-              <span class="bar-count">42054</span>
+              <span class="bar-count">42004</span>
             </div>
 <div class="bar-row" onclick="filterIocsByType('url')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">url</span>
               <div class="bar-track"><div class="bar-fill" style="width:17%"></div></div>
-              <span class="bar-count">7197</span>
+              <span class="bar-count">7175</span>
             </div>
 <div class="bar-row" onclick="filterIocsByType('sha256_hash')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">sha256_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
-              <span class="bar-count">6243</span>
+              <span class="bar-count">6318</span>
             </div>
 <div class="bar-row" onclick="filterIocsByType('ip:port')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">ip:port</span>
               <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
-              <span class="bar-count">6179</span>
+              <span class="bar-count">6152</span>
             </div>
 <div class="bar-row" onclick="filterIocsByType('md5_hash')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">md5_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
-              <span class="bar-count">543</span>
+              <span class="bar-count">539</span>
             </div>
 <div class="bar-row" onclick="filterIocsByType('sha1_hash')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">sha1_hash</span>
               <div class="bar-track"><div class="bar-fill" style="width:4%"></div></div>
-              <span class="bar-count">540</span>
+              <span class="bar-count">536</span>
             </div>
 <div class="bar-row" onclick="filterIocsByType('cve')" title="Klicka för att filtrera IOC-listan">
               <span class="bar-label">cve</span>
@@ -692,24 +714,9 @@
     <div class="table-scroll">
       <table id="iocTable">
         <thead><tr><th class="sortable" onclick="sortTable('iocTable', 0, 'text')">Typ <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('iocTable', 1, 'text')">Värde <span class="sort-arrow"></span></th><th class="sortable" onclick="sortTable('iocTable', 2, 'text')">Källa <span class="sort-arrow"></span></th></tr></thead>
-        <tbody><tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">bakemyday.se</td>
-              <td class="dim">ransomware.live</td>
-            </tr>
-<tr data-type="md5_hash">
+        <tbody><tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">d788aaf3d00ef5d0ded9d149c7d99376  [Phorpiex, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">633ad68daaf42d119ef95c7594d23773  [ValleyRAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">9fb21889c132ac78880f966496cc3e62  [Phorpiex, confidence 95]</td>
+              <td class="mono ioc-value">c04f0dc1cbefd3b345496edbd7cdfbc5  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
@@ -719,17 +726,7 @@
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">61ab126c877d224850b46fd7f0a61ce1  [Phorpiex, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">c04f0dc1cbefd3b345496edbd7cdfbc5  [Coinminer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">482b33402196894a4c14d95796d22196  [ValleyRAT, confidence 95]</td>
+              <td class="mono ioc-value">8c91dc9f4aaea6e073773138bac235b9  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
@@ -744,57 +741,7 @@
             </tr>
 <tr data-type="md5_hash">
               <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">a904d0f0a3ca37b2c734fcc01f532998  [stealler, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">298be766951139e504fd0027199ad10d  [ValleyRAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">38bc5b9fc0ede4fef1e28e892edb5deb  [Phorpiex, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">f5d8f373025ae2328ba5736e0ee13797  [Vidar, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">ba4b3e20ceddd9460c91925395e0e9c7  [Vidar, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">5a196edbe5db582574e59ceeeec49bdc  [ValleyRAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">4c3ca75d24bbdef38e02d2673a0bd088  [ValleyRAT, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">b7b1ef1e1dfcbd63f757c68f372e529b  [Phorpiex, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">cf770e81f65ae2b530e0b36e8b3b3c4d  [Vidar, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">d024d63c31d57b7c7b45d26705e7755f  [Coinminer, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="md5_hash">
-              <td class="mono">md5_hash</td>
-              <td class="mono ioc-value">8c91dc9f4aaea6e073773138bac235b9  [ValleyRAT, confidence 95]</td>
+              <td class="mono ioc-value">9fb21889c132ac78880f966496cc3e62  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="md5_hash">
@@ -807,79 +754,74 @@
               <td class="mono ioc-value">f822e13e1412bc88cd86813a8ef1a633  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">9214f9b10082ef2f9804b5f216bc405fb75a3531  [Phorpiex, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">298be766951139e504fd0027199ad10d  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">07a6144050cf63c34a1023e72e673afea9e5a2ee  [Phorpiex, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">61ab126c877d224850b46fd7f0a61ce1  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">44f13a90dfaa94c74d3f3e2b18c9e12b7189b95f  [ValleyRAT, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">5a196edbe5db582574e59ceeeec49bdc  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">5892cfb310e1c0fc1c9a94a4910e7eeb0143ba01  [Phorpiex, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">d788aaf3d00ef5d0ded9d149c7d99376  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">9112a9e0284e1ad31fa0742516860d38b064a634  [ValleyRAT, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">4c3ca75d24bbdef38e02d2673a0bd088  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">d727119dcaf6e4d65943ae7342104fc5c6cf804c  [Vidar, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">38bc5b9fc0ede4fef1e28e892edb5deb  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">a4d66f465ea8d83a376c16f9c749bb494b58a058  [ValleyRAT, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">633ad68daaf42d119ef95c7594d23773  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">a1cae105299cca2fa8da6696c45e3ea8f0b1aa3c  [Vidar, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">a904d0f0a3ca37b2c734fcc01f532998  [stealler, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">f1db0bbbd8b62101e3aa85ccfe54d66d2043907c  [stealler, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">482b33402196894a4c14d95796d22196  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">e6a54c51b5255409194ea054266b772936ed379e  [Phorpiex, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">b7b1ef1e1dfcbd63f757c68f372e529b  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">acab3f108367ed83efbab7c1a2791a46ed974b8e  [ValleyRAT, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">d024d63c31d57b7c7b45d26705e7755f  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">b13cadbdd686db4a80445d6413708bdf2c5e6be4  [Coinminer, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">f5d8f373025ae2328ba5736e0ee13797  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">25d624a4fdede93dc2081f5e7f6287c6cb0a8cc1  [Vjw0rm, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">cf770e81f65ae2b530e0b36e8b3b3c4d  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">f22257ad39df53926523e6278ca20de616ea06cf  [Vidar, confidence 95]</td>
-              <td class="dim">ThreatFox (abuse.ch)</td>
-            </tr>
-<tr data-type="sha1_hash">
-              <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">2112a28759bba1030c3d65402ab51d8bb8f55e77  [ValleyRAT, confidence 95]</td>
+<tr data-type="md5_hash">
+              <td class="mono">md5_hash</td>
+              <td class="mono ioc-value">ba4b3e20ceddd9460c91925395e0e9c7  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -889,12 +831,12 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">2a69296abedf6bb91f1b47ae1440c524890b584c  [Phorpiex, confidence 95]</td>
+              <td class="mono ioc-value">2112a28759bba1030c3d65402ab51d8bb8f55e77  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">b46891cf3dac05ee260cc7cf2395fc3749fc86ed  [Vidar, confidence 95]</td>
+              <td class="mono ioc-value">a4d66f465ea8d83a376c16f9c749bb494b58a058  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -904,7 +846,82 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">b13cadbdd686db4a80445d6413708bdf2c5e6be4  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">9112a9e0284e1ad31fa0742516860d38b064a634  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">44f13a90dfaa94c74d3f3e2b18c9e12b7189b95f  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">9214f9b10082ef2f9804b5f216bc405fb75a3531  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">acab3f108367ed83efbab7c1a2791a46ed974b8e  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">b46891cf3dac05ee260cc7cf2395fc3749fc86ed  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">7139547a2a2158bd6ed06203b7c3c5e5c456c954  [ValleyRAT, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">5892cfb310e1c0fc1c9a94a4910e7eeb0143ba01  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
               <td class="mono ioc-value">1f2d875b57aec1a0e02ab1cd5985f660343c0d7c  [Coinminer, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">a1cae105299cca2fa8da6696c45e3ea8f0b1aa3c  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">e6a54c51b5255409194ea054266b772936ed379e  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">f22257ad39df53926523e6278ca20de616ea06cf  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">d727119dcaf6e4d65943ae7342104fc5c6cf804c  [Vidar, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">2a69296abedf6bb91f1b47ae1440c524890b584c  [Phorpiex, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">f1db0bbbd8b62101e3aa85ccfe54d66d2043907c  [stealler, confidence 95]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha1_hash">
+              <td class="mono">sha1_hash</td>
+              <td class="mono ioc-value">07a6144050cf63c34a1023e72e673afea9e5a2ee  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
 <tr data-type="sha1_hash">
@@ -914,782 +931,787 @@
             </tr>
 <tr data-type="sha1_hash">
               <td class="mono">sha1_hash</td>
-              <td class="mono ioc-value">7139547a2a2158bd6ed06203b7c3c5e5c456c954  [ValleyRAT, confidence 95]</td>
+              <td class="mono ioc-value">25d624a4fdede93dc2081f5e7f6287c6cb0a8cc1  [Vjw0rm, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">35su8ccd.favarzesh.ir  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e0a1adc708da1bb9718b698d137fe065ba54ad47da72f30eaf3839fa5ebee372  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">antimalwarediagnostics.st  [Unknown RAT, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">73491d3f3bcfe0c1d4ebefecf8230d0c460fa89703381d9b8923daaa4be170f4  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">techeducate.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">53a5cb07048841336d07d3e3158096f4a7105b97a9751709fead74ad31eb70f6  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">twilldistilled.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">62b42fd5f5bcc0c05cd59274e26ece4111baaeada121878e1f619261ef471af1  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">pizzeriadesia.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9ac2d788c7a25f068298149fc8f669f19a04ef08a8cc501dbc621402c795c447  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.matar-f.co.il  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0f4145cfd74d684368fb0953c4b57f97255edc1fd636b44d16433eb8a0179128  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">tajabeverages.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ad99c8578cecc2b567ce3a5606ec30ff9b94b4bff3820fda262d5a098108ee2c  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.rideaux-metalliques-bordeaux.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ab2f3f0abf3e7ae2d95881965f8bc0e1a90e7447085648a04d9efee0399e974b  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.vellomedia.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d43c8476acb00d80f509248b65613957c2a4277c8cb443c4705e569f5753943b  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.rosymugno.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7431ea32371d841a719fc66d60bdabb51e6e4f4579ee33f4b23b3c2c32263a9f  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">pielshinceline.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c73afea96dedfb910531992b4dd8b735c6274c896bb604b6e3dfe3d502778e9b  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">ed.32naga.net  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">782815d50e36c4568378c81db487a01acef0fae9b9685881c03e60c2b39f2baa  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">megapari2023.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">13fdcb50766e9fd3ffbb3d19684fa7df0a5b5866b2c7223d2241e15b64a29d3d  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.taylormadesolutions.ca  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">15eb799f44da58693e6c43fdbd894299e02308c9f6cae8f8e00b8fc8176fc754  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.totilux.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9829563285d1ff578beadf939ccfc52e3ea70a11cb64536255923a6cc2d563c5  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">lockedgundisplay.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8cd11b6e3504363d2818cfa541698af18f80be3552e038dfa9369c0ba28c6817  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">z7ql7rl5.gregoriasmod.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">bfad1f24080adc25cec34fabbee2b5cb467f38610c95355f2d397ebd04f6d76f  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">kahanilounge.co.uk  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">a1cdb7f8862d5ff9abd16757a60f4e1bbaa18a650de89904c94aa351174e405b  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">bagueie.xyz  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5c6a8428e59e0c60297785652d17ba701878f4a9890051b63bbcb25a32b58a7b  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">o74y80h4.myinstapage.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">cdea1e4f0b71be36fc9ed519416c6b1e4a50eeb748144e9e4417f7551ca9828b  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">sweeterhr.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f0fac0f22f107252ea48d5293e51b6760e091988bc5921974b3691f0eb81274f  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">creditcardqueen.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fae61fec124ce7f66aa589c1ceda269ae723519dde408086d9596f19e5721a2d  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">cloveranthology.org  [SmartApeSG, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">96b4e296574eaae3f7224a54f9eaeeb51f799b1c083067d6f2f006e5cd466bd9  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">les-manufactures.ch  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ca40b2d13e014984d5c20369382afb36589072b0bf27a8229ecfad94d63f01b6  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.stjudes.church  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">849840d92c44ed04af624abd9e5d79a7a082016c89ac39ac50d19f3d537839b5  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">photocapital.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">1476885ceabb54b25f302d2fa363a87b3b11a4616328fa0844bb9e7a160d5946  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.studiotreddi.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">6ae5460d257132f6cae6c23589a9307f5135f4470fbcf8078bab594617573ccd  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">gregoriasmod.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b1bb369c12b3c9576d2178f448cfc174387aad27a90b34f678574b6b6c41471e  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.scuolascicampofelice.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">09ad448456ad23e125933e92fba62ca7e5738054ec96fed123d0891b4876c746  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">panel.msdos.ru  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d01a9d4092a68dd8ef7d75d39feab12fe1309fe77b5cdfaac27ba371a927f864  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">pl.27trans.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">03df04299cc3d2b5ce3b87f4369690f3721e152abc4f173d2dbd65c0e797c697  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">abogadosinmigracion.info  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d650f07dcfe75553fc5215a2f4a4d70b62f6e06bbbae30cb972bd763213a20b8  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.radiosedetnt.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ddd6990ff9bd1cae695b629368d3ec66c5be1bff43d5158696a841ee9eebc639  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.rideaux-metalliques-toulouse.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5a5dc1350f5928adc4a254e700183bf98e7ee4167e09c2e3dda8a23296b0db96  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.veemis.sk  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fdf0a3a084b3ee58a9bafb561a9ef3ee33e343e47f15d00c76bd0834c951ec68  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">claudedevs.net  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b9171b32851167861cd5001a2dbec5fa49a16b709fb77ae298917a1ccb74df95  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.crgroup.net.au  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3a2b62a3794370f1b0a4d714356e2ff44610c30ac464c43ad1fb3ca4d687a419  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.studiolegaleassociatoimprota.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">481ab3406ddfd6b9cf4c9346b4cb815776fd0d89719344247d0d22c8a20e9e57  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">svarela.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">dde323b2041356e8fffc634a0d52af38efcf99596c28a4d7c308936d30e53976  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.web-design-vegatrade.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b657a4f887fa6c5fc0cda1b4809ffe9d03d63f110fa6bd88b828ee2ad8eb3e08  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">tofartinthesummer.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fd0e6eb71c4cd3349b08e529f4b323f1012b4643533ced1dd5de0ccdf9451245  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">canalcellars.co.uk  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ee5fda0b22ae5dfb3ad28bbf63c32d9ffe7d976caf789797b2b401c7d634a7c3  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">nevertiredflowers.lol  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">584fc9114be2797f31b44f4ac5e84ac6f5231f70b9f725afe4f34b111dbbd4d1  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">myinstapage.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">44593e8065a0f6c19d3a8fe2c49f13d1d202c2f78cf8a6157e01ca6d15164298  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">dmsi.duckdns.org  [Remcos, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7106c50fdeb5dde442714f1f9ea7aa547c31178ba073f02a15fc33987adb83e6  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.solfreshlife.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">09b94f3a07f29998b71f3ed7ead8ebdd754d4e918b4112248a19e69d9715f4de  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">viveok.co  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ab69ef32017a5365ee0e7faca03e1352382865c5672e989d99d2d77ec91c33ef  [SSHDoor, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">webpagehelp.online  [Unknown malware, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">4d939c9b69d4804e3e4fff78e70d20a0a62890bcb85c86a68e8978ba1ebd5f80  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">carolinaclaws.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e759a73f9d73a6c2d72b537a31294fcbc78fcc36139ad7c97597aac8568f07ae  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.rentclub.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">00e531a66d4f0763b70298f3b5c6e76a91e5cc744dad375c71cacc201b3d5f1e  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">jdupd.st  [Unknown malware, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">bcde5249b6e351e8beacc988662c77435803709d4de448daf21d8c1d9506dd79  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">jdkupdate.pw  [Unknown malware, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8849b6f4a97c8e33640f85319cbff7446d7969225d37179ca91900b92cad33ad  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.robotique.tech  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">83c9fb78ff1bac4a2fb69bcbb57a0a8295834a1c2a0fb1d1e13b7bbbb8903c7a  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.siemenergia.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5bdbd8b21e5785c571b2d7adc4959101a18803119bd1d589a5217d8d042e767c  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">vgavoile.org  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8d7fd9b29ebb4f3f32f3e7473f336e4546d794e4ec6f1f80ca402214510657b4  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">higgsflield.net  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0e91ef623cbdb543680d0a984894546b1e1698ae278418740fcf0c01dbd18fc2  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">zmqh.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b689280b4f803b16c44dfec32d1090db70bafb18e35555d118519b79a5b7db4a  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">0gnu5zak.edebiyatkonulari.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ecfce6af6567f51cfa08a0fe4470bae777eaf2591d103d16d2c01350df772f00  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.qbomodular.cl  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d2c6627cb199c0c7004919590b820605b1091f7c4741b791258d8f54183105f5  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.stemagsrl.info  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e3831b39dffdefe129c6be4e0e0131ea19cdeea6575a44a6ef0386f4d138e77e  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.tanlemtechltd.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c515019419a3ea506f0adec86ef45c9f8e786236324f96b8c7769b41f1948208  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.prontointerventosocialedss17.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">6daf0a66bef3847abf05e59ced910d7b6f08b3caf1befe4998231f57795ac42c  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">burnhamlegal.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">979c770a69048e17bcf5740fc0d94d130451d7aaa79ac7e99e28e49d682e7c08  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.tsfdn.org  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0b5deaf2954f3b87b6a21a886f59a41267541429e5164b2a374b6915c975c81f  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">totalmedicalweightloss.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d0f697385ea97f20f5ab4880369e6afa16bfa1540bd2720c3e88991a8a11ec7f  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.tandemparagliding.eu  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8eb8810bb8fbb0c647a38576e894f9f03f70ad9f5e0aafebbb3f8a0821e14641  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.rebellawyers.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c40412860ce3a41c299db6f204975cd29c1c5266383194644a4df5d255ded9f6  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">accountz.msdos.ru  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">2beb79fc1bd0d64f6e582ebd4326cec4689e32e07e4ca63563d8e0d4a70990eb  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">bh.5-rt.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">370d0a0d1baf43a2da13038c35730c6b67c7812d30e8c6d3c03b013814f858a9  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">84nog8td.nazimhikmetakademisi.org  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">20a09a7cc48b9c5a181f5100b21cd31b3dd974400602c13c45d6bd3e71162a3a  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.washingtonclubs.org  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e6b9372ebd5a26d520aae97c75605f667b0c64d0c7d0205358dcddfa1d8b1177  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">lahixdigital.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fdcf294cb718b0b5699cd80d753bf65a2a81703d139808f1ed8e049b36bbfb6b  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.rethinkfinance.org  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">80f2b827fae716a3cb2656845acd30bed986924c232c41b5ed30d7653e6abe16  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.robertoscalco.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">26d6edba64dc8656e603294b9696a02534306ade52758383b4d8acc1f8afed2c  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">modulefeedsky.com  [Lorem Ipsum, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e2d46a6b819865112dd88b7ccbcc34379d2c5711acadd0c6720fcd91b4909096  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">revelrecruitment.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e38c53aedf49017c47725e4912fc7560e1c8ece2633c05057b22fd4a8ed28eb3  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.recon-usa.org  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">cc24db0d85f59a2968228d479f1a6001e5663e57e070510850b14e7d32b6ef13  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">zionenterprise.com.co  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">14d3490432ecfdb93e93966c18f1d80b7f382b126fde376275ff4fab41f985b9  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">kh765g0a.faff303.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">db6f56678fa4a041bfb0ff715f31f4a6d6bd6f129479cd689466bcd2b4f6bef4  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.stickerprinting.eu  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d3e8a9c00b37f1366f12587d2be7e4b0f3dc9d8f9433ec9e3f8908e11426ca1b  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">azanintl.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">579fb6787dd60d5fb1ebfe275ccfa58e4b73db4cdc4909de23ac5dd3a9c52439  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">zvh4.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9ddd32f3e09c744d4be178ef3e7f4c1b4c1d500fe8f9a2f2a5e7f122bbbb8a1c  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.redstella.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8e7114037a19ec69f8ce5fe09a7bbed2ff01002f2a38cc5d67d81620955614bd  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">jdkupdate.cc  [Unknown malware, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ee6a1407df1393298e114b6af10062739ba8bb2bb476d2cf7e0c9bf5b66b5eec  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">zenzenzendrnzenzenzenzen.xyz  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">af3ef8ab9299f332e26daa23770cd35182fc4df18344121b3987f4ad7f9685da  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">account.msdos.ru  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0aa485506ebf9f1fb8c3931f0834875f1284776e86ef6d7d34e381df68f1d9dd  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">bh.32naga.net  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fabcc316d07fb260404b4a64df6af18fbbf4dec23b659ba5833656dad306f7f3  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">clearvoice1.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c7decfca107de39f09adcf72b779edc348e980a2ed05e034b761f6fffbf8b4f2  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">thediva.ca  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">97457bc09a6635dbfd7797639d160bfc73a538e2b9c4dc2d084a88171ae5f27e  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">nu.5-rt.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">aaaefce4ffe75496650ccc0c4719b3d334137e200fe426b2902eae0090ab8f97  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.wildsoulssalonstudios.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ce5102dbdb561d469ea91100b1fc7d8c800882df4d67a78d88fa9aeb7fd187bd  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.winning-gambler.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0127b1c544bf05f115ed84412b84c1873facb44f9887731833e668ab5c6d850a  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">nazimhikmetakademisi.org  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3d3a39b3154dcfe594e5a30c223231ce84009ed4c0223e81ce0363d3f7b36bec  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">kostaschristides.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">313ca74c5a6fca97af609826c2d81450a7bb779477207115eb4bf6d3f616f469  [Vidar, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">tr.v-panel.asia  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">4bc118f6f176190859b82dbb718b3e4df3658ee3af44b36663e5977b38eb4302  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">sportchat.ir  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">29bb9dbc179b5dbdea0cfed298b555749fe423fe52291b18f002de5d607d020a  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">kqzx8zvh.megapari2023.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9eeda179920277a1756857016918d246a0ac0289074464843eeb486cb473bece  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">faff303.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3c68a42d221a2bb52721dffb9474f314c22d29eba53e85e3d427097583fefce7  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">cove-koi-hk753.xyz  [IClickFix, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">502a05d1c59b4a44a1b32fa98a1c42ac747419241aba959959c8f6a87fcb1465  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">ji.27trans.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">a2fa794887ecb96a4b40389fe152e52707c021c86f63c4430557e7c286840b96  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.scuola-inglese-opinioni.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">1ccf31b1dde2c944bec6238ff60a4eb5f28df74b11814706bcaddaa4162c0c05  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">sboku88.uk.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">cbabb0e80c921e18f6121607ee77e8e9497ef4d036e428e237ce0c8d98fe0a14  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.taxexpert.co.il  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c3970ee16eb24e67c7b23deaa1db975f4dcebf4c189e37cf8df61aff25d8b434  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">dw0bv59b.zilyoner303.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f8a0d79ec16180b2b5faf5ebbf1e736b4574dafce3772f4797c9561d4d0e420c  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">hunteroc.com  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f2d7f891a8f0e91ee37e40b7e37e0d47971f8b4967625d0b4f727d67483927db  [Unknown Loader, confidence 85]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">sm.5-rt.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0bbece3dc42199a2cc3db4e7685e5e6078084203e51e9ef6df657038cf79b306  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.seralco.fr  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f2a48263238b50587405045a5d1cdb12eca324109beb4db4f3d77ddec8d4cafc  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">ed.5-rt.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c0eb7cd1f0e2effcd24ebf25d51023e8ba21f89f0455f9e6b2055e4606f52e66  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">samumarine.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b154f29c4092ae9224fff3148c3fb854b6de0cb6f6a95ff6cc4ad821d19f58e3  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">tr.5-rt.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fac1cceafaadf076674274b4d7ca951990770c00f572f227cb9cb6235653285f  [ValleyRAT, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.russellcourthotel.ie  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">6e5137a3e01535b7907a26eab0b656e690e9f9058bef7ec0796ba3385dbf970d  [Unknown malware, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">tr.27trans.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">882cd8797f417c8898ee087d0ad158ac7b61ac41dd9cb82d0fd26cd55d7fe75e  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">chauffeurswiss.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c59fed552577a011c5a298558420d0beb233128d4046abdc2fc324a6a7f02a93  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.sanmarinogame.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d85baeaad8d76d2352aa50b81ffb68b11ee7a40159cb09b88b56b5f8e3380e72  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.battagliadipavia1525.it  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9ea665fe5d5d4c705d31d81918bccdec8038257fa316aaa10a97995c0e4d2c99  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">jdfirmware.ba  [Unknown malware, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b18617585fc14db14883e99827c75ac6713c8e56f344b0605ed213a3754e2ce6  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">simplecheck.online  [Unknown malware, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9cca3b4a8fe06e29d4683b448dac14be142eb3b14ed7a5b5ccf8bcf37ce80318  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">unitedtopquality.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">bfab96ba9cc070006e1cd2b793ff14b896ac468002284253eeb36a514b532205  [Tsunami, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">oapi.polysupport.team  [Unknown RAT, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">78c765978a0c2683eddafbbcc6e7896bf7172d63a936c602457034064016f3a5  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">zilyoner303.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7c425641751c58bbbf48a04f4a0ed810cdd219fc25fd3569a1e178ecf097414c  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">8s896faj.varzesh303.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f9191fbfcd25b4d0274e7831ae190d888c42be4e3794c4bb3dea7517b704fdee  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">info-u.net  [Unknown malware, confidence 75]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">38c8c79ec773bfc700559243293f4b4409756d5adf63ad78a08d7ca2f38ee0dc  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">whitewingsholding.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c844f9cddcda05bedc73a3ed1d3223bacc7c84061c90cc2a4cb9be4c8db5f97c  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">us-west.oceandentalcare.com  [FAKEUPDATES, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fac9c7d186fa00ac7101e8f6201be0c4d97b0cd521f589a2034274e5f23e7898  [Vjw0rm, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">cy.27trans.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">3e16c3bc39182471cac0c89b9883bd102d23d4bb938eb648c7d88b8649e857a9  [Tsunami, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">manchesterchauffeurs.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">96b31b3e0fd380d53208a92cd55522ff02674019168f1b3f6308f67d833b8a6d  [Unknown Loader, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">spokanehimm.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9d2565c23c294282ca51cfa67b018d653e72b84bb130bf32dc68e03191a44f92  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">ventuxe.biz  [Unknown malware, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">fe5a102bc43d8eb727f09fba6fb390917d8d5556732dfd1f24244262526731f2  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">openai-credits.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">25d775826462960f3e9aac0a58c5317f69809f2a403c09a242bbec88e0792069  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">ochre-quill-buindbaio.icu  [IClickFix, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ec966edf8b2375773323260fae697417822c3636e74647dc8a8ecbc5cd420bc2  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">manchester1.site  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">93d8b8ecae2f71494ff55c642236a8cf29b1bef976631ec64345b7dde0fede69  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">cdn.img.3b31adb2.PNAlumni.dgitd.anchorbolnorth.com  [Cobalt Strike, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ce0865d3a8cebe945d01f5ef0f5614426f0053a0f55fa8419b4d7156190153d5  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">solvisistemas.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0decf104ecf4e26c41e4b852deafd3b1dcec928be7fc5508f072b889ab767179  [Phorpiex, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">traditionalturkisharts.co.uk  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">440da933aecc21a57dba92324eaef042d47aa94f4a042b4523bd8a75c13864c3  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.tremendoussports.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">11eb0b6716717420386a3a718b49600128fde8103735d9849a44340a67ee02fa  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.xn--shipo-esa.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">c8aa0e9d82b079b7df357099642ff942e8aaa014e5832242763f3e4a20263d88  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">b5hqgkl3.kaarenorge.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">b1f1fe9eaa28a32efb48a7a70a40ff7e5fcf7e633081ee65713833e5f695ebd5  [Coinminer, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">retexio.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">0116035ec7b3089b35231c75dc558547337e99bb99319c52241905a2c968f341  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">wetsockclub.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">4f8cff206d67df933563f952b99e56171bbc5b024a5c99217ec7d1614e4f1748  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">sm.v-panel.asia  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">7fa4151a68295e54afdc51df7041c4f1f852f74470c086f0ac4100439e75a331  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">ssmpson.top  [KongTuke, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">5a73ac1265512d75eb2a65a941e062f680b3581c295ab13403d097f8cc3f40af  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">thehamptonhomestead.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">bba01cf15519fb94d7eb301349e1de09b849ea49fc7e1836d2f208884cd86b69  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">cbvision.ch  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">410fe1699749582a576c43d760128856be27a6cf04a80c0e3ad880ab41aa7c62  [Mirai, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.pureskill.ie  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9d6e9ab5e433481d57f3bedf30f50ae41a5ad266e206710999bdb64af7c82df3  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">pz.5-rt.org  [Vidar, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">932528550971aabaee246f49edf8fbf7e490f5a6a4a4253d61f9d3a21a94d4f9  [Chaos, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">vololift.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">e70ccc297a10f6c7b1ed610d42ad089c9a322824a2f2ce0e06bf5382c0ce81da  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">skindustries.in  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">63320c69b5733e125a587216bf2a93ac239c2a98686b2a1a00ec23f2b4177648  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">5ueb461u.enus-bellyflush.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">64cda43078cffa6fdb57aa81bc0ca7283b131256067d8c0ccf1a45d7ba1fed64  [stealler, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">www.tescilliafyonsucugu.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">d68c8f283edbae7b0f4765db4fcaa3d7e4af5154510bc3b6e3d39b40f1462139  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">actorlixian.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">9680789e5b74e294572da7ae8030d1632a60010b3c9fcab7a4eff824725f6435  [Bashlite, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">thecomfycurator.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">983f53dd83102298ed0a96acc484ee0f3f3be1a2e70a9c93694f3645b568b9eb  [AMOS, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">vmf3b50i.lockedgundisplay.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">de24c79b1a0383bc6afcb7224f273d84207d948c86e84ce4709cdfc5b82a71fb  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">biobkliaum.live  [IClickFix, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">f6a41e926a8692787e859da9080396d1859ae7507524255bdd6fb55805c7dd85  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">enus-bellyflush.com  [ClearFake, confidence 100]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">ab1ae861b41f856ad304e965385d44eb4286e385943b83dda6f47e419c63071c  [VShell, confidence 95]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr>
-<tr data-type="domain">
-              <td class="mono">domain</td>
-              <td class="mono ioc-value">innervisionmobileimaging.com  [ClearFake, confidence 90]</td>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">8727a17e67980f4db297653f1bbdcf3a788f6241259427163de792b8f1e291b8  [Mirai, confidence 100]</td>
+              <td class="dim">ThreatFox (abuse.ch)</td>
+            </tr>
+<tr data-type="sha256_hash">
+              <td class="mono">sha256_hash</td>
+              <td class="mono ioc-value">51a1dfb301d5f2bde8a824ab3852677fdba245c43aa20b82ff71ac19c71fe2cb  [Mirai, confidence 100]</td>
               <td class="dim">ThreatFox (abuse.ch)</td>
             </tr></tbody>
       </table>
@@ -1899,6 +1921,42 @@
       <table id="crtshTable">
         <thead><tr><th class="sortable" onclick="sortTable('crtshTable', 0, 'text')">Domän <span class="sort-arrow"></span></th><th>Relaterade domäner</th></tr></thead>
         <tbody><tr>
+              <td class="mono">bet303iran.com</td>
+              <td class="mono dim ioc-value">bet303iran.com.162-0-227-134.cprapid.com, mail.bet303iran.com.162-0-227-134.cprapid.com, www.bet303iran.com, www.bet303iran.com.162-0-227-134.cprapid.com</td>
+            </tr>
+<tr>
+              <td class="mono">medlifeurgentcare.us</td>
+              <td class="mono dim ioc-value">autodiscover.medlifeurgentcare.us, cpanel.medlifeurgentcare.us, cpcalendars.medlifeurgentcare.us, cpcontacts.medlifeurgentcare.us, mail.medlifeurgentcare.us, pay.medlifeurgentcare.us, webdisk.medlifeurgentcare.us, webmail.medlifeurgentcare.us, www.medlifeurgentcare.us, www.pay.medlifeurgentcare.us</td>
+            </tr>
+<tr>
+              <td class="mono">pathwayscounselingandwellness.org</td>
+              <td class="mono dim ioc-value">www.pathwayscounselingandwellness.org</td>
+            </tr>
+<tr>
+              <td class="mono">lilygimse.com</td>
+              <td class="mono dim ioc-value">www.lilygimse.com</td>
+            </tr>
+<tr>
+              <td class="mono">bcsmediasolutions.com</td>
+              <td class="mono dim ioc-value">autodiscover.bcsmediasolutions.com, cpanel.bcsmediasolutions.com, cpcalendars.bcsmediasolutions.com, cpcontacts.bcsmediasolutions.com, mail.bcsmediasolutions.com, webdisk.bcsmediasolutions.com, webmail.bcsmediasolutions.com, www.bcsmediasolutions.com</td>
+            </tr>
+<tr>
+              <td class="mono">brattenbailbonds.com</td>
+              <td class="mono dim ioc-value">autoconfig.brattenbailbonds.com, autodiscover.brattenbailbonds.com, cpanel.brattenbailbonds.com, cpcalendars.brattenbailbonds.com, cpcontacts.brattenbailbonds.com, mail.brattenbailbonds.com, webdisk.brattenbailbonds.com, webmail.brattenbailbonds.com, www.brattenbailbonds.com</td>
+            </tr>
+<tr>
+              <td class="mono">bulkcontainerload.com</td>
+              <td class="mono dim ioc-value">bulkcontainerload.com.69915306-28-20180604155257.webstarterz.com, mail.bulkcontainerload.com, www.bulkcontainerload.com, www.bulkcontainerload.com.69915306-28-20180604155257.webstarterz.com</td>
+            </tr>
+<tr>
+              <td class="mono">ciccomunicaciones.es</td>
+              <td class="mono dim ioc-value">ciccomunicaciones.es.89-40-80-100.cprapid.com, www.ciccomunicaciones.es, www.ciccomunicaciones.es.89-40-80-100.cprapid.com</td>
+            </tr>
+<tr>
+              <td class="mono">velopassion49.fr</td>
+              <td class="mono dim ioc-value">www.velopassion49.fr</td>
+            </tr>
+<tr>
               <td class="mono">linkingdirectory.com</td>
               <td class="mono dim ioc-value">www.linkingdirectory.com</td>
             </tr>
@@ -1941,42 +1999,6 @@
 <tr>
               <td class="mono">microvoltaic.com</td>
               <td class="mono dim ioc-value">autoconfig.microvoltaic.com, autodiscover.microvoltaic.com, halle.microvoltaic.com, mta-sts.microvoltaic.com, www.microvoltaic.com</td>
-            </tr>
-<tr>
-              <td class="mono">stend.az</td>
-              <td class="mono dim ioc-value">cpanel.stend.az, mail.stend.az, webdisk.stend.az, webmail.stend.az, whm.stend.az, www.stend.az</td>
-            </tr>
-<tr>
-              <td class="mono">xifinetworks.com</td>
-              <td class="mono dim ioc-value">autodiscover.xifinetworks.com, cpanel.xifinetworks.com, cpcalendars.xifinetworks.com, cpcontacts.xifinetworks.com, dashboard.xifinetworks.com, mail.xifinetworks.com, nms.xifinetworks.com, webdisk.xifinetworks.com, webmail.xifinetworks.com, www.dashboard.xifinetworks.com, www.nms.xifinetworks.com, www.xifinetworks.com</td>
-            </tr>
-<tr>
-              <td class="mono">breakthroughbreathwork.com</td>
-              <td class="mono dim ioc-value">www.breakthroughbreathwork.com</td>
-            </tr>
-<tr>
-              <td class="mono">trayectoriasweb.com</td>
-              <td class="mono dim ioc-value">www.trayectoriasweb.com</td>
-            </tr>
-<tr>
-              <td class="mono">esportsfc.org.kh</td>
-              <td class="mono dim ioc-value">register.esportsfc.org.kh, www.esportsfc.org.kh</td>
-            </tr>
-<tr>
-              <td class="mono">oslgroup.in</td>
-              <td class="mono dim ioc-value">autodiscover.oslgroup.in, cpanel.oslgroup.in, cpcalendars.oslgroup.in, cpcontacts.oslgroup.in, intranet.oslgroup.in, mail.oslgroup.in, webdisk.oslgroup.in, webmail.oslgroup.in, www.intranet.oslgroup.in, www.mail.oslgroup.in, www.oslgroup.in</td>
-            </tr>
-<tr>
-              <td class="mono">marxist.se</td>
-              <td class="mono dim ioc-value">autodiscover.marxist.se, cpanel.marxist.se, cpcalendars.marxist.se, cpcontacts.marxist.se, epost.marxist.se, listor.marxist.se, mail.marxist.se, sedov.marxist.se, thunder.marxist.se, webdisk.marxist.se, webmail.marxist.se, whm.marxist.se, www.marxist.se, www.sedov.marxist.se, www.thunder.marxist.se</td>
-            </tr>
-<tr>
-              <td class="mono">mannersmedia.es</td>
-              <td class="mono dim ioc-value">www.mannersmedia.es</td>
-            </tr>
-<tr>
-              <td class="mono">aphomestalavera.es</td>
-              <td class="mono dim ioc-value">inmuebles.aphomestalavera.es, www.aphomestalavera.es, www.inmuebles.aphomestalavera.es</td>
             </tr></tbody>
       </table>
     </div>
@@ -2191,6 +2213,54 @@ This issue affects AD...</td>
       <table id="shodanTable">
         <thead><tr><th class="sortable" onclick="sortTable('shodanTable', 0, 'text')">IP <span class="sort-arrow"></span></th><th>Portar</th><th>CVE:er</th><th>Hostnames</th></tr></thead>
         <tbody><tr>
+              <td class="mono">45.152.242.130</td>
+              <td class="mono dim">8000, 50050, 9000, 8010, 9100, 21, 50070, 8600</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">65.21.230.223</td>
+              <td class="mono dim">80, 22</td>
+              <td>—</td>
+              <td class="dim">static.223.230.21.65.clients.your-server.de</td>
+            </tr>
+<tr>
+              <td class="mono">84.200.91.170</td>
+              <td class="mono dim">3389, 445, 135</td>
+              <td><span class="badge badge-critical">CVE-2020-0796</span></td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">38.60.136.202</td>
+              <td class="mono dim">22</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">45.205.1.136</td>
+              <td class="mono dim">8080</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">130.61.146.214</td>
+              <td class="mono dim">80, 443, 22</td>
+              <td><span class="badge badge-critical">CVE-2023-44487, CVE-2025-23419</span></td>
+              <td class="dim">panel.phorxys.com</td>
+            </tr>
+<tr>
+              <td class="mono">149.88.73.83</td>
+              <td class="mono dim">8000</td>
+              <td>—</td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
+              <td class="mono">43.136.69.37</td>
+              <td class="mono dim">22</td>
+              <td><span class="badge badge-critical">CVE-2026-59996, CVE-2026-59997, CVE-2026-59995, CVE-2025-26465, CVE-2026-59999, CVE-2026-73282, CVE-2026-73283, CVE-2026-73281, CVE-2026-60000, CVE-2026-60001, CVE-2026-60002, CVE-2007-2768, CVE-2025-32728, CVE-2019-16905, CVE-2026-35414, CVE-2020-14145, CVE-2021-41617, CVE-2023-51385, CVE-2026-59998, CVE-2026-35385, CVE-2026-35387, CVE-2016-20012, CVE-2026-35388, CVE-2020-15778, CVE-2008-3844, CVE-2021-36368, CVE-2023-51767, CVE-2023-48795, CVE-2023-38408</span></td>
+              <td class="dim">—</td>
+            </tr>
+<tr>
               <td class="mono">217.217.97.60</td>
               <td class="mono dim">8443, 3389</td>
               <td><span class="badge badge-critical">CVE-2009-3720, CVE-2026-15308, CVE-2026-3644, CVE-2026-4519, CVE-2026-3087, CVE-2025-13462, CVE-2025-13836, CVE-2026-0864, CVE-2026-7210, CVE-2025-12084, CVE-2009-2940, CVE-2026-6019, CVE-2025-12781, CVE-2021-32052, CVE-2025-13837, CVE-2020-29396</span></td>
@@ -2319,54 +2389,6 @@ This issue affects AD...</td>
 <tr>
               <td class="mono">207.57.125.216</td>
               <td class="mono dim">111</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">2.27.62.228</td>
-              <td class="mono dim">5985, 135, 137, 139, 47001, 445</td>
-              <td>—</td>
-              <td class="dim">bcfs228.crushzdmf.us.com</td>
-            </tr>
-<tr>
-              <td class="mono">160.202.133.94</td>
-              <td class="mono dim">5985, 3389</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">89.106.83.156</td>
-              <td class="mono dim">445</td>
-              <td><span class="badge badge-critical">CVE-2020-0796</span></td>
-              <td class="dim">s1.arcuma.com</td>
-            </tr>
-<tr>
-              <td class="mono">111.231.116.164</td>
-              <td class="mono dim">50050, 4443, 22, 9443</td>
-              <td>—</td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">46.151.182.67</td>
-              <td class="mono dim">139, 445</td>
-              <td><span class="badge badge-critical">CVE-2020-0796</span></td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">42.51.44.173</td>
-              <td class="mono dim">8888, 22</td>
-              <td><span class="badge badge-critical">CVE-2026-59996, CVE-2026-59997, CVE-2026-59995, CVE-2025-26465, CVE-2026-59999, CVE-2026-73282, CVE-2026-73283, CVE-2026-73281, CVE-2026-60000, CVE-2026-60001, CVE-2026-60002, CVE-2007-2768, CVE-2025-32728, CVE-2026-35414, CVE-2017-15906, CVE-2020-14145, CVE-2021-41617, CVE-2019-6111, CVE-2023-51385, CVE-2026-59998, CVE-2018-20685, CVE-2018-15473, CVE-2026-35385, CVE-2026-35387, CVE-2018-15919, CVE-2016-20012, CVE-2026-35388, CVE-2020-15778, CVE-2019-6110, CVE-2008-3844, CVE-2021-36368, CVE-2023-51767, CVE-2023-48795, CVE-2023-38408, CVE-2019-6109</span></td>
-              <td class="dim">—</td>
-            </tr>
-<tr>
-              <td class="mono">155.103.69.57</td>
-              <td class="mono dim">445, 3389</td>
-              <td>—</td>
-              <td class="dim">33133-28096.dchost.com, static-155-103-69-57.whitelabelservices.us</td>
-            </tr>
-<tr>
-              <td class="mono">156.252.90.169</td>
-              <td class="mono dim">8000, 18000</td>
               <td>—</td>
               <td class="dim">—</td>
             </tr></tbody>
