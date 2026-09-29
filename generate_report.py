@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 
 from storage import DB_PATH
 from attack_mapping import parse_family_from_value, classify_family
+from watchlist import WATCHLIST
 from sector_watch import (
     classify_sector, WATCHED_SECTORS, is_nordic_country, is_nordic_article,
 )
@@ -510,6 +511,14 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         m["victims"].sort(key=lambda x: not x["nordic"])
         m["articles"].sort(key=lambda x: not x["nordic"])
 
+    watchlist_hit_rows = _rows(
+        conn,
+        """
+        SELECT entry, kind, detail, source, link, first_seen
+        FROM watchlist_hits ORDER BY id DESC
+        """,
+    )
+
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -716,6 +725,63 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     )
     sector_html = sector_controls + "".join(sector_html_parts)
 
+    # --- Bevakningslista: ett kort per bevakad organisation ---
+    kind_meta = {
+        "ioc_domain": ("🚨", "Domän listad som IOC", "critical"),
+        "ransomware": ("🔴", "Ransomware-offer", "critical"),
+        "lookalike": ("🎭", "Möjlig imitation", "high"),
+        "article": ("📰", "Omnämnd i artikel/Telegram", "info"),
+    }
+    kind_order = ["ioc_domain", "ransomware", "lookalike", "article"]
+
+    hits_by_entry: dict = {}
+    for row in watchlist_hit_rows:
+        hits_by_entry.setdefault(row["entry"], []).append(row)
+
+    watch_cards = []
+    total_watch_hits = 0
+    for entry in WATCHLIST:
+        rows = hits_by_entry.get(entry["name"], [])
+        total_watch_hits += len(rows)
+        watched_what = ", ".join(entry.get("domains", []) + entry.get("terms", []))
+        if not rows:
+            body = '<p class="empty">Inga träffar — bra. Bevakar: ' + _esc(watched_what) + "</p>"
+        else:
+            rows_sorted = sorted(
+                rows, key=lambda r: kind_order.index(r["kind"]) if r["kind"] in kind_order else 99
+            )
+            lines = []
+            for r in rows_sorted[:60]:
+                icon, label, level = kind_meta.get(r["kind"], ("•", r["kind"], "info"))
+                detail = _esc(r["detail"])
+                if r["link"]:
+                    detail = f'<a href="{_esc(r["link"])}" target="_blank" rel="noopener">{detail}</a>'
+                lines.append(
+                    f'<li>{icon} <span class="watch-kind watch-{level}">{_esc(label)}</span> '
+                    f'{detail} <span class="dim">({_esc(r["source"])} · sedd {_esc((r["first_seen"] or "")[:10])})</span></li>'
+                )
+            body = f'<ul class="sector-list">{"".join(lines)}</ul>'
+
+        crit = sum(1 for r in rows if r["kind"] in ("ioc_domain", "ransomware"))
+        header_right = f'{len(rows)} träffar' + (f' · <span class="watch-critical-count">{crit} allvarliga</span>' if crit else "")
+        card_class = "attack-category watch-card alert" if crit else "attack-category watch-card"
+        watch_cards.append(f'''
+          <div class="{card_class}">
+            <div class="attack-category-header">
+              <span>{_esc(entry["name"])}</span>
+              <span class="dim">{header_right}</span>
+            </div>
+            {body}
+          </div>''')
+
+    watch_intro = (
+        '<p class="dim" style="white-space:normal; margin-bottom:0.9rem;">'
+        "Träffar sparas permanent och rensas aldrig. Ändra vilka organisationer och domäner "
+        "som bevakas i <code>watchlist.py</code>. Imitationsjakten är medvetet bred och kan ge "
+        "enstaka falska träffar.</p>"
+    )
+    watchlist_html = watch_intro + ("".join(watch_cards) or '<p class="empty">Bevakningslistan är tom — lägg till poster i watchlist.py.</p>')
+
     ioc_types_for_filter = sorted({r["ioc_type"] for r in ioc_type_breakdown})
     filter_options = "\n".join(
         f'<option value="{_esc(t)}">{_esc(t)}</option>' for t in ioc_types_for_filter
@@ -759,6 +825,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
                 {other_sources_chart_html}
               </div>
             </div>'''),
+        ("sec-watchlist", "Bevakningslista", watchlist_html),
         ("sec-attack", "Malware-familjer mot MITRE ATT&CK", attack_html),
         ("sec-sectors", "Sektorbevakning", sector_html),
         ("sec-ioctypes", "IOC-typer i databasen (klicka för att filtrera)", breakdown_html),
@@ -979,6 +1046,13 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     background: rgba(79,179,169,0.15); color: #4fb3a9;
   }}
   .nordic-toggle {{ display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; }}
+  .watch-card.alert {{ border-color: var(--red); border-left-width: 3px; }}
+  .watch-kind {{ font-size: 0.7rem; font-weight: 600; padding: 0.05rem 0.45rem; border-radius: 3px; margin-right: 0.3rem; }}
+  .watch-critical {{ background: rgba(217,83,79,0.18); color: var(--red); }}
+  .watch-high {{ background: rgba(232,163,61,0.15); color: var(--amber); }}
+  .watch-info {{ background: rgba(91,141,214,0.15); color: var(--blue); }}
+  .watch-critical-count {{ color: var(--red); font-weight: 600; }}
+  code {{ font-family: var(--mono); background: var(--panel-border); padding: 0.05rem 0.35rem; border-radius: 3px; font-size: 0.8rem; }}
   .chart-tooltip {{
     position: absolute; display: none; background: #1c2330;
     border: 1px solid var(--panel-border); padding: 0.35rem 0.6rem;
