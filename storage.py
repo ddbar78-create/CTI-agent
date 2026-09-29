@@ -79,6 +79,18 @@ CREATE TABLE IF NOT EXISTS ransomware_victims (
     attack_date TEXT,
     UNIQUE(group_name, victim, attack_date)
 );
+
+CREATE TABLE IF NOT EXISTS watchlist_hits (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    entry TEXT NOT NULL,
+    kind TEXT NOT NULL,
+    detail TEXT,
+    source TEXT,
+    link TEXT,
+    ref TEXT NOT NULL,
+    first_seen TEXT DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(entry, kind, ref)
+);
 """
 
 
@@ -386,6 +398,34 @@ def get_victims_grouped_by_country(db_path: str = DB_PATH, limit_per_country: in
         if len(bucket) < limit_per_country:
             bucket.append({"group": group_name, "victim": victim})
     return grouped
+
+
+def save_watchlist_hit(conn, entry: str, kind: str, detail: str, source: str,
+                       link: str, ref: str) -> bool:
+    """Sparar en bevakningsträff. Returnerar True om den var NY (inte sedd förut)."""
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT OR IGNORE INTO watchlist_hits (entry, kind, detail, source, link, ref)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (entry, kind, detail, source, link, ref),
+    )
+    return cur.rowcount > 0
+
+
+def get_watchlist_hits(db_path: str = DB_PATH) -> list:
+    """Alla sparade träffar, nyaste först. Rensas aldrig av retention-policyn."""
+    with get_conn(db_path) as conn:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT entry, kind, detail, source, link, first_seen
+            FROM watchlist_hits ORDER BY id DESC
+            """
+        )
+        cols = [d[0] for d in cur.description]
+        return [dict(zip(cols, row)) for row in cur.fetchall()]
 
 
 def save_article(conn, feed: str, title: str, link: str, published: str, summary: str):
