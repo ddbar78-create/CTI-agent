@@ -32,6 +32,7 @@ from cve_priority import run_cve_enrichment
 from article_crawler import crawl_article, MAX_CRAWLS_PER_RUN, DELAY_BETWEEN_REQUESTS
 from crt_sh import run_crtsh_enrichment
 from domain_age import run_domain_age_check
+from watchlist import run_watchlist_scan
 
 
 def run_once():
@@ -120,6 +121,10 @@ def run_once():
     # Kontrollera domänålder via RDAP — flaggar nyregistrerade domäner
     new_registered_domains = run_domain_age_check()
 
+    # Skanna alla källor mot bevakningslistan (watchlist.py). Sker FÖRE
+    # rensningen så kortlivade ThreatFox-träffar hinner sparas permanent.
+    new_watch_hits = run_watchlist_scan()
+
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
 
@@ -129,6 +134,11 @@ def run_once():
 
     # --- Bygg och skicka en sammanfattande notis, bara om något är värt att flagga ---
     summary_lines = []
+
+    if new_watch_hits:
+        summary_lines.append(f"🚨 {len(new_watch_hits)} nya träffar på bevakningslistan:")
+        for h in new_watch_hits[:10]:
+            summary_lines.append(f"   • [{h['kind']}] {h['entry']}: {h['detail']}")
 
     if urgent_cves:
         summary_lines.append(f"🔴 {len(urgent_cves)} akuta CVE:er (KEV eller EPSS ≥ 50%):")
