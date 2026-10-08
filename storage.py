@@ -133,8 +133,12 @@ def _migrate_ransomware_victims_timestamp(conn):
     cur.execute("PRAGMA table_info(ransomware_victims)")
     existing = {row[1] for row in cur.fetchall()}
     if "first_seen" not in existing:
+        # SQLite tillåter inte icke-konstant default (CURRENT_TIMESTAMP) vid
+        # ALTER TABLE — därför läggs kolumnen till utan default och befintliga
+        # rader fylls i separat.
+        cur.execute("ALTER TABLE ransomware_victims ADD COLUMN first_seen TEXT")
         cur.execute(
-            "ALTER TABLE ransomware_victims ADD COLUMN first_seen TEXT DEFAULT CURRENT_TIMESTAMP"
+            "UPDATE ransomware_victims SET first_seen = CURRENT_TIMESTAMP WHERE first_seen IS NULL"
         )
 
 
@@ -370,8 +374,8 @@ def save_ransomware_victim(conn, group_name: str, victim: str, country: str,
     cur.execute(
         """
         INSERT OR IGNORE INTO ransomware_victims
-            (group_name, victim, country, sector, attack_date)
-        VALUES (?, ?, ?, ?, ?)
+            (group_name, victim, country, sector, attack_date, first_seen)
+        VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
         """,
         (group_name, victim, country, sector, attack_date),
     )
