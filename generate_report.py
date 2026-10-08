@@ -17,6 +17,7 @@ from storage import DB_PATH
 from attack_mapping import parse_family_from_value, classify_family
 from watchlist import WATCHLIST
 from daily_briefing import build_briefing
+from search_report import build_search_block, SEARCH_CSS
 from sector_watch import (
     classify_sector, WATCHED_SECTORS, is_nordic_country, is_nordic_article,
 )
@@ -934,7 +935,14 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         f'<input type="search" id="iocSearch" placeholder="Sök värde..." oninput="filterIocs()"></div>'
     )
 
+    try:
+        search_html = build_search_block(db_path)
+    except Exception as e:  # sökningen får aldrig ta ner hela dashboarden
+        print(f"    Sök & rapport kunde inte byggas: {e}")
+        search_html = '<p class="empty">Sökfunktionen kunde inte byggas denna körning.</p>'
+
     sections = [
+        ("sec-search", "Sök &amp; rapport", search_html),
         ("sec-trend", "Trend, senaste dagarna", f'''
             <div class="chart-grid">
               <div class="chart-panel">
@@ -1173,6 +1181,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     padding: 1rem 1.2rem;
     font-size: 0.85rem;
   }}
+  {SEARCH_CSS}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
