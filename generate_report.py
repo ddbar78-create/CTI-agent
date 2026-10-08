@@ -16,6 +16,7 @@ from datetime import datetime, timezone
 from storage import DB_PATH
 from attack_mapping import parse_family_from_value, classify_family
 from watchlist import WATCHLIST
+from daily_briefing import build_briefing
 from sector_watch import (
     classify_sector, WATCHED_SECTORS, is_nordic_country, is_nordic_article,
 )
@@ -110,29 +111,43 @@ COUNTRY_CENTROIDS = {
 
 def _real_world_map_block(country_counts: list, victim_details: dict, element_id: str = "worldMap") -> str:
     """
-    Bygger ett HTML/JS-block som ritar en RIKTIG världskarta (faktiska
-    landgränser) med D3.js + en etablerad world-atlas TopoJSON-fil,
-    laddade via CDN i webbläsaren när sidan öppnas. Kräver internetuppkoppling
-    hos den som tittar på dashboarden (helt normalt för en webbsida).
-
-    Bubblor för varje land ritas ovanpå kartan baserat på COUNTRY_CENTROIDS.
-    Klick på en bubbla visar offer/grupper för det landet i en detaljpanel.
-    En "Ladda ner som PNG"-knapp låter dig exportera kartan för presentationer.
+    Interaktiv världskarta (D3 + world-atlas TopoJSON via CDN) med:
+      - zoom/panorering (dra, +/- knappar, Ctrl+scrollhjul, pinch på touch)
+      - förvalda vyer: Världen / Europa / Norden
+      - rankad landslista bredvid kartan (klick = zooma till landet + visa offer)
+      - bubblor som behåller läsbar storlek vid zoom, etiketter som visas
+        gradvis (största först) för att undvika röra
+      - klick på bubbla = detaljpanel, samt PNG-export av aktuell vy
     """
     if not country_counts:
         return '<p class="empty">Ingen geografisk data ännu.</p>'
 
+    nordic = {"SE", "NO", "DK", "FI", "IS"}
     data_points = [
         {
             "country": c["country"], "n": c["n"],
             "lat": COUNTRY_CENTROIDS[c["country"]][0],
             "lon": COUNTRY_CENTROIDS[c["country"]][1],
+            "nordic": c["country"] in nordic,
             "victims": victim_details.get(c["country"], []),
         }
         for c in country_counts if c["country"] in COUNTRY_CENTROIDS
     ]
+    data_points.sort(key=lambda d: -d["n"])
+    for rank, d in enumerate(data_points):
+        d["rank"] = rank
     unplotted = [c for c in country_counts if c["country"] not in COUNTRY_CENTROIDS]
-    data_json = json.dumps(data_points, ensure_ascii=False)
+    data_json = json.dumps(data_points, ensure_ascii=False).replace("</", "<\\/")
+
+    max_n = max((d["n"] for d in data_points), default=1)
+    list_rows = "".join(
+        f'''<div class="map-rank-row" data-country="{_esc(d["country"])}" onclick="mapFocus_{element_id}('{_esc(d["country"])}')">
+              <span class="map-rank-code">{_esc(d["country"])}{' <span class="nordic-badge">Norden</span>' if d["nordic"] else ''}</span>
+              <span class="map-rank-bar"><span style="width:{max(4, d["n"] / max_n * 100):.0f}%"></span></span>
+              <span class="map-rank-n">{d["n"]}</span>
+            </div>'''
+        for d in data_points
+    )
 
     unplotted_note = ""
     if unplotted:
@@ -141,11 +156,28 @@ def _real_world_map_block(country_counts: list, victim_details: dict, element_id
 
     return f"""
     <div class="map-toolbar">
-      <button onclick="downloadMapAsPng()" class="map-download-btn">⬇ Ladda ner karta som PNG</button>
+      <button class="map-btn map-view-btn active" data-view="world">Världen</button>
+      <button class="map-btn map-view-btn" data-view="europe">Europa</button>
+      <button class="map-btn map-view-btn" data-view="nordic">Norden</button>
+      <span class="map-toolbar-sep"></span>
+      <button class="map-btn" id="{element_id}ZoomIn" title="Zooma in">＋</button>
+      <button class="map-btn" id="{element_id}ZoomOut" title="Zooma ut">－</button>
+      <button class="map-btn" id="{element_id}Reset" title="Återställ">⟲</button>
+      <span class="map-toolbar-sep"></span>
+      <button onclick="downloadMapAsPng()" class="map-btn">⬇ PNG</button>
+      <span class="dim map-hint">Dra för att panorera · Ctrl + scrollhjul för att zooma</span>
     </div>
-    <div id="{element_id}" class="world-map-container"></div>
+    <div class="map-layout">
+      <div class="map-main">
+        <div id="{element_id}" class="world-map-container"></div>
+      </div>
+      <div class="map-rank-list">
+        <div class="map-rank-title">Länder (flest offer först)</div>
+        {list_rows}
+      </div>
+    </div>
     <div id="{element_id}Details" class="map-details-panel">
-      <span class="dim">Klicka på en bubbla för att se vilka offer/grupper som ligger bakom siffran.</span>
+      <span class="dim">Klicka på en bubbla eller ett land i listan för att se vilka offer/grupper som ligger bakom siffran.</span>
     </div>
     {unplotted_note}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
@@ -154,81 +186,165 @@ def _real_world_map_block(country_counts: list, victim_details: dict, element_id
     (function() {{
       const victimData = {data_json};
       const container = document.getElementById("{element_id}");
-      const width = container.clientWidth || 1000;
-      const height = width * 0.5;
+      const width = container.clientWidth || 800;
+      const height = Math.round(width * 0.56);
 
       const svg = d3.select(container).append("svg")
         .attr("viewBox", `0 0 ${{width}} ${{height}}`)
         .attr("width", "100%")
         .attr("height", height)
         .style("background", "#0a0d13")
-        .style("border-radius", "8px");
+        .style("border-radius", "8px")
+        .style("cursor", "grab");
 
-      svg.append("defs").html(`
-        <filter id="mapGlow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      `);
-
+      const viewport = svg.append("g");
       const projection = d3.geoNaturalEarth1();
       const path = d3.geoPath(projection);
+
+      const BOXES = {{
+        europe: [[-12, 34], [40, 71]],
+        nordic: [[3, 54.5], [32, 71.5]]
+      }};
+      let currentK = 1;
+      let bubbles = null, radius = null;
+      let selectedCountry = null;
+
+      const zoom = d3.zoom()
+        .scaleExtent([1, 40])
+        .translateExtent([[-width * 0.2, -height * 0.2], [width * 1.2, height * 1.2]])
+        .filter(event => event.type === "wheel" ? (event.ctrlKey || event.metaKey) : !event.button)
+        .on("zoom", event => {{
+          viewport.attr("transform", event.transform);
+          currentK = event.transform.k;
+          updateBubbleScale();
+        }});
+      svg.call(zoom);
+
+      function updateBubbleScale() {{
+        if (!bubbles) return;
+        const k = currentK;
+        bubbles.attr("transform", d => `translate(${{d.x}},${{d.y}}) scale(${{Math.pow(k, -0.9)}})`);
+        // Visa fler etiketter ju mer man zoomar in; största länderna först.
+        const maxLabels = Math.round(5 + (k - 1) * 6);
+        bubbles.select("text").attr("display", d =>
+          (d.rank < maxLabels || d.country === selectedCountry) ? null : "none");
+        viewport.selectAll("path.country").attr("stroke-width", 0.6 / k);
+      }}
+
+      function viewTransform(box) {{
+        const [[x0, y0], [x1, y1]] = [projection(box[0]), projection(box[1])];
+        const minX = Math.min(x0, x1), maxX = Math.max(x0, x1);
+        const minY = Math.min(y0, y1), maxY = Math.max(y0, y1);
+        const k = Math.min(40, 0.9 / Math.max((maxX - minX) / width, (maxY - minY) / height));
+        const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+        return d3.zoomIdentity.translate(width / 2 - k * cx, height / 2 - k * cy).scale(k);
+      }}
+
+      function goTo(transform) {{
+        svg.transition().duration(700).call(zoom.transform, transform);
+      }}
+
+      function setActiveView(name) {{
+        document.querySelectorAll(".map-view-btn").forEach(b =>
+          b.classList.toggle("active", b.dataset.view === name));
+      }}
+
+      function showDetails(d) {{
+        selectedCountry = d.country;
+        bubbles.select("circle.bubble-main").attr("stroke-width", x => x.country === d.country ? 3 : 1);
+        document.querySelectorAll(".map-rank-row").forEach(r =>
+          r.classList.toggle("selected", r.dataset.country === d.country));
+        const panel = document.getElementById("{element_id}Details");
+        const victimList = d.victims.map(v =>
+          `<li><strong>${{v.group}}</strong> → ${{v.victim}}</li>`
+        ).join("");
+        panel.innerHTML = `
+          <div class="map-details-header">${{d.country}} — ${{d.n}} rapporterade offer</div>
+          <ul class="map-details-list">${{victimList || "<li>Ingen detaljerad offerinfo sparad ännu.</li>"}}</ul>
+        `;
+        updateBubbleScale();
+      }}
+
+      window["mapFocus_{element_id}"] = function(code) {{
+        const d = victimData.find(x => x.country === code);
+        if (!d || !bubbles) return;
+        showDetails(d);
+        const k = Math.max(currentK, 5);
+        goTo(d3.zoomIdentity.translate(width / 2 - k * d.x, height / 2 - k * d.y).scale(k));
+        setActiveView("");
+      }};
 
       d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(world => {{
         const countries = topojson.feature(world, world.objects.countries);
         projection.fitSize([width, height], countries);
 
-        svg.append("g").selectAll("path")
+        viewport.append("g").selectAll("path")
           .data(countries.features)
           .join("path")
+          .attr("class", "country")
           .attr("d", path)
           .attr("fill", "#1c2433")
           .attr("stroke", "#2e3646")
           .attr("stroke-width", 0.6);
 
+        victimData.forEach(d => {{
+          const p = projection([d.lon, d.lat]);
+          d.x = p[0]; d.y = p[1];
+        }});
+
         const maxN = d3.max(victimData, d => d.n) || 1;
-        const radius = d3.scalePow().exponent(0.5).domain([0, maxN]).range([5, 28]);
+        radius = d3.scalePow().exponent(0.5).domain([0, maxN]).range([4, 22]);
         const color = d3.scaleLinear().domain([0, maxN]).range(["#e8a33d", "#d9534f"]);
 
-        const bubbles = svg.append("g").selectAll("g")
-          .data(victimData)
-          .join("g")
-          .attr("transform", d => {{
-            const p = projection([d.lon, d.lat]);
-            return `translate(${{p[0]}},${{p[1]}})`;
-          }})
-          .style("cursor", "pointer")
-          .on("click", function(event, d) {{
-            svg.selectAll("circle.bubble-main").attr("stroke-width", 1);
-            d3.select(this).select("circle.bubble-main").attr("stroke-width", 3);
+        // Ritas minsta först så att stora bubblor inte döljer små
+        const drawOrder = victimData.slice().sort((a, b) => b.n - a.n);
 
-            const panel = document.getElementById("{element_id}Details");
-            const victimList = d.victims.map(v =>
-              `<li><strong>${{v.group}}</strong> → ${{v.victim}}</li>`
-            ).join("");
-            panel.innerHTML = `
-              <div class="map-details-header">${{d.country}} — ${{d.n}} rapporterade offer</div>
-              <ul class="map-details-list">${{victimList || "<li>Ingen detaljerad offerinfo sparad ännu.</li>"}}</ul>
-            `;
-          }});
+        bubbles = viewport.append("g").selectAll("g")
+          .data(drawOrder)
+          .join("g")
+          .style("cursor", "pointer")
+          .on("click", (event, d) => {{ event.stopPropagation(); showDetails(d); }});
+
+        bubbles.append("title").text(d => `${{d.country}}: ${{d.n}} offer`);
 
         bubbles.append("circle")
           .attr("class", "bubble-main")
           .attr("r", d => radius(d.n))
           .attr("fill", d => color(d.n))
-          .attr("fill-opacity", 0.75)
-          .attr("stroke", d => color(d.n))
-          .attr("stroke-width", 1)
-          .attr("filter", "url(#mapGlow)");
+          .attr("fill-opacity", 0.72)
+          .attr("stroke", d => d.nordic ? "#ffffff" : color(d.n))
+          .attr("stroke-width", 1);
 
         bubbles.append("text")
-          .text(d => `${{d.country}} (${{d.n}})`)
-          .attr("y", d => -radius(d.n) - 6)
+          .text(d => `${{d.country}} ${{d.n}}`)
+          .attr("y", d => -radius(d.n) - 5)
           .attr("text-anchor", "middle")
           .attr("font-size", 11)
           .attr("font-weight", 600)
           .attr("fill", "#e8ecf2")
-          .attr("style", "paint-order: stroke; stroke: #0a0d13; stroke-width: 3px;");
+          .attr("style", "paint-order: stroke; stroke: #0a0d13; stroke-width: 3px; pointer-events: none;");
+
+        // Ritordning: stora först i data -> reverse så små hamnar överst
+        bubbles.order();
+        bubbles.sort((a, b) => b.n - a.n);
+
+        updateBubbleScale();
+
+        document.querySelectorAll(".map-view-btn").forEach(btn => {{
+          btn.addEventListener("click", () => {{
+            const v = btn.dataset.view;
+            setActiveView(v);
+            goTo(v === "world" ? d3.zoomIdentity : viewTransform(BOXES[v]));
+          }});
+        }});
+        document.getElementById("{element_id}ZoomIn").addEventListener("click", () =>
+          svg.transition().duration(300).call(zoom.scaleBy, 1.6));
+        document.getElementById("{element_id}ZoomOut").addEventListener("click", () =>
+          svg.transition().duration(300).call(zoom.scaleBy, 1 / 1.6));
+        document.getElementById("{element_id}Reset").addEventListener("click", () => {{
+          setActiveView("world");
+          goTo(d3.zoomIdentity);
+        }});
       }}).catch(err => {{
         container.innerHTML = '<p style="color:#7a8394; font-style:italic; padding:2rem;">Kunde inte ladda kartdata (kräver internetuppkoppling). Fel: ' + err + '</p>';
       }});
@@ -250,7 +366,7 @@ def _real_world_map_block(country_counts: list, victim_details: dict, element_id
         ctx.fillStyle = "#0a0d13";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.scale(scale, scale);
-        ctx.drawImage(img, 0, 0);
+        ctx.drawImage(img, 0, 0, svgEl.clientWidth, svgEl.clientHeight);
         URL.revokeObjectURL(url);
         const link = document.createElement("a");
         link.download = "ransomware-varldskarta.png";
@@ -522,6 +638,11 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     conn.close()
 
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+    # Daglig sammanfattning — egen, kort anslutning, körs sist av allt
+    # så den alltid speglar den precis uppdaterade databasen.
+    briefing = build_briefing(db_path)
+    briefing_html = "".join(f"<p>{_esc(line)}</p>" for line in briefing["lines"])
 
     # --- Bygg HTML-innehåll för varje sektion ---
 
@@ -893,6 +1014,19 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     letter-spacing: -0.01em;
   }}
   .subtitle {{ color: var(--text-dim); font-size: 0.9rem; }}
+  .briefing-box {{
+    background: linear-gradient(135deg, rgba(91,141,214,0.08), rgba(79,179,169,0.05));
+    border: 1px solid var(--panel-border);
+    border-left: 3px solid var(--blue);
+    border-radius: 6px;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1.5rem;
+  }}
+  .briefing-title {{
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--text-dim); font-weight: 600; margin-bottom: 0.5rem;
+  }}
+  .briefing-box p {{ margin: 0.35rem 0; font-size: 0.92rem; }}
   .toc {{
     display: flex; flex-wrap: wrap; gap: 0.4rem;
     margin-bottom: 1.75rem; padding-bottom: 1.25rem;
@@ -999,18 +1133,38 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
   .table-scroll td:first-child {{ padding-left: 0.9rem; }}
   footer {{ color: var(--text-dim); font-size: 0.78rem; margin-top: 3rem; }}
   .world-map-container {{ width: 100%; }}
-  .map-toolbar {{ margin-bottom: 0.75rem; }}
-  .map-download-btn {{
+  .map-toolbar {{ margin-bottom: 0.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }}
+  .map-btn {{
     background: var(--panel);
     border: 1px solid var(--panel-border);
     color: var(--text);
-    padding: 0.5rem 0.9rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 5px;
     font-size: 0.82rem;
     font-family: var(--sans);
     cursor: pointer;
   }}
-  .map-download-btn:hover {{ background: var(--panel-border); }}
+  .map-btn:hover {{ background: var(--panel-border); }}
+  .map-btn.active {{ border-color: var(--amber); color: var(--amber); }}
+  .map-toolbar-sep {{ width: 1px; height: 1.4rem; background: var(--panel-border); margin: 0 0.3rem; }}
+  .map-hint {{ margin-left: auto; font-size: 0.75rem; white-space: normal; }}
+  .map-layout {{ display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 1rem; align-items: start; }}
+  .map-rank-list {{
+    background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px;
+    max-height: 460px; overflow-y: auto; padding: 0.4rem 0;
+  }}
+  .map-rank-title {{ font-size: 0.75rem; color: var(--text-dim); padding: 0.3rem 0.8rem 0.5rem; }}
+  .map-rank-row {{
+    display: grid; grid-template-columns: 62px 1fr 28px; gap: 0.5rem; align-items: center;
+    padding: 0.3rem 0.8rem; cursor: pointer; font-size: 0.82rem;
+  }}
+  .map-rank-row:hover {{ background: var(--panel-border); }}
+  .map-rank-row.selected {{ background: rgba(232,163,61,0.15); }}
+  .map-rank-code {{ font-family: var(--mono); }}
+  .map-rank-bar {{ background: var(--panel-border); border-radius: 3px; height: 6px; overflow: hidden; }}
+  .map-rank-bar span {{ display: block; height: 100%; background: var(--amber); }}
+  .map-rank-n {{ text-align: right; font-family: var(--mono); color: var(--text-dim); font-size: 0.78rem; }}
+  @media (max-width: 800px) {{ .map-layout {{ grid-template-columns: 1fr; }} .map-rank-list {{ max-height: 240px; }} }}
   .map-details-panel {{
     margin-top: 0.9rem;
     background: var(--panel);
@@ -1068,6 +1222,11 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     <h1>CTI-agent — instrumentpanel</h1>
     <div class="subtitle">Senast uppdaterad {generated_at} · körs automatiskt varje timme</div>
   </header>
+
+  <div class="briefing-box">
+    <div class="briefing-title">Senaste dygnet</div>
+    {briefing_html}
+  </div>
 
   <nav class="toc">{toc_html}</nav>
 
