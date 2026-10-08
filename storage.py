@@ -110,6 +110,7 @@ def init_db(db_path: str = DB_PATH):
         conn.executescript(SCHEMA)
         _migrate_llm_columns(conn)
         _migrate_full_text_column(conn)
+        _migrate_ransomware_victims_timestamp(conn)
 
 
 def _migrate_full_text_column(conn):
@@ -123,6 +124,18 @@ def _migrate_full_text_column(conn):
 def save_full_text(conn, article_id: int, text: str):
     cur = conn.cursor()
     cur.execute("UPDATE articles SET full_text = ? WHERE id = ?", (text, article_id))
+
+
+def _migrate_ransomware_victims_timestamp(conn):
+    """Lägger till first_seen på ransomware_victims om den saknas — behövs
+    för att kunna visa 'senaste dygnet' i den dagliga sammanfattningen."""
+    cur = conn.cursor()
+    cur.execute("PRAGMA table_info(ransomware_victims)")
+    existing = {row[1] for row in cur.fetchall()}
+    if "first_seen" not in existing:
+        cur.execute(
+            "ALTER TABLE ransomware_victims ADD COLUMN first_seen TEXT DEFAULT CURRENT_TIMESTAMP"
+        )
 
 
 def _migrate_llm_columns(conn):
