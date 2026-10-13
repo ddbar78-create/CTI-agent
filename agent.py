@@ -35,6 +35,8 @@ from domain_age import run_domain_age_check
 from watchlist import run_watchlist_scan
 from more_sources import run_more_sources
 from tech_watch import match_kev_entries
+from run_status import tracked, record
+from export_feeds import export_all
 
 
 def run_once():
@@ -43,6 +45,7 @@ def run_once():
     total_new_iocs = 0
     high_severity_hits = []  # (titel, aktör, allvarlighet) för LLM-flaggade artiklar
     crawl_count = 0  # begränsar antal fullständiga sidhämtningar denna körning
+    feed_status = []  # (namn, ok, nya, fel) — sparas när databastransaktionen stängts
 
     with get_conn() as conn:
         for feed in FEEDS:
@@ -51,12 +54,15 @@ def run_once():
                 parsed = feedparser.parse(feed["url"])
             except Exception as e:
                 print(f"    Fel vid hämtning: {e}", file=sys.stderr)
+                feed_status.append((feed["name"], 0, 0, str(e)))
                 continue
 
             if parsed.bozo and not parsed.entries:
                 print(f"    Kunde inte tolka flödet ({feed['url']})", file=sys.stderr)
+                feed_status.append((feed["name"], 0, 0, "kunde inte tolka flödet"))
                 continue
 
+            new_in_feed = 0
             for entry in parsed.entries:
                 title = entry.get("title", "")
                 link = entry.get("link", "")
@@ -70,6 +76,7 @@ def run_once():
                     continue  # redan sedd tidigare
 
                 total_new_articles += 1
+                new_in_feed += 1
 
                 # Hämta fullständig artikeltext + utvalda referenslänkar
                 combined_text = f"{title}\n{summary}"
@@ -102,33 +109,42 @@ def run_once():
                         if severity in ("high", "critical"):
                             high_severity_hits.append((title[:80], actor, severity))
 
+            feed_status.append((feed["name"], 1, new_in_feed, ""))
+
+    for name, ok, n, err in feed_status:
+        record(name, ok, n, err)
+
     # Strukturerad, källbekräftad IOC-data från abuse.ch ThreatFox
-    threatfox_count = run_threatfox(days=1)
+    threatfox_count = tracked("ThreatFox", run_threatfox, days=1, default=0)
 
     # Publika Telegram-kanaler (se telegram_channels.py för konfiguration)
-    telegram_count = run_telegram(TELEGRAM_CHANNELS)
+    telegram_count = tracked("Telegram", run_telegram, TELEGRAM_CHANNELS, default=0)
 
     # Vad ransomware-grupper själva offentliggör om sina offer
-    new_victims = run_ransomware_live()
+    new_victims = tracked("ransomware.live", run_ransomware_live, default=[])
 
     # Extra källor: CISA KEV, URLhaus, Feodo Tracker och fler RSS-flöden.
     # Körs före berikningen så att nya IP:er och CVE:er hinner slås upp direkt.
-    more = run_more_sources()
+    try:
+        more = run_more_sources()
+    except Exception as e:  # sista skyddsnätet
+        print(f"    Extra källor: oväntat fel ({e})", file=sys.stderr)
+        more = {"kev": [], "urlhaus": 0, "feodo": 0, "rss": 0, "mbazaar": 0, "otx": 0}
 
     # Berika insamlade IP-adresser med öppna portar/CVE:er (Shodan)
-    run_shodan_enrichment()
+    tracked("Shodan", run_shodan_enrichment, default=None)
 
     # Prioritera CVE:er med EPSS/KEV-data (Shodan CVEDB, gratis)
-    urgent_cves = run_cve_enrichment()
+    urgent_cves = tracked("CVE-prioritering", run_cve_enrichment, default=[])
 
     # Hitta relaterad infrastruktur för domäner via Certificate Transparency
-    run_crtsh_enrichment()
+    tracked("crt.sh", run_crtsh_enrichment, default=0)
 
     # Kontrollera domänålder via RDAP — flaggar nyregistrerade domäner
-    new_registered_domains = run_domain_age_check()
+    new_registered_domains = tracked("RDAP domänålder", run_domain_age_check, default=[])
 
     # Skanna alla insamlade källor mot din bevakningslista (watchlist.py)
-    new_watch_hits = run_watchlist_scan() or []
+    new_watch_hits = tracked("Bevakningslista", run_watchlist_scan, default=[]) or []
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
@@ -190,6 +206,12 @@ def run_once():
             f"🔵 {more['urlhaus']} nya URLhaus-IOCs och {more['feodo']} nya botnet-C2-IP:er (Feodo)"
         )
 
+    if more.get("mbazaar"):
+        summary_lines.append(f"🔵 {more['mbazaar']} nya malware-hashar (MalwareBazaar)")
+
+    if more.get("otx"):
+        summary_lines.append(f"🔵 {more['otx']} nya kampanjer (AlienVault OTX)")
+
     if telegram_count:
         summary_lines.append(f"🔵 {telegram_count} nya Telegram-inlägg")
 
@@ -208,6 +230,9 @@ def run_once():
 
     # Håll databasen hanterbar i storlek (se retention.py för policy)
     prune_old_data()
+
+    # Exportera IOC:er som CSV, blocklistor och STIX 2.1 (mappen exports/)
+    tracked("Export", lambda: export_all()["iocs.csv"], default=0)
 
     # Bygg om instrumentpanelen (index.html) med senaste datan
     generate_report()
