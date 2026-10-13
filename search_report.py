@@ -153,6 +153,7 @@ _TEMPLATE = r"""
 <script>
 (function() {
   const D = __DATA__;
+  window.__ctiData = D;  // delas med aktörsprofilerna
   const input = document.getElementById("srInput");
   const reportBtn = document.getElementById("srReport");
   const summaryEl = document.getElementById("srSummary");
@@ -261,6 +262,7 @@ _TEMPLATE = r"""
       render();
     }, 200);
   });
+  window.ctiSearch = q => { input.value = q; input.dispatchEvent(new Event("input")); };
   document.querySelectorAll(".sr-ex").forEach(a => a.addEventListener("click", e => {
     e.preventDefault(); input.value = a.textContent; input.dispatchEvent(new Event("input"));
   }));
