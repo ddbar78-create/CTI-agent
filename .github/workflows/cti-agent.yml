@@ -1,34 +1,49 @@
-name: CTI Agent
+name: CTI agent
+
 on:
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
+    - cron: "7 * * * *"   # varje timme, minut 07
+  workflow_dispatch:       # gör att du kan köra manuellt via Actions-fliken
+
 permissions:
-  contents: write
+  contents: write          # behövs för att agenten ska kunna committa cti.db, index.html och exports/
+
+concurrency:
+  group: cti-agent
+  cancel-in-progress: false
+
 jobs:
-  collect:
+  run:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - name: Checka ut repot
-        uses: actions/checkout@v4
-      - name: Sätt upp Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.12"
+
       - name: Installera beroenden
         run: pip install feedparser requests beautifulsoup4
+
       - name: Kör agenten
-        run: python3 agent.py
         env:
           THREATFOX_AUTH_KEY: ${{ secrets.THREATFOX_AUTH_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SHODAN_API_KEY: ${{ secrets.SHODAN_API_KEY }}
-      - name: Committa uppdaterad databas
+          OTX_API_KEY: ${{ secrets.OTX_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PYTHONUNBUFFERED: "1"
+        run: python agent.py
+
+      - name: Committa resultat
         run: |
-          git config user.name "CTI Agent Bot"
-          git config user.email "actions@github.com"
-          if [ -f cti.db ]; then
-            git add cti.db index.html
-            git diff --staged --quiet || git commit -m "Uppdatera IOC-databas"
-            git push origin HEAD:${{ github.ref_name }}
+          git config user.name "cti-agent"
+          git config user.email "cti-agent@users.noreply.github.com"
+          git add cti.db index.html exports
+          if git diff --cached --quiet; then
+            echo "Inga ändringar att committa"
+          else
+            git commit -m "CTI-uppdatering $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --rebase -X theirs || true
+            git push
           fi
