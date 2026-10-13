@@ -12,6 +12,7 @@ import time
 import sys
 
 import feedparser
+import requests
 
 from feeds import FEEDS
 from extract import extract_iocs
@@ -39,6 +40,30 @@ from run_status import tracked, record
 from export_feeds import export_all
 
 
+
+_BROWSER_UA = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/124.0 Safari/537.36"
+)
+
+
+def _fetch_feed(url: str):
+    """Hämtar RSS med webbläsar-UA (t.ex. cisa.gov blockerar standard-agenten)."""
+    try:
+        r = requests.get(
+            url, timeout=30,
+            headers={"User-Agent": _BROWSER_UA,
+                     "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, */*"},
+        )
+        if r.ok and r.content:
+            parsed = feedparser.parse(r.content)
+            if parsed.entries:
+                return parsed
+    except requests.RequestException:
+        pass
+    return feedparser.parse(url, agent=_BROWSER_UA)
+
+
 def run_once():
     init_db()
     total_new_articles = 0
@@ -51,7 +76,7 @@ def run_once():
         for feed in FEEDS:
             print(f"[+] Hämtar: {feed['name']} ...")
             try:
-                parsed = feedparser.parse(feed["url"])
+                parsed = _fetch_feed(feed["url"])
             except Exception as e:
                 print(f"    Fel vid hämtning: {e}", file=sys.stderr)
                 feed_status.append((feed["name"], 0, 0, str(e)))
