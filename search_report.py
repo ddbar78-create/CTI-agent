@@ -61,11 +61,11 @@ def build_search_data(db_path: str = DB_PATH) -> dict:
     conn = sqlite3.connect(db_path)
 
     articles = [
-        [r[0] or "", r[1] or "", r[2] or "", (r[3] or "")[:25], _clean_text(r[4] or r[5])]
+        [r[0] or "", r[1] or "", r[2] or "", (r[3] or "")[:25], _clean_text(r[4] or r[5]), (r[6] or "")[:19]]
         for r in _fetch(
             conn,
             """
-            SELECT title, link, feed, published, full_text, summary FROM articles
+            SELECT title, link, feed, published, full_text, summary, fetched_at FROM articles
             WHERE feed != 'ransomware.live' AND feed NOT LIKE 'ThreatFox%'
             ORDER BY id DESC LIMIT ?
             """,
@@ -74,11 +74,11 @@ def build_search_data(db_path: str = DB_PATH) -> dict:
     ]
 
     iocs = [
-        [r[0], r[1], r[2] or ""]
+        [r[0], r[1], r[2] or "", (r[3] or "")[:19]]
         for r in _fetch(
             conn,
             """
-            SELECT iocs.ioc_type, iocs.value, articles.feed FROM iocs
+            SELECT iocs.ioc_type, iocs.value, articles.feed, articles.fetched_at FROM iocs
             JOIN articles ON articles.id = iocs.article_id
             ORDER BY iocs.id DESC LIMIT ?
             """,
@@ -113,7 +113,7 @@ def build_search_data(db_path: str = DB_PATH) -> dict:
     # Malware-familjer funna i IOC-värdena -> ATT&CK-kategori + tekniker
     families = {}
     if parse_family_from_value and classify_family:
-        for _type, value, _feed in iocs:
+        for _type, value, _feed, _seen in iocs:
             fam = parse_family_from_value(value)
             if fam and fam not in families:
                 try:
@@ -136,7 +136,13 @@ _TEMPLATE = r"""
   <div class="sr-bar">
     <input type="search" id="srInput" class="sr-input" autocomplete="off"
            placeholder="Sök: malware, aktör/grupp, CVE, domän, IP, hash, land, teknik (t.ex. T1566)…">
+    <select id="srTime" class="sr-time" title="Begränsa artiklar, IOC:er och offer till senaste tiden">
+      <option value="0">Alla tider</option><option value="1">24 timmar</option>
+      <option value="7">7 dagar</option><option value="30">30 dagar</option>
+    </select>
     <button class="map-btn" id="srReport" disabled>📄 Skapa rapport</button>
+    <button class="map-btn" id="srSigma" disabled title="Sigma-regler (DNS, nätverk, proxy, hashar) från träffarnas IOC:er">Sigma</button>
+    <button class="map-btn" id="srYara" disabled title="YARA-hashregel från träffarnas filhashar">YARA</button>
   </div>
   <div class="sr-examples dim">
     Exempel:
@@ -178,12 +184,17 @@ _TEMPLATE = r"""
 
   function matchAll(h, terms) { return terms.every(t => h.includes(t)); }
 
+  const timeEl = document.getElementById("srTime");
+  const toMs = s => { if (!s) return NaN; const t = Date.parse(String(s).replace(" ", "T") + (String(s).length <= 10 ? "T00:00:00Z" : "Z")); return t; };
   function search(q) {
     const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-    const r = { q, articles: [], iocs: [], victims: [], cves: [], families: [] };
-    D.articles.forEach((a, i) => { if (matchAll(hay.articles[i], terms)) r.articles.push(a); });
-    D.iocs.forEach((x, i) => { if (matchAll(hay.iocs[i], terms)) r.iocs.push(x); });
-    D.victims.forEach((v, i) => { if (matchAll(hay.victims[i], terms)) r.victims.push(v); });
+    const days = parseInt(timeEl.value, 10) || 0;
+    const cutoff = days ? Date.now() - days * 86400000 : 0;
+    const recent = s => !cutoff || toMs(s) >= cutoff;   // saknat/ogiltigt datum utesluts vid aktivt filter
+    const r = { q, days, articles: [], iocs: [], victims: [], cves: [], families: [] };
+    D.articles.forEach((a, i) => { if (recent(a[5]) && matchAll(hay.articles[i], terms)) r.articles.push(a); });
+    D.iocs.forEach((x, i) => { if (recent(x[3]) && matchAll(hay.iocs[i], terms)) r.iocs.push(x); });
+    D.victims.forEach((v, i) => { if (recent(v[4]) && matchAll(hay.victims[i], terms)) r.victims.push(v); });
     D.cves.forEach((c, i) => { if (matchAll(hay.cves[i], terms)) r.cves.push(c); });
     // familjer: antingen namn/kategori/teknik matchar, eller familjen finns bland träffade IOCs
     const fromIocs = {};
@@ -214,15 +225,17 @@ _TEMPLATE = r"""
   }
 
   function render() {
-    if (!current) { summaryEl.innerHTML = ""; resultsEl.innerHTML = ""; reportBtn.disabled = true; return; }
+    if (!current) { summaryEl.innerHTML = ""; resultsEl.innerHTML = ""; reportBtn.disabled = true; document.getElementById("srSigma").disabled = true; document.getElementById("srYara").disabled = true; return; }
     const r = current;
     const total = r.articles.length + r.iocs.length + r.victims.length + r.cves.length + r.families.length;
     reportBtn.disabled = total === 0;
+    document.getElementById("srSigma").disabled = r.iocs.length === 0;
+    document.getElementById("srYara").disabled = r.iocs.length === 0;
     if (!total) {
       summaryEl.innerHTML = `<span class="dim">Inga träffar för <strong>${esc(r.q)}</strong>.</span>`;
       resultsEl.innerHTML = ""; return;
     }
-    summaryEl.innerHTML = `Träffar för <strong>${esc(r.q)}</strong>: ` +
+    summaryEl.innerHTML = `Träffar för <strong>${esc(r.q)}</strong>${r.days ? ` <span class="dim">(senaste ${r.days === 1 ? "24 timmarna" : r.days + " dagarna"})</span>` : ""}: ` +
       `<span class="sr-chip">${r.families.length} malware</span>` +
       `<span class="sr-chip">${r.iocs.length} IOCs</span>` +
       `<span class="sr-chip">${r.articles.length} artiklar</span>` +
@@ -263,9 +276,56 @@ _TEMPLATE = r"""
     }, 200);
   });
   window.ctiSearch = q => { input.value = q; input.dispatchEvent(new Event("input")); };
+  timeEl.addEventListener("change", () => input.dispatchEvent(new Event("input")));
   document.querySelectorAll(".sr-ex").forEach(a => a.addEventListener("click", e => {
     e.preventDefault(); input.value = a.textContent; input.dispatchEvent(new Event("input"));
   }));
+
+
+  // ---------- Detektionsregler (Sigma / YARA) ----------
+  const uuid = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+    : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === "x" ? r : (r & 3 | 8)).toString(16); });
+  const yq = s => "'" + String(s).replace(/'/g, "''") + "'";
+  const uniq = a => Array.from(new Set(a));
+  window.ctiRules = {
+    sigma(name, iocs, techs) {
+      const vals = t => uniq(iocs.filter(x => t.includes(x[0])).map(x => cleanValue(x[1]))).slice(0, 100);
+      const domains = vals(["domain"]).map(d => d.toLowerCase());
+      const ips = uniq(vals(["ipv4", "ip:port"]).map(v => v.split(":")[0]));
+      const urls = vals(["url"]);
+      const hashes = [...vals(["sha256_hash"]).map(h => "SHA256=" + h.toUpperCase()), ...vals(["sha1_hash"]).map(h => "SHA1=" + h.toUpperCase()), ...vals(["md5_hash"]).map(h => "MD5=" + h.toUpperCase())];
+      const tags = uniq((techs || []).map(t => (String(t).match(/T\d{4}(?:\.\d{3})?/) || [""])[0]).filter(Boolean)).map(t => "attack." + t.toLowerCase());
+      const date = new Date().toISOString().slice(0, 10).replace(/-/g, "/");
+      const head = (title, desc) => [
+        "title: " + title, "id: " + uuid(), "status: experimental",
+        "description: " + yq(desc + " Genererad av CTI-agent från insamlade IOC:er – verifiera mot källa och justera fältnamn efter din miljö."),
+        "author: CTI-agent", "date: " + date,
+        ...(tags.length ? ["tags:", ...tags.map(t => "    - " + t)] : [])];
+      const list = (field, arr) => ["    selection:", "        " + field + ":", ...arr.map(v => "            - " + yq(v))];
+      const tail = ["falsepositives:", "    - Återanvända eller delade värden hos legitima tjänster", "level: high"];
+      const docs = [];
+      if (domains.length) docs.push([...head("DNS-uppslag mot domäner kopplade till " + name, "Domäner kopplade till " + name + "."),
+        "logsource:", "    category: dns_query", "detection:", ...list("QueryName|endswith", domains), "    condition: selection", ...tail].join("\n"));
+      if (ips.length) docs.push([...head("Nätverksanslutning till IP-adresser kopplade till " + name, "IP-adresser kopplade till " + name + "."),
+        "logsource:", "    category: network_connection", "detection:", ...list("DestinationIp", ips), "    condition: selection", ...tail].join("\n"));
+      if (urls.length) docs.push([...head("Webbförfrågan mot URL:er kopplade till " + name, "URL:er kopplade till " + name + "."),
+        "logsource:", "    category: proxy", "detection:", ...list("c-uri|contains", urls), "    condition: selection", ...tail].join("\n"));
+      if (hashes.length) docs.push([...head("Körning av filer med hashar kopplade till " + name, "Kända filhashar kopplade till " + name + "."),
+        "logsource:", "    category: process_creation", "    product: windows", "detection:", ...list("Hashes|contains", hashes), "    condition: selection", ...tail].join("\n"));
+      return docs.join("\n---\n") + (docs.length ? "\n" : "");
+    },
+    yara(name, iocs) {
+      const hs = (t) => uniq(iocs.filter(x => x[0] === t).map(x => cleanValue(x[1]).toLowerCase())).slice(0, 100);
+      const conds = [...hs("sha256_hash").map(h => `hash.sha256(0, filesize) == "${h}"`), ...hs("sha1_hash").map(h => `hash.sha1(0, filesize) == "${h}"`), ...hs("md5_hash").map(h => `hash.md5(0, filesize) == "${h}"`)];
+      if (!conds.length) return "";
+      const id = "CTI_" + String(name).replace(/[^A-Za-z0-9]+/g, "_").replace(/^_+|_+$/g, "") + "_known_samples";
+      return ['import "hash"', "", `rule ${/^[0-9]/.test(id) ? "_" + id : id}`, "{", "    meta:",
+        `        description = "Kända prover kopplade till ${String(name).replace(/"/g, "'")} (matchar via filhash)"`,
+        '        author = "CTI-agent"', `        date = "${new Date().toISOString().slice(0, 10)}"`,
+        '        note = "Hash-regel: matchar bara exakt kända filer, inte varianter eller beteende. Verifiera mot källa."',
+        "    condition:", "        filesize < 100MB and (", "            " + conds.join("\n            or "), "        )", "}", ""].join("\n");
+    }
+  };
 
   // ---------- Rapport ----------
   const defang = (type, v) => {
@@ -306,7 +366,7 @@ _TEMPLATE = r"""
   function buildMarkdown(r, doDefang) {
     const now = new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC";
     const L = [];
-    L.push(`# Hotunderrättelserapport: ${r.q}`, "", `Genererad ${now} från CTI-agentens insamlade data. Automatisk sammanställning – verifiera mot primärkällor innan åtgärd.`, "");
+    L.push(`# Hotunderrättelserapport: ${r.q}`, "", ...(r.days ? [`Tidsfilter: senaste ${r.days === 1 ? "24 timmarna" : r.days + " dagarna"}.`, ""] : []), `Genererad ${now} från CTI-agentens insamlade data. Automatisk sammanställning – verifiera mot primärkällor innan åtgärd.`, "");
     L.push("## Sammanfattning", "",
       `- Malware-familjer: **${r.families.length}**`, `- IOCs: **${r.iocs.length}**`,
       `- Artiklar: **${r.articles.length}**`, `- Ransomware-offer: **${r.victims.length}**`, `- CVE:er: **${r.cves.length}**`, "");
@@ -379,6 +439,22 @@ _TEMPLATE = r"""
     setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   }
 
+  window.ctiDownload = download;
+  const sigmaBtn = document.getElementById("srSigma"), yaraBtn = document.getElementById("srYara");
+  const techsOf = r => uniq(r.families.flatMap(f => f.tech));
+  sigmaBtn.addEventListener("click", () => {
+    if (!current) return;
+    const txt = window.ctiRules.sigma(current.q, current.iocs, techsOf(current));
+    if (!txt) { alert("Inga domäner, IP-adresser, URL:er eller hashar bland träffarna att bygga regler av."); return; }
+    download("sigma-" + current.q.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40) + ".yml", txt, "text/yaml");
+  });
+  yaraBtn.addEventListener("click", () => {
+    if (!current) return;
+    const txt = window.ctiRules.yara(current.q, current.iocs);
+    if (!txt) { alert("Inga filhashar (SHA-256/SHA-1/MD5) bland träffarna."); return; }
+    download("yara-" + current.q.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40) + ".yar", txt, "text/plain");
+  });
+
   reportBtn.addEventListener("click", () => {
     if (!current) return;
     const doDefang = confirm("Defanga domäner/URL:er/IP i rapporten (hxxp, [.])?\n\nOK = ja (säkrare att dela), Avbryt = nej");
@@ -408,6 +484,10 @@ SEARCH_CSS = """
     padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.95rem; font-family: var(--sans);
   }
   .sr-input:focus { outline: none; border-color: var(--amber); }
+  .sr-time {
+    background: var(--panel); border: 1px solid var(--panel-border); color: var(--text);
+    border-radius: 6px; padding: 0 0.6rem; font-size: 0.85rem; font-family: var(--sans);
+  }
   .map-btn:disabled { opacity: 0.4; cursor: default; }
   .sr-examples { font-size: 0.78rem; margin-bottom: 0.8rem; white-space: normal; }
   .sr-summary { margin: 0.6rem 0 1rem; }
