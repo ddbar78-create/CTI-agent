@@ -20,6 +20,9 @@ from daily_briefing import build_briefing
 from search_report import build_search_block, SEARCH_CSS
 from actor_profiles import build_actor_profiles_block, ACTOR_CSS
 from tech_watch import build_tech_watch_html, TECH_CSS
+import os
+import json as _json
+from run_status import get_all as get_run_status
 from sector_watch import (
     classify_sector, WATCHED_SECTORS, is_nordic_country, is_nordic_article,
 )
@@ -444,6 +447,85 @@ def _svg_trend_chart(dates: list, series: dict, width: int = 1000, height: int =
         + "</svg>"
         + f'<div class="legend">{legend}</div>'
     )
+
+
+STATUS_STALE_MINUTES = 180
+
+
+def _status_box_html() -> str:
+    """Källstatus: vilka källor fungerade i senaste körningen."""
+    rows = get_run_status()
+    if not rows:
+        return ""
+    now = datetime.now(timezone.utc)
+    items, failed, stale, ok_n = [], [], [], 0
+    for r in rows:
+        try:
+            age = (now - datetime.strptime(r["updated_at"][:19], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)).total_seconds() / 60
+        except (ValueError, TypeError):
+            age = 0
+        if r["ok"] == -1:
+            cls, label = "off", "ej konfigurerad"
+        elif r["ok"] == 0:
+            cls, label = "bad", r["error"] or "fel"
+            failed.append(r["source"])
+        elif age > STATUS_STALE_MINUTES:
+            cls, label = "stale", f"senast för {int(age // 60)} h sedan"
+            stale.append(r["source"])
+        else:
+            cls, label = "ok", f'{r["count"]} nya'
+            ok_n += 1
+        items.append(
+            f'<div class="st-item st-{cls}" title="{_esc(label)}"><span class="st-dot"></span>'
+            f'<span class="st-name">{_esc(r["source"])}</span><span class="st-label">{_esc(label[:40])}</span></div>'
+        )
+    total_active = len([r for r in rows if r["ok"] != -1])
+    problems = len(failed) + len(stale)
+    summary = f"Källstatus: {ok_n} av {total_active} källor OK" + (f" · {problems} med problem" if problems else "")
+    return (
+        f'<details class="status-box {"has-problems" if problems else ""}"{" open" if problems else ""}>'
+        f'<summary>{_esc(summary)}</summary><div class="st-grid">{"".join(items)}</div></details>'
+    )
+
+
+def _exports_html(export_dir: str = "exports") -> str:
+    """Länkar till exportfilerna (skrivs av export_feeds.py) med antal poster."""
+    spec = [
+        ("blocklist-domains.txt", "Domäner (blocklista)", "Domäner, en per rad – för DNS-filter/proxy"),
+        ("blocklist-ips.txt", "IP-adresser (blocklista)", "Publika IPv4, en per rad – för brandvägg"),
+        ("blocklist-urls.txt", "URL:er (blocklista)", "En per rad – för proxy/webbfilter"),
+        ("blocklist-sha256.txt", "SHA-256-hashar", "En per rad – för EDR/AV"),
+        ("iocs.csv", "Alla IOC:er (CSV)", "Typ, värde, familj, confidence, källa, datum"),
+        ("iocs-stix.json", "STIX 2.1-bundle", "För MISP, OpenCTI m.fl."),
+    ]
+    rows = []
+    for fname, label, desc in spec:
+        path = os.path.join(export_dir, fname)
+        if not os.path.exists(path):
+            continue
+        try:
+            if fname.endswith(".json"):
+                with open(path, encoding="utf-8") as f:
+                    n = sum(1 for o in _json.load(f).get("objects", []) if o.get("type") == "indicator")
+            else:
+                with open(path, encoding="utf-8") as f:
+                    n = sum(1 for line in f if line.strip()) - (1 if fname.endswith(".csv") else 0)
+        except Exception:
+            n = "?"
+        size_kb = os.path.getsize(path) / 1024
+        rows.append(
+            f'<tr><td><a href="{export_dir}/{fname}" download>{_esc(label)}</a></td>'
+            f'<td class="dim">{_esc(desc)}</td><td class="dim mono">{n} poster · {size_kb:.0f} kB</td></tr>'
+        )
+    if not rows:
+        return '<p class="empty">Inga exportfiler ännu – de skapas vid nästa körning.</p>'
+    return (
+        '<p class="dim" style="white-space:normal;margin-top:0">Uppdateras varje timme. Blocklistorna innehåller bara '
+        'IOC:er från källor som anger confidence (≥ 75), inte regex-plockade värden ur artiklar. '
+        'Granska alltid innan du blockerar i produktion.</p>'
+        '<table><tbody>' + "".join(rows) + '</tbody></table>'
+    )
+
 
 
 def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
@@ -977,6 +1059,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             ioc_search_control + _table_block(
                 [("Typ", "text"), ("Värde", "text"), ("Källa", "text")], iocs_html, "iocTable"
             ).replace('<div class="controls">\n    ', "")),
+        ("sec-export", "Export (blocklistor, CSV, STIX)", _exports_html()),
         ("sec-domainage", "Domänålder (RDAP/WHOIS) — nyregistrerade domäner flaggade",
             _table_block([("Domän", "text"), ("Ålder", "number"), ("Registrerad", "text"), ("Registrar", "text")], domain_age_html, "domainAgeTable")),
         ("sec-crtsh", "Relaterad infrastruktur (Certificate Transparency, crt.sh)",
@@ -988,6 +1071,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         ("sec-articles", "Senaste artiklar (RSS / Telegram)",
             _table_block([("Källa", "text"), ("Titel", "text"), ("Fulltext", None)], articles_html, "articlesTable", searchable=True)),
     ]
+
+    status_html = _status_box_html()
 
     toc_html = "".join(
         f'<a href="#{sid}" class="toc-link">{title.split("(")[0].split(",")[0].strip()}</a>'
@@ -1001,6 +1086,9 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CTI-agent — instrumentpanel</title>
+<script>
+try {{ if (localStorage.getItem("cti-theme") === "light") document.documentElement.setAttribute("data-theme", "light"); }} catch (e) {{}}
+</script>
 <style>
   :root {{
     --bg: #12161d;
@@ -1014,6 +1102,30 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
     --sans: 'IBM Plex Sans', -apple-system, sans-serif;
   }}
+  :root[data-theme="light"] {{
+    --bg: #f4f5f8;
+    --panel: #ffffff;
+    --panel-border: #d8dce5;
+    --text: #1c2230;
+    --text-dim: #5d687c;
+    --amber: #b86e00;
+    --red: #c0392b;
+    --blue: #2a5db0;
+  }}
+  .theme-btn {{ position: absolute; right: 0; top: 0; }}
+  header {{ position: relative; }}
+  .status-box {{ background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px; margin-bottom: 1rem; }}
+  .status-box.has-problems {{ border-left: 3px solid var(--red); }}
+  .status-box summary {{ cursor: pointer; padding: 0.55rem 1rem; font-size: 0.85rem; }}
+  .st-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.3rem 1rem; padding: 0.3rem 1rem 0.8rem; }}
+  .st-item {{ display: grid; grid-template-columns: 10px 1fr auto; gap: 0.5rem; align-items: center; font-size: 0.78rem; }}
+  .st-dot {{ width: 8px; height: 8px; border-radius: 50%; background: #3fb27f; }}
+  .st-bad .st-dot {{ background: var(--red); }}
+  .st-stale .st-dot {{ background: var(--amber); }}
+  .st-off .st-dot {{ background: var(--text-dim); opacity: 0.5; }}
+  .st-name {{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+  .st-label {{ color: var(--text-dim); font-size: 0.72rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+  .st-bad .st-label {{ color: var(--red); }}
   * {{ box-sizing: border-box; }}
   body {{
     background: var(--bg);
@@ -1240,9 +1352,12 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
 <div id="chartTooltip" class="chart-tooltip"></div>
 <div class="wrap">
   <header>
+    <button class="map-btn theme-btn" id="themeBtn" onclick="toggleTheme()" title="Växla ljust/mörkt läge">◐ Tema</button>
     <h1>CTI-agent — instrumentpanel</h1>
     <div class="subtitle">Senast uppdaterad {generated_at} · körs automatiskt varje timme</div>
   </header>
+
+  {status_html}
 
   <div class="briefing-box">
     <div class="briefing-title">Senaste dygnet</div>
@@ -1265,6 +1380,14 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
 </div>
 
 <script>
+// --- Ljust/mörkt läge ---
+function toggleTheme() {{
+  const root = document.documentElement;
+  const light = root.getAttribute('data-theme') !== 'light';
+  if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+  try {{ localStorage.setItem('cti-theme', light ? 'light' : 'dark'); }} catch (e) {{}}
+}}
+
 // --- Ihopfällbara sektioner ---
 function toggleSection(id) {{
   document.getElementById(id + '-body').classList.toggle('collapsed');
