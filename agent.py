@@ -34,6 +34,7 @@ from crt_sh import run_crtsh_enrichment
 from domain_age import run_domain_age_check
 from watchlist import run_watchlist_scan
 from more_sources import run_more_sources
+from tech_watch import match_kev_entries
 
 
 def run_once():
@@ -146,6 +147,13 @@ def run_once():
                 summary_lines.append(f"   • {h.get('entry', '?')} [{h.get('kind', '')}] {str(h.get('detail', ''))[:100]}")
             else:
                 summary_lines.append(f"   • {h}")
+
+    tech_hits = match_kev_entries(more["kev"])
+    if tech_hits:
+        summary_lines.append(f"🛡️ {len(tech_hits)} nya KEV-sårbarheter berör din teknik:")
+        for t in tech_hits[:10]:
+            ransom = " – används av ransomware" if t["ransomware"] else ""
+            summary_lines.append(f"   • {t['tech']}: {t['cve_id']}{ransom}")
 
     if more["kev"]:
         summary_lines.append(f"🔴 {len(more['kev'])} nya aktivt utnyttjade sårbarheter (CISA KEV):")
