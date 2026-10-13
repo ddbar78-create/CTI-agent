@@ -18,6 +18,8 @@ from attack_mapping import parse_family_from_value, classify_family
 from watchlist import WATCHLIST
 from daily_briefing import build_briefing
 from search_report import build_search_block, SEARCH_CSS
+from actor_profiles import build_actor_profiles_block, ACTOR_CSS
+from tech_watch import build_tech_watch_html, TECH_CSS
 from sector_watch import (
     classify_sector, WATCHED_SECTORS, is_nordic_country, is_nordic_article,
 )
@@ -941,8 +943,15 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         print(f"    Sök & rapport kunde inte byggas: {e}")
         search_html = '<p class="empty">Sökfunktionen kunde inte byggas denna körning.</p>'
 
+    try:
+        tech_html = build_tech_watch_html(db_path)
+    except Exception as e:
+        print(f"    Teknikbevakning kunde inte byggas: {e}")
+        tech_html = '<p class="empty">Teknikbevakningen kunde inte byggas denna körning.</p>'
+
     sections = [
         ("sec-search", "Sök &amp; rapport", search_html),
+        ("sec-actors", "Aktörsprofiler", build_actor_profiles_block()),
         ("sec-trend", "Trend, senaste dagarna", f'''
             <div class="chart-grid">
               <div class="chart-panel">
@@ -955,6 +964,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
               </div>
             </div>'''),
         ("sec-watchlist", "Bevakningslista", watchlist_html),
+        ("sec-tech", "Teknikbevakning", tech_html),
         ("sec-attack", "Malware-familjer mot MITRE ATT&CK", attack_html),
         ("sec-sectors", "Sektorbevakning", sector_html),
         ("sec-ioctypes", "IOC-typer i databasen (klicka för att filtrera)", breakdown_html),
@@ -1182,6 +1192,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     font-size: 0.85rem;
   }}
   {SEARCH_CSS}
+  {ACTOR_CSS}
+  {TECH_CSS}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
