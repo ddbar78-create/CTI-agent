@@ -207,8 +207,19 @@ _TEMPLATE = r"""
       <h4>Relaterade artiklar</h4>${articleList(arts)}
       <div class="ap-actions">
         <button class="map-btn" id="apMd">⬇ Profil som Markdown</button>
+        <button class="map-btn" id="apSigma">⬇ Sigma-regler</button>
+        <button class="map-btn" id="apYara">⬇ YARA (hash)</button>
         <button class="map-btn" id="apSearch">🔎 Öppna i Sök &amp; rapport</button>
       </div>`;
+    const famIocs = D.iocs.filter(x => familyOf(x[1]) === f.name);
+    document.getElementById("apSigma").onclick = () => {
+      const txt = window.ctiRules ? window.ctiRules.sigma(f.name, famIocs, meta.tech) : "";
+      txt ? window.ctiDownload("sigma-" + slug(f.name) + ".yml", txt, "text/yaml") : alert("Inga domäner, IP:n, URL:er eller hashar att bygga regler av.");
+    };
+    document.getElementById("apYara").onclick = () => {
+      const txt = window.ctiRules ? window.ctiRules.yara(f.name, famIocs) : "";
+      txt ? window.ctiDownload("yara-" + slug(f.name) + ".yar", txt, "text/plain") : alert("Inga filhashar för den här familjen.");
+    };
     document.getElementById("apMd").onclick = () => {
       const L = [`# Malware-profil: ${f.name}`, "", `Sammanställd ${new Date().toISOString().slice(0, 10)} av CTI-agenten (urval: ${f.n} IOCs).`, "",
         `- Kategori: ${meta.cat || "okänd"}`, "", "## ATT&CK (approximation)", ...(meta.tech.length ? meta.tech.map(t => `- ${t}`) : ["- ingen mappning"]), "",
