@@ -33,6 +33,7 @@ from article_crawler import crawl_article, MAX_CRAWLS_PER_RUN, DELAY_BETWEEN_REQ
 from crt_sh import run_crtsh_enrichment
 from domain_age import run_domain_age_check
 from watchlist import run_watchlist_scan
+from more_sources import run_more_sources
 
 
 def run_once():
@@ -109,6 +110,10 @@ def run_once():
     # Vad ransomware-grupper själva offentliggör om sina offer
     new_victims = run_ransomware_live()
 
+    # Extra källor: CISA KEV, URLhaus, Feodo Tracker och fler RSS-flöden.
+    # Körs före berikningen så att nya IP:er och CVE:er hinner slås upp direkt.
+    more = run_more_sources()
+
     # Berika insamlade IP-adresser med öppna portar/CVE:er (Shodan)
     run_shodan_enrichment()
 
@@ -121,9 +126,8 @@ def run_once():
     # Kontrollera domänålder via RDAP — flaggar nyregistrerade domäner
     new_registered_domains = run_domain_age_check()
 
-    # Skanna alla källor mot bevakningslistan (watchlist.py). Sker FÖRE
-    # rensningen så kortlivade ThreatFox-träffar hinner sparas permanent.
-    new_watch_hits = run_watchlist_scan()
+    # Skanna alla insamlade källor mot din bevakningslista (watchlist.py)
+    new_watch_hits = run_watchlist_scan() or []
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
@@ -136,9 +140,18 @@ def run_once():
     summary_lines = []
 
     if new_watch_hits:
-        summary_lines.append(f"🚨 {len(new_watch_hits)} nya träffar på bevakningslistan:")
+        summary_lines.append(f"🚨 {len(new_watch_hits)} nya träffar på din bevakningslista:")
         for h in new_watch_hits[:10]:
-            summary_lines.append(f"   • [{h['kind']}] {h['entry']}: {h['detail']}")
+            if isinstance(h, dict):
+                summary_lines.append(f"   • {h.get('entry', '?')} [{h.get('kind', '')}] {str(h.get('detail', ''))[:100]}")
+            else:
+                summary_lines.append(f"   • {h}")
+
+    if more["kev"]:
+        summary_lines.append(f"🔴 {len(more['kev'])} nya aktivt utnyttjade sårbarheter (CISA KEV):")
+        for k in more["kev"][:10]:
+            ransom = " – används av ransomware" if k.get("ransomware") else ""
+            summary_lines.append(f"   • {k['cve_id']}{ransom}")
 
     if urgent_cves:
         summary_lines.append(f"🔴 {len(urgent_cves)} akuta CVE:er (KEV eller EPSS ≥ 50%):")
@@ -164,6 +177,11 @@ def run_once():
     if threatfox_count:
         summary_lines.append(f"🔵 {threatfox_count} nya ThreatFox-IOCs (confidence ≥ 75)")
 
+    if more["urlhaus"] or more["feodo"]:
+        summary_lines.append(
+            f"🔵 {more['urlhaus']} nya URLhaus-IOCs och {more['feodo']} nya botnet-C2-IP:er (Feodo)"
+        )
+
     if telegram_count:
         summary_lines.append(f"🔵 {telegram_count} nya Telegram-inlägg")
 
@@ -173,7 +191,7 @@ def run_once():
     with get_conn() as conn:
         record_daily_stats(
             conn,
-            new_articles=total_new_articles,
+            new_articles=total_new_articles + more["rss"],
             new_iocs_regex=total_new_iocs,
             new_iocs_threatfox=threatfox_count,
             new_telegram=telegram_count,
