@@ -240,23 +240,27 @@ _OTX_TYPES = {
 
 def parse_otx_pulse(p: dict):
     """Returnerar (titel, länk, sammanfattning, ioc_map) för en OTX-puls."""
-    attack = ", ".join(
-        f"{a.get('id', '')} {a.get('name') or a.get('display_name') or ''}".strip()
-        for a in (p.get("attack_ids") or [])[:12]
-    )
+    def _attack(a):
+        if isinstance(a, dict):
+            return f"{a.get('id', '')} {a.get('name') or a.get('display_name') or ''}".strip()
+        return str(a).strip()
+
+    attack = ", ".join(x for x in (_attack(a) for a in (p.get("attack_ids") or [])[:12]) if x)
     parts = [(p.get("description") or "")[:500]]
     if p.get("adversary"):
         parts.append(f"Aktör: {p['adversary']}.")
     if p.get("targeted_countries"):
-        parts.append("Mål-länder: " + ", ".join(p["targeted_countries"][:10]) + ".")
+        parts.append("Mål-länder: " + ", ".join(str(x) for x in p["targeted_countries"][:10]) + ".")
     if p.get("industries"):
-        parts.append("Branscher: " + ", ".join(p["industries"][:10]) + ".")
+        parts.append("Branscher: " + ", ".join(str(x) for x in p["industries"][:10]) + ".")
     if p.get("tags"):
-        parts.append("Taggar: " + ", ".join(p["tags"][:12]) + ".")
+        parts.append("Taggar: " + ", ".join(str(x) for x in p["tags"][:12]) + ".")
     if attack:
         parts.append("ATT&CK: " + attack + ".")
     ioc_map = {}
     for ind in (p.get("indicators") or [])[:OTX_MAX_IOCS_PER_PULSE]:
+        if not isinstance(ind, dict):
+            continue
         t = _OTX_TYPES.get(ind.get("type"))
         v = (ind.get("indicator") or "").strip()
         if t and v:
