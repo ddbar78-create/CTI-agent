@@ -31,22 +31,103 @@ import re
 from urllib.parse import urlparse
 
 WATCHLIST = [
-    # Platshållare — ändra eller ta bort. Exemplen nedan är utkommenterade;
-    # KONTROLLERA domänerna själv innan du använder dem.
+    # Startlista med nordiska transport-/infrastrukturaktörer. Domänerna är de
+    # offentliga huvuddomänerna men KONTROLLERA dem själv. Ta bort rader du inte
+    # vill ha och LÄGG TILL din egen organisation (kommun, region, arbetsgivare)
+    # med samma format.
     {
-        "name": "Exempelkommun (ändra mig)",
-        "terms": ["Exempelkommun"],
-        "domains": ["exempelkommun.example"],
+        "name": "Trafikverket",
+        "terms": ["Trafikverket"],
+        "domains": ["trafikverket.se"],
+    },
+    {
+        "name": "Transportstyrelsen",
+        "terms": ["Transportstyrelsen"],
+        "domains": ["transportstyrelsen.se"],
+    },
+    {
+        "name": "SJ",
+        "terms": ["SJ AB"],
+        "domains": ["sj.se"],
+        "brands": ["sjtag"],
+    },
+    {
+        "name": "Västtrafik",
+        "terms": ["Västtrafik", "Vasttrafik"],
+        "domains": ["vasttrafik.se"],
+    },
+    {
+        "name": "SL (Storstockholms Lokaltrafik)",
+        "terms": ["Storstockholms Lokaltrafik"],
+        "domains": ["sl.se"],
+    },
+    {
+        "name": "Skånetrafiken",
+        "terms": ["Skånetrafiken", "Skanetrafiken"],
+        "domains": ["skanetrafiken.se"],
+    },
+    {
+        "name": "Swedavia",
+        "terms": ["Swedavia"],
+        "domains": ["swedavia.se"],
+    },
+    {
+        "name": "PostNord",
+        "terms": ["PostNord"],
+        "domains": ["postnord.se", "postnord.com"],
+    },
+    {
+        "name": "Bane NOR",
+        "terms": ["Bane NOR"],
+        "domains": ["banenor.no"],
+    },
+    {
+        "name": "Ruter",
+        "terms": ["Ruter AS"],
+        "domains": ["ruter.no"],
+        "brands": ["ruter-"],
+    },
+    {
+        "name": "Avinor",
+        "terms": ["Avinor"],
+        "domains": ["avinor.no"],
+    },
+    {
+        "name": "Vy (Norge)",
+        "terms": ["Vy Group"],
+        "domains": ["vy.no"],
+    },
+    {
+        "name": "DSB",
+        "terms": ["DSB"],
+        "domains": ["dsb.dk"],
+        "brands": ["dsb-"],
+    },
+    {
+        "name": "Banedanmark",
+        "terms": ["Banedanmark"],
+        "domains": ["banedanmark.dk"],
+    },
+    {
+        "name": "VR Group (Finland)",
+        "terms": ["VR Group"],
+        "domains": ["vr.fi"],
+        "brands": ["vr-group"],
+    },
+    {
+        "name": "Väylävirasto / Finska transportinfrastrukturverket",
+        "terms": ["Väylävirasto", "Vaylavirasto"],
+        "domains": ["vayla.fi"],
+    },
+    {
+        "name": "Finavia",
+        "terms": ["Finavia"],
+        "domains": ["finavia.fi"],
     },
     # {
-    #     "name": "Trafikverket",
-    #     "terms": ["Trafikverket"],
-    #     "domains": ["trafikverket.se"],
-    # },
-    # {
-    #     "name": "PostNord",
-    #     "terms": ["PostNord"],
-    #     "domains": ["postnord.com", "postnord.se"],
+    #     "name": "Min organisation",
+    #     "terms": ["Min organisation"],
+    #     "domains": ["minorganisation.se"],
     # },
 ]
 
