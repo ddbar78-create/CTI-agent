@@ -20,6 +20,7 @@ from daily_briefing import build_briefing
 from search_report import build_search_block, SEARCH_CSS
 from actor_profiles import build_actor_profiles_block, ACTOR_CSS
 from tech_watch import build_tech_watch_html, TECH_CSS
+from ai_watch import build_ai_watch_html
 import os
 import json as _json
 from run_status import get_all as get_run_status
@@ -1031,6 +1032,12 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         print(f"    Teknikbevakning kunde inte byggas: {e}")
         tech_html = '<p class="empty">Teknikbevakningen kunde inte byggas denna körning.</p>'
 
+    try:
+        ai_html = build_ai_watch_html(db_path)
+    except Exception as e:
+        print(f"    AI-hot kunde inte byggas: {e}")
+        ai_html = '<p class="empty">AI-bevakningen kunde inte byggas denna körning.</p>'
+
     sections = [
         ("sec-search", "Sök &amp; rapport", search_html),
         ("sec-actors", "Aktörsprofiler", build_actor_profiles_block()),
@@ -1047,6 +1054,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </div>'''),
         ("sec-watchlist", "Bevakningslista", watchlist_html),
         ("sec-tech", "Teknikbevakning", tech_html),
+        ("sec-ai", "AI-hot", ai_html),
         ("sec-attack", "Malware-familjer mot MITRE ATT&CK", attack_html),
         ("sec-sectors", "Sektorbevakning", sector_html),
         ("sec-ioctypes", "IOC-typer i databasen (klicka för att filtrera)", breakdown_html),
