@@ -56,6 +56,10 @@ EXTRA_FEEDS = [
     {"name": "The DFIR Report", "url": "https://thedfirreport.com/feed/"},
     {"name": "SecurityWeek", "url": "https://feeds.feedburner.com/securityweek"},
     {"name": "NCSC-NL (Nederländerna)", "url": "https://advisories.ncsc.nl/rss/advisories"},
+    # AI-säkerhet (kontrollerade 2026-10-16)
+    {"name": "OWASP GenAI Security", "url": "https://genai.owasp.org/feed/"},
+    {"name": "Simon Willison · prompt injection", "url": "https://simonwillison.net/tags/prompt-injection.atom"},
+    {"name": "Embrace The Red (AI-sårbarheter)", "url": "https://embracethered.com/blog/index.xml"},
 ]
 MAX_NEW_PER_FEED = 15
 
