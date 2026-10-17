@@ -21,6 +21,7 @@ from search_report import build_search_block, SEARCH_CSS
 from actor_profiles import build_actor_profiles_block, ACTOR_CSS
 from tech_watch import build_tech_watch_html, TECH_CSS
 from ai_watch import build_ai_watch_html
+from daily_digest import build_digest_block, DIGEST_CSS
 import os
 import json as _json
 from run_status import get_all as get_run_status
@@ -1038,7 +1039,14 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         print(f"    AI-hot kunde inte byggas: {e}")
         ai_html = '<p class="empty">AI-bevakningen kunde inte byggas denna körning.</p>'
 
+    try:
+        digest_html = build_digest_block(db_path)
+    except Exception as e:
+        print(f"    Dagsrapport kunde inte byggas: {e}")
+        digest_html = '<p class="empty">Dagsrapporten kunde inte byggas denna körning.</p>'
+
     sections = [
+        ("sec-digest", "Dagsrapport", digest_html),
         ("sec-search", "Sök &amp; rapport", search_html),
         ("sec-actors", "Aktörsprofiler", build_actor_profiles_block()),
         ("sec-trend", "Trend, senaste dagarna", f'''
@@ -1314,6 +1322,7 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
   {SEARCH_CSS}
   {ACTOR_CSS}
   {TECH_CSS}
+  {DIGEST_CSS}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
