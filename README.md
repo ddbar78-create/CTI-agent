@@ -1,4 +1,3 @@
-
 # CTI-agent
 
 Autonom agent för hotunderrättelser (CTI) med fokus på nordisk offentlig sektor och transport.
@@ -25,6 +24,9 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 | `storage.py` | SQLite-schema, migreringar, sparfunktioner |
 | `more_sources.py` | KEV, URLhaus, Feodo, MalwareBazaar, OTX och extra RSS |
 | `run_status.py` | Källstatus per körning (visas överst i panelen) |
+| `patch_stats.py` | Patchstatistik för Windows och Linux (Microsoft, Red Hat, Ubuntu, CISA KEV) |
+| `ai_watch.py` | AI-hot: nyckelordsbevakning av AI-relaterade hot |
+| `daily_digest.py` | Dagsrapport per dag, som standard gårdagen |
 | `export_feeds.py` | CSV, blocklistor och STIX till `exports/` |
 | `generate_report.py` | Bygger `index.html` |
 | `search_report.py` | Sök, rapport, Sigma och YARA i panelen |
