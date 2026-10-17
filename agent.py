@@ -38,6 +38,7 @@ from more_sources import run_more_sources
 from tech_watch import match_kev_entries
 from run_status import tracked, record
 from export_feeds import export_all
+from patch_stats import run_patch_stats
 
 
 
@@ -167,6 +168,9 @@ def run_once():
 
     # Kontrollera domänålder via RDAP — flaggar nyregistrerade domäner
     new_registered_domains = tracked("RDAP domänålder", run_domain_age_check, default=[])
+
+    # Patchstatistik för Windows och Linux (hämtas högst var 12:e timme)
+    tracked("Patchstatistik", run_patch_stats, default=0)
 
     # Skanna alla insamlade källor mot din bevakningslista (watchlist.py)
     new_watch_hits = tracked("Bevakningslista", run_watchlist_scan, default=[]) or []
