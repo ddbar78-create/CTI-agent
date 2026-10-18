@@ -23,6 +23,7 @@ from tech_watch import build_tech_watch_html, TECH_CSS
 from ai_watch import build_ai_watch_html
 from daily_digest import build_digest_block, DIGEST_CSS
 from patch_stats import build_patch_stats_html, PATCH_CSS
+from source_catalog import build_source_catalog_html, CATALOG_CSS
 import os
 import json as _json
 from run_status import get_all as get_run_status
@@ -1052,6 +1053,12 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         print(f"    Patchstatistik kunde inte byggas: {e}")
         patch_html = '<p class="empty">Patchstatistiken kunde inte byggas denna körning.</p>'
 
+    try:
+        catalog_html = build_source_catalog_html(db_path)
+    except Exception as e:
+        print(f"    Källkatalog kunde inte byggas: {e}")
+        catalog_html = '<p class="empty">Källkatalogen kunde inte byggas denna körning.</p>'
+
     sections = [
         ("sec-digest", "Dagsrapport", digest_html),
         ("sec-search", "Sök &amp; rapport", search_html),
@@ -1071,6 +1078,7 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         ("sec-tech", "Teknikbevakning", tech_html),
         ("sec-ai", "AI-hot", ai_html),
         ("sec-patch", "Patchstatistik Windows &amp; Linux", patch_html),
+        ("sec-catalog", "Källkatalog: deep/dark web (deepdarkCTI)", catalog_html),
         ("sec-attack", "Malware-familjer mot MITRE ATT&CK", attack_html),
         ("sec-sectors", "Sektorbevakning", sector_html),
         ("sec-ioctypes", "IOC-typer i databasen (klicka för att filtrera)", breakdown_html),
@@ -1332,6 +1340,7 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
   {TECH_CSS}
   {DIGEST_CSS}
   {PATCH_CSS}
+  {CATALOG_CSS}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
