@@ -27,6 +27,8 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 | `patch_stats.py` | Patchstatistik för Windows och Linux (Microsoft, Red Hat, Ubuntu, CISA KEV) |
 | `ai_watch.py` | AI-hot: nyckelordsbevakning av AI-relaterade hot |
 | `daily_digest.py` | Dagsrapport per dag, som standard gårdagen |
+| `ransomlook.py` | Extra ransomware-källa (RansomLook), komplement till ransomware.live |
+| `source_catalog.py` | Statistik över deepdarkCTI-källor (endast antal, inga adresser) |
 | `export_feeds.py` | CSV, blocklistor och STIX till `exports/` |
 | `generate_report.py` | Bygger `index.html` |
 | `search_report.py` | Sök, rapport, Sigma och YARA i panelen |
