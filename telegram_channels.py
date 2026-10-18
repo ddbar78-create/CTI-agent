@@ -13,6 +13,17 @@ och är inte byggt eller avsett för något annat.
 """
 
 CHANNELS = [
-    # Exempel — lägg till/ta bort efter eget behov och egen bedömning:
+    # Forskare och malware-analys
     "vxunderground",
+
+    # Hacktivistgrupper som utför DDoS (följs för att se vilka mål och länder de pekar ut).
+    # Källa: deepdarkCTI (github.com/fastfire/deepdarkCTI), status ONLINE 2026-10-18.
+    # Kontrollera att kanalen fortfarande är den riktiga innan du behåller den, kopior förekommer.
+    "nnm05716english",   # NoName057(16), engelska kanalen
+    "KILLNETddos",       # Killnet
+    "KillNetSyndicate",  # Killnet Syndicate
+    "usersecc",          # UserSec
+    "DIeNlt",            # DieNet
+    "dienet1",           # DieNet
+    "dienet3",           # DieNet
 ]
