@@ -25,6 +25,8 @@ from llm_extract import enrich_article
 from telegram_scan import run_telegram
 from telegram_channels import CHANNELS as TELEGRAM_CHANNELS
 from ransomware_live import run_ransomware_live
+from ransomlook import run_ransomlook
+from source_catalog import run_source_catalog
 from notify import notify
 from generate_report import generate_report
 from retention import prune_old_data
@@ -148,6 +150,10 @@ def run_once():
 
     # Vad ransomware-grupper själva offentliggör om sina offer
     new_victims = tracked("ransomware.live", run_ransomware_live, default=[])
+
+    # Extra ransomware-källa (komplement till ransomware.live) och dygnsstatistik över deepdarkCTI
+    tracked("RansomLook", run_ransomlook, default=0)
+    tracked("Källkatalog", run_source_catalog, default=0)
 
     # Extra källor: CISA KEV, URLhaus, Feodo Tracker och fler RSS-flöden.
     # Körs före berikningen så att nya IP:er och CVE:er hinner slås upp direkt.
