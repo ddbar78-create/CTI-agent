@@ -35,7 +35,6 @@ from cve_priority import run_cve_enrichment
 from article_crawler import crawl_article, MAX_CRAWLS_PER_RUN, DELAY_BETWEEN_REQUESTS
 from crt_sh import run_crtsh_enrichment
 from domain_age import run_domain_age_check
-from watchlist import run_watchlist_scan
 from more_sources import run_more_sources
 from tech_watch import match_kev_entries
 from run_status import tracked, record
@@ -178,8 +177,8 @@ def run_once():
     # Patchstatistik för Windows och Linux (hämtas högst var 12:e timme)
     tracked("Patchstatistik", run_patch_stats, default=0)
 
-    # Skanna alla insamlade källor mot din bevakningslista (watchlist.py)
-    new_watch_hits = tracked("Bevakningslista", run_watchlist_scan, default=[]) or []
+    # Bevakningslistan är borttagen (watchlist.py behövs inte längre)
+    new_watch_hits = []
 
     print(f"\n=== Klart: {total_new_articles} nya artiklar, "
           f"{total_new_iocs} nya IOCs (via RSS) ===\n")
