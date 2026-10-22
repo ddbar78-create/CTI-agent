@@ -13,7 +13,7 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 - Berikar CVE:er med CVSS, EPSS och CISA KEV, samt följer nya KEV-poster
 - Skannar din bevakningslista (organisationer/domäner) och din teknikbevakning (produkter)
 - Kartlägger malware-familjer mot MITRE ATT&CK
-- Bygger panelen: sök och rapport, aktörsprofiler, trender, karta, källstatus, export
+- Bygger panelen: sök och rapport, aktörsprofiler, hotaktörskarta, trender, karta, källstatus, export
 - Exporterar blocklistor, CSV och STIX 2.1 till `exports/`
 
 ## Filer
@@ -29,6 +29,7 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 | `daily_digest.py` | Dagsrapport per dag, som standard gårdagen |
 | `ransomlook.py` | Extra ransomware-källa (RansomLook), komplement till ransomware.live |
 | `source_catalog.py` | Statistik över deepdarkCTI-källor (endast antal, inga adresser) |
+| `threat_actor_map.py` | Hotaktörskarta: ransomware-grupper, deras offer per land och bransch |
 | `export_feeds.py` | CSV, blocklistor och STIX till `exports/` |
 | `generate_report.py` | Bygger `index.html` |
 | `search_report.py` | Sök, rapport, Sigma och YARA i panelen |
