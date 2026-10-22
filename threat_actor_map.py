@@ -25,6 +25,29 @@ from storage import DB_PATH
 MAX_ROWS = 4000
 
 ACTOR_MAP_CSS = """
+  .tam-hero { display: grid; grid-template-columns: 190px minmax(0, 1fr) 190px; gap: 0; background: #04070d; border: 1px solid #12305a; border-radius: 8px; overflow: hidden; box-shadow: 0 0 24px rgba(30,120,255,0.12); }
+  @media (max-width: 980px) { .tam-hero { grid-template-columns: 1fr; } .tam-side { display: none; } }
+  .tam-side { padding: 0.5rem 0.6rem; font-size: 0.74rem; color: #9fc4ff; background: linear-gradient(#071327, #04070d); }
+  .tam-side h4 { margin: 0 0 0.4rem; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #5fb0ff; border-bottom: 1px solid #12305a; padding-bottom: 0.3rem; }
+  .tam-side div.r { display: grid; grid-template-columns: 2rem 1fr; gap: 0.3rem; padding: 0.12rem 0; align-items: center; }
+  .tam-side .r b { font-family: var(--mono, monospace); text-align: right; color: #fff; font-weight: 500; }
+  .tam-side .r span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tam-side .r.nordic span, .tam-side .r.nordic b { color: #ff5a5a; }
+  .tam-stage { position: relative; background: radial-gradient(ellipse at 50% 40%, #0a1a33 0%, #04070d 70%); }
+  .tam-stage canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .tam-stage svg { cursor: grab; width: 100%; height: auto; display: block; }
+  .tam-tag { position: absolute; left: 0.7rem; top: 0.5rem; font-size: 0.7rem; letter-spacing: 0.14em; color: #5fb0ff; text-transform: uppercase; pointer-events: none; z-index: 2; }
+  .tam-tag b { color: #fff; font-size: 0.95rem; letter-spacing: 0.1em; display: block; }
+  .tam-live { position: absolute; right: 0.7rem; top: 0.5rem; z-index: 2; display: flex; gap: 0.3rem; }
+  .tam-live button { background: rgba(7,19,39,0.85); color: #9fc4ff; border: 1px solid #12305a; border-radius: 5px; font-size: 0.72rem; padding: 0.2rem 0.5rem; cursor: pointer; }
+  .tam-live button.active { color: #fff; border-color: #5fb0ff; }
+  .tam-hero .tam-land { fill: #07111f; stroke: #1f6fd0; stroke-width: 0.45; opacity: 1; }
+  .tam-feed { background: #04070d; border-top: 1px solid #12305a; font-family: var(--mono, monospace); font-size: 0.72rem; color: #9fc4ff; padding: 0.3rem 0.6rem; min-height: 8.2rem; }
+  .tam-feed div { display: grid; grid-template-columns: 5.5rem 7.5rem 1fr 2.4rem 8rem; gap: 0.5rem; padding: 0.1rem 0; white-space: nowrap; overflow: hidden; }
+  .tam-feed div span { overflow: hidden; text-overflow: ellipsis; }
+  .tam-feed div.nordic { color: #ff5a5a; }
+  .tam-feed div.head { color: #5fb0ff; border-bottom: 1px solid #12305a; margin-bottom: 0.15rem; }
+  @media (max-width: 600px) { .tam-feed div { grid-template-columns: 5rem 6rem 1fr 2rem; } .tam-feed div span:nth-child(5) { display: none; } }
   .tam-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem; }
   .tam-bar select, .tam-bar input, .tam-btn {
     background: var(--panel); color: var(--text); border: 1px solid var(--panel-border);
@@ -88,9 +111,22 @@ _BODY = """
   <button class="tam-btn tam-view" data-view="nordic" type="button">Norden</button>
   <button class="tam-btn" id="tamZin" type="button" title="Zooma in">＋</button>
   <button class="tam-btn" id="tamZout" type="button" title="Zooma ut">－</button>
-  <span class="dim" style="font-size:0.74rem;margin-left:auto">Dra för att panorera, Ctrl + scrollhjul för att zooma. Kartan visar var offren finns, inte var aktören sitter.</span>
+  <span class="dim" style="font-size:0.74rem;margin-left:auto">Live spelar upp de senaste offren i tidsordning (ljuspuls = nytt offer, rött = Norden). Dra för att panorera, Ctrl + scrollhjul för att zooma. Visar var offren finns, inte var aktören sitter (ursprung finns inte i datan).</span>
 </div>
-<div class="tam-layout">
+<div class="tam-hero">
+  <div class="tam-side"><h4>Aktiva grupper</h4><div id="tamTopGroups"></div></div>
+  <div>
+    <div class="tam-stage" id="tamStage">
+      <div class="tam-tag">Hotaktörskarta<b>RANSOMWARE LIVE-ÅTERSPELNING</b></div>
+      <div class="tam-live"><button type="button" id="tamModeLive" class="active">Live</button><button type="button" id="tamModeTot">Totalt</button><button type="button" id="tamPlay">⏸</button></div>
+      <div id="tamMap"></div><canvas id="tamCv"></canvas>
+      <div id="tamMsg" class="tam-msg" style="display:none;position:absolute;left:0;bottom:0"></div>
+    </div>
+    <div class="tam-feed" id="tamFeed"></div>
+  </div>
+  <div class="tam-side"><h4>Mål (länder)</h4><div id="tamTopTargets"></div></div>
+</div>
+<div class="tam-layout" style="margin-top:1rem">
   <div class="tam-list">
     <div class="tam-list-head">
       <span>Sortera:</span>
@@ -100,10 +136,7 @@ _BODY = """
     </div>
     <div id="tamRows"></div>
   </div>
-  <div>
-    <div class="tam-map"><div id="tamMap"></div><div id="tamMsg" class="tam-msg" style="display:none"></div></div>
-    <div class="tam-profile" id="tamProfile"></div>
-  </div>
+  <div class="tam-profile" id="tamProfile" style="margin-top:0"></div>
 </div>
 <div class="tam-heat-wrap"><div class="tam-h">Aktör × bransch (de mest aktiva grupperna i vald period, klicka på ett namn för att välja)</div><div id="tamHeat"></div></div>
 """
@@ -264,18 +297,91 @@ _JS = """
         gBub = gMap.append("g");
         zoomB = d3.zoom().scaleExtent([1, 40]).translateExtent([[0, 0], [W, H]])
           .filter(function (e) { return (e.type !== "wheel" || e.ctrlKey || e.metaKey) && !e.button; })
-          .on("zoom", function (e) { curK = e.transform.k; gMap.attr("transform", e.transform); applyScale(); });
+          .on("zoom", function (e) { curK = e.transform.k; live.t = { x: e.transform.x, y: e.transform.y, k: e.transform.k }; gMap.attr("transform", e.transform); applyScale(); });
         svg.call(zoomB);
         ready = true;
+        gBub.style("display", live.on ? "none" : "");
+        sizeCanvas();
         drawBubbles(rowsInPeriod());
       }).catch(function () {
         var m = $("tamMsg"); m.style.display = ""; m.textContent = "Kartlagret kunde inte laddas (D3/world-atlas via CDN). Lista, profil och värmekarta fungerar ändå.";
       });
   }
 
+
+  // ---- live-återspelning (canvas ovanpå kartan)
+  var live = { on: true, play: true, ev: [], idx: 0, active: [], last: 0, feed: [], t: { x: 0, y: 0, k: 1 }, dpr: 1, acc: 0 };
+  var PAL = ["#ff9f1c", "#2ec4b6", "#e71d36", "#9b5de5", "#00bbf9", "#f15bb5", "#fee440", "#80ed99", "#ff6b35", "#4cc9f0"];
+  function colorOf(name) { var h = 0; for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0; return PAL[h % PAL.length]; }
+  function jitter(s, i) { var h = 0; for (var j = 0; j < s.length; j++) h = (h * 33 + s.charCodeAt(j)) >>> 0; return ((h >> (i * 5)) % 1000) / 1000 - 0.5; }
+  function buildEvents(rows) {
+    var sel = state.actor ? rows.filter(function (r) { return r[0] === state.actor; }) : rows;
+    sel = sel.filter(function (r) { return DATA.centroids[r[1]]; }).sort(function (a, b) { return (a[3] || "").localeCompare(b[3] || ""); });
+    live.ev = sel.slice(-160); live.idx = 0; live.active = []; live.feed = []; renderFeed(); renderSides(rows);
+  }
+  function fmtRow(e, cls, head) {
+    return '<div class="' + (cls || "") + '"><span>' + esc(e[3] || "") + '</span><span>' + esc(e[0]) + '</span><span>' + esc(e[4]) + '</span><span>' + esc(e[1]) + '</span><span>' + esc(e[2] || "") + '</span></div>';
+  }
+  function renderFeed() {
+    var h = '<div class="head"><span>Datum</span><span>Grupp</span><span>Offer</span><span>Land</span><span>Bransch</span></div>';
+    live.feed.slice(-6).reverse().forEach(function (e) { h += fmtRow(e, NORDIC[e[1]] ? "nordic" : ""); });
+    if (!live.feed.length) h += '<div><span>Väntar på händelser...</span></div>';
+    $("tamFeed").innerHTML = h;
+  }
+  function renderSides(rows) {
+    var sel = state.actor ? rows.filter(function (r) { return r[0] === state.actor; }) : rows;
+    var g = actors(sel).sort(function (a, b) { return b.n - a.n; }).slice(0, 9);
+    $("tamTopGroups").innerHTML = g.map(function (a) { return '<div class="r"><b>' + a.n + '</b><span style="color:' + colorOf(a.name) + '">● ' + esc(a.name) + '</span></div>'; }).join("") || "Ingen data";
+    $("tamTopTargets").innerHTML = tally(sel, 1).slice(0, 9).map(function (c) { return '<div class="r' + (NORDIC[c[0]] ? " nordic" : "") + '"><b>' + c[1] + '</b><span>' + esc(c[0]) + '</span></div>'; }).join("") || "Ingen data";
+  }
+  function sizeCanvas() {
+    var cv = $("tamCv"), st = $("tamStage"); if (!cv || !st) return;
+    live.dpr = window.devicePixelRatio || 1;
+    cv.width = st.clientWidth * live.dpr; cv.height = st.clientHeight * live.dpr;
+  }
+  function spawn(r) {
+    var ll = DATA.centroids[r[1]], p = proj([ll[1] + jitter(r[4], 1) * 4, ll[0] + jitter(r[4], 2) * 3]);
+    var e = { x: p[0], y: p[1], born: performance.now(), col: NORDIC[r[1]] ? "#ff3b3b" : colorOf(r[0]), nordic: !!NORDIC[r[1]], row: r };
+    live.active.push(e); live.feed.push(r); if (live.feed.length > 40) live.feed.shift(); renderFeed();
+    if (live.active.length > 220) live.active.shift();
+  }
+  function frame(now) {
+    requestAnimationFrame(frame);
+    var cv = $("tamCv"); if (!cv || !ready || !cv.width) return;
+    var ctx = cv.getContext("2d"), st = $("tamStage"), sc = (st.clientWidth / W) * live.dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+    if (!live.on) return;
+    if (live.play && live.ev.length) {
+      if (!live.last) live.last = now;
+      live.acc += now - live.last; live.last = now;
+      var step = 450;
+      while (live.acc > step) { live.acc -= step; spawn(live.ev[live.idx]); live.idx = (live.idx + 1) % live.ev.length; }
+    } else live.last = 0;
+    ctx.globalCompositeOperation = "lighter";
+    var t = live.t;
+    live.active.forEach(function (e) {
+      var age = (now - e.born) / 1000, X = (e.x * t.k + t.x) * sc, Y = (e.y * t.k + t.y) * sc;
+      var base = 2.6 * live.dpr * (e.nordic ? 1.5 : 1);
+      var a = Math.max(0.3, 1 - age / 40);
+      ctx.fillStyle = e.col; ctx.globalAlpha = a * 0.9;
+      ctx.beginPath(); ctx.arc(X, Y, base, 0, 6.2832); ctx.fill();
+      for (var i = 0; i < 2; i++) {
+        var ph = age - i * 0.9; if (ph < 0 || ph > 3) continue;
+        ctx.strokeStyle = e.col; ctx.globalAlpha = (1 - ph / 3) * 0.8; ctx.lineWidth = (e.nordic ? 2 : 1.4) * live.dpr;
+        ctx.beginPath(); ctx.arc(X, Y, base + ph * (e.nordic ? 15 : 10) * live.dpr, 0, 6.2832); ctx.stroke();
+      }
+    });
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
+  }
+  function setMode(on) {
+    live.on = on; $("tamModeLive").classList.toggle("active", on); $("tamModeTot").classList.toggle("active", !on);
+    if (gBub) gBub.style("display", on ? "none" : "");
+    if (on) { buildEvents(rowsInPeriod()); }
+  }
+
   function renderAll() {
     var rows = rowsInPeriod();
-    renderList(rows); renderProfile(rows); renderHeat(rows); drawBubbles(rows);
+    renderList(rows); renderProfile(rows); renderHeat(rows); drawBubbles(rows); buildEvents(rows);
   }
   function select(name) { state.actor = name || null; renderAll(); }
 
@@ -296,8 +402,13 @@ _JS = """
   $("tamZin").addEventListener("click", function () { if (ready) svg.transition().duration(250).call(zoomB.scaleBy, 1.6); });
   $("tamZout").addEventListener("click", function () { if (ready) svg.transition().duration(250).call(zoomB.scaleBy, 1 / 1.6); });
 
+  $("tamModeLive").addEventListener("click", function () { setMode(true); });
+  $("tamModeTot").addEventListener("click", function () { setMode(false); });
+  $("tamPlay").addEventListener("click", function () { live.play = !live.play; this.textContent = live.play ? "⏸" : "▶"; });
+  window.addEventListener("resize", sizeCanvas);
   renderAll();
   initMap();
+  requestAnimationFrame(frame);
 })();
 """
 
