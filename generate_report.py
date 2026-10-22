@@ -24,6 +24,7 @@ from ai_watch import build_ai_watch_html
 from daily_digest import build_digest_block, DIGEST_CSS
 from patch_stats import build_patch_stats_html, PATCH_CSS
 from source_catalog import build_source_catalog_html, CATALOG_CSS
+from threat_actor_map import build_actor_map_block, ACTOR_MAP_CSS
 import os
 import json as _json
 from run_status import get_all as get_run_status
@@ -1059,10 +1060,17 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         print(f"    Källkatalog kunde inte byggas: {e}")
         catalog_html = '<p class="empty">Källkatalogen kunde inte byggas denna körning.</p>'
 
+    try:
+        actormap_html = build_actor_map_block(db_path, COUNTRY_CENTROIDS)
+    except Exception as e:
+        print(f"    Hotaktörskartan kunde inte byggas: {e}")
+        actormap_html = '<p class="empty">Hotaktörskartan kunde inte byggas denna körning.</p>'
+
     sections = [
         ("sec-digest", "Dagsrapport", digest_html),
         ("sec-search", "Sök &amp; rapport", search_html),
         ("sec-actors", "Aktörsprofiler", build_actor_profiles_block()),
+        ("sec-actormap", "Hotaktörskarta — ransomware-grupper och deras offer", actormap_html),
         ("sec-trend", "Trend, senaste dagarna", f'''
             <div class="chart-grid">
               <div class="chart-panel">
@@ -1341,6 +1349,7 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
   {DIGEST_CSS}
   {PATCH_CSS}
   {CATALOG_CSS}
+  {ACTOR_MAP_CSS}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
