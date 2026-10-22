@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 
 from storage import DB_PATH
 from attack_mapping import parse_family_from_value, classify_family
-from watchlist import WATCHLIST
+WATCHLIST = []  # bevakningslistan är borttagen
 from daily_briefing import build_briefing
 from search_report import build_search_block, SEARCH_CSS
 from actor_profiles import build_actor_profiles_block, ACTOR_CSS
@@ -1082,7 +1082,6 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
                 {other_sources_chart_html}
               </div>
             </div>'''),
-        ("sec-watchlist", "Bevakningslista", watchlist_html),
         ("sec-tech", "Teknikbevakning", tech_html),
         ("sec-ai", "AI-hot", ai_html),
         ("sec-patch", "Patchstatistik Windows &amp; Linux", patch_html),
