@@ -205,13 +205,23 @@ def fetch_ubuntu() -> list:
     notices: dict = {}
     cves: dict = {}
     kernel: dict = {}
-    offset, limit = 0, 50
+    offset, limit, use_order = 0, 50, True
     for _ in range(200):
-        resp = requests.get(UBUNTU_URL, timeout=TIMEOUT, headers=UA,
-                            params={"limit": limit, "offset": offset, "order": "newest"})
-        if resp.status_code == 400 and limit != 20:
-            limit = 20
-            continue
+        params = {"limit": limit, "offset": offset}
+        if use_order:
+            params["order"] = "newest"
+        resp = requests.get(UBUNTU_URL, timeout=TIMEOUT, headers=UA, params=params)
+        if resp.status_code in (400, 422):
+            # API:et kan avvisa limit, order eller för stor offset: prova enklare parametrar,
+            # och använd det som redan hämtats om det går fel längre in.
+            if use_order:
+                use_order = False
+                continue
+            if limit != 20:
+                limit = 20
+                continue
+            if offset > 0:
+                break
         resp.raise_for_status()
         batch = resp.json().get("notices", [])
         if not batch:
