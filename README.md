@@ -29,6 +29,8 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 | `daily_digest.py` | Dagsrapport per dag, som standard gårdagen |
 | `ransomlook.py` | Extra ransomware-källa (RansomLook), komplement till ransomware.live |
 | `source_catalog.py` | Statistik över deepdarkCTI-källor (endast antal, inga adresser) |
+| `intel.py` | CVE-riskpoäng, entitetssök, relationsgraf, avvikelselarm, sektorrapport |
+| `notifier.py` | Larm via mejl, Discord, Teams eller ntfy-push |
 | `threat_actor_map.py` | Hotaktörskarta: ransomware-grupper, deras offer per land och bransch |
 | `export_feeds.py` | CSV, blocklistor och STIX till `exports/` |
 | `generate_report.py` | Bygger `index.html` |
@@ -58,6 +60,21 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 - `watchlist.py`: byt ut platshållaren "Exempelkommun" mot dina egna organisationer och domäner.
 - `tech_watchlist.py`: ändra listan till de produkter du faktiskt kör. Var specifik med nyckelorden.
 - Retention: ThreatFox-data sparas 7 dagar, övrigt längre. Gamla poster rensas automatiskt.
+
+## Notiser
+
+Larm från panelen (avvikelser, nordiska offer inom transport/offentlig sektor, KEV som berör din teknik)
+kan skickas ut. Alla kanaler är valfria. Lägg de du vill ha som secrets (Settings, Secrets and variables, Actions):
+
+| Kanal | Secrets |
+|---|---|
+| Discord | `DISCORD_WEBHOOK_URL` |
+| Teams | `TEAMS_WEBHOOK_URL` |
+| Push till mobilen (ntfy.sh, gratis) | `NTFY_TOPIC` (välj ett långt hemligt namn, prenumerera på det i appen ntfy) |
+| Mejl | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_TO` (Gmail: smtp.gmail.com, 587, applösenord) |
+
+Samma larm skickas bara en gång. Standard är nivå Hög och Kritisk, ändra `MIN_LEVEL` i `notifier.py`.
+Branscher som bevakas ändras i `SECTOR_FOCUS` i `intel.py`.
 
 ## Exporter
 
