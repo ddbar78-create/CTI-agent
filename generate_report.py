@@ -25,6 +25,7 @@ from daily_digest import build_digest_block, DIGEST_CSS
 from patch_stats import build_patch_stats_html, PATCH_CSS
 from source_catalog import build_source_catalog_html, CATALOG_CSS
 from threat_actor_map import build_actor_map_block, ACTOR_MAP_CSS
+from intel import build_intel_blocks, INTEL_CSS
 import os
 import json as _json
 from run_status import get_all as get_run_status
@@ -1066,11 +1067,21 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
         print(f"    Hotaktörskartan kunde inte byggas: {e}")
         actormap_html = '<p class="empty">Hotaktörskartan kunde inte byggas denna körning.</p>'
 
+    try:
+        intel = build_intel_blocks(db_path)
+    except Exception as e:
+        print(f"    Intel-sektionerna kunde inte byggas: {e}")
+        intel = {}
+    _no = '<p class="empty">Sektionen kunde inte byggas denna körning.</p>'
+
     sections = [
         ("sec-digest", "Dagsrapport", digest_html),
+        ("sec-alerts", "Larm &amp; avvikelser", intel.get("alerts", _no)),
         ("sec-search", "Sök &amp; rapport", search_html),
         ("sec-actors", "Aktörsprofiler", build_actor_profiles_block()),
         ("sec-actormap", "Hotaktörskarta — ransomware-grupper och deras offer", actormap_html),
+        ("sec-graph", "Relationsgraf: grupper, branscher, länder och CVE:er", intel.get("graph", _no)),
+        ("sec-entity", "Entitetssök", intel.get("entity", _no)),
         ("sec-trend", "Trend, senaste dagarna", f'''
             <div class="chart-grid">
               <div class="chart-panel">
@@ -1082,6 +1093,8 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
                 {other_sources_chart_html}
               </div>
             </div>'''),
+        ("sec-cvescore", "CVE-riskpoäng: patcha detta först", intel.get("cvescore", _no)),
+        ("sec-sectorrep", "Sektorrapport: transport &amp; offentlig sektor", intel.get("sectorrep", _no)),
         ("sec-tech", "Teknikbevakning", tech_html),
         ("sec-ai", "AI-hot", ai_html),
         ("sec-patch", "Patchstatistik Windows &amp; Linux", patch_html),
@@ -1349,6 +1362,7 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
   {PATCH_CSS}
   {CATALOG_CSS}
   {ACTOR_MAP_CSS}
+  {INTEL_CSS}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}
