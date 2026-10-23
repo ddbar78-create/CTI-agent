@@ -40,6 +40,7 @@ from tech_watch import match_kev_entries
 from run_status import tracked, record
 from export_feeds import export_all
 from patch_stats import run_patch_stats
+from notifier import run_alerts
 
 
 
@@ -267,6 +268,9 @@ def run_once():
 
     # Exportera IOC:er som CSV, blocklistor och STIX 2.1 (mappen exports/)
     tracked("Export", lambda: export_all()["iocs.csv"], default=0)
+
+    # Larm (mejl/Discord/Teams/ntfy) från avvikelser och kritiska händelser
+    tracked("Notiser", run_alerts, default=0)
 
     # Bygg om instrumentpanelen (index.html) med senaste datan
     generate_report()
