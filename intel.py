@@ -107,6 +107,11 @@ def load_context(db_path: str = DB_PATH) -> dict:
         if r:
             victims_raw = r
             break
+    try:
+        from aliases import canonical as _alias
+    except Exception:  # pragma: no cover
+        _alias = lambda n, *a, **k: n
+    victims_raw = [(_alias(r[0], db_path),) + tuple(r[1:]) for r in victims_raw]
     canon = _canon_groups([v[0] for v in victims_raw])
     victims = []
     for g, cc, sec, day, vic, seen in victims_raw:
@@ -144,6 +149,20 @@ def load_context(db_path: str = DB_PATH) -> dict:
     ctx = {"today": today, "victims": victims, "articles": articles, "cve_articles": cve_articles, "cve_rows": cve_rows}
     _link_group_mentions(ctx)
     _score_all_cves(ctx)
+    return ctx
+
+
+_CTX_CACHE = {}
+
+
+def shared_context(db_path: str = DB_PATH, ttl: int = 300) -> dict:
+    """Samma kontext återanvänds inom en körning (flera moduler behöver den). Går ut efter ttl sekunder."""
+    import time
+    hit = _CTX_CACHE.get(db_path)
+    if hit and time.time() - hit[0] < ttl:
+        return hit[1]
+    ctx = load_context(db_path)
+    _CTX_CACHE[db_path] = (time.time(), ctx)
     return ctx
 
 
@@ -296,6 +315,14 @@ def compute_alerts(db_path: str = DB_PATH, ctx: dict = None) -> list:
             add("cve_risk", "Hög", f"{c['id']} har hög riskpoäng ({c['score']}/100)",
                 "; ".join(l for l, _p in c["factors"][:3]), f"cverisk:{c['id']}")
 
+    # larm från de andra modulerna (alla valfria: saknas en modul hoppas den över)
+    for mod, fn, arg in (("attack_surface", "surface_alerts", db_path), ("lookalike", "lookalike_alerts", db_path),
+                         ("campaigns", "campaign_alerts", db_path), ("org_profile", "profile_alerts", ctx)):
+        try:
+            alerts.extend(getattr(__import__(mod), fn)(arg))
+        except Exception as e:
+            print(f"    Larm från {mod} kunde inte hämtas: {type(e).__name__}: {e}")
+
     alerts.sort(key=lambda a: LEVEL_ORDER.get(a["level"], 9))
     seen, unique = set(), []
     for a in alerts:
@@ -314,7 +341,7 @@ def _item(t, u="", e=None, d=""):
     return {"t": t, "u": u or "", "e": e, "d": d}
 
 
-def build_entities(ctx) -> dict:
+def build_entities(ctx, db_path: str = DB_PATH) -> dict:
     today = ctx["today"]
     ents = {"group": {}, "cve": {}, "sector": {}, "country": {}}
     victims = ctx["victims"]
@@ -402,6 +429,19 @@ def build_entities(ctx) -> dict:
                      {"title": "Branscher", "pairs": [[k, c, ["sector", k]] for k, c in _top(Counter(v["sector"] for v in vs), 6)]}],
             "lists": [{"title": "Senaste offer", "items": recent_victims(vs, 10)}],
         }
+    try:
+        from aliases import aliases_of
+        for g, ent in ents["group"].items():
+            al = aliases_of(g, db_path)
+            if al:
+                ent["sub"] = "Ransomware-grupp · även känd som " + ", ".join(al[:4])
+    except Exception:
+        pass
+    try:
+        from org_profile import attach_timelines
+        attach_timelines(ents, db_path)
+    except Exception as e:
+        print(f"    Tidslinjer kunde inte läggas till: {type(e).__name__}: {e}")
     return ents
 
 
@@ -714,7 +754,7 @@ def _json(obj) -> str:
 
 def build_intel_blocks(db_path: str = DB_PATH) -> dict:
     """Returnerar {'alerts','sectorrep','cvescore','graph','entity'} -> HTML. Delar som misslyckas blir tomma meddelanden."""
-    ctx = load_context(db_path)
+    ctx = shared_context(db_path)
     blocks = {}
 
     def safe(key, fn):
@@ -738,8 +778,30 @@ def build_intel_blocks(db_path: str = DB_PATH) -> dict:
     safe("entity", lambda: (
         '<div class="in-ent-head"><input id="inEntInput" list="inEntList" placeholder="Sök grupp, CVE, bransch eller land (t.ex. Qilin, CVE-2024-3400, SE)" autocomplete="off">'
         '<datalist id="inEntList"></datalist></div><div id="inEntOut"></div><script>'
-        + _ENTITY_JS.replace("__ENT__", _json(build_entities(ctx))) + "</script>"))
+        + _ENTITY_JS.replace("__ENT__", _json(build_entities(ctx, db_path))) + "</script>"))
+    # Funktioner från fas 1-6 (egna moduler, alla fristående och valfria)
+    safe("profile", lambda: __import__("org_profile").build_profile_html(ctx, db_path))
+    safe("surface", lambda: __import__("attack_surface").build_surface_html(db_path))
+    safe("lookalike", lambda: __import__("lookalike").build_lookalike_html(db_path))
+    safe("hunting", lambda: __import__("hunting").build_hunting_html(db_path))
+    safe("campaigns", lambda: __import__("campaigns").build_campaigns_html(db_path))
+    safe("reports", lambda: __import__("reports").build_reports_html(ctx, db_path))
+    safe("iocscore", lambda: __import__("ioc_confidence").build_ioc_confidence_html(db_path))
+    safe("lookups", lambda: __import__("lookups").build_lookups_html(db_path))
     return blocks
+
+
+def extra_css() -> str:
+    """CSS för alla extra moduler, för injektion i generate_report."""
+    css = ""
+    for mod, const in (("org_profile", "PROFILE_CSS"), ("attack_surface", "SURFACE_CSS"), ("lookalike", "LOOKALIKE_CSS"),
+                       ("hunting", "HUNTING_CSS"), ("campaigns", "CAMPAIGN_CSS"), ("reports", "REPORTS_CSS"),
+                       ("ioc_confidence", "IOC_CONF_CSS"), ("lookups", "LOOKUPS_CSS")):
+        try:
+            css += getattr(__import__(mod), const)
+        except Exception:
+            pass
+    return css
 
 
 if __name__ == "__main__":

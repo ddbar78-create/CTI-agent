@@ -25,7 +25,7 @@ from daily_digest import build_digest_block, DIGEST_CSS
 from patch_stats import build_patch_stats_html, PATCH_CSS
 from source_catalog import build_source_catalog_html, CATALOG_CSS
 from threat_actor_map import build_actor_map_block, ACTOR_MAP_CSS
-from intel import build_intel_blocks, INTEL_CSS
+from intel import build_intel_blocks, INTEL_CSS, extra_css
 import os
 import json as _json
 from run_status import get_all as get_run_status
@@ -1077,6 +1077,9 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
     sections = [
         ("sec-digest", "Dagsrapport", digest_html),
         ("sec-alerts", "Larm &amp; avvikelser", intel.get("alerts", _no)),
+        ("sec-profile", "Hotprofil för din organisation", intel.get("profile", _no)),
+        ("sec-surface", "Attackyta", intel.get("surface", _no)),
+        ("sec-lookalike", "Look-alike-domäner", intel.get("lookalike", _no)),
         ("sec-search", "Sök &amp; rapport", search_html),
         ("sec-actors", "Aktörsprofiler", build_actor_profiles_block()),
         ("sec-actormap", "Hotaktörskarta — ransomware-grupper och deras offer", actormap_html),
@@ -1095,6 +1098,11 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
             </div>'''),
         ("sec-cvescore", "CVE-riskpoäng: patcha detta först", intel.get("cvescore", _no)),
         ("sec-sectorrep", "Sektorrapport: transport &amp; offentlig sektor", intel.get("sectorrep", _no)),
+        ("sec-campaigns", "Kampanjer", intel.get("campaigns", _no)),
+        ("sec-hunting", "Hunting-frågor &amp; ATT&amp;CK Navigator", intel.get("hunting", _no)),
+        ("sec-iocscore", "IOC-förtroende och åldrande", intel.get("iocscore", _no)),
+        ("sec-lookups", "Uppslag: VirusTotal &amp; urlscan.io", intel.get("lookups", _no)),
+        ("sec-reports", "Rapporter: månad och år", intel.get("reports", _no)),
         ("sec-tech", "Teknikbevakning", tech_html),
         ("sec-ai", "AI-hot", ai_html),
         ("sec-patch", "Patchstatistik Windows &amp; Linux", patch_html),
@@ -1363,6 +1371,7 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
   {CATALOG_CSS}
   {ACTOR_MAP_CSS}
   {INTEL_CSS}
+  {extra_css()}
   .map-details-header {{ font-weight: 600; margin-bottom: 0.6rem; }}
   .map-details-list {{ margin: 0; padding-left: 1.2rem; max-height: 220px; overflow-y: auto; }}
   .map-details-list li {{ margin-bottom: 0.3rem; color: var(--text); }}

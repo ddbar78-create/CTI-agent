@@ -6,7 +6,7 @@ Skrivs till mappen exports/ (committas av workflowet och blir nåbara via
 GitHub Pages, t.ex. https://<användare>.github.io/<repo>/exports/blocklist-domains.txt):
 
   iocs.csv               alla IOC:er (typ, värde, familj, confidence, källa, datum)
-  blocklist-domains.txt  domäner, en per rad  (endast annoterade, confidence >= 75)
+  blocklist-domains.txt  domäner, en per rad  (poäng >= 70 och inte inaktuella, se ioc_confidence.py)
   blocklist-ips.txt      publika IPv4-adresser, en per rad  (samma kriterium)
   blocklist-urls.txt     URL:er, en per rad  (samma kriterium)
   blocklist-sha256.txt   SHA-256-hashar, en per rad  (samma kriterium)
@@ -115,6 +115,12 @@ def load_rows(db_path: str = DB_PATH) -> list:
         rows = []
     conn.close()
 
+    try:
+        from ioc_confidence import load_scores, MIN_BLOCK_SCORE
+        scores = load_scores(db_path)
+    except Exception:  # pragma: no cover
+        scores, MIN_BLOCK_SCORE = {}, 70
+
     out, seen = [], set()
     for ioc_type, value, feed, fetched in rows:
         clean = str(value).split(" [")[0].strip()
@@ -122,9 +128,17 @@ def load_rows(db_path: str = DB_PATH) -> list:
         if not clean or key in seen:
             continue
         seen.add(key)
+        conf = _confidence(str(value))
+        sc = scores.get((ioc_type, clean.lower()))
+        if sc:  # poäng och status från ioc_confidence.py (åldrande, flera källor)
+            ok = sc[0] >= MIN_BLOCK_SCORE and sc[1] != "inaktuell"
+            conf = sc[0]
+        else:   # utan poäng: gamla regeln (källans egen confidence)
+            ok = conf is not None and conf >= MIN_CONFIDENCE
         out.append({
             "type": ioc_type, "value": clean, "family": _family(str(value)),
-            "confidence": _confidence(str(value)), "source": feed or "", "seen": (fetched or "")[:19],
+            "confidence": conf, "source": feed or "", "seen": (fetched or "")[:19],
+            "ok": ok, "status": sc[1] if sc else "",
         })
     return out
 
@@ -140,7 +154,7 @@ def build_stix(rows: list) -> dict:
     indicators = 0
 
     for r in rows:
-        if r["confidence"] is None or r["confidence"] < MIN_CONFIDENCE:
+        if not r.get("ok"):
             continue
         pattern = _pattern(r["type"], r["value"])
         if not pattern:
@@ -186,14 +200,14 @@ def export_all(db_path: str = DB_PATH, out_dir: str = EXPORT_DIR) -> dict:
     """Skriver alla exportfiler. Returnerar antal poster per fil."""
     os.makedirs(out_dir, exist_ok=True)
     rows = load_rows(db_path)
-    good = [r for r in rows if r["confidence"] is not None and r["confidence"] >= MIN_CONFIDENCE]
+    good = [r for r in rows if r.get("ok")]
 
     with open(os.path.join(out_dir, "iocs.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["type", "value", "family", "confidence", "source", "first_seen_utc"])
+        w.writerow(["type", "value", "family", "score", "status", "source", "first_seen_utc"])
         for r in rows:
             w.writerow([r["type"], r["value"], r["family"], r["confidence"] if r["confidence"] is not None else "",
-                        r["source"], r["seen"]])
+                        r.get("status", ""), r["source"], r["seen"]])
 
     def _write_list(name, values):
         values = sorted(set(values))

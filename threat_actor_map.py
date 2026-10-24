@@ -428,6 +428,12 @@ def _collect(db_path: str) -> list:
             continue
     conn.close()
 
+    try:  # alias (t.ex. ALPHV/BlackCat) slås ihop till ett namn, se aliases.py
+        from aliases import canonical as _alias
+        raw = [(_alias(r[0], db_path),) + tuple(r[1:]) for r in raw]
+    except Exception:
+        pass
+
     # Slå ihop skillnader i skiftläge mellan källor ("Qilin"/"qilin"): visa vanligaste stavningen.
     spelling: dict = {}
     for g, *_ in raw:

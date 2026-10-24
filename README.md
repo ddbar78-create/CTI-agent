@@ -11,9 +11,16 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 - Hämtar IOC:er och hot från ThreatFox, URLhaus, Feodo Tracker, MalwareBazaar och (valfritt) AlienVault OTX
 - Följer ransomware-offer via ransomware.live, Telegram-kanaler och ett antal RSS-flöden
 - Berikar CVE:er med CVSS, EPSS och CISA KEV, samt följer nya KEV-poster
-- Skannar din bevakningslista (organisationer/domäner) och din teknikbevakning (produkter)
+- Bevakar din teknik (produkter) och din organisation (`config_org.py`)
 - Kartlägger malware-familjer mot MITRE ATT&CK
 - Bygger panelen: sök och rapport, aktörsprofiler, hotaktörskarta, trender, karta, källstatus, export
+- Organisationsprofil (rankade grupper och sårbarheter för din sektor), larm och tidslinjer
+- Attackyta: Shodan InternetDB mot era IP-intervall, nya underdomäner via certifikatloggar
+- Look-alike-domäner (typosquatting) mot era domäner
+- Kampanjgruppering, IOC-förtroende med åldrande, aktörsalias (MITRE)
+- Hunting-frågor (KQL, SPL, Elastic) och ATT&CK Navigator-lager
+- Valfria uppslag mot VirusTotal och urlscan.io
+- Veckobrief (mejl + `reports/`), månads- och årsrapporter
 - Exporterar blocklistor, CSV och STIX 2.1 till `exports/`
 
 ## Filer
@@ -30,14 +37,23 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 | `ransomlook.py` | Extra ransomware-källa (RansomLook), komplement till ransomware.live |
 | `source_catalog.py` | Statistik över deepdarkCTI-källor (endast antal, inga adresser) |
 | `intel.py` | CVE-riskpoäng, entitetssök, relationsgraf, avvikelselarm, sektorrapport |
-| `notifier.py` | Larm via mejl, Discord, Teams eller ntfy-push |
+| `notifier.py` | Larm via mejl, Discord, Teams, ntfy, Telegram och SMS |
+| `config_org.py` | Din organisation: sektor, domäner, AS-nummer, IP-intervall |
+| `aliases.py` | Aktörsalias (MITRE ATT&CK + manuell lista) |
+| `ioc_confidence.py` | IOC-poäng och åldrande |
+| `hunting.py` | Hunting-frågor och Navigator-lager |
+| `attack_surface.py` | Värd- och domänskanning av egen attackyta |
+| `lookalike.py` | Look-alike-domäner |
+| `org_profile.py` | Organisationsprofil, händelser, larm |
+| `campaigns.py` | Kampanjgruppering |
+| `lookups.py` | VirusTotal och urlscan.io (av utan nycklar) |
+| `reports.py` | Månads-/årsrapporter och veckobrief |
 | `threat_actor_map.py` | Hotaktörskarta: ransomware-grupper, deras offer per land och bransch |
 | `export_feeds.py` | CSV, blocklistor och STIX till `exports/` |
 | `generate_report.py` | Bygger `index.html` |
 | `search_report.py` | Sök, rapport, Sigma och YARA i panelen |
 | `actor_profiles.py` | Aktörs- och familjeprofiler |
 | `tech_watch.py`, `tech_watchlist.py` | Teknikbevakning, lista dina produkter i den senare |
-| `watchlist.py` | Dina organisationer och domäner att bevaka |
 | `attack_mapping.py`, `sector_watch.py`, `telegram_channels.py` | Mappning, sektorer, kanaler |
 | `daily_briefing.py` | Dygnssammanfattning utan LLM |
 | `.github/workflows/cti-agent.yml` | Schemaläggning |
@@ -57,7 +73,7 @@ Panel: https://ddbar78-create.github.io/CTI-agent/
 
 ## Anpassa
 
-- `watchlist.py`: byt ut platshållaren "Exempelkommun" mot dina egna organisationer och domäner.
+- `config_org.py`: namn, sektor, domäner, AS-nummer och IP-intervall (nu Trafikverket, AS49272). Bara publika uppgifter, verifiera mot RIPE/bgp.he.net.
 - `tech_watchlist.py`: ändra listan till de produkter du faktiskt kör. Var specifik med nyckelorden.
 - Retention: ThreatFox-data sparas 7 dagar, övrigt längre. Gamla poster rensas automatiskt.
 
@@ -71,15 +87,25 @@ kan skickas ut. Alla kanaler är valfria. Lägg de du vill ha som secrets (Setti
 | Discord | `DISCORD_WEBHOOK_URL` |
 | Teams | `TEAMS_WEBHOOK_URL` |
 | Push till mobilen (ntfy.sh, gratis) | `NTFY_TOPIC` (välj ett långt hemligt namn, prenumerera på det i appen ntfy) |
+| Telegram (gratis) | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (skapa bot med @BotFather) |
+| SMS (46elks, betalt, bara Kritisk) | `ELKS_USER`, `ELKS_PASS`, `SMS_TO` (+46...), valfri `SMS_FROM` |
 | Mejl | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_TO` (Gmail: smtp.gmail.com, 587, applösenord) |
+
+Signal stöds inte (inget officiellt bot-API, går inte att köra från Actions): använd Telegram, ntfy eller SMS.
+Veckobrief mejlas en gång per vecka om mejl är inställt.
 
 Samma larm skickas bara en gång. Standard är nivå Hög och Kritisk, ändra `MIN_LEVEL` i `notifier.py`.
 Branscher som bevakas ändras i `SECTOR_FOCUS` i `intel.py`.
 
+## Valfria uppslag
+
+`VT_API_KEY` (VirusTotal) och `URLSCAN_API_KEY` (urlscan.io) slår på uppslag av nya hashar och domäner. Av utan nycklarna.
+Kontrollera deras villkor först, VirusTotals gratis-API är för icke-kommersiellt bruk.
+
 ## Exporter
 
 Finns under `exports/` och via Pages, t.ex. `.../exports/blocklist-domains.txt`.
-Blocklistor och STIX innehåller bara IOC:er med confidence 75 eller högre.
+Blocklistor och STIX innehåller bara IOC:er med poäng 70 eller högre som inte är inaktuella.
 Granska alltid innan du blockerar i produktion. Regex-plockade värden ur artiklar ingår bara i `iocs.csv`.
 
 ## Licenser och villkor

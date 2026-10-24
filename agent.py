@@ -41,6 +41,14 @@ from run_status import tracked, record
 from export_feeds import export_all
 from patch_stats import run_patch_stats
 from notifier import run_alerts
+from aliases import run_aliases
+from ioc_confidence import run_ioc_scores
+from attack_surface import run_attack_surface
+from lookalike import run_lookalikes
+from lookups import run_lookups
+from org_profile import run_events
+from campaigns import run_campaigns
+from reports import run_weekly_brief
 
 
 
@@ -178,6 +186,15 @@ def run_once():
     # Patchstatistik för Windows och Linux (hämtas högst var 12:e timme)
     tracked("Patchstatistik", run_patch_stats, default=0)
 
+    # Aktörsalias (MITRE, veckovis) och IOC-förtroende (före exporten längre ner)
+    tracked("Aktörsalias", run_aliases, default=0)
+    tracked("IOC-förtroende", run_ioc_scores, default=0)
+    tracked("Uppslag (VT/urlscan)", run_lookups, default=0)
+
+    # Din organisations yta: attackyta och look-alike-domäner (config_org.py)
+    tracked("Attackyta", run_attack_surface, default=0)
+    tracked("Look-alike-domäner", run_lookalikes, default=0)
+
     # Bevakningslistan är borttagen (watchlist.py behövs inte längre)
     new_watch_hits = []
 
@@ -269,7 +286,12 @@ def run_once():
     # Exportera IOC:er som CSV, blocklistor och STIX 2.1 (mappen exports/)
     tracked("Export", lambda: export_all()["iocs.csv"], default=0)
 
-    # Larm (mejl/Discord/Teams/ntfy) från avvikelser och kritiska händelser
+    # Händelsetidslinje, kampanjer och veckobrief (bygger på allt ovan)
+    tracked("Händelser", run_events, default=0)
+    tracked("Kampanjer", run_campaigns, default=0)
+    tracked("Veckobrief", run_weekly_brief, default=0)
+
+    # Larm (mejl/Discord/Teams/ntfy/Telegram/SMS) från avvikelser och kritiska händelser
     tracked("Notiser", run_alerts, default=0)
 
     # Bygg om instrumentpanelen (index.html) med senaste datan

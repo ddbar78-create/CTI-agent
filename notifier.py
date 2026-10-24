@@ -9,6 +9,13 @@ Secrets and variables, Actions). Lämnas alla tomma skickas ingenting.
                         och prenumerera på det i appen ntfy. (NTFY_SERVER om du kör egen server)
   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, MAIL_TO   Mejl (t.ex. Gmail med applösenord:
                         smtp.gmail.com, 587)
+  TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID   Telegram-bot (gratis, officiellt API): skapa en bot med @BotFather,
+                        skriv till den och hämta chat-id. Fungerar som push i mobilen.
+  ELKS_USER, ELKS_PASS, SMS_TO (och valfritt SMS_FROM)   SMS via 46elks (betalt per SMS). SMS_TO i
+                        formatet +46701234567. Skickar bara nivå Kritisk, för att hålla kostnaden nere.
+
+Signal stöds inte: Signal saknar officiellt API för bottar och kan inte köras stabilt från GitHub Actions.
+Använd Telegram eller ntfy som push, eller SMS.
 
 Samma larm skickas aldrig två gånger (tabellen alerts_sent). Max 15 larm per körning och kanal, och
 bara Kritisk/Hög skickas som standard (ändra MIN_LEVEL nedan).
@@ -21,6 +28,7 @@ import os
 import smtplib
 import sqlite3
 import sys
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 import requests
@@ -61,15 +69,43 @@ def _send_ntfy(topic, subject, body):
                   headers={"Title": subject.encode("utf-8"), "Priority": "high", "Tags": "warning"}, timeout=20).raise_for_status()
 
 
-def _send_mail(subject, body):
+def mail_configured() -> bool:
+    return all(os.environ.get(k) for k in ("SMTP_HOST", "SMTP_USER", "SMTP_PASS", "MAIL_TO"))
+
+
+def send_mail(subject, body, html_body=None):
+    """Skickar mejl (text, och HTML om html_body anges) via SMTP-secrets."""
     host, user, pw, to = (os.environ.get(k, "") for k in ("SMTP_HOST", "SMTP_USER", "SMTP_PASS", "MAIL_TO"))
     port = int(os.environ.get("SMTP_PORT", "587") or 587)
-    msg = MIMEText(body, "plain", "utf-8")
+    if html_body:
+        msg = MIMEMultipart("alternative")
+        msg.attach(MIMEText(body, "plain", "utf-8"))
+        msg.attach(MIMEText(html_body, "html", "utf-8"))
+    else:
+        msg = MIMEText(body, "plain", "utf-8")
     msg["Subject"], msg["From"], msg["To"] = subject, user, to
     with smtplib.SMTP(host, port, timeout=30) as s:
         s.starttls()
         s.login(user, pw)
         s.sendmail(user, [t.strip() for t in to.split(",")], msg.as_string())
+
+
+def _send_mail(subject, body):
+    send_mail(subject, body)
+
+
+def _send_telegram(subject, body):
+    url = f"https://api.telegram.org/bot{os.environ['TELEGRAM_BOT_TOKEN']}/sendMessage"
+    requests.post(url, json={"chat_id": os.environ["TELEGRAM_CHAT_ID"], "text": (subject + "\n" + body)[:4000],
+                             "disable_web_page_preview": True}, timeout=20).raise_for_status()
+
+
+def _send_sms(subject, body):
+    """SMS via 46elks. Bara en kort text (högst ca 450 tecken = 3 SMS)."""
+    text = (subject + ": " + body.split("\n\nPanel:")[0].replace("\n    ", " - ").replace("\n", " "))[:450]
+    sender = os.environ.get("SMS_FROM", "CTI")[:11]
+    requests.post("https://api.46elks.com/a1/sms", auth=(os.environ["ELKS_USER"], os.environ["ELKS_PASS"]),
+                  data={"from": sender, "to": os.environ["SMS_TO"], "message": text}, timeout=20).raise_for_status()
 
 
 def _channels() -> list:
@@ -80,8 +116,12 @@ def _channels() -> list:
         ch.append(("Teams", lambda s, b: _send_teams(os.environ["TEAMS_WEBHOOK_URL"], s, b)))
     if os.environ.get("NTFY_TOPIC"):
         ch.append(("ntfy", lambda s, b: _send_ntfy(os.environ["NTFY_TOPIC"], s, b)))
-    if all(os.environ.get(k) for k in ("SMTP_HOST", "SMTP_USER", "SMTP_PASS", "MAIL_TO")):
+    if mail_configured():
         ch.append(("Mejl", _send_mail))
+    if os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID"):
+        ch.append(("Telegram", _send_telegram))
+    if all(os.environ.get(k) for k in ("ELKS_USER", "ELKS_PASS", "SMS_TO")):
+        ch.append(("SMS", _send_sms, "Kritisk"))
     return ch
 
 
@@ -102,9 +142,14 @@ def run_alerts(db_path: str = DB_PATH) -> int:
         print("[+] Notiser: inga nya larm.")
         return 0
 
-    subject, body = _format(new)
     delivered = 0
-    for name, fn in channels:
+    for ch in channels:
+        name, fn = ch[0], ch[1]
+        subset = [a for a in new if len(ch) < 3 or LEVEL_ORDER.get(a["level"], 9) <= LEVEL_ORDER[ch[2]]]
+        if not subset:
+            delivered += 1  # inget att skicka på denna kanal räknas som lyckat
+            continue
+        subject, body = _format(subset)
         try:
             fn(subject, body)
             delivered += 1
