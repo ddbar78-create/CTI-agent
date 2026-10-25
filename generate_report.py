@@ -47,10 +47,10 @@ def _esc(value) -> str:
     return html.escape(str(value)) if value is not None else ""
 
 
-def _section(section_id: str, title: str, body_html: str) -> str:
+def _section(section_id: str, title: str, body_html: str, grp: str = "ov") -> str:
     """Wrappar en sektion med klickbar, ihopfällbar rubrik (för interaktivitet)."""
     return f'''
-  <section id="{section_id}">
+  <section id="{section_id}" data-grp="{grp}">
     <h2 class="section-header" onclick="toggleSection('{section_id}')">
       <span class="chevron" id="{section_id}-chevron">▾</span> {title}
     </h2>
@@ -1134,11 +1134,21 @@ def generate_report(db_path: str = DB_PATH, output_path: str = OUTPUT_PATH):
 
     status_html = _status_box_html()
 
+    groups = [
+        ("ov", "Översikt", ["sec-digest", "sec-alerts", "sec-trend", "sec-map"]),
+        ("org", "Min organisation", ["sec-profile", "sec-surface", "sec-lookalike", "sec-sectorrep", "sec-tech", "sec-sectors"]),
+        ("hot", "Hot &amp; aktörer", ["sec-actors", "sec-actormap", "sec-campaigns", "sec-graph", "sec-entity", "sec-ransomware", "sec-ai", "sec-attack"]),
+        ("ind", "Indikatorer &amp; jakt", ["sec-hunting", "sec-iocscore", "sec-iocs", "sec-ioctypes", "sec-domainage", "sec-crtsh", "sec-shodan", "sec-lookups", "sec-severity", "sec-export"]),
+        ("vuln", "Sårbarheter", ["sec-cvescore", "sec-cve", "sec-patch"]),
+        ("rep", "Rapporter &amp; källor", ["sec-search", "sec-reports", "sec-articles", "sec-catalog"]),
+    ]
+    grp_of = {sid: g for g, _, ids in groups for sid in ids}
+    tabs_html = "".join(f'<button class="tab-btn" data-tab="{g}" onclick="showGroup(\'{g}\')">{label}</button>' for g, label, _ in groups)
     toc_html = "".join(
-        f'<a href="#{sid}" class="toc-link">{title.split("(")[0].split(",")[0].strip()}</a>'
+        f'<a href="#{sid}" class="toc-link" data-grp="{grp_of.get(sid, "rep")}">{title.split("(")[0].split(",")[0].strip()}</a>'
         for sid, title, _ in sections
     )
-    sections_html = "".join(_section(sid, title, body) for sid, title, body in sections)
+    sections_html = "".join(_section(sid, title, body, grp_of.get(sid, "rep")) for sid, title, body in sections)
 
     html_doc = f"""<!DOCTYPE html>
 <html lang="sv">
@@ -1228,7 +1238,24 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
     border: 1px solid var(--panel-border); padding: 0.3rem 0.7rem; border-radius: 20px;
     text-decoration: none; white-space: nowrap;
   }}
+  .tabs {{ display: flex; gap: 0.3rem; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 11; background: var(--bg); padding: 0.4rem 0 0; border-bottom: 1px solid var(--panel-border); }}
+  .tabs::-webkit-scrollbar {{ display: none; }}
+  .tab-btn {{ flex: 0 0 auto; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--text-dim); font: inherit; font-size: 0.9rem; padding: 0.5rem 0.9rem; cursor: pointer; white-space: nowrap; }}
+  .tab-btn.active {{ color: var(--text); border-bottom-color: var(--blue); font-weight: 600; }}
+  .toc {{ position: static !important; padding-top: 0.6rem; margin-top: 0; }}
+  .grp-hidden {{ display: none !important; }}
   .toc-link:hover {{ color: var(--text); border-color: var(--blue); text-decoration: none; }}
+  @media (max-width: 700px) {{
+    .toc {{ flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 1rem; padding-bottom: 0.6rem; scrollbar-width: none; }}
+    .toc::-webkit-scrollbar {{ display: none; }}
+    .toc-link {{ flex: 0 0 auto; }}
+    .theme-btn {{ position: static !important; display: block; margin: 0 0 0.5rem auto; }}
+    h1 {{ font-size: 1.4rem; }}
+    .stat-row {{ flex-wrap: wrap; }}
+    .stat-row .stat {{ flex: 1 1 45%; }}
+    table {{ display: block; overflow-x: auto; max-width: 100%; }}
+    pre {{ overflow-x: auto; }}
+  }}
   .stat-row {{
     display: flex;
     gap: 1px;
@@ -1425,14 +1452,15 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
 
   {status_html}
 
-  <div class="briefing-box">
+  <div class="briefing-box" data-grp="ov">
     <div class="briefing-title">Senaste dygnet</div>
     {briefing_html}
   </div>
 
-  <nav class="toc">{toc_html}</nav>
+  <nav class="tabs" id="tabs">{tabs_html}</nav>
+  <nav class="toc" id="toc">{toc_html}</nav>
 
-  <div class="stat-row">
+  <div class="stat-row" data-grp="ov">
     <div class="stat"><div class="stat-num">{stats}</div><div class="stat-label">Artiklar/poster totalt</div></div>
     <div class="stat"><div class="stat-num">{ioc_stats}</div><div class="stat-label">IOCs totalt</div></div>
     <div class="stat"><div class="stat-num">{len(ransomware_victims)}</div><div class="stat-label">Senaste ransomware-offer</div></div>
@@ -1446,6 +1474,34 @@ try {{ if (localStorage.getItem("cti-theme") === "light") document.documentEleme
 </div>
 
 <script>
+// --- Flikar ---
+function showGroup(g, noSave) {{
+  document.querySelectorAll('[data-grp]').forEach(function (el) {{
+    if (el.classList.contains('toc-link') || el.tagName === 'SECTION' || el.classList.contains('briefing-box') || el.classList.contains('stat-row'))
+      el.classList.toggle('grp-hidden', el.dataset.grp !== g);
+  }});
+  document.querySelectorAll('.tab-btn').forEach(function (b) {{ b.classList.toggle('active', b.dataset.tab === g); }});
+  if (!noSave) {{ try {{ localStorage.setItem('cti-tab', g); }} catch (e) {{}} }}
+  window.dispatchEvent(new Event('resize'));
+}}
+function revealFor(el) {{
+  var sec = el && el.closest ? el.closest('section[data-grp]') : null;
+  if (sec && sec.classList.contains('grp-hidden')) showGroup(sec.dataset.grp, true);
+}}
+(function () {{
+  var orig = Element.prototype.scrollIntoView;
+  Element.prototype.scrollIntoView = function () {{ revealFor(this); return orig.apply(this, arguments); }};
+  document.addEventListener('click', function (e) {{
+    var a = e.target.closest && e.target.closest('a[href^="#sec-"]');
+    if (!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if (t) {{ e.preventDefault(); t.scrollIntoView({{ behavior: 'smooth', block: 'start' }}); }}
+  }});
+  var start = 'ov';
+  try {{ start = localStorage.getItem('cti-tab') || 'ov'; }} catch (e) {{}}
+  if (!document.querySelector('.tab-btn[data-tab="' + start + '"]')) start = 'ov';
+  showGroup(start, true);
+}})();
 // --- Ljust/mörkt läge ---
 function toggleTheme() {{
   const root = document.documentElement;
