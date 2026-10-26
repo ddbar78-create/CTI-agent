@@ -117,7 +117,11 @@ def run_once():
                 # Hämta fullständig artikeltext + utvalda referenslänkar
                 combined_text = f"{title}\n{summary}"
                 if crawl_count < MAX_CRAWLS_PER_RUN and link:
-                    full_text = crawl_article(link)
+                    try:
+                        full_text = crawl_article(link)
+                    except Exception as e:  # t.ex. felaktig länk (ValueError) ska inte stoppa hela körningen
+                        print(f"    Kunde inte hämta artikeln ({type(e).__name__}): {link[:80]}", file=sys.stderr)
+                        full_text = None
                     if full_text:
                         save_full_text(conn, article_id, full_text)
                         combined_text = f"{title}\n{full_text}"
