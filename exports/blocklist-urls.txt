@@ -9,6 +9,7 @@ http://103.16.31.162:55040/Mozi.m
 http://103.172.186.175:54920/i
 http://103.172.186.178:39621/bin.sh
 http://103.172.186.178:39621/i
+http://103.172.186.194:53750/i
 http://103.172.221.97:44794/bin.sh
 http://103.172.221.97:44794/i
 http://103.205.182.186:51601/Mozi.m
@@ -35,6 +36,7 @@ http://105.224.80.12:47049/Mozi.m
 http://105.224.80.12:47049/bin.sh
 http://105.224.80.12:47049/i
 http://105.225.107.104:35223/bin.sh
+http://105.225.107.104:35223/i
 http://105.225.23.38:42377/i
 http://105.225.30.168:51307/i
 http://105.225.76.225:60373/Mozi.m
@@ -43,12 +45,19 @@ http://107.175.82.242:9000/wilow/lososo.exe
 http://107.175.82.242:9000/wilow/mellstroy.exe
 http://110.38.8.66:57873/Mozi.m
 http://111.92.152.40:55590/Mozi.7
+http://111.92.152.40:55590/Mozi.m
 http://112.198.178.17:55334/bin.sh
 http://112.198.178.17:55334/i
 http://112.198.238.18:51961/Mozi.m
+http://112.239.102.191:57478/i
 http://112.247.81.29:36186/i
 http://112.248.184.210:44971/i
+http://112.248.83.18:53971/bin.sh
+http://112.248.83.18:53971/i
+http://112.254.7.93:41700/bin.sh
 http://112.254.7.93:41700/i
+http://112.255.106.244:32819/i
+http://112.93.136.247:33992/i
 http://113.221.58.161:50544/i
 http://113.228.154.133:57134/i
 http://113.231.88.61:34873/bin.sh
@@ -86,9 +95,13 @@ http://115.58.95.39:54317/bin.sh
 http://115.58.95.39:54317/i
 http://115.62.152.245:41504/i
 http://115.63.11.202:39490/bin.sh
+http://115.63.11.202:39490/i
 http://115.63.11.242:45738/bin.sh
+http://116.138.27.49:33739/i
 http://116.167.48.231:46493/bin.sh
 http://116.167.48.231:46493/i
+http://116.248.80.74:48436/bin.sh
+http://116.248.80.74:48436/i
 http://116.76.206.254:39519/i
 http://117.131.92.150:49257/bin.sh
 http://117.131.92.150:49257/i
@@ -97,11 +110,13 @@ http://117.223.143.48:37266/i
 http://117.252.240.213:44125/i
 http://117.26.72.126:39073/i
 http://118.173.239.231:55311/i
+http://119.102.80.156:43236/bin.sh
 http://119.114.154.71:44181/i
 http://119.115.78.157:57332/bin.sh
 http://119.116.175.117:42931/bin.sh
 http://119.116.175.117:42931/i
 http://119.166.118.21:53118/bin.sh
+http://119.166.118.21:53118/i
 http://119.179.215.1:34482/bin.sh
 http://119.179.236.4:44577/bin.sh
 http://119.183.3.207:46492/bin.sh
@@ -144,8 +159,11 @@ http://123.189.207.130:33134/bin.sh
 http://123.190.231.204:53096/bin.sh
 http://123.190.231.204:53096/i
 http://123.190.26.227:34580/bin.sh
+http://123.232.199.84:55550/bin.sh
+http://123.232.199.84:55550/i
 http://123.5.138.16:48624/bin.sh
 http://123.5.138.16:48624/i
+http://123.5.171.149:55222/bin.sh
 http://123.8.61.103:39954/bin.sh
 http://124.112.71.33:34187/i
 http://124.29.194.23:36179/Mozi.m
@@ -158,6 +176,8 @@ http://125.25.99.126:43071/bin.sh
 http://125.25.99.126:43071/i
 http://125.40.112.202:60611/bin.sh
 http://125.40.112.202:60611/i
+http://125.41.2.40:51779/bin.sh
+http://125.41.2.40:51779/i
 http://125.41.224.186:40476/i
 http://125.41.229.237:39280/bin.sh
 http://125.41.229.237:39280/i
@@ -172,11 +192,14 @@ http://125.46.131.53:41661/bin.sh
 http://125.46.215.28:40892/bin.sh
 http://125.46.215.28:40892/i
 http://125.47.51.172:54405/bin.sh
+http://125.47.51.172:54405/i
 http://134.209.82.225:8099/beacon
 http://134.209.89.212/r
 http://134.209.89.212/x86_64
 http://135.12.150.16:44851/bin.sh
 http://135.12.150.16:44851/i
+http://138.204.196.244:36674/bin.sh
+http://138.204.196.244:36674/i
 http://139.135.44.215:41923/Mozi.m
 http://139.135.60.2:34286/Mozi.m
 http://140.150.227.94/333/doAarfb.txt
@@ -189,12 +212,14 @@ http://152.42.203.125:80/main_mips
 http://152.42.203.125:80/main_mpsl
 http://153.117.15.169:33380/Mozi.m
 http://153.117.28.212:58844/Mozi.m
+http://153.117.34.152:34133/Mozi.m
 http://153.117.34.223:37559/Mozi.m
 http://154.223.128.222:53863/i
 http://154.242.138.193:46424/bin.sh
 http://154.242.138.193:46424/i
 http://154.252.181.182:55558/i
 http://160.176.196.201:51769/bin.sh
+http://160.250.114.147:34544/Mozi.m
 http://163.142.87.129:42447/i
 http://163.142.92.15:36474/bin.sh
 http://163.142.95.81:55570/bin.sh
@@ -216,6 +241,7 @@ http://178.206.144.158:4073/i
 http://179.108.89.220:37972/i
 http://180.106.138.148:3588/i
 http://180.106.138.172:3588/i
+http://180.116.253.188:4117/i
 http://180.190.188.103:60551/bin.sh
 http://180.190.188.103:60551/i
 http://180.191.16.206:33807/bin.sh
@@ -240,7 +266,9 @@ http://182.113.24.32:44441/bin.sh
 http://182.113.24.32:44441/i
 http://182.114.196.163:33453/bin.sh
 http://182.114.246.180:39159/i
+http://182.114.249.240:42443/i
 http://182.115.232.190:59046/bin.sh
+http://182.115.232.190:59046/i
 http://182.116.120.113:46631/Mozi.m
 http://182.116.35.198:35882/bin.sh
 http://182.116.53.36:34325/bin.sh
@@ -249,6 +277,8 @@ http://182.117.123.13:51074/bin.sh
 http://182.117.26.89:52071/bin.sh
 http://182.117.28.2:59279/i
 http://182.117.40.248:59279/i
+http://182.119.29.76:52024/i
+http://182.120.183.158:33125/bin.sh
 http://182.120.183.158:57025/bin.sh
 http://182.121.114.123:60533/bin.sh
 http://182.121.114.123:60533/i
@@ -257,6 +287,8 @@ http://182.122.140.98:48043/bin.sh
 http://182.122.236.109:48612/bin.sh
 http://182.123.211.40:41376/bin.sh
 http://182.123.211.40:41376/i
+http://182.124.114.26:44103/bin.sh
+http://182.124.114.26:44103/i
 http://182.126.118.214:34036/bin.sh
 http://182.126.118.214:34036/i
 http://182.126.247.75:33193/bin.sh
@@ -266,6 +298,7 @@ http://182.127.122.217:41409/bin.sh
 http://182.127.46.143:42018/bin.sh
 http://182.127.46.143:42018/i
 http://182.127.69.253:50403/bin.sh
+http://182.127.69.253:50403/i
 http://182.127.86.204:52542/bin.sh
 http://182.127.86.204:52542/i
 http://182.52.128.18:46664/bin.sh
@@ -288,6 +321,7 @@ http://196.189.98.77:50555/i
 http://196.189.98.77:52976/i
 http://196.190.105.170:53329/bin.sh
 http://196.190.105.170:53329/i
+http://196.206.61.234:54700/i
 http://196.64.133.144:35816/i
 http://2.182.119.123:56830/i
 http://200.115.102.246:45058/bin.sh
@@ -313,6 +347,7 @@ http://217.60.242.6/bins/sora.mpsl
 http://217.60.242.6/bins/sora.x86
 http://217.60.242.6/sora.sh
 http://218.74.110.128:57321/i
+http://219.155.201.178:59576/i
 http://219.155.220.3:56964/i
 http://219.155.81.76:35992/bin.sh
 http://219.156.42.167:50771/bin.sh
@@ -325,6 +360,7 @@ http://220.192.85.222:50155/bin.sh
 http://220.244.179.88:35564/bin.sh
 http://220.244.179.88:35564/i
 http://221.13.235.125:45130/i
+http://221.15.11.209:34128/bin.sh
 http://221.15.11.209:34128/i
 http://221.15.186.102:38485/bin.sh
 http://221.15.22.116:41376/bin.sh
@@ -345,6 +381,9 @@ http://222.139.193.14:42965/i
 http://222.139.32.207:41504/bin.sh
 http://222.139.32.207:41504/i
 http://222.140.185.220:56186/Mozi.m
+http://222.140.215.244:54578/bin.sh
+http://222.140.215.244:54578/i
+http://222.141.117.50:45165/bin.sh
 http://222.141.245.71:40247/i
 http://222.141.73.76:54045/i
 http://222.142.246.72:60719/i
@@ -378,6 +417,7 @@ http://36.71.25.78:34921/bin.sh
 http://36.71.25.78:34921/i
 http://36.88.136.194:50107/bin.sh
 http://36.88.136.194:50107/i
+http://36.88.164.90:33893/i
 http://36.89.252.178:47535/bin.sh
 http://36.89.252.178:47535/i
 http://37.36.63.103:54403/bin.sh
@@ -387,6 +427,7 @@ http://38.52.185.233:51614/bin.sh
 http://38.52.185.233:51614/i
 http://39.34.169.41:44503/Mozi.a
 http://39.69.105.207:50349/i
+http://39.74.36.153:57092/i
 http://39.74.41.218:36945/bin.sh
 http://39.79.106.202:42233/bin.sh
 http://39.89.167.219:35567/bin.sh
@@ -404,9 +445,13 @@ http://42.179.167.188:51773/bin.sh
 http://42.179.167.188:51773/i
 http://42.224.147.209:38638/bin.sh
 http://42.224.147.209:38638/i
+http://42.224.5.131:43659/bin.sh
+http://42.224.5.131:43659/i
+http://42.224.70.208:50047/i
 http://42.224.82.160:53154/bin.sh
 http://42.224.82.160:53154/i
 http://42.225.204.166:53295/i
+http://42.226.213.128:53214/i
 http://42.228.222.245:35224/i
 http://42.229.219.145:55769/bin.sh
 http://42.229.219.145:55769/i
@@ -449,6 +494,7 @@ http://59.103.10.124:33237/i
 http://59.103.116.83:41326/bin.sh
 http://59.103.116.83:41326/i
 http://59.96.137.14:44116/bin.sh
+http://59.96.139.217:47443/i
 http://59.96.141.165:59224/bin.sh
 http://59.96.141.165:59224/i
 http://59.96.142.107:35299/bin.sh
@@ -459,8 +505,12 @@ http://59.97.251.248:44126/bin.sh
 http://60.177.242.44:33281/bin.sh
 http://60.177.242.44:33281/i
 http://60.18.127.98:60211/i
+http://60.211.30.161:60233/bin.sh
+http://60.211.30.161:60233/i
 http://60.6.63.148:59456/i
 http://61.144.102.12:55558/Mozi.a
+http://61.52.116.33:52891/bin.sh
+http://61.52.116.33:52891/i
 http://61.52.132.180:39218/i
 http://61.52.157.184:33099/i
 http://61.52.213.124:39665/bin.sh
@@ -607,6 +657,7 @@ https://balladquartz.com/curl/ajb6hflv17/7z625q0ah02v5qzgs17eri.dat
 https://barbarabonomiromagnoli.com/
 https://beau-port.co.uk/
 https://benu.com.br/
+https://betruccos.club/
 https://betvnd.ink/
 https://bibobobo.com/
 https://bl777.online/
@@ -1212,6 +1263,7 @@ https://gitlab.com/twochainzz/fivem-spoofer/-/raw/main/FiveMSpoofer.zip
 https://gopotatomusic.com/
 https://gorbanloit.club/
 https://guardianlab.ca/
+https://h.au338.org/a/
 https://h6.ajo889.org/ad/
 https://h6.ajo889.org/be/
 https://h6.ajo889.org/cce/
@@ -1293,6 +1345,7 @@ https://k10.ajuna88.org/ty/
 https://k10.ajuna88.org/x8/
 https://k10.ajuna88.org/xf/
 https://kayanautomotive.com/
+https://kh.afktogel.org/
 https://kim66.in.net/
 https://knowes.homes/
 https://kongotechorg.com/
@@ -1320,6 +1373,7 @@ https://login.neuidmsso.com/a8eec281-aaa3-4dae-ac9b-9a398b9215e7/saml2?SAMLReque
 https://login.northeastern-auth.com/a8eec281-aaa3-4dae-ac9b-9a398b9215e7/saml2?SAMLRequest=fVLLbtswEPwVgXeJIhW9CMuBG6OogbQxIqWHXAKKWscEKNLlUmn791X8CNKLbwQ4O7Mzs4vbP6OJ3sCjdrYhLElJBFa5QdvXhjx1X%2BOK3C4XKEfDD2I1hb19hF8TYIjmQYvi9NOQyVvhJGoUVo6AIijRrr7fC56k4uBdcMoZEq0QwYdZ6s5ZnEbwLfg3reDp8b4h%2BxAOKCi1MOlhRHTJ%2FEpgmKgeDnQm2WkD9LgDfefmdPvQdrRtH0i0njfSVoajiwuRca%2FaJqNW3qHbBWeNtpAoN1JZAShesVhKmcU3g4RYqrqPa5nVVV9zlkNJj9ZItFk35IWVBWSMZRXL6yItb7gqd6pIWZbvIK8zmGGIE2wsBmlDQ3jKi5ilccY6xkVeipQlRcWfSbQ9h%2FFF21PI15LrTyAU37puG7%2FbJdHPS1kzgJyrEUd1%2F7mT68TyUgRZXo8d97rvnYGwX9DPUh838WPm3qy3zmj1N1oZ437feZABGhL8BIQuz3P%2FX8%2FyHw%3D%3D&RelayState=e1s2&sso_reload=true
 https://lsmdngnakjbgazxv.com/Aliyunc/Quickq-win10-11%201.5.6x64.zip
 https://lumivecchioponte.com/
+https://luqiuid91.com/
 https://m.ajo889.org/b2/
 https://m.ajo889.org/dy/
 https://m.ajo889.org/ge/
@@ -2031,6 +2085,7 @@ https://siembrareflexologia.com.ar/
 https://skinfinityaestheticsoman.com/
 https://slot789.us/
 https://smsslot.co/
+https://softify.space/
 https://soicauthudo24h.net/
 https://sorriclean.com.br/
 https://stamins.com/
