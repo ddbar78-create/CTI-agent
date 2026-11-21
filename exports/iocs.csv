@@ -1,4 +1,898 @@
 type,value,family,score,status,source,first_seen_utc
+url,https://unit42.paloaltonetworks.com,,30,aktiv,Unit 42,2026-11-21 01:21:25
+url,https://unit42.paloaltonetworks.com/com-affiliate-vishing-attacks/,,30,aktiv,Unit 42,2026-11-21 01:21:25
+domain,unit42.paloaltonetworks.com,,50,aktiv,Unit 42,2026-11-21 01:21:25
+md5_hash,b8237074e67c90ff37d94947222718d0,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+md5_hash,8d3f3bf61e0e91891e9424399ec8b701,ConnectWise,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+md5_hash,6daa57a6de2089247b285729ef63e985,Adware.OfferCore,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+sha1_hash,dd1bf6d957bed458ef81ff0f44f7da6241639035,Adware.OfferCore,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+sha1_hash,c36d16fe2fc4e862896d97758179efa6419da358,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+sha1_hash,9a0019b616615e3b4743450605cdc534fd6b0e0f,ConnectWise,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+sha256_hash,e8cd1d4ad86c3c654231cad4ffbfccab3327ad019879beab10747076e6a9edc2,ConnectWise,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+sha256_hash,1453f3543d436969a05a641894d511a128a11030d79b9af16b8b430d42faedaf,Adware.OfferCore,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+sha256_hash,0da0c094ce1f1e51bddaa92b59d795fbc8587e5a73ae45547fdd293b9b160a05,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-21 01:21:19
+url,https://raw.githubusercontent.com/qlabpucp/diplomado_ds_python/refs/heads/main/gneissoid/python_ds_diplomado_2.2.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://raw.githubusercontent.com/qlabpucp/diplomado_ds_python/refs/heads/main/gneissoid/diplomado_ds_python.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://raw.githubusercontent.com/ShewiYT/RobRun-Trainer/refs/heads/main/RobRunTrainer-x64.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/upperlancestuff29/Telegram-Fix/releases/download/Telegram-Fix/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/tg-fix/releases/download/tg-fix/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/tg-fix/releases/download/tg-fix/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/tg-fix/releases/download/tg-fix/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/tg-fix/releases/download/tg-fix/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/ZapretTelegram/releases/download/ZapretTelegram/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/ZapretTelegram/releases/download/ZapretTelegram/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/ZapretTelegram/releases/download/ZapretTelegram/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Zapret-Telegram/releases/download/Zapret-Telegram/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Zapret-Telegram/releases/download/Zapret-Telegram/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Zapret-Telegram/releases/download/Zapret-Telegram/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Zapret-Telegram/releases/download/Zapret-Telegram/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TgWsProxy/releases/download/TgWsProxy/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TgWsProxy/releases/download/TgWsProxy/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TgWsProxy/releases/download/TgWsProxy/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TgWsProxy/releases/download/TgWsProxy/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Tg-Ws-Proxy/releases/download/Tg-Ws-Proxy/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Tg-Ws-Proxy/releases/download/Tg-Ws-Proxy/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Tg-Ws-Proxy/releases/download/Tg-Ws-Proxy/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Tg-Ws-Proxy/releases/download/Tg-Ws-Proxy/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramZapret/releases/download/TelegramZapret/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramZapret/releases/download/TelegramZapret/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramZapret/releases/download/TelegramZapret/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramZapret/releases/download/TelegramZapret/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramFix/releases/download/TelegramFix/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramFix/releases/download/TelegramFix/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramFix/releases/download/TelegramFix/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TelegramFix/releases/download/TelegramFix/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Zapret/releases/download/Telegram-Zapret/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Zapret/releases/download/Telegram-Zapret/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Zapret/releases/download/Telegram-Zapret/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Zapret/releases/download/Telegram-Zapret/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Fix/releases/download/Telegram-Fix/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Fix/releases/download/Telegram-Fix/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Fix/releases/download/Telegram-Fix/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/Telegram-Fix/releases/download/Telegram-Fix/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TG-WS-Proxy-v1.11.4/releases/download/TG-WS-Proxy-v1.11.4/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TG-WS-Proxy-v1.11.4/releases/download/TG-WS-Proxy-v1.11.4/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TG-WS-Proxy-v1.11.4/releases/download/TG-WS-Proxy-v1.11.4/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/netconsultantcurse/TG-WS-Proxy-v1.11.4/releases/download/TG-WS-Proxy-v1.11.4/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/Stadiumsolpalace/tg-fix/releases/download/tg-fix/TgWsProxy_windows.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/Stadiumsolpalace/Telegram-Zapret/releases/download/Telegram-Zapret/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/ShewiYT/RobRun-Trainer/releases/download/Update/RobRunTrainer-x64.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://github.com/ShewiYT/Find-Crypto-Wallet/releases/download/Update/findcryptowallets.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://cdn.discordapp.com/attachments/1569438502918295827/1573491990023118968/127b568e2a?ex=6b02341c&is=6b00e29c&hm=36b2efb80499aea8f5cd6b039cb81d3d1be20df120a7a6c5eadc68c005019843&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,https://cdn.discordapp.com/attachments/1566966094147756102/1571551492131913768/ba3abaf9c7?ex=6b01bc61&is=6b006ae1&hm=6073e2754086d67fa1e8dfd5d896aefdfc2791350675dd386d5502bcc748bb18&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://85.12.205.35:38210/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://79.106.231.174:50768/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://61.53.151.211:56078/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://59.96.140.218:52204/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://46.236.65.9:58249/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.84.20.93:33920/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.239.152.91:36419/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.234.99.45:52373/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.234.99.45:52373/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.228.190.192:39805/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.227.187.162:47179/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://42.224.97.81:52458/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://39.90.151.184:33909/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://37.148.98.138:6872/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://27.202.33.212:59317/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://222.243.95.50:48840/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://221.202.206.185:59205/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://221.202.206.185:59205/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://221.15.178.202:35311/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://221.14.105.64:53929/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://221.14.105.64:53929/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://219.157.58.10:37394/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://194.147.58.39:8123/bot_x86_64,x86-64,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://194.147.58.39:8123/bot_unkown,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://183.158.42.17:58475/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.87.70:49877/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.6.96:49712/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.6.96:49712/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.127.181:51515/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.127.181:51515/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.124.19:59726/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.127.112.166:36236/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.123.211.150:39239/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.123.211.150:39239/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.117.123.131:42274/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.113.73.156:40501/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.113.7.131:36662/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://182.112.237.154:36837/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://180.191.36.99:58280/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://175.165.199.37:53406/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://175.146.226.133:43200/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://175.146.226.133:43200/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://175.146.2.4:42945/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://145.236.202.69:51667/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://125.45.67.67:50967/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://125.45.67.67:50967/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://125.41.1.83:37865/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://125.41.1.83:37865/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://124.161.116.7:59073/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.8.92.85:42462/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.8.92.85:42462/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.4.199.237:34193/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.4.199.237:34193/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.14.39.96:55201/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.14.244.51:44748/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.14.244.51:44748/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.130.64.237:59149/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.130.64.237:59149/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://123.11.15.4:45721/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://116.109.181.50:45507/.i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.63.203.56:48520/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.63.203.56:48520/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.57.183.137:48937/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.56.190.42:57147/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.56.146.61:47169/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.55.230.21:55767/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.55.230.21:55767/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.55.198.149:52248/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.55.198.149:52248/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.51.184.120:35019/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.50.158.145:34009/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.50.158.145:34009/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.206.13.168:41239/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://115.206.13.168:41239/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://113.53.69.164:45145/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.253.127.79:41128/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.248.97.125:59778/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.248.80.87:54670/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.248.189.169:48573/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.248.189.169:48573/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.239.96.88:36141/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.239.96.88:36141/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.237.127.231:55910/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://112.237.127.231:55910/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://105.225.86.87:37529/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+url,http://105.225.86.87:37529/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-21 01:21:18
+ip:port,34.171.40.53:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,60.204.173.235:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,204.168.243.201:443,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,159.195.32.152:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,165.227.201.128:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,137.22.150.117:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,87.199.195.71:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,121.41.121.251:8083,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.218.216.243:8808,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,95.85.237.156:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.199.130.245:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,64.188.62.110:9800,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,212.232.23.73:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.133.217.112:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,154.212.112.207:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,182.136.121.239:1024,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.153.201.251:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.5.202.180:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,198.251.85.85:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,117.72.171.229:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.243.170.27:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,136.244.109.247:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,146.185.208.145:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,98.159.102.212:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,155.138.255.240:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,167.86.70.217:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.242.130.130:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,163.7.0.131:443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,5.182.120.83:8443,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,168.110.211.241:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,46.151.182.67:56001,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,153.52.255.31:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.239.68.243:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.180.54.195:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,101.32.75.122:8787,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,167.104.105.131:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.148.186.182:15123,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.224.211.87:8083,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.59.57.176:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.76.188.127:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,167.86.70.217:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,209.74.71.244:8443,Evilginx,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,204.44.69.221:6606,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,74.125.141.188:5228,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,151.241.99.88:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,173.212.215.22:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,2.31.125.213:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,178.104.197.218:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,66.212.21.213:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,15.218.17.190:3790,Meterpreter,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,138.249.18.192:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,2.27.160.45:48108,Unknown RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,136.244.98.190:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,130.94.59.214:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,18.188.57.201:5000,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,82.22.146.177:8096,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,117.72.26.79:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.224.67.151:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,180.178.57.230:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,164.92.205.50:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,195.72.191.40:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.180.54.195:8443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,204.44.69.221:7707,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,159.89.54.66:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,109.160.32.131:22,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,34.45.70.128:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,107.175.206.100:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,157.173.113.230:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.244.145.24:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,27.50.63.50:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,154.212.112.196:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,162.243.121.117:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.156.77.10:8443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,162.35.47.19:8443,Evilginx,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.204.71.211:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.146.27.97:4443,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,163.5.254.98:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,80.94.92.179:22,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,62.60.239.15:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,118.145.245.42:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.84.13.187:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,171.221.160.227:22,Unknown malware,85,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,124.223.104.170:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,167.86.70.217:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,212.43.147.214:7321,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.148.27.125:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,209.99.187.220:56001,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,192.3.31.148:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,194.147.58.39:8123,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,168.110.13.57:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,169.58.115.94:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,189.24.81.71:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.73:443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.165.133.76:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,51.81.92.176:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,49.233.199.129:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,67.43.156.23:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,185.242.235.141:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,109.160.32.146:22,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,217.182.92.79:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,129.212.176.39:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,185.141.216.103:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,41.72.130.93:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,140.210.15.208:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,138.2.70.5:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,188.253.28.5:8041,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,1.13.183.49:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,193.90.12.62:22,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,207.148.67.69:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,13.207.76.82:443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,23.140.244.83:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,62.238.13.47:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,91.92.43.6:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,151.241.154.93:8443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,185.165.170.178:53946,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,95.179.213.237:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.224.67.151:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,102.220.163.109:56001,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,117.55.229.137:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,60.183.90.254:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,77.237.97.184:4433,DanaBot,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,125.208.16.54:2015,Ghost RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.146.27.97:443,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,217.216.54.78:5005,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,112.213.110.225:10443,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,146.190.228.75:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.127.244.14:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,82.158.89.27:22,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,62.171.168.236:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,130.94.29.226:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.104.129.179:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.242.150.215:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,124.221.182.39:443,Tsundere,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,87.120.244.77:443,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,116.62.172.147:443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,3.218.23.251:443,Evilginx,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,84.32.220.87:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.134.48.96:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,98.159.102.213:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.39.26.137:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,109.160.32.45:22,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,129.146.79.150:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,136.65.83.23:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.242.130.97:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,195.123.217.196:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,157.55.194.172:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,194.180.157.11:7707,XWorm,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.155.54.26:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,46.19.140.50:2087,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,162.141.167.33:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,116.203.127.47:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,102.220.160.24:443,Unknown RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,167.86.93.226:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.242.130.3:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,204.44.69.221:8808,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,106.12.35.83:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,75.119.137.232:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,101.47.30.91:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,119.3.237.224:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,100.23.130.184:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,94.228.167.90:9800,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,42.1.65.197:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,34.217.56.3:1905,Grandoreiro,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,115.159.212.22:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,155.103.69.244:2828,LxBase RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,113.20.6.135:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,120.55.186.125:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,13.143.243.147:44104,SpyNote,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,144.172.99.150:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.77.24.71:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,149.88.94.121:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,156.234.168.48:8081,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.127.32.126:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.199.130.250:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,92.119.178.59:8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,129.225.118.96:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,124.223.197.135:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.132.121.32:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,185.106.93.76:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,202.61.160.188:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,149.104.27.46:63744,Cobalt Strike,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,143.110.165.208:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,148.251.120.62:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,162.35.36.118:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.5.202.182:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.218.218.84:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,31.57.65.113:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.204.71.199:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,3.12.57.9:80,Havoc,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,163.7.4.61:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.224.67.151:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,74.0.42.199:8041,Unknown RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,167.86.95.233:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,2.56.118.218:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:60000,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,27.124.20.130:8765,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,82.158.89.27:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.55.215.36:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.73:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,188.127.224.248:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,116.204.131.95:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.9.149.124:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,109.160.32.39:22,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.142.103.54:5656,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,193.161.193.99:43849,NjRAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.73:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,194.163.170.136:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,91.219.227.48:8443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,80.66.66.37:3790,Meterpreter,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.61.137.152:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,43.173.12.105:8080,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,103.106.191.29:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,117.72.34.10:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,204.168.245.9:443,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,23.150.4.24:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.241.74.27:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,208.98.41.18:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.180.54.195:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,39.107.45.43:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,119.42.148.190:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,192.236.151.249:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,84.247.152.233:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,132.243.225.28:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,39.107.243.187:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,2.88.149.151:443,Havoc,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,178.105.250.57:443,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,195.72.191.242:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,202.61.160.182:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.140.228.202:443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,119.42.146.174:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,85.155.15.11:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,210.16.166.153:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,206.189.227.150:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.156.77.10:8083,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,185.205.244.151:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.100.37.52:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,8.210.44.247:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:8001,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,70.36.123.14:443,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,192.255.230.190:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,130.12.182.172:7443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,83.136.208.221:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,82.158.89.27:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.112.215.157:8084,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,198.199.82.188:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,91.219.62.84:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,91.148.134.108:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,156.238.235.191:8085,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.146.27.97:8080,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,103.112.172.143:4993,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,47.79.123.155:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,172.203.32.240:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,156.225.25.222:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,139.5.202.181:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,82.158.89.27:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,121.40.122.186:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,91.219.227.48:2052,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,185.224.129.52:8443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.73:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,20.205.153.116:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,165.154.227.78:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.73:8080,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,198.13.158.199:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,45.76.58.98:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,91.219.239.251:4443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,186.240.199.69:8080,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,149.104.105.125:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,151.247.219.145:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,202.61.160.187:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,138.124.52.36:443,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,154.12.28.138:18443,Cobalt Strike,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,95.111.228.145:9999,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+ip:port,38.146.27.97:80,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.ppc,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://havenleaf3.com/curl/dngnud1og4/9pcx0d0mppr013qy9j8me.json,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://nymra.cc/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=l64&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://vkawdwa.top/ws,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.mpsl,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.arm64,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://node19092026.top/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://setorderta.rest/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.arm7,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://85.202.161.17/ws/device,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.arm5,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://iiilii.top/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://activation-tunnel.cc/i/clickfix/a9381c2cd21f99cb.png,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://syrna.cc/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://trykow.cc/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://vmi3767938.contaboserver.net/,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://amomosha.homes/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.sh4,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.spc,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://193.24.123.243/ws/device,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://blackwidowprotocol.website/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://ashra.cc/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://ixor.top/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://peppe.cc/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://45.147.28.43/ws/device,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.i686,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://tetovich.click:443/,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://www.dropbox.com/scl/fi/5f9qmzjfv0h5e1rqteufy/31.zip?rlkey=0ksy687dpqhjblsocxo5xpdtw&st=qhgqyd1q&dl=1,Unknown RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://kkkvvvzxg.online/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=a32&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://locanto.cam/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://opajfnhu.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://121.202.196.213:55195/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://miryyzajy.vip/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://coralreefscience.website/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?a=l64&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?a=a32&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://vmi3767928.contaboserver.net/isJzwgRyAPnAP05H.php,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://153.117.41.230:56252/Mozi.a,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://175.107.233.219:57772/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://dsjfjksdtr.top/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://havenleaf3.com/f/hxjvvipsyjzsdxrzfdjwka/pnxco9yv,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://101.53.228.165:57743/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://gdedengiskatinaufa.shop/webview/loading?buildVersion=marioshdjdjdn,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://a1333710.xsph.ru/L1nc0In.php,DCRat,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://laperoter.rest/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://dakjdnwgnu.sbs/ws,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://45.198.224.89/arm7,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://helptools2.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://103.82.120.126:55869/Mozi.a,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://153.117.37.126:33167/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://dlyavtorogo.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://bimbomhub.mom/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://bosinn.top/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://103.244.172.178:43796/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.mips,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.arm6,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://sa1atik.cn/qqkb/,SalatStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://103.174.243.194:49517/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://activation-tunnel.cc/b/clickfix,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://182.119.228.62:60165/Mozi.a,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://120.28.163.158:34959/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://huishushie.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.x86_64,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://sigmon-zz.mom/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?a=l32&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=l32&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?a=a64&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://nakiam.com/webview/loading?buildVersion=UZ__Qaytarish,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://cdn.876553.xyz/Q1fc8a9OCb7AsC6f/dl/c9789d27-0a43-4347-917e-33e496ccb2f0,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://vkadaw.click:8443/,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.m68k,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://rudsakdjn.click:443/,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://govcat.co/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://sgdkgdksgdkgsd.top/api/sync,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://marinebiologylab.website/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://rezynjyy.vip/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.arm,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://morkovka.cn/qqkb/,SalatStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://evroreal.click:443/,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=a64&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://coreprotector.org/api/v1/sync/auth,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://cdn.876553.xyz/Q1fc8a9OCb7AsC6f/dl/5b5ca3cb-434f-4492-a0f7-11c0b2e0f358,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://www.dropbox.com/scl/fi/u1gx3ts243xxoya048jbr/bundle.zip?rlkey=3ronxf88is6brzcriugpat5ld&st=7wz97uxi&dl=1,Unknown RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://178.83.188.141/fvbig/zerobot.arc,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://petroodawd.top/ws,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,https://nakiam.com/webview/loading?buildVersion=Soliq-UZ,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://223.123.34.105:59934/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+url,http://92.119.178.59:8988/slw,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,e902ead6893462d9bca6b185014d4d3ab24cfbeed8a95314ab835906f8b51718,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4ca9f8ed8487c13b2cd41296172c0442463c9e2a19d2e0ec9d88a7a4bbec8020,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,898e912e9a9e076d52ebd08841ee7980b4fef9de2cc1fd843dbd0dfb367a5676,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f1c9fa6a3d5e8eabcc2ec1fc45753db1e0bed44976263cec514d53ac722b935b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,85fdd0a29d621ca66968a4309400b359380f98bee064c224d0127363b8b968b2,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,cf14e20a5221c18e7480bb14e95a522687f6dedd5eb68119fbfb1f2a7ce93e22,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,446205b6c0302ec738b18e027d9343bf454bee9fc2c11672c80fd9d999c423a5,IClickFix,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,0df18a4cc9dff53641f9308a90401198c53242c06ce430dbdee0d89e9d25c7f6,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1a5ece31d5d9bba41018e3e52be185f1fe8e4b5afda357ace55bc7ff17bfb945,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,d3f28a55dac385ca00c32b69fb8e4d6af992e29b9dc3a2f1cb14d6934afdf5c1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,47cc6f96011c0a91bf4703eaecf8d01689237855665ac8b3cc4cab3fd0833c94,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,8a32d83429f46de75a7ba9e4061a7c420bf24136dca1239dd7c5fcc289c6dcef,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,d7f3d36239a7fa122a2fb49646a12faa16471391f74707407546e202efd1a869,SmartLoader,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,799cc837f33e43f73c5abc8b6abbae5a32f3f2e2752f5302ad45ae57ac401581,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1094a8458e976f5719b667f3bd22eaa605fa96488401560520a4843af059e22a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5c7417492fb46a62c84d083c6219b1a556c405e42d72482ba5e0772ebb06e397,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,407fb53e62d4ed0e2d043b60f0916ff77ef2b8fba3dc0f6594218a4877edb5aa,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f006aaa1017115b9d41f28b3187671fabfbdbde131c75732348c4276e2f09373,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,034f9c7105448f79fd3b7ff8f9ccef6513793170a316d9370100510514c6e9b1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f71aad2ece5d4eabe5c6de2ae542331d9a4e475bd60f05cc54035d64b1728460,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,97e59b5ffc6c065920956f4a4647975624a6e914a4340a2523df34607651f8f8,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,79d82cc4c8bd34033cce4c8cb41169d7babeed660a54feed8187d2745482dbf0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,32fdb3ed8e69c9ab0bd385decdc8d486db8b75df681e978d80c9ea5430ecbef5,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,187c25e0604530f5f6a8ee79b0798f89ef0a132dbe69b55b6afb1f2583f84b2b,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,060b07c198e6942a41fbcc3898323d5158556896c374348bdb5f873ff6d93cf9,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c47d61f76e17b91517de0f8b42b2882e6779c2944efa6d8bd7b4f2d66d78b03e,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,07ed89158c1dc6d95b6b47e69eeeff3ccbd3d8f81489b84e6cdbfdc226b50c1f,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,06c9db8f18d7deeab189c2e5f0825761492c9640f1b65092418f1572b1ce813f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,3a1d6c25cc101de57145b7fe8f6d98f211ac77490157dbee500b73a8adeb0838,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,8a12f4a0321cb6cd8809771597b58aa2055157e45568c86b4b5ddc28f03f8479,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,abbe5568587f5cac7ed9f64fe3e08c432229efc9f3918da4573d824acc93fceb,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,84afc2944144274a8ad67205d826509ee886587874bba194f5509455e63afba4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,cab6ab8f9e05daf027de1670e3e4c970e9bfae2c07b956d29d73d5d09f3a5ec8,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,97a1e6f817d44a4f8b07fdebaf9357786742096c470eb5d78e789b6bb53979bb,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a1cdc11d48782ba51311889214e790ad86852f10649a53df0e22d02c696bb9ba,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,916fe1e211d03231ce5588c408317ea110baf55a1cfb2940083e490b235de3bf,AdaptixC2,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,83eee90aaf2922c2862061029ca4f8e3951baf046e6ff0fdaf422bda96d6493f,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9062a77124083a58f19fb6e37e8005f2e07794913607510e7206d4f3fffb6423,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1f166a66ce0367388843da08455c4a10396015a1dafa0fc46878d46ff56fa741,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,14cceb54e80e04b16bc7aff71d5dac480a858ff372d83847f3d7a04289b131cb,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f65b95003379ee8e8a6eaeef1405af5d5d7282ab93567b4622d917a5d9f1335d,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5b4e9fc4c7589dbf78e5456cd66d7db52697ba72a2653e336a0c21f48a531e6c,Prometei,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,7cdd40c7cf19d044fe41b8f41ba61670a7b4f87f8985a516438974584cc8dec0,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,8ba3a702f8eab1692fe3717ad8d547525761d7643000517d2b54ed2f797b9b4b,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,bb43a6f833471e5d74d4528d55a91b49370fca7d1e3f702287151bfe00d16ba7,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4d92504e0218b627ae662a2bbb9bcebff7e6f5f05b0ff6a0dda2826608882e85,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4e73ec83c31dc4edbdb14e5c725ead561802c4a2e98536ba105ed0ab180fb7f2,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,18bb6a937c01d5810cd9aa4a1cc06ab7fdcbf387f42e46abf50df2380a17a138,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,44f08e83abd27fb12e0bc636835e04407ee06adbf292b26bab8f7b65424bfde3,WannaCryptor,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1942f23cc0b2fc32749d4e35394e8637e2ccc4ccc5c4cd9dd5a88bc1e1a9544f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c75e88a2e2c754165bcbc1a6edbd99ffbbb5edea85cc4a36ec9ed6a2b9c83f21,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,902c6941c017ecb9723ac8ab8ef0aff606ba4e1bfca0949f27f6d3a39f58398a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,22a66464a49bd9dcbd952cd5070b708621f6bd5d04fbf50301e450d86dccf9ad,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,2521c56c79ff0ac567b3b429281545c3f88bdd213f8605f9c5b4ba504480d08b,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ea64454a06ecd3012475baa4bd6851e7431e3865ab8104af6baf90316381fdf5,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,d89574cdc0e16f2136ca73e42519666712bfb8f970b523985ca1d89aa125ee9a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,3b47193ffb34de4f7dd3a78eab3bf328705e1148621b014d424104337a161c1d,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,b248aa11697b6c978c8dfac8be9c441d6aec7f968af2a4c316780ccba96f584d,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,10d880a0b91528bd791604f681bdae1dfa405aae7e7118084923e596f6afc4d4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,868aae1c652cb479842ccd6b18472328c7edf5d191ad6195c6d81770af89c4a6,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,b4a6c2cb9da0d98129ea463b377028adfcc0fbd1f3ca9a3fef19e387b95aa177,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,2a47040322afae0438307760cd0e4288b0073734efed7a9be5949d779dfa76fb,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f9033b5b888380563440531a9a15e7c5a8c5c0ebd0553e684c93dce2b65e0734,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9665a120423fc3a866847375402fac4dcd7fa4efa051e5b6a702ac2497883ef2,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,52cd3a921f7ffc39a78eb2b32e5181f3a132ee7be360740dd49e395ed4080587,Formbook,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,753663572cfaad5b320de095c449f064f77d7c06bfddada9c6dd9cd59fd8324b,Unknown Loader,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1958d225a674b5f6085df0f50dad66c64efc9b356acf131f3971c5669ce60f64,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,dfa33d362a0ad5806ba23fe50d1864117b89ea5bb49a3334c12a6b0b082b6c68,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,8d0ea0037229d6b20a03931b5c083cfb41474c453e3037f5d8b358c60672b1b7,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,efebdd4a5b7eee1e45f683ac1a6a9d73ef7a0638e84ad20d935f914f5c585217,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,200d3a5441856275fe06ac85493ff817366e6d3b9306282ee3ae3d21084a3afd,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,7301f81bd4d676f28849c20bc54e09b46b482655f85fc11609609cfa2c5636c1,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,43acd621c1c0db00833e754551656e9550d1a8cc8b13820abf60fe29d6203e7b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,10c8800cf0c8b774f30622ce8435e44deaa6c922794b80165e18fba7516ecaa8,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a1d2220ef61333d321d60fde3eca6c51ea790987c57610b93f6d5be6bfacc856,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,fd09ff04328cd3ca9b8f9f0d09d2992432ee2c1fd111aaaf13c2a7eb922f4544,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f47e46d88682d43f62b6bb03eb87afd875b4d8eb037352aa3dc14344ff49ea72,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a165d5d03f189823fa6af87c19a2ec4f930b541f450e02eeb07cb9561651b429,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,e7549b8ba65fa99a8df3a905a1d963e2de1fae688b7869a94f931335039e4e44,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,2e7730a690ba39e5e5d03d28d950fad8ffaecd90478ab02e76fcfddf04de48b6,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,169e1952898276010f212f609c4956a4fd89daa35ce3fa45c31357b44149efaf,Unknown malware,85,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9bab1c06caafab1468df826cb9b01ee59d42322f68de0b3dca0f1b7c4347c413,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1e99e122890af8679dda286f4d5910a8bd18fb948a63d255c0cb627650da899a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,7061859151afce6026c564af8e6d06567b895912445ae7032c7de3a5fbfb45f4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9f759c8747471600f506cece7acea88c750c8dc37da9777768f6bbe55fc34524,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,15aa4f29e0c8306262c55f8bcb6c1d4bae0d19ecd9e4368289581b7da9868d5b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ce23335488686504739da1a00270b71a444ab4165b341fda116ff08d705bf914,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,0301de0be419c5bc6dfc019179b9342dd7a481c90300dd8ce4d2366c03bc5c68,Formbook,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,add93044eaa6e3c2817cfdc53afc94812abd1bca1c99477211bc58ddd94443f3,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,fc8eff6ebcd92a9dc5a5c72feeb649883c4e86b24c104024fc6e6706695b618e,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,429c606003592658961e82d23dba11283419b6aa1ba176882ef152f48c84edb9,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,3554e3866aaef256575bbe07f7f7f7acabe8bc9ed20758c5195d5b957b1f2269,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,281af3669e09b641a31ae5645295c568fb554f21a3d383f0af6bc1266c0f06b7,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5f87cc02e026d4e965b4976b75a3b156ccf1fbaba36b2364280dced90264bff6,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4f8e1033ca98846714ad250081291cb0f9058dc4e237603a6a71501365bebf25,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,d5ead312c181caf4e126b4f07653b32428e80a6ab3f09d0b4d79996cab0846d2,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,cb42890fee7789399ad218f308bb7ae0fd9c8e2a1cc6d80b777bb53d7cc3b31d,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5b6d5d07fa787140e9721228eb615e2773030690b2286c5bcd3b626607f18e93,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4d11327e0781a77ad8afe4dfe7cad2dc1d640214569413ba04152dad02d24aab,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,080e3b5e8faeab3bf998ce31f52066b2dc6be53e8e034bfc8bfa11a47874ad8e,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,2db8b1879c5026928be27728b20948ee7ee7dbf1938876b02636326b99e107dd,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,dc06d62ee95062e714f2566c95b8edaabfd387023b1bf98a09078b84007d5268,LaZagne,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,fe7a4db4805e2ac2b88b96c0d76a1147c8991509a176183db0b7341cd5bde359,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,779cc745f9230db9e247b3e07f7b78080dcad0a9a0ae24bd3eda18be5ee78a44,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,dd03699cb7ddfb4a2b1f1a1a8b65fdc9f44b90a4b5d6776f6989a0405d07fff0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a0deca6f1808c311df598555c08023d17d3922f05666cf89aa09c95049ad71e3,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,255c834be134ec714ec41b7b97d308019b31965e830eb3e66930ff1afca687d4,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,16b5979fca5819bc8c1c39690ad5d84ba66de6f93dca5271e6efc179b4eede35,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,62c5b21d57e9d8f77abbdf5b4275d7073bd509ef55a6de3bc52ae0d003674853,Bashlite,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,6b97a797aca10540353c5b68c052d3f3807075ca0258442648fd369d00c0f4ea,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,39c7464e745fa846ddd0b386c6893c6ca34ba20a205856f61e055fcb6b0a825e,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,87c58d10b30ca81ee9a5b1fc504a9106dda6c2876661d739a2d8db3658a4c698,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c418c13aae25beacb57c383bb3f91fb0d08b14afedcc74578bdd34501d978aaa,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1677d8f887614d4a3cda7e81221fa295c1cd186721a14997efed5aa4333df591,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,27b4980e08a85b95170d513a20bd0311e061135c015271660e1f526a656eae96,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,dcf133444d47054808bd83799cf030bc8ae2816f383c3f5e377c4cb80a3202af,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,040c8aa0ba0303ac246a0d3ef4d3dd01156a1b2610712cf36e3bfefb5f0afdbd,Coinminer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a4df402fa59a37f1f2ba5122993191ee4c876cc07183cf803026d81feb6503d1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c84bae1fa87e47d006d70441f1f9b965a553139ba35fd2e5d8908d8afd1284b3,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,8852e0016df9f90868ee23d2dfea87e49a0fb89cb925d9e8d9bc0988df819cbb,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,66058a5061f9c34ab7c2887b69041e3d1967006dd10b3b7987af02fa947e68f1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ab29e2a7dc320fb2041364cd8bd52079a04adff37e7526a1e7768a4443964666,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,441b5c662497749d74dd7d2cd9ca60bf82a85dc4ee9e39ae8178e6bfb4bc6785,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,0e75cbd2825e00c21c83af0624a1107a7fee00fa66c79418f1651d819fb26602,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ab850e17e379e477710707dc72a9f770e5e498999f6c6abecee133d42e38ed65,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5fbd46e376797b75f5455775d0e62dcfdb30e81375c45fb20e0c31593a37da1b,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,e708d2ae124ff86e4e4c8b8e9c5a0afc7dcdc94a1044bdc4ee7d4777109b1311,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,39bc37d59e77a88f6f34792de3b4229dffbb87c2da866ed4075dcdd774a0de0a,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4feed588acc1396e2deeb1fc04f145cfca464ba7617dc3c1c9fe7dcc545d2d1d,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,047ebde9f5a9ad046aaa41f7a955d5da756c95bbaa9d20b5f35aa49095ef2d75,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,52e62dc340dc0ade2bd9d8471b03c4f9f56489822697f5f59266984c092b62e8,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,387a5539480bad993b4d12314f81c4f70288b5e524f2a151c8fa09a6aa77472f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,d446c6c280fe860c794f69c223c9a14ec10242869410d86a08bce8efcb35e456,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,53696653cd81dfcc0d69dc2fae4f6718e5297ca8c671a14673211db91b613213,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,0abeb85a452add358af126dd87d1a38addd406e911905fbbe9a3856894c07bc8,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,927cd1a20b55776b9a8bc5817a48608041d00df378da2abbeff76249722c882b,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,76ae6d577ba96b1c3a1de8b21c32a9faf6040f7e78d98269e0469d896c29dc64,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,b7c788bf01d5053513512c3264fe32a5a818d668155167c31e400c29cd345da3,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,d0ecd70b14b649c27b66d2c7b9b40032eda1dce45e6bbfb71245f8c60bb21f1d,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,10ab10b792effcd9c8573aca8574c20ae2ca2aa18327c39c5ee3895e4ef1f1d8,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,55212fdfd4e9b5082338f3dd2c9194305fb34afcad3d2212b331e8419043791c,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,6ef27a778205b49344615af4c6983ebe2ac8fe89738eb44c202fdefb0fb40cc9,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,6558b4fcdfef47176253b12b35cc662aa814ae3b9c239fc30fce7668dcc7ac03,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,0bceee4f7a003acfd59f43101ccb95a8f0e3363c028ee6a62082ed90b156cc82,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,fa41f296ece244903c8bd0a0ed7af9afeb9b667993e8848dce55d88d7bb2ec1a,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f16728c613a12ca762d0d1a9ec75b69c71b80d1430281e6c23588d72c3fe5974,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,6e90179c02b4766ffdc7bab877419b05c9a7465e7f01dd1c6795a763522cfd79,Unknown Loader,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,608c4a0860edb73fc316dbfc7d2a81d5ffce173d124d8302023d6e6a2a3e8097,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,491a01d47c2ab2276705eac6b684c8c15d01071957c2875fb5e2282c934e443a,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,bf5823f7e8518d3a193eb9695c8638675c52a26cbd6fb44f4bb0e5abc70d63f6,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,09c3edd9f5f909f78c42bf15422edfec919f990707fa205d12a2c5cde67ab889,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,0d2d1ab5f66ca47a4d85b4221b1aa7b0a80874355cf5546a106eedc492b7565f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a83dec4fcfd23b7d3b4c03362469719202d74c2b99b1c4affd4706a272d248b5,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9a0abb7f92e5a8895d2ae2c7f6cea3658128eaa78f1dc80b81b83d919f809883,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4749c451514d7b9277b7f9515253daf2162a185026660f355f15ca20fbf297f4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,939bacb6e74b920b834f0e3564fcbe860aeabc48cb522d68f34607f656d41813,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c53a366c303fa3799402eb567a5567db196b8e6e9286972c17cb0bc82cdbf112,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f00231f1106c96ad07a514eebf643638ad549ad291c1ea4c167e7f22aa181e21,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,7ba10a314348d6d7567a3b3697820d99fbb6d118dd5542a29d5ee97b7888a5fc,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,8762c66f47f5e562d974430e1548f9672deb7e1acbea010a6717313f4ea2c244,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,28c4cfa093214c0ab471370b333d667271a2020848c636857e557e6d0df63c0f,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ce1d2a83ab344cb6f9ed2b040b220ecc1607a71ec0c2e6456b8bba2c4a48a576,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a05503d92362fd4798be7b96b900a4200ab8502fd6e303fec2b5b3b1b8aef19a,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,7411a6ca3ce9829661e3d62aa15a1dfeaa1540e544a73792e912ea5ab3692897,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9f6718521add64726fc04d051fa8c7b9a00ea0e9bafcedecd767f2f71454a988,SmartLoader,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,e730b5c87978f67e0b5aee81d867834b079f3bf5bc90991ea84df9d1a3088ba0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1aa218a4c6118390796c0ad5053a20c01b7e6c57a6799196bd668fb2a8c8b97a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4a2ea26fec3967a05b1db6c9fdafc360c4ee5b43f26ef248f17a14d445ff9f19,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,daf94c11dd0cb4d364b97786e081a86e93cfa634f2a3bc910222bb29b35e5cca,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,474142e3a1cb34ed9ddbfd35b4f95d10df426aee1beb745ba4f5ac5cbabe402a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ebb5d23d57813ce8d9a406a6bf8d43a022357ad99683435708c34bfcf43b93d6,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,1461fda548e10d103e10eb1a891c459f59c3622333b46ff1734c68a703b5c446,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9c91546bb4612e0a728d7f336fd8e18c515982e19f7e886f38bc53808b9ce7d7,Prometei,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f2cbdd275c367ec416da8e6ffd464342039179e2b8867bb8d261a6ce9ec8edaa,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a12a78687c0b0ddc46190c5dd9a28aeafcb9bd6739518818663d99e520f22609,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,62bf68bd1a09c86889ce9ef48e7adf267d4bd2961054754cb21307811737e527,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,76c24a549d40435e09aae9ad5b053c5f6c5441ec91ef841b0d9c5d1352b8cbe7,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ca90e688fae66f54a08b75c65ac22413fb3f18ea86410def4828f9ab12496454,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9e5b93d3095f577136717e6aae8b51fea50d66ef9123eedccfc23b8faebf6d6c,Coinminer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,46e8f747e26d9195eb5344b351baf0d8ba55afaadf36fbef99380d637d6ace74,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c4576d3d75425f9aef7dd432cad482c74c2c0b93195f162d827a69103a3618a2,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,41e3b70a30071b6077d781889a8fbf77ac16786cb5d774a04a6a7b32c857e6c5,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5c54ede33db8a4af5c7574eb1cde60444ff3f6c3c742222139abaea3dc6bd6b3,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,b4054fc25b655a97a39fddac0826c311c516b012953e90f502697828b9ade7e8,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a7be54b7ee5b7d69de059800e9eaff5e99f68172fbe9bfdc64d6a4e6db244190,SmartLoader,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,9cd1e5f9fe3c7b680fb861566817014a40ee91cd733dc12d9ff61dc8df038ec4,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a8d1f9666d0b2684e06aa7a19f3e15662fcda9ebdd68e014c6dde57f22cf905c,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a90848599bf8564de9f7a4bb54747e5fe86f11c2679eae614ca122a06bd4df07,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,e8d1c85f0e6376806fe2190065f3dfab69c7d8e4c18d848f9e3d810942e1425c,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a7935d5ce2560714c06cce3b82ffb8356326d84028f28cbf1bb979cb233fc8ab,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,067508744d6916ba0234526eb1886a0e3b7b30d81c2cbfe801d4285bce2ec5ab,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,3f0fb31a0ba36c4febc765393980f49dece192e72d850e284ca1f2587b6a0063,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,60506893295413b2143b10066d30f9b8f3cb13eeb3f90e4702097c30c390bcf0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,492785aa9581f5842a6478b16b216af3aa7207aaf3772fb09c9545e1da5eb0de,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,24a9d2ff8b45f59fe61ae99c5fa7aba398234310603e9c754225a83c7985a16b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c8c4b3567642707b58c58e9c270d47d982c6d17ba998f1328a2d583207e89a7f,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ec1104f754226c660c4478d7fd04d540e18d81f6849b9d791b7d9718938b2e5c,Grandoreiro,90,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,fff1cb6ccfe5a06838b7e4f01586173f7fd9077cdfdd203bf3bfef077c93c453,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f7b1679f830e516e7facbf830fd4485669ca5c5f33cd83dc493fba34928e8f60,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,4696605526d4c77892ab838a405f112c05b57bd66fa2158ae2fc6b237f6bd976,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,fc0e6584c1f653ae13034b486439e2a7e2bd1061cda9752c6d6343e6577c49fa,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c1775c990853c4631afa0d6e82ce864ccab084c94abcf0ccd304073b9c7f77de,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,5491486db9696eef736899eca82b1ec5c683833d91266fd71d7a22bb4d6e976d,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c2cd1e202440f94b5a8ef0651dabbdeb506fbab14c021bccd9f54b09ca07a6a2,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,7f1ff658a23389416a507b1af516fe739aebee6a54583785bde27580de39e682,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,e83eb1fc0c4d2e1d3062c0e452c317392914acec5d7d9f88a491f001dc2884c1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,f8813823c64b6221268a2a8941523a9809172a926126136248c5d4bc726e7274,Unknown RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c58cec9301826c2757e01e9a8511eed6e8cca1a7e0c5a79fce888b15bba2a08c,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,6f230a87afe3d6b5f8df84ae487c8f790770a941b50828790c3a37c3d17257ac,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,a2491bb939b3df29ead93e077cafd825ff38e7fea1a64fc736a1c236b4f478ee,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,98e6e95191dcf421ff7a5312f3243d6777c2b1c5699eee347e71a9869bdd735b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,aeccad91bb2888ff379cb0ab114a5ebc07701660bf6c47927a2a1bae6eb89ee3,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,3a70d5a568f1c281827a7342f3fe9606fefcc2dec9b489ae22cc2b44370f1f5e,p0wnyshell,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,ffe6a805dd7dfb2ba4c5b4280c4971f258d047f11c9772f9eb015237f767bd4d,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,2cf73d6ed481e65eb92080adeea4897f3bf402cab63455bc3ac4fdb6b9b975ef,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,c4d7b8c3667bf7877a0bbd82a6f2d444b18b776116edd1efdc43b798adbae519,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,90d2e5525d6f6d0b83beff3c0b7d4a460749fb52a67ed27b754a8ada8798bc21,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+sha256_hash,09bb0d27088df053fb133afd706392b01d39a972c904ea2d43dd572d393e0a3f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,rplix.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,ng.asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,minecraft-set.com,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,9f4akq5z.yanok.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,sdhagreyr.cc,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,bz.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,kickzorggroep.nl,StrelaStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,bosinn.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,livingattheopera.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,0ln8r6lz.sidar.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,minecraft-vip.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,x.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,hechman.top,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,panchmukhiinfra.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,d32asogi.msd-europe.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,lmf.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,cache-provider.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,fondasi.amscprivacy.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.exposition-lyon.fr,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,w.asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,lo.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,s3ojzej3.sishi.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,gk.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,as6rion.wiki,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,em.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,alert.pressweather33.wiki,RevStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,belieffield.cfd,Unknown Loader,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,tqpryu0a.sanbo.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,rivuk.com,Agent Tesla,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,zhfa.zhwkr.co.uk,Unknown Loader,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,swiftops7.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,app.wavestock.one,RevStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,crowpanel.xyz,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,n5.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,docardebiary.blog,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,th.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.riaddarcouscous.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,nexttools2022.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,qadamcash.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,m.17taya.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,ke.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,dc55crk8.nowfromhome.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vmi3767938.contaboserver.net,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vcuvrehd.taksim-fil.click,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,playgoodout.click,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,illakunturtravel.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,yellow-monkey.cfd,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,d037tqeu.movilidadacademica.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,lu5ivex.tattoo,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,clickbeat.co.uk,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,videoavarii17.sbs,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,c2.rplix.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,kkkvvvzxg.online,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,doublexoxoproject2026.duckdns.org,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,mainsearchtools.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vkawdwa.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,147816.us6.myftpupload.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,coreprotector.org,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,gdedengiskatinaufa.shop,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,ru.dakjdnwgnu.sbs,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,heartsofhomdev.wpengine.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,movilidadacademica.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.zbavseauta.cz,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,locanto.cam,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,node.cinder.at,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,qj.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,b1pfe9kx.metaphysicsbooks.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,hardener33.opik.net,Quasar RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,fz.asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,developdatum.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,jacksons.mlbfan.org,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,iiilii.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,dp866jpu.lmshumate.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,shizaahmedmakeup.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,q4c08cds.tafti.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.dayaquest.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,meatronic.us.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,gate-fender.luftribka.workers.dev,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,servicios778899.duckdns.org,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.egypthologram.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,lmshumate.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,8w9hvvdk.zodi.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,j.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,nakiam.com,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,g78mdqih.zere.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,52s8sojv.zalfa.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,18tllktok.xyz,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,soliq-qaytarish.pro,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,cinder.at,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,id.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,sg02vvao.midwayammunition.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,k1.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vang0.wiki,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,dev.gojournal.wiki,RevStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,w.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,abosdro-minimum.info,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.prasannatherapy.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,duckroad.net,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,base-render.com,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,iq.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vmi3767928.contaboserver.net,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,d6au5tb1.zenzy.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,syrna.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,qr.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,sisterleveling.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,strategiesconsultingfirm.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,ixor.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,gatlex.com,XWorm,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vw.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.q-lingua.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,workstation0422.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,petroodawd.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.doublexoxoproject2026duckdns.com,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,midwayammunition.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.chefvoyage.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,jx.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,zm.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,all1.realdd.click,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,rp54mimk.meibuhr.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vaw3b.wiki,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,lf.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,sgdkgdksgdkgsd.top,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,highcourt-judiciarys.pages.dev,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,leaoartefatosdeconcreto.com.br,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,xmt.mya.mybluehost.me,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,meibuhr.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,metaphysicsbooks.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,sy3theo.tattoo,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,r0.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,cdn.876553.xyz,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,mysoliq.lat,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,vf.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,l50j1wge.zayce.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,nymra.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,msd-europe.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,ug.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,kwik.delivery,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,escuelamarcosana.es,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,fallback-c2.rplix.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,xl.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,muckduck.duckdns.org,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,havenleaf3.com,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,gannagalodge.co.za,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,y.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.nutriliciousme.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,commercialogs.com,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,dijitalpencere.com.tr,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.doublexoxoproject2026duckdns1.com,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,secure-verify.sonic-c2-front.workers.dev,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,80vgqnfx.xeros.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,mail.huynam.net,Agent Tesla,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,mallosis.gr,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.dpdreijatim.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,afrmomn0.livingattheopera.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,www.riadbabyacout.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,mail.danaeng.kz,Agent Tesla,80,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-21 01:21:10
+domain,ransomwarehelp.com,,30,aktiv,Krebs on Security,2026-11-21 01:21:01
 url,https://www.securityweek.com/sbc-medical-group-data-breach-impacts-over-2-million/,,30,aktiv,SecurityWeek,2026-11-20 19:58:45
 url,https://www.securityweek.com,,30,aktiv,SecurityWeek,2026-11-20 19:58:45
 domain,www.securityweek.com,,50,aktiv,SecurityWeek,2026-11-20 19:58:45
@@ -295,7 +1189,6 @@ sha256_hash,d9d611bec6066a6d06244639d045bd49331b71ff2b6e3a2afd00d6214eb3e4b6,Mal
 sha256_hash,cb7d1f19a85216912a31da21da0ae94538c2f42257f3d4f34f5ee8313c4e094f,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,c8285d5398eaadfafdf661ce6b210c7a121eb92c6e0cb583f67c21fa0bf6e32d,process-hollowing,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,c7bd74f8ac586cda3ed25e2911148555dfcc3c210efb64014580fcd18a2426fc,process-hollowing,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
-sha256_hash,c58cec9301826c2757e01e9a8511eed6e8cca1a7e0c5a79fce888b15bba2a08c,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,c524ab1dabf28fce9a1a7852a9f3301aa621b9cbf2c49a9727400b6536c58c87,DarkCoreRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,af37220b1c348e901febc36b68f37e79b9a38cbf5ab442344ef40728badaaa1c,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,ab7cacd65ff5e92f63edebdae69a0545350e390a184d9347d170f0231f417a1a,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
@@ -306,16 +1199,13 @@ sha256_hash,8a73c260c17b59569182a0ad1746ecbf824615686f736dc9add27db8d2d7de48,Dar
 sha256_hash,536abf1cde5df453c9db540f1c83bb906cf94e60a64c15972228359eeace8d71,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,467202adc717593205cdaa0bb94130e1e7a36f9209738d1d933934aa8d7ac6c9,WannaCry,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,4474cfc6995534499e5216450bd0b0ea5f575fe358ef48e69c739df88b4b3b0b,salat,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
-sha256_hash,41e3b70a30071b6077d781889a8fbf77ac16786cb5d774a04a6a7b32c857e6c5,AMOS,100,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,3da571f9ce0224a35ffd0e8bea6a4bc3f1bc431838ea694196c47f0a92639a55,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,372bb8c772c9263ca558cc226936ec7b2a15ba9eb3b12ee10de1bb3cea935b4e,DarkCoreRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,2828ad57610154bac416a7d1613cf62307b80f9b3263ada2efed3d7a4127124c,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,27993e7665c11282d031a84cde1f024a88bbe7b468ba8a8665a0983033241304,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 sha256_hash,222897e531a89313a8340c2c533a7f550880716d797b13e7555393b58000de46,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
-sha256_hash,067508744d6916ba0234526eb1886a0e3b7b30d81c2cbfe801d4285bce2ec5ab,AMOS,100,aktiv,ThreatFox · MalwareBazaar,2026-11-20 19:58:40
 domain,wiow3.hypstock.info,hype,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 domain,sxdx2.fixlow.shop,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
-domain,havenleaf3.com,Amos,100,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://wiow3.hypstock.info/HFinex.zip,hype,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://sxdx2.fixlow.shop/DvnX.zip,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://raw.githubusercontent.com/zyzzlegiggle/lunchpot/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVBOX,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
@@ -368,7 +1258,6 @@ url,https://raw.githubusercontent.com/NoahF112/GentleTracking/refs/heads/main/pu
 url,https://raw.githubusercontent.com/Nkusibeni23/Q-A/refs/heads/master/public/fonts/fa-solid.lfk,github,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://raw.githubusercontent.com/Niyigena-Yves/dismissible-widget/refs/heads/main/public/fonts/fa-solid-300.llf,github,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://raw.githubusercontent.com/Niyigena-Yves/FinalFlutterProject/refs/heads/main/public/fonts/fa-solid.lkf,github,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
-url,https://havenleaf3.com/f/hxjvvipsyjzsdxrzfdjwka/pnxco9yv,Amos,100,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://github.com/upperlancestuff29/tg-fix/releases/download/tg-fix/TgWsProxy_windows_arm64.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://github.com/upperlancestuff29/tg-fix/releases/download/tg-fix/TgWsProxy_windows_7_64bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
 url,https://github.com/upperlancestuff29/tg-fix/releases/download/tg-fix/TgWsProxy_windows_7_32bit.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-20 19:58:39
@@ -516,654 +1405,105 @@ cve,CVE-2026-76466,,,,CISA KEV,2026-11-20 19:58:38
 cve,CVE-2025-42884,,,,CISA KEV,2026-11-20 19:58:38
 cve,CVE-2026-129448,,,,CISA KEV,2026-11-20 19:58:38
 domain,o.com,,30,aktiv,ransomware.live,2026-11-20 19:58:38
-url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=l32&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://helptools2.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://trykow.cc/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?a=l32&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.m68k,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 url,https://barterry.skin/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://45.147.28.43/ws/device,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 url,https://tyroky.cc/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.arm7,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?a=l64&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 url,http://103.99.196.2:43299/Mozi.a,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://a1333710.xsph.ru/L1nc0In.php,DCRat,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=l64&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://bimbomhub.mom/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://morkovka.cn/qqkb/,SalatStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.mpsl,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://huishushie.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://www.dropbox.com/scl/fi/u1gx3ts243xxoya048jbr/bundle.zip?rlkey=3ronxf88is6brzcriugpat5ld&st=7wz97uxi&dl=1,Unknown RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://101.53.228.165:57743/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://rezynjyy.vip/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.ppc,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?a=a64&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://sa1atik.cn/qqkb/,SalatStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://sigmon-zz.mom/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://opajfnhu.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://miryyzajy.vip/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?a=a32&h=92.119.178.59&t=ws_&p=8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://182.119.228.62:60165/Mozi.a,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.arm,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://cdn.876553.xyz/Q1fc8a9OCb7AsC6f/dl/c9789d27-0a43-4347-917e-33e496ccb2f0,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://dlyavtorogo.com/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://193.24.123.243/ws/device,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://nakiam.com/webview/loading?buildVersion=UZ__Qaytarish,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 url,http://103.244.172.178:44169/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=a64&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.arm64,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://setorderta.rest/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.spc,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.i686,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.arc,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://vmi3767938.contaboserver.net/,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://marinebiologylab.website/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://blackwidowprotocol.website/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://85.202.161.17/ws/device,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://175.107.233.219:57772/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.arm5,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://activation-tunnel.cc/b/clickfix,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://153.117.37.126:33167/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://120.28.163.158:34959/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.mips,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://gdedengiskatinaufa.shop/webview/loading?buildVersion=marioshdjdjdn,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://cdn.876553.xyz/Q1fc8a9OCb7AsC6f/dl/5b5ca3cb-434f-4492-a0f7-11c0b2e0f358,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://www.dropbox.com/scl/fi/5f9qmzjfv0h5e1rqteufy/31.zip?rlkey=0ksy687dpqhjblsocxo5xpdtw&st=qhgqyd1q&dl=1,Unknown RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/?h=92.119.178.59&p=8988&t=ws&a=a32&stage=true,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://havenleaf3.com/curl/dngnud1og4/9pcx0d0mppr013qy9j8me.json,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://103.244.172.178:43796/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://activation-tunnel.cc/i/clickfix/a9381c2cd21f99cb.png,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://121.202.196.213:55195/Mozi.m,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://coralreefscience.website/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.x86_64,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://laperoter.rest/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://45.198.224.89/arm7,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 url,https://alamosha.homes/,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.sh4,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://nakiam.com/webview/loading?buildVersion=Soliq-UZ,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://92.119.178.59:8988/slw,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,https://vmi3767928.contaboserver.net/isJzwgRyAPnAP05H.php,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-url,http://178.83.188.141/fvbig/zerobot.arm6,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,10c8800cf0c8b774f30622ce8435e44deaa6c922794b80165e18fba7516ecaa8,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,76c24a549d40435e09aae9ad5b053c5f6c5441ec91ef841b0d9c5d1352b8cbe7,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,43acd621c1c0db00833e754551656e9550d1a8cc8b13820abf60fe29d6203e7b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,407fb53e62d4ed0e2d043b60f0916ff77ef2b8fba3dc0f6594218a4877edb5aa,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,06c9db8f18d7deeab189c2e5f0825761492c9640f1b65092418f1572b1ce813f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,474142e3a1cb34ed9ddbfd35b4f95d10df426aee1beb745ba4f5ac5cbabe402a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,24a9d2ff8b45f59fe61ae99c5fa7aba398234310603e9c754225a83c7985a16b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,3ddbb6e922afd643058f62e6bfc6cae728acf344fee8677bd5cf544f474b2f4d,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,a3d67ef808497bf48930be418667da0c2d815431213ff9ca4304be6669f26801,CloudEyE,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,e730b5c87978f67e0b5aee81d867834b079f3bf5bc90991ea84df9d1a3088ba0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,53f936f52e704f01ca5e611809c0a41d9354922114d2c256d95c6270152b7e59,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,2c35267958bcb8aaeaf7c3794150b422a8229726247d0e2024951cbb3bfb4973,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,492785aa9581f5842a6478b16b216af3aa7207aaf3772fb09c9545e1da5eb0de,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,abbe5568587f5cac7ed9f64fe3e08c432229efc9f3918da4573d824acc93fceb,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,939bacb6e74b920b834f0e3564fcbe860aeabc48cb522d68f34607f656d41813,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,1677d8f887614d4a3cda7e81221fa295c1cd186721a14997efed5aa4333df591,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a83dec4fcfd23b7d3b4c03362469719202d74c2b99b1c4affd4706a272d248b5,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,e11d5220137527a2553482437a120d44a1134b3ee80cda5f125543234ef59bfe,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a1cdc11d48782ba51311889214e790ad86852f10649a53df0e22d02c696bb9ba,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,cf14e20a5221c18e7480bb14e95a522687f6dedd5eb68119fbfb1f2a7ce93e22,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,778c53804cfe3027f4556e866dc8a975845b1118c256c5df098b438a80726803,NonEuclid RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,f00231f1106c96ad07a514eebf643638ad549ad291c1ea4c167e7f22aa181e21,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,11a4913f1926c3142e9e3f591af30193bac8d7be2f43ebc0bc0758e5499820be,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,9577941586c842c845d457313240e7997fd8ea8e2eec3ad5569a8feb208263e5,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,85fdd0a29d621ca66968a4309400b359380f98bee064c224d0127363b8b968b2,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,7bc6b89f89812fc713fe755bb119870035c216b883041a59a1d85e90ffc25491,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,2863367bdbc55eae6605225f6cbb547c7da9ae8f70a0b76b060e03c577144607,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,f71aad2ece5d4eabe5c6de2ae542331d9a4e475bd60f05cc54035d64b1728460,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,0df18a4cc9dff53641f9308a90401198c53242c06ce430dbdee0d89e9d25c7f6,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,5fbd46e376797b75f5455775d0e62dcfdb30e81375c45fb20e0c31593a37da1b,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,ec1104f754226c660c4478d7fd04d540e18d81f6849b9d791b7d9718938b2e5c,Grandoreiro,90,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,441b5c662497749d74dd7d2cd9ca60bf82a85dc4ee9e39ae8178e6bfb4bc6785,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,491a01d47c2ab2276705eac6b684c8c15d01071957c2875fb5e2282c934e443a,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,8a75ab59cf7efbeb980c04db8b87483ed1b8043a6d7f600ad5e0e31608c43d13,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,95e666690fcdfecc1800c357bd5eb7a7f10311d5055ac994f136be311ab787a8,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,52cd3a921f7ffc39a78eb2b32e5181f3a132ee7be360740dd49e395ed4080587,Formbook,90,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,281af3669e09b641a31ae5645295c568fb554f21a3d383f0af6bc1266c0f06b7,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,58479001308c208550c828ec58114e208a6876e69010296f8ac8d05e64f6f6b3,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,81cb70cc47fba5216f1a9119c1ec91bb0bc1f4c75cc795df909258d3dc1ddd02,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,0ab667fa2b604db9e29e86b6429c92a60633528442a2d70fce83a96d8e7ffef6,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,99df904a471b2db74f25e17709969e5465b2f04281a6da3e9636bba8d2410c17,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,e83eb1fc0c4d2e1d3062c0e452c317392914acec5d7d9f88a491f001dc2884c1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,255c834be134ec714ec41b7b97d308019b31965e830eb3e66930ff1afca687d4,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,99647ec802196c42f57b8f8518028592e68c832e081b504cdfad9de69c868fc6,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,8b23adb9d7650c82386d68fd0264a70d986dda3f153b5057b9ec964ee9c5a46c,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,62c5b21d57e9d8f77abbdf5b4275d7073bd509ef55a6de3bc52ae0d003674853,Bashlite,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,6e90179c02b4766ffdc7bab877419b05c9a7465e7f01dd1c6795a763522cfd79,Unknown Loader,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,3f0fb31a0ba36c4febc765393980f49dece192e72d850e284ca1f2587b6a0063,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,9c91546bb4612e0a728d7f336fd8e18c515982e19f7e886f38bc53808b9ce7d7,Prometei,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,3a1d6c25cc101de57145b7fe8f6d98f211ac77490157dbee500b73a8adeb0838,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,ce23335488686504739da1a00270b71a444ab4165b341fda116ff08d705bf914,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,66058a5061f9c34ab7c2887b69041e3d1967006dd10b3b7987af02fa947e68f1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,927cd1a20b55776b9a8bc5817a48608041d00df378da2abbeff76249722c882b,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,8852e0016df9f90868ee23d2dfea87e49a0fb89cb925d9e8d9bc0988df819cbb,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,e902ead6893462d9bca6b185014d4d3ab24cfbeed8a95314ab835906f8b51718,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a7935d5ce2560714c06cce3b82ffb8356326d84028f28cbf1bb979cb233fc8ab,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,902c6941c017ecb9723ac8ab8ef0aff606ba4e1bfca0949f27f6d3a39f58398a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,080e3b5e8faeab3bf998ce31f52066b2dc6be53e8e034bfc8bfa11a47874ad8e,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,187c25e0604530f5f6a8ee79b0798f89ef0a132dbe69b55b6afb1f2583f84b2b,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,ab850e17e379e477710707dc72a9f770e5e498999f6c6abecee133d42e38ed65,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,44b7dfcf55b0ea0f0b47fee7d242a7c47a6dc2c9f068500d9b531dd09a43fa3a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,2120cd6aae081063d7f2f3709feaaf9cfc594fb50d3c2cebd431f0b4a03212c4,AsyncRAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,2783748943b7b9dc2218d27434692d8f3acbba532792275b645035adaafd92f6,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,ffe6a805dd7dfb2ba4c5b4280c4971f258d047f11c9772f9eb015237f767bd4d,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,c4576d3d75425f9aef7dd432cad482c74c2c0b93195f162d827a69103a3618a2,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,16b5979fca5819bc8c1c39690ad5d84ba66de6f93dca5271e6efc179b4eede35,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,b7c788bf01d5053513512c3264fe32a5a818d668155167c31e400c29cd345da3,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,aeccad91bb2888ff379cb0ab114a5ebc07701660bf6c47927a2a1bae6eb89ee3,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,3566e4ecfeeee68d884c602037d70c9570eb376846c2178f7594225267f8ecde,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,fe0a48bd4eae2d93f90c1173fccc0e82d4a0ac803f3dc3ea3a0f47b3c714cd66,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,d7f3d36239a7fa122a2fb49646a12faa16471391f74707407546e202efd1a869,SmartLoader,90,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,15aa4f29e0c8306262c55f8bcb6c1d4bae0d19ecd9e4368289581b7da9868d5b,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,d89574cdc0e16f2136ca73e42519666712bfb8f970b523985ca1d89aa125ee9a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a8d1f9666d0b2684e06aa7a19f3e15662fcda9ebdd68e014c6dde57f22cf905c,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,9f759c8747471600f506cece7acea88c750c8dc37da9777768f6bbe55fc34524,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,e26acaffb6aeab03932614900dc5203c766ecaf90d7d5c92da1b2325bffdad51,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,608c4a0860edb73fc316dbfc7d2a81d5ffce173d124d8302023d6e6a2a3e8097,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,32fdb3ed8e69c9ab0bd385decdc8d486db8b75df681e978d80c9ea5430ecbef5,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,b83fbab2c10204040b9f9f8e50d42c2a477ed6fa51febf00f73c5ed8b94c10dd,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,1958d225a674b5f6085df0f50dad66c64efc9b356acf131f3971c5669ce60f64,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,39c7464e745fa846ddd0b386c6893c6ca34ba20a205856f61e055fcb6b0a825e,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,3b47193ffb34de4f7dd3a78eab3bf328705e1148621b014d424104337a161c1d,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,9062a77124083a58f19fb6e37e8005f2e07794913607510e7206d4f3fffb6423,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,e7549b8ba65fa99a8df3a905a1d963e2de1fae688b7869a94f931335039e4e44,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,84afc2944144274a8ad67205d826509ee886587874bba194f5509455e63afba4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,7d34d93be25012c5d66aa1b0613e08e0bbea9dd7eeba3b59990272f95610926c,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,5c54ede33db8a4af5c7574eb1cde60444ff3f6c3c742222139abaea3dc6bd6b3,SNOWLIGHT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,76ae6d577ba96b1c3a1de8b21c32a9faf6040f7e78d98269e0469d896c29dc64,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,6ef27a778205b49344615af4c6983ebe2ac8fe89738eb44c202fdefb0fb40cc9,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,446205b6c0302ec738b18e027d9343bf454bee9fc2c11672c80fd9d999c423a5,IClickFix,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,104a1804751c1545e1ee563e05bed275359d2c2da9545089ab2fe9fd2d977390,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,f8813823c64b6221268a2a8941523a9809172a926126136248c5d4bc726e7274,Unknown RAT,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,8d0ea0037229d6b20a03931b5c083cfb41474c453e3037f5d8b358c60672b1b7,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,7061859151afce6026c564af8e6d06567b895912445ae7032c7de3a5fbfb45f4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,8762c66f47f5e562d974430e1548f9672deb7e1acbea010a6717313f4ea2c244,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,55212fdfd4e9b5082338f3dd2c9194305fb34afcad3d2212b331e8419043791c,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,0e75cbd2825e00c21c83af0624a1107a7fee00fa66c79418f1651d819fb26602,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a2491bb939b3df29ead93e077cafd825ff38e7fea1a64fc736a1c236b4f478ee,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,898e912e9a9e076d52ebd08841ee7980b4fef9de2cc1fd843dbd0dfb367a5676,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,034f9c7105448f79fd3b7ff8f9ccef6513793170a316d9370100510514c6e9b1,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,2c9c1762b78ce6fc6634277fe07ea16cffb6e8ba97b8574aa44fa74b7c4bb743,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,8ba3a702f8eab1692fe3717ad8d547525761d7643000517d2b54ed2f797b9b4b,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,dfa33d362a0ad5806ba23fe50d1864117b89ea5bb49a3334c12a6b0b082b6c68,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,9ae0bfec6c4c501a05e942f45eb380f0dd2fde676743dd0004c82882c112635d,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,799cc837f33e43f73c5abc8b6abbae5a32f3f2e2752f5302ad45ae57ac401581,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,8a5bac2c5bfb07b3b2729bc100ac2b62e9bfb277644a1fa6d887d2de952c96c6,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,993bb703534d027dfe36933822562a15500d943a4a98582d869a7d6261c2749f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,e8d1c85f0e6376806fe2190065f3dfab69c7d8e4c18d848f9e3d810942e1425c,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,f006aaa1017115b9d41f28b3187671fabfbdbde131c75732348c4276e2f09373,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,485760b18f5ffc956eb21ec4fb83bf3c155aa34e7659a6e9a33811afee5ed7d7,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,5b6d5d07fa787140e9721228eb615e2773030690b2286c5bcd3b626607f18e93,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,e708d2ae124ff86e4e4c8b8e9c5a0afc7dcdc94a1044bdc4ee7d4777109b1311,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,87c58d10b30ca81ee9a5b1fc504a9106dda6c2876661d739a2d8db3658a4c698,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,c4d7b8c3667bf7877a0bbd82a6f2d444b18b776116edd1efdc43b798adbae519,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,07ed89158c1dc6d95b6b47e69eeeff3ccbd3d8f81489b84e6cdbfdc226b50c1f,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a1d2220ef61333d321d60fde3eca6c51ea790987c57610b93f6d5be6bfacc856,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,da61814fb935652f0c7207f3c043162309eb88eb682108a3a3724da19255f7cb,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,1aa218a4c6118390796c0ad5053a20c01b7e6c57a6799196bd668fb2a8c8b97a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,9e5b93d3095f577136717e6aae8b51fea50d66ef9123eedccfc23b8faebf6d6c,Coinminer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,765d78be9c09d393f6fa2d4360f709dd0d14b8f653f9afa48f0cfba63b9bc402,Bashlite,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,868aae1c652cb479842ccd6b18472328c7edf5d191ad6195c6d81770af89c4a6,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,dc06d62ee95062e714f2566c95b8edaabfd387023b1bf98a09078b84007d5268,LaZagne,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,31ee1518da5c18060dbcf259b6e19fc4a2821a8ab011f10f5f623ca3f8606bf5,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,77595ecb7d0b07d4fb335b8662ba2dd982d36c2a113eacdbc8229c2796bcd6ca,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,fc8eff6ebcd92a9dc5a5c72feeb649883c4e86b24c104024fc6e6706695b618e,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,6b97a797aca10540353c5b68c052d3f3807075ca0258442648fd369d00c0f4ea,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,14cceb54e80e04b16bc7aff71d5dac480a858ff372d83847f3d7a04289b131cb,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,a7be54b7ee5b7d69de059800e9eaff5e99f68172fbe9bfdc64d6a4e6db244190,SmartLoader,90,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,76c95a53067cf99758e11d0b0c7daf566a23de9bc20911c680f0bc83ab01c31a,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,387a5539480bad993b4d12314f81c4f70288b5e524f2a151c8fa09a6aa77472f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,2cf73d6ed481e65eb92080adeea4897f3bf402cab63455bc3ac4fdb6b9b975ef,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,4feed588acc1396e2deeb1fc04f145cfca464ba7617dc3c1c9fe7dcc545d2d1d,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,916fe1e211d03231ce5588c408317ea110baf55a1cfb2940083e490b235de3bf,AdaptixC2,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,9f6718521add64726fc04d051fa8c7b9a00ea0e9bafcedecd767f2f71454a988,SmartLoader,90,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,efebdd4a5b7eee1e45f683ac1a6a9d73ef7a0638e84ad20d935f914f5c585217,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,10d880a0b91528bd791604f681bdae1dfa405aae7e7118084923e596f6afc4d4,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,fff1cb6ccfe5a06838b7e4f01586173f7fd9077cdfdd203bf3bfef077c93c453,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,50f92ee9546fc51acb4fcfb2131eb6632325b687b4e0adbe42b28eaa1fb89329,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,f65b95003379ee8e8a6eaeef1405af5d5d7282ab93567b4622d917a5d9f1335d,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,3a70d5a568f1c281827a7342f3fe9606fefcc2dec9b489ae22cc2b44370f1f5e,p0wnyshell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,c1775c990853c4631afa0d6e82ce864ccab084c94abcf0ccd304073b9c7f77de,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,753663572cfaad5b320de095c449f064f77d7c06bfddada9c6dd9cd59fd8324b,Unknown Loader,90,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,60506893295413b2143b10066d30f9b8f3cb13eeb3f90e4702097c30c390bcf0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,936ef3da89e0adfdea5dfd61c6ffacd7ddb4e118a3bf95b1f1c96a4cd4fb813f,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,79d82cc4c8bd34033cce4c8cb41169d7babeed660a54feed8187d2745482dbf0,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,9e99ea23c13fb1f880a9880f05b0e4d9318f631e5bc349c3b2ce306165e15c8c,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,c75e88a2e2c754165bcbc1a6edbd99ffbbb5edea85cc4a36ec9ed6a2b9c83f21,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,0abeb85a452add358af126dd87d1a38addd406e911905fbbe9a3856894c07bc8,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,4f8e1033ca98846714ad250081291cb0f9058dc4e237603a6a71501365bebf25,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,41c282a8c13276e670939eaaaa572e45e2607bb62cf2a94bc875963008805909,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,44f08e83abd27fb12e0bc636835e04407ee06adbf292b26bab8f7b65424bfde3,WannaCryptor,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,cab6ab8f9e05daf027de1670e3e4c970e9bfae2c07b956d29d73d5d09f3a5ec8,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,f7b1679f830e516e7facbf830fd4485669ca5c5f33cd83dc493fba34928e8f60,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,cacd3bcc5c397d82545b49c22f8f831aee6976893bd977d8a827a67e9781df9b,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,fff5cc6c1015332b484df0576fa9808e91b2a8e9d6bdf758564f33a8dd753d42,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,61b39abcba45304694c81611e935bb4a1a196b46bc39bb9e5f77c36caebb19ae,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,9665a120423fc3a866847375402fac4dcd7fa4efa051e5b6a702ac2497883ef2,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,7ba10a314348d6d7567a3b3697820d99fbb6d118dd5542a29d5ee97b7888a5fc,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 sha256_hash,8d7be4abcb97d2edb6850501e2ae65dbedb792e77dccd6a14f49aadf9d684c41,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,4d92504e0218b627ae662a2bbb9bcebff7e6f5f05b0ff6a0dda2826608882e85,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-sha256_hash,b248aa11697b6c978c8dfac8be9c441d6aec7f968af2a4c316780ccba96f584d,SalatStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,workstation0422.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,em.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,m.17taya.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,aez.asia211.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,vmi3767928.contaboserver.net,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,52s8sojv.zalfa.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,o9.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,sisterleveling.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,developdatum.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,t7.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,lo.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,fallback-c2.rplix.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,ll.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,mysoliq.lat,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,kickzorggroep.nl,StrelaStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,b1pfe9kx.metaphysicsbooks.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,zhfa.zhwkr.co.uk,Unknown Loader,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.exposition-lyon.fr,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,swiftops7.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,xmt.mya.mybluehost.me,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,kwik.delivery,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.doublexoxoproject2026duckdns1.com,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,danieltschumi.com,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,www.chemspecsolutions.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,cdn.876553.xyz,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,x.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,th.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,isflafe0.tucargaseguraceo.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,servicios778899.duckdns.org,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,dev.gojournal.wiki,RevStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,l50j1wge.zayce.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,afrmomn0.livingattheopera.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,b.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,muckduck.duckdns.org,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,soliq-qaytarish.pro,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,nakiam.com,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,gannagalodge.co.za,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,bz.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,ns2.yexiaowei.icu,Cobalt Strike,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.dayaquest.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,leaoartefatosdeconcreto.com.br,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,yellow-monkey.cfd,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,y.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,k1.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,9f4akq5z.yanok.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,ug.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,livingattheopera.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,q4c08cds.tafti.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,90xfksds.americaspadel.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.q-lingua.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.chefvoyage.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,qr.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,news.ambisi.co,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,panchmukhiinfra.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,ke.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,id.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,ng.asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,80vgqnfx.xeros.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,jacksons.mlbfan.org,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.prasannatherapy.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,alert.pressweather33.wiki,RevStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,mainsearchtools.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,ot.ankasanet4drtp.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,rivuk.com,Agent Tesla,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,duckroad.net,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,r63o8kfc.ceomutual.com.mx,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,mail.danaeng.kz,Agent Tesla,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,abosdro-minimum.info,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.riaddarcouscous.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.dpdreijatim.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,vmi3767938.contaboserver.net,Grandoreiro,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,belieffield.cfd,Unknown Loader,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,sy3theo.tattoo,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,qj.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,ns1.yexiaowei.icu,Cobalt Strike,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,nexttools2022.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,gdedengiskatinaufa.shop,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,base-render.com,AMOS,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.zbavseauta.cz,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,midwayammunition.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.doublexoxoproject2026duckdns.com,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,g78mdqih.zere.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,metaphysicsbooks.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,doublexoxoproject2026.duckdns.org,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,gk.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,meibuhr.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,mail.huynam.net,Agent Tesla,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,lu5ivex.tattoo,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,highcourt-judiciarys.pages.dev,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,c2.rplix.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,secure-verify.sonic-c2-front.workers.dev,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.egypthologram.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.riadbabyacout.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,vang0.wiki,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,zt.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,xl.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,tqpryu0a.sanbo.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,e2.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,rplix.cc,Unknown Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,aziz-info.epizy.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,sdhagreyr.cc,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,shizaahmedmakeup.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,clickbeat.co.uk,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,vaw3b.wiki,Remus,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,iq.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,sg02vvao.midwayammunition.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,rc.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,mallosis.gr,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,fz.asiabet777.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,www.ati-aca.org,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,147816.us6.myftpupload.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,0ln8r6lz.sidar.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,afsdsa.com,ValleyRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,al07.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,4qktmvoy.pruebasrhglobal.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,as6rion.wiki,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,www.nutriliciousme.com,ClearFake,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,www.benoitblein.net,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,dp866jpu.lmshumate.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,app.wavestock.one,RevStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,lf.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,lmshumate.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,gatlex.com,XWorm,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,vw.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,vf.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,rp54mimk.meibuhr.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,heartsofhomdev.wpengine.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,jx.asiabet303.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,americaspadel.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,lmf.asia608.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,n5.asia689.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,docardebiary.blog,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,meatronic.us.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,escuelamarcosana.es,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,cache-provider.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,d6au5tb1.zenzy.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,strategiesconsultingfirm.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,r0.asdselot.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,dijitalpencere.com.tr,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 domain,al08.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,commercialogs.com,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,crowpanel.xyz,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,w.gpy88.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,s3ojzej3.sishi.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-domain,zm.gp11.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,130.94.29.226:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,124.223.104.170:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,103.106.191.29:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,154.212.112.207:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.76.58.98:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,27.50.63.50:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,202.61.160.182:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,91.219.62.84:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,82.22.146.177:8096,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,129.225.118.96:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:8001,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,212.43.147.214:7321,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,149.88.94.121:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.140.228.202:443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,2.31.125.213:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,80.66.66.37:3790,Meterpreter,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.218.216.243:8808,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,125.208.16.54:2015,Ghost RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,132.243.225.28:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,82.157.178.75:8090,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.76.188.127:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,192.236.151.249:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,87.120.244.77:443,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,167.86.70.217:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,143.110.165.208:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,162.35.36.118:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,196.251.69.248:10213,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,155.103.69.244:2828,LxBase RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,129.212.176.39:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,121.41.121.251:8083,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,120.48.16.142:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,154.212.112.196:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,167.86.95.233:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,87.199.195.71:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,185.224.129.52:8443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,46.19.140.50:2087,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,185.106.93.76:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,34.45.70.128:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,156.234.168.48:8081,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.180.54.195:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,45.198.224.146:10213,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,162.243.121.117:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.59.57.176:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,31.57.65.113:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.156.77.10:8443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,98.159.102.212:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.73:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,167.86.93.226:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.239.68.243:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.148.186.182:15123,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,167.86.70.217:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.204.71.199:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,149.88.94.121:8080,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,194.163.170.136:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.210.44.247:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,107.175.206.100:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,146.190.228.75:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,74.0.42.199:8041,Unknown RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,23.140.244.83:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.241.74.27:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,64.227.166.223:80,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.218.218.84:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,162.141.167.33:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,130.12.182.172:7443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,207.148.67.69:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,149.104.105.125:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,116.203.127.47:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,154.201.68.245:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,121.40.122.186:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,168.110.211.241:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.156.77.10:8083,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,204.168.243.201:443,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,198.251.85.85:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,194.180.157.11:7707,XWorm,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,15.218.17.190:3790,Meterpreter,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,1.13.183.49:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,39.107.45.43:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,185.205.244.151:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,193.161.193.99:43849,NjRAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,102.220.163.109:56001,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,116.62.172.147:443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,116.204.131.95:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,209.99.187.220:56001,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,77.237.97.184:4433,DanaBot,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.199.130.250:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,100.23.130.184:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,113.20.6.135:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,91.92.43.6:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.224.211.87:8083,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,178.105.250.57:443,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,139.59.57.176:15987,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,149.104.27.46:63744,Cobalt Strike,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,91.148.134.108:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.73:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,104.64.15.245:15987,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,204.44.69.221:7707,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.73:8080,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,82.158.89.27:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,120.48.16.142:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,155.138.255.240:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,119.3.237.224:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.5.202.182:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,217.216.54.78:5005,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,185.242.235.141:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,5.182.120.83:8443,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,51.81.92.176:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.112.215.157:8084,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,117.72.26.79:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,172.203.32.240:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.146.27.97:443,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,82.158.89.27:22,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,62.171.168.236:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,91.219.239.251:4443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,144.172.99.150:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,49.235.131.10:9998,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,188.127.224.248:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,206.189.227.150:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,120.48.16.142:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.224.67.151:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,198.13.158.199:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,209.74.71.244:8443,Evilginx,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,195.72.191.242:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,66.212.21.213:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,23.150.4.24:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,162.35.47.19:8443,Evilginx,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.127.244.14:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,189.24.81.71:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,82.158.89.27:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.100.37.52:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:8080,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,202.61.160.187:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,82.158.225.237:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,119.42.146.174:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.204.71.211:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,139.59.57.176:54123,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,2.27.160.45:48108,Unknown RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,192.255.230.190:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,139.59.57.176:27651,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.134.48.96:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,151.247.219.145:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,156.225.25.222:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,117.72.34.10:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.199.130.245:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,157.173.113.230:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,2.56.118.218:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,140.235.16.223:13365,Vjw0rm,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,148.66.19.51:1380,ValleyRAT,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,164.92.205.50:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.242.130.3:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,151.241.154.93:8443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,34.217.56.3:1905,Grandoreiro,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,167.104.105.131:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,163.7.0.131:443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.73:443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,49.233.199.129:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.84.13.187:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,165.227.201.128:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.242.130.130:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,196.251.69.248:80,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,178.104.197.218:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,115.159.212.22:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,101.32.75.122:8787,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.55.215.36:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,195.123.217.196:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.77.24.71:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,151.241.99.88:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.127.32.126:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,163.7.4.61:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,165.154.227.78:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,169.58.115.94:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.242.150.215:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,34.171.40.53:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.224.67.151:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.39.26.137:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,95.85.237.156:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,154.222.16.172:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,85.155.15.11:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,84.247.152.233:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,27.124.20.130:8765,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.180.54.195:8443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,3.218.23.251:443,Evilginx,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,167.86.70.217:443,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,98.159.102.213:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.132.121.32:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,202.61.160.188:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,154.12.28.138:18443,Cobalt Strike,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,13.207.76.82:443,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,62.238.13.47:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,106.12.35.83:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.146.27.97:4443,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,195.72.191.40:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,136.65.83.23:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,75.119.137.232:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,2.88.149.151:443,Havoc,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,70.36.123.14:443,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.148.27.125:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,196.251.69.248:443,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,136.244.109.247:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,60.183.90.254:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,13.143.243.147:44104,SpyNote,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,136.244.98.190:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,117.55.229.137:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,117.72.171.229:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.69:60000,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.224.67.151:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.5.202.181:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.242.130.97:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,20.205.153.116:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.153.201.251:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,46.151.182.67:56001,PureRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.173.12.105:8080,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,42.1.65.197:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,208.98.41.18:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,119.42.148.190:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,186.240.202.70:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,95.111.228.145:9999,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,95.179.213.237:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,124.221.182.39:443,Tsundere,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,101.47.30.91:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,84.32.220.87:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,204.44.69.221:8808,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,67.43.156.23:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,82.158.89.27:8080,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,124.223.197.135:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,112.213.110.225:10443,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,180.178.57.230:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,41.72.130.93:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.146.27.97:80,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,8.133.217.112:80,Cobalt Strike,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,157.55.194.172:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,118.145.245.42:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,185.141.216.103:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,186.240.199.73:80,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,204.44.69.221:6606,AsyncRAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,173.212.215.22:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,43.142.103.54:5656,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,129.146.79.150:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,3.12.57.9:80,Havoc,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,120.55.186.125:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,45.61.137.152:7193,Potassium,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,103.112.172.143:4993,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,159.89.54.66:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.146.27.97:8080,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 ip:port,173.211.106.209:2404,Remcos,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,139.5.202.180:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,217.182.92.79:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,92.119.178.59:8988,VShell,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,102.220.160.24:443,Unknown RAT,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,212.232.23.73:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,38.180.54.195:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,159.195.32.152:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,60.204.173.235:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,74.125.141.188:5228,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,140.210.15.208:8787,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.104.129.179:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,138.2.70.5:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,182.136.121.239:1024,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.243.170.27:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,198.199.82.188:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,204.168.245.9:443,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,188.253.28.5:8041,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,148.251.120.62:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
-ip:port,47.79.123.155:8443,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-20 19:58:34
 url,https://cert.europa.eu/publications/security-advisories/2026-022,,30,aktiv,DKCERT (Danmark),2026-11-20 19:58:29
 domain,cert.europa.eu,,40,aktiv,DKCERT (Danmark),2026-11-20 19:58:29
 cve,CVE-2026-123007,,,,DKCERT (Danmark),2026-11-20 19:58:29
@@ -1255,7 +1595,6 @@ sha256_hash,4ae6ee26bb0e9cee47c2789efe984752065b94fb70ab1bae058c0747f743bc84,Rem
 sha256_hash,49648f4774d31d75744d0ca203b04cbda83092086bed03fdf418c606d6d78832,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 11:18:53
 sha256_hash,449c9ee53af1e3d1ab429855a65c0e85bb73b5b1fd1e09e49eaf903d0a5284ab,MalwareBazaar,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 11:18:53
 sha256_hash,39d076dfe1818490d1d8b009a4481ea5cc2182a460a974f3705b528ed3229d95,DDoSAgent,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 11:18:53
-sha256_hash,39bc37d59e77a88f6f34792de3b4229dffbb87c2da866ed4075dcdd774a0de0a,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 11:18:53
 sha256_hash,15852d270b191465c50a647bf3131d70c311d13c0e9231057d009532e3dc10e6,RemcosRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 11:18:53
 sha256_hash,017d97ee0d844ffd52639b3861e9c989b7513abf60437193b857717c16dfba84,CVE-2017-0199,95,aktiv,ThreatFox · MalwareBazaar,2026-11-20 11:18:53
 domain,veod1.hypstock.info,hype,95,aktiv,ThreatFox · URLhaus,2026-11-20 11:18:52
@@ -6263,9 +6602,7 @@ url,https://www.securityweek.com/pretxt-emerges-stealth-with-5m-seed-and-an-ai-s
 url,https://www.securityweek.com/fandango-warns-ticket-buyers-of-payment-card-data-exposure/,,30,aktiv,SecurityWeek,2026-11-17 21:45:31
 url,https://www.securityweek.com/market-research-giant-ipsos-investigating-breach-of-internal-system/,,30,aktiv,SecurityWeek,2026-11-17 21:45:31
 url,https://www.securityweek.com/ai-framework-autonomously-weaponized-flaws-in-real-attacks-google-says/,,30,aktiv,SecurityWeek,2026-11-17 21:45:31
-url,https://unit42.paloaltonetworks.com,,30,aktiv,Unit 42,2026-11-17 21:45:28
 url,https://unit42.paloaltonetworks.com/optimjack-supply-chain-attack/,,30,aktiv,Unit 42,2026-11-17 21:45:28
-domain,unit42.paloaltonetworks.com,,50,aktiv,Unit 42,2026-11-17 21:45:28
 url,https://mail.google.com/,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-17 21:45:28
 url,https://compromised.example.com/some_path/some_file.php?file=&lt;previous_victim_name&gt;,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-17 21:45:28
 url,https://storage.googleapis.com/gweb-cloudblog-publish/images/Figure_2_Redacted_LLM-generated_depiction_.max-1000x1000.png,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-17 21:45:28
@@ -9555,247 +9892,3 @@ domain,kk168erghwr.com,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 
 domain,arena003.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
 domain,ugo.arema39.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
 domain,scherzo.art.pl,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.miratorg-trading.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,79oafpn7.zere.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,gug.anka69.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,thevineyardschools.org,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.planterosadodeserto.com.br,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,peekayess.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,triedandtruehq.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.mathrukacharitablesociety.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,stikpantekulu.ac.id,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.firstnationconcrete.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,whatisbusinesscreditstacking.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,simca.vn,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,scava.com.br,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.produtoracenahum.com.br,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.dermalfillerclaims.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,yd.arema39.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,gg180.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,v.gg180.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.chefdanielepriori.it,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.timsbodyshop.net,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,ular.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,monanikoo.art,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.employmentlawwakefield.co.uk,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.inkpinned.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,weedstealer.xyz,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,thanhdongmetropolis.com.vn,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,gwfshj13.zodi.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,patriotink.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,p.gg180.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,epic-realty.in,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.yenimahallepirsultan.org.tr,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,steamconnectserver.cc,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,hamararadio.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,dmconursing.edu.in,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,mycarrecoverybedford.co.uk,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,roughseas.pro,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.projectbook.org,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,fitplus.rf.gd,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,udap.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,dx.arena003.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,jfn.apibet99.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,sealpro-wtb.co.za,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,mysafeguard.in,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,d1.arema39.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,packersandmoverssurat.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,michaelpriv-books.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,ie.arema39.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.deluxvacations.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,re.arema39.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,jun02.vip,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.leetro-isolatietechniek.nl,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,www.massagensbalneariocamboriu.com.br,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-domain,elessarcientifica.com.ar,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,159.223.27.166:8001,Aisuru,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,146.190.92.100:8001,Aisuru,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,206.189.91.57:8001,Aisuru,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,8.136.12.29:8084,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,31.59.166.63:80,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,102.220.161.178:10213,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,91.92.43.6:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,159.203.61.118:8001,Aisuru,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,31.56.19.158:6606,AsyncRAT,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,119.3.251.24:8084,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,102.220.161.177:10213,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,130.94.118.208:443,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,130.94.118.208:8080,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,96.62.218.172:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,130.94.118.208:80,AdaptixC2,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,94.26.90.104:443,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,196.251.102.216:6606,AsyncRAT,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,104.248.21.36:8001,Aisuru,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,159.203.23.254:8001,Aisuru,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,38.207.176.218:8899,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,31.57.216.141:10213,CECbot,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,102.220.163.65:2404,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,129.211.183.201:22,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-ip:port,185.227.153.148:8084,VShell,100,aktiv,ThreatFox (abuse.ch),2026-11-16 20:17:38
-url,https://www.securityweek.com/law-enforcement-disrupts-gootloader-castlerat-and-stealc-infrastructure/,,40,aktiv,DKCERT (Danmark),2026-11-16 20:17:32
-url,https://www.securityweek.com/citrix-patches-10-critical-netscaler-vulnerabilities/,,40,aktiv,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-107407,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-111338,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-107412,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-111334,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-120869,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-107415,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-120864,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-107410,,,,DKCERT (Danmark),2026-11-16 20:17:28
-cve,CVE-2026-120868,,,,DKCERT (Danmark),2026-11-16 20:17:28
-url,https://horizon3.ai/attack-research/vulnerabilities/cve-2026-42271-chained-with-cve-2026-48710/,,30,aktiv,SANS ISC,2026-11-16 20:17:22
-domain,litellm.proxy,,30,aktiv,SANS ISC,2026-11-16 20:17:22
-domain,horizon3.ai,,30,aktiv,SANS ISC,2026-11-16 20:17:22
-cve,cve-2026-48710,,,,SANS ISC,2026-11-16 20:17:22
-cve,CVE-2026-42271,,,,SANS ISC,2026-11-16 20:17:22
-ipv4,127.0.0.1,,10,aktiv,SANS ISC,2026-11-16 20:17:22
-url,https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-119948],,30,aktiv,The Hacker News,2026-11-16 20:16:46
-url,https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-124194],,30,aktiv,The Hacker News,2026-11-16 20:16:46
-url,https://www.cisa.gov/news-events/ics-advisories/icsa-26-307-01],,30,aktiv,The Hacker News,2026-11-16 20:16:46
-domain,msrc.microsoft.com,,10,aktiv,The Hacker News,2026-11-16 20:16:46
-cve,CVE-2026-119948,,,,The Hacker News,2026-11-16 20:16:46
-url,https://www.securityweek.com/microsoft-rules-out-cyberattack-in-outage-warns-of-phishing-campaign/,,30,aktiv,SecurityWeek,2026-11-16 09:26:29
-url,https://www.securityweek.com/tor-updates-dos-defenses-again-as-relay-attacks-continue/,,30,aktiv,SecurityWeek,2026-11-16 09:26:29
-ipv4,0.4.9.17,,0,aktiv,SecurityWeek,2026-11-16 09:26:29
-md5_hash,b40f04a5fd182dac17d529e9bab7534b,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-md5_hash,965fcea238d8b557370c48dcdb4e48d7,delphi,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-md5_hash,574ff152139c332de4ed8ce27eac8412,delphi,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-sha1_hash,c0cd71637c09951cf247979ae7f39751220523c1,delphi,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-sha1_hash,a24e7274bbf29b8996df204244a448dbeddfbefa,delphi,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-sha1_hash,95a9ed25a2945de222a1b3cb72e5e244d990016e,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-sha256_hash,43885b7c87e76ed6ab0e5327839fdd554c332830aa371741c8461de9797e1ce9,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-sha256_hash,354ece2c0a664cb108f659db942feb1710bcae4a1f24a3204768c215e1492bfe,delphi,95,aktiv,ThreatFox · MalwareBazaar,2026-11-16 09:26:24
-domain,twenlesx.fixlow.shop,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-domain,stkp1.hyperfxs.icu,hype,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-domain,iqwblsfvqcopxrijnzwx.supabase.co,rustystealer,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-domain,atomicplanets.cc,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://twenlesx.fixlow.shop/DvnX.zip,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://stkp1.hyperfxs.icu/HFinex.zip,hype,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/cffec1c1-2d5d-4b84-af60-4ebf2bef2c08/Prestige_launcher.exe?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/b7b3c14e-b685-4a23-ae81-254691dab858/198_launcher.exe?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/a92e850d-b416-47d2-a1a5-956ecb3d6420/prestige-crack.jar?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/78374bb1-52c9-4069-bf0f-e96d9f64d5cd/4e-crack.jar?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/6da92648-12d8-4f9a-ad0a-0afb8aa7d46a/mochi-cracked.jar?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/6d4e9889-0e07-4edc-813a-21229717ae65/radium-crack.jar?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/40160257-2f2a-4b51-8f6b-d6e16c6a678c/krypton-crack.jar?download=,SilentNet,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://iqwblsfvqcopxrijnzwx.supabase.co/storage/v1/object/public/mod-files/317580bc-f4cf-4332-b5cc-adf8b61738dd/echo-client-cracked.jar?download=,rustystealer,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://horizonlauncher.net/install.ps1,infostealer,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://horizonlauncher.net/horizon-launcher-setup.exe,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://github.com/Pinnaclesys/Voice-Changer-2026/releases/download/1.12.01/Voice.Changer.AI.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://files.catbox.moe/oiqtm2.js,ascii,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,https://atomicplanets.cc/well-known/pki-validation/go/abe.a,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://83.228.109.209:56015/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://60.19.220.76:56853/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://60.19.220.76:56853/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://60.187.87.254:41025/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://59.180.173.183:53916/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://58.255.43.49:53772/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://46.236.65.31:43650/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://46.183.223.124/besQClgodgijHNweWjA34.bin,AgenTesla,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://46.183.223.124/Blgeliniers.prx,AgentTesla,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.58.252.49:48353/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.5.250.162:60344/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.5.250.162:60344/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.239.235.207:48693/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.239.235.207:48693/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.232.224.175:48509/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.228.250.193:43807/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.178.92.225:46324/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://42.178.92.225:46324/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://38.137.250.91:57762/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://36.64.184.26:45913/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://36.64.184.26:45913/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.44.145.83:40964/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.44.144.164:49005/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.44.144.120:43902/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.44.144.120:43902/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.220.85.22:47791/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.21.29.8:46178/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://27.21.29.8:46178/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://222.141.105.149:33345/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://222.141.105.149:33345/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://221.203.124.221:41197/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://221.15.166.49:51137/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://221.15.166.49:51137/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://219.68.2.243:40141/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://219.68.2.243:40141/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://219.156.2.210:50205/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://219.156.2.210:50205/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://210.208.116.107:59266/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://210.208.110.51:42062/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://210.208.110.130:46305/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://210.208.110.130:46305/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://210.208.104.156:54395/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://203.99.180.141:55308/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://203.204.93.86:37705/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://200.115.102.2:60334/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://200.115.102.246:48167/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://196.190.105.170:58308/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://196.189.98.110:45338/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://196.189.98.110:45338/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://196.189.101.82:42832/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://196.189.101.82:42832/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://192.236.217.72/90/updated.hta,hta,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://185.39.181.103:55962/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://185.39.181.103:55962/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://183.151.134.251:34493/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.34.60.169:48147/Mozi.m,iot,100,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.183.1.8:59707/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.126.127.178:46125/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.126.127.178:46125/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.126.116.130:51364/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.126.116.130:51364/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.121.250.59:58887/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.121.162.212:49712/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.117.91.73:57147/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.117.91.73:57147/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.117.71.80:33207/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.116.95.17:60323/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.116.123.203:59998/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://182.116.116.157:50670/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://172.86.85.96/cc9x86,automated,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://172.86.85.96/cc9sh4,automated,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://172.86.85.96/cc9mpsl,automated,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://172.86.85.96/cc9mips,automated,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://172.86.85.96/bins.sh,automated,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://171.213.169.136:35207/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://171.113.227.255:58563/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://155.103.71.164/73/updated.hta,hta,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://138.204.196.254:59728/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://125.44.32.16:43782/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://125.43.33.125:42492/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://125.41.246.11:52715/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://124.94.245.112:38018/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.4.192.73:60304/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.4.192.73:60304/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.13.84.181:34305/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.13.84.181:34305/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.12.21.254:33055/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.12.21.254:33055/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://123.10.239.50:40554/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://122.100.128.65:52953/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://120.84.214.66:56944/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://120.28.166.185:40785/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://119.154.107.113:56649/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://116.138.96.88:54531/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.63.13.23:52985/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.57.251.6:35213/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.57.251.6:35213/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.55.58.177:53670/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.55.58.177:53670/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.55.229.195:34721/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.50.25.58:57868/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.49.24.216:39799/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.49.24.216:39799/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.49.15.40:57441/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.49.15.40:57441/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.48.163.143:57925/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://115.48.146.158:46145/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://112.93.138.56:34870/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://112.248.186.232:57795/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://110.83.152.175:46990/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://105.225.100.170:49505/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://101.108.77.14:40134/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://101.108.244.167:59034/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-url,http://101.108.244.167:59034/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-16 09:26:23
-domain,plasmagen.co.in,,30,aktiv,ransomware.live,2026-11-16 09:26:21
