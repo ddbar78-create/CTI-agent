@@ -1,4 +1,242 @@
 type,value,family,score,status,source,first_seen_utc
+md5_hash,fd48ee1d6e18a96bec3a33b4157e7098,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,e6e377145259db765e4b7d4842e9dd45,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,e53fd4d397b540f1aa1123d4f1bca87b,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,d9aa38894b93300e3bd222544cb5126c,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,cc74eed2cb23d2e8b09590cbc78df899,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,c154327c693d8ec2fed2c175e1da78f3,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,aef423c112a294531fd4d10a19596a1a,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,a3eb8842a8c6354c6c6038a01295302a,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,a2e1d942f65f05113725aadf8049fe23,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,9922b319e71f04660c88ff2402d92034,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,92c2cc93c3448015d759f592e9899806,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,91241eafba7f899aa528fca120b18c21,blowfish_constants,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,9075787bdd40da4a0b2b4792c0e6a88d,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,8f78373cba8f6be5ab8a7e5fed2f8714,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,8ae88f3b807b54b62f00e1bf21f403d8,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,885c965c6aa081d436f35d09cedee874,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,797f63e2cc85e6e7cbc4737c787d794a,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,7917f9b0ff42afedf97eef2c50e8b4d9,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,6f67794909e3eab9b219a93859379e26,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,48c3eaed63c35501d66490d4491b83f0,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,452b3f0fceeba4a72fae421868b2c62f,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,3765015ce48e199e0b8717dcf13a1f11,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,205387e95230f5fb8e704345d64c45cb,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,17446f0a694731a8fc69ced0952d60b1,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+md5_hash,097281234a362ee4e1c0141ed372a29f,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,fea36e654c5e9351aa30400e50fe75edc03dfea1,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,fd2536c3dbd8946937e6969831cd0edc7f229add,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,f94c4f4d10bcfeb195c9615f2e5b65fcbc0638a2,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,e5e124e119a1ad62d49e698d936b6b049280a6c2,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,cd76f2a73dca016da4224e1ca086c2e767279ff2,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,cd3e4437aeebdf96917d5f46ac35f374042b17b2,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,c00544afbec7c85203ecfa88d0f08327e6f36c60,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,b84b02e2740ef298e30483c83dae88c0c2cc55db,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,9c32f17ea8e8026996c4e66f1af776f9c440b94f,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,9115b3c924f31d5bb1e1ae7bedfe396efca55491,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,830faf7710176545c25287b0b64e82d82d033895,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,7ed9d42d8a99bb10be1ddfe5b7a2fcc80f62c365,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,7ab5fdee5fe8a8879db15c0cc7ffd5ae1c28f466,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,7581795605826e0a09b0f1fb9a0e03e072334ee7,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,6b75de9a58035eff68c38bc52e55ff2fde548537,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,5b41902602ebe18f35aeb0ca7568f61ed1ad98b6,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,3c44cb1b600b2e42b5d11c149f157cfe679ed697,blowfish_constants,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,36e55add848eb707d60d932cc3b0047a6b87fea7,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,362b5f592644ecdb55f81e63916fa7a9b1c6c76b,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,30fa8a5ca0b90a1e36fa4d8f7e6c5713e598019b,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,2374dc8a4fb35f314b639fbf9497e6ed89bb3f34,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,114b1033056f8a04a9544db51c62ec25d152d3ca,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,0a4a6482c3c6d638ad3b863663221d0352102f10,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,07a4cebe04ff4fe33fb1fc8f511c8e25b4879c45,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha1_hash,0426919fbfc13267a4b29a5cb2af060b45caa2f0,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,f3fe9e5bac320c7d32b6cc48c6da61fd4e65e7d907e2af3305f44887dc008cd5,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,f2c96512d97d0f49c4dc6fd5e4a82d0970c0f738ba3b6a8bd915fa01e5a898f4,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,e2720407b1cfa35397205cd200ef76495e783ed94cf061c6b8ce04df0c86125c,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,d7250e2bf510da94d65996bc232fee8daf1d188b3cc26cb6eedea6a316807a5d,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,d1c1d069a1a66962e5a3e89046c5ab4eb312cfae84374c8890760d3e89f9a41a,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,ce53d6acb0a7c225070e67f365a6f59c8b711aa7784fb205cdb2229d1cb4d521,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,c7884e3842c4566e338846067c116d80b184093e7b380c40683c817997c8c3f2,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,bd8251c5e4ceefd1fe29618cab7073834658e12ba755a66b779a6cd27deaec4d,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,a9ee1b703cb599756b2b03833ba3e2491a5165c400ca57cea6993799ce060474,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,a66e978573943650dc6cdcac1e64fcc151b882e8a99fc7aebb956d0ba8300b42,blowfish_constants,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,9522b80562dcacd2c4e5f38a345e643276701dab068a180eae8dbdc22e165068,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,8ed54a14b0be914534c4fbcfc595bd93328bd0aac036df213023a648f97947a3,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,8714c4f433719bdfe0d14b742fe1e4994a4334f53d37778ecd1c3651c263ac73,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,754320be3ca9580333222762deccc901feefaf948404cccd40e48aba67467de7,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,7214974da75a04d4ba0450d7485e412d09742af832f60084eaf07deaed678b0f,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,6fefa6f1c4e92d48464ff4b3ae9bc1dc0492067515080bdd0498826fb44362c9,SilverFox,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,601877f9aab7eaca34ffabd51e30b37c26db4a87267b4def3ca23101d3b372bd,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,5b6e5a916b217fa4b96352bb865f83c12e7128f65b1f0835fd4d448abdd3de0f,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,5015e226937ca83596fdc8c9362ce74e18dba28f54c134ca9c78a9a9b8be2c74,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,4e2d3e88b8ba86caffc23f49f68dced3360cb82d07a6c8e9ef5e9850f5b19f6c,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,4c2237963c2c88d00b8587ae3a1cdd68a99175c35fd252605acac4417ca2fc8f,WARDENStealer,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,46d2e82f892bfb92ef8fe8449b1c0d11a1731dbfafa9b4a7fd309d5f330b7ae5,Mirai,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,345171f363e5130c2e983d6bb95c3ba03da5e480110620029413a2da50ca0758,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,29bf4a29f6b515ea9c2a10868fd213181ff7bf9c2afa27d387b42556fd4a04a7,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+sha256_hash,0f7149c0fb86a3d815a09db7f4018c7c975a31553c9cbd0a2825a93e539e855a,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 18:25:03
+domain,sasa2.fixiow.icu,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+domain,github.com,cloudzy,75,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+domain,ckdb.hypstok.info,hype,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+domain,bosfiles.net,stealer,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://sasa2.fixiow.icu/DvnX.zip,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/valerovati03/valerovati03.github.io/raw/refs/heads/main/pyrosis/Release_3.6-beta.1.zip,cloudzy,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/resonancemistmap/tELEGRAM-Zapret/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/resonancemistmap/ZaPRet-YOutube-DisCorD-telEGRam/releases/download/1.10.6/zapret-discord-youtube-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/resonancemistmap/ZaPRET-diSCoRD-YouTube-1.10.4/releases/download/1.10.6/zapret-discord-youtube.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/resonancemistmap/ZApRETteLEGram/releases/download/1.10.5/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/resonancemistmap/ZAPREt_teLEgrAM/releases/download/1.10.6/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/luke-wright-io94n2/solara-roblox-executor-2026/archive/refs/heads/main.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/john-rlab95l7/swift-executor-roblox-x64/archive/refs/heads/main.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/hhss80787-ux/cli-zapret/releases/download/cli/zapret.exe,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/dan-moore-lab2092d9/wave-executor-roblox-portable/archive/refs/heads/main.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/bayveterancalm/haPp-vPN/releases/download/1.7.8/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/bayveterancalm/HaPP-pluS/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/bayveterancalm/HApp/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/bayveterancalm/HApP_winDOWs/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/bayveterancalm/HAPp_prOXy/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Wattanhearth/haPP-ProXy/releases/download/1.7.9/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Wattanhearth/HaPP_PLuS/releases/download/1.7.9/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Wattanhearth/HaPP-Vpn/releases/download/1.7.9/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Wattanhearth/HApp/releases/download/1.7.9/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Spikefiretrieve71/zaPRet_TeLEgRam/releases/download/1.10.5/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Spikefiretrieve71/zAprEt-disCOrd_youtUbE-1.10.4/releases/download/1.10.4/zapret-discord-youtube.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Spikefiretrieve71/zAPRETteLeGRam/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Spikefiretrieve71/ZApReT-yOUTuBE-DISCORD-telEGrAm/releases/download/1.10.5/zapret-discord-youtube-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Spikefiretrieve71/TELegRAm-ZAPReT/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/zapret-discord-youtube/releases/download/zapret-discord-youtube/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/zapret-discord-youtube/releases/download/zapret-discord-youtube/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/zapret-discord-youtube-1.10.4/releases/download/zapret-discord-youtube-1.10.4/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/zapret-discord-youtube-1.10.4/releases/download/zapret-discord-youtube-1.10.4/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Skachat-Zapret/releases/download/Skachat-Zapret/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Skachat-Zapret/releases/download/Skachat-Zapret/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/ObhodDiscord/releases/download/ObhodDiscord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/ObhodDiscord/releases/download/ObhodDiscord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/DiscordObhod/releases/download/DiscordObhod/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/DiscordObhod/releases/download/DiscordObhod/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/DiscordFix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/DiscordFix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Discord-Zapret/releases/download/Discord-Zapret/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Discord-Zapret/releases/download/Discord-Zapret/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Discord-Fix/releases/download/Discord-Fix/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/ShackleWidow/Discord-Fix/releases/download/Discord-Fix/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Riverchalose/hapP_vPN/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Riverchalose/hAPP_PRoXy/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Riverchalose/HapP/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Riverchalose/HApp_wiNDOWs/releases/download/1.7.8/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Riverchalose/HApp-pluS/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/zapret-discord-youtube/releases/download/zapret-discord-youtube/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/zapret-discord-youtube/releases/download/zapret-discord-youtube/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/zapret-discord-youtube-1.10.4/releases/download/zapret-discord-youtube-1.10.4/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/zapret-discord-youtube-1.10.4/releases/download/zapret-discord-youtube-1.10.4/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Skachat-Zapret/releases/download/Skachat-Zapret/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Skachat-Zapret/releases/download/Skachat-Zapret/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/ObhodDiscord/releases/download/ObhodDiscord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/ObhodDiscord/releases/download/ObhodDiscord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/DiscordObhod/releases/download/DiscordObhod/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/DiscordObhod/releases/download/DiscordObhod/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/DiscordFix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/DiscordFix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Discord-Zapret/releases/download/Discord-Zapret/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Discord-Zapret/releases/download/Discord-Zapret/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Discord-Fix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/PassLocust44/Discord-Fix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/MilliKingNotice/zaPRet_yOUtUBE-DISCOrD_tELeGrAM/releases/download/1.10.5/zapret-discord-youtube-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/MilliKingNotice/zApRet_TELeGraM/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/MilliKingNotice/zAPReT-dIsCOrd_youtubE_1.10.4/releases/download/1.10.5/zapret-discord-youtube.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/MilliKingNotice/tELEgRAm_zapReT/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/MilliKingNotice/ZAPrEttElEGrAM/releases/download/1.10.5/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Fairulresurrect5/ZapretTeLeGrAm/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Fairulresurrect5/ZapreT_youtube_disCOrd-tELeGRam/releases/download/1.10.4/zapret-discord-youtube-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Fairulresurrect5/ZapRet-teleGRAM/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Fairulresurrect5/ZaPReT_dIsCORd-youTuBe_1.10.4/releases/download/1.10.4/zapret-discord-youtube.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Fairulresurrect5/TeLegrAm_ZaPrET/releases/download/1.10.4/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DrakeMailmanSay/zApRET-yOUtuBe_DIScorD_TELegRAM/releases/download/1.10.6/zapret-discord-youtube-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DrakeMailmanSay/zAPREt-TElEgRam/releases/download/1.10.6/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DrakeMailmanSay/ZAPrEt_dIsCORD_youTUBe-1.10.4/releases/download/1.10.7/zapret-discord-youtube.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DrakeMailmanSay/ZAPrETTElEGram/releases/download/1.10.6/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DrakeMailmanSay/TeLeGram-zaPREt/releases/download/1.10.5/zapret-telegram.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DentistChasm/happ_vpn/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DentistChasm/Happ-proXY/releases/download/1.7.8/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DentistChasm/HapP-PLus/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DentistChasm/HaPp-WIndOWS/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/DentistChasm/HApP/releases/download/1.7.8/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Colorsdidominate/haPp-PlUS/releases/download/1.7.8/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Colorsdidominate/hApP-PrOXY/releases/download/1.8.0/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Colorsdidominate/hAPp-wiNDoWS/releases/download/1.7.7/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://github.com/Colorsdidominate/HApp/releases/download/1.8.0/happ.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://ckdb.hypstok.info/HFinex.zip,hype,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://cdn.discordapp.com/attachments/1573300759540400208/1574037359253782600/b6fc5926b5?ex=6b043006&is=6b02de86&hm=1616da1b9974a81d204ac008999f8d1b8d81638551510874f6ba901ba8c1b3f1&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://cdn.discordapp.com/attachments/1298616021669773397/1574123122292957448/e265dfdaa6?ex=6b047fe6&is=6b032e66&hm=6bfade5306c4cd7cbb36c1a4866fc219d4d8112e367f8726a94befc1e19e7e75&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,https://bosfiles.net/download/zF1QFkeAga8kFh17B_XCZQ,stealer,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://91.244.197.89/systemd,postgres,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://87.68.238.29:59039/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://78.25.125.248:33109/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://61.52.43.215:37927/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://61.52.43.215:37927/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.52.12.208:44444/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.233.95.165:47496/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.233.106.88:58031/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.230.55.94:41071/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.230.55.94:41071/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.228.190.192:39805/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.227.206.170:40666/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://42.224.222.56:46645/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://27.37.225.134:43172/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://27.207.241.77:48648/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://27.153.206.255:44911/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://27.153.206.255:44911/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://222.138.178.120:36916/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://222.138.178.120:36916/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://221.15.214.223:41075/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://216.126.86.153:44595/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://216.126.86.153:44595/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://210.208.111.26:35067/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://210.208.111.26:35067/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://210.208.111.234:42118/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://210.208.110.20:40277/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://210.208.106.68:51014/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://210.208.106.68:51014/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://196.217.59.193:51769/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://196.217.59.193:51769/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://196.191.231.12:48151/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://196.189.46.69:44663/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://196.189.46.69:44663/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://196.189.46.69:44663/Mozi.m,honeypot,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://183.158.42.17:58475/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://182.123.208.38:46280/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://182.123.208.38:46280/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://182.119.177.110:54957/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://179.49.213.85:33317/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://177.3.208.56/x86_64,cowrie,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://171.217.126.81:51795/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://171.217.126.81:51795/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://151.233.158.228:45516/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://14.20.192.96:37413/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://130.12.209.166:59266/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://125.47.66.55:47763/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://125.47.50.90:50310/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://125.43.32.186:54905/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://125.42.118.254:44769/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://125.41.107.109:54267/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://123.9.116.48:37028/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://123.14.53.200:51961/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://123.14.235.128:48319/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://123.12.26.238:59280/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://123.12.26.238:59280/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://121.43.62.98/ezo,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://117.102.208.80:43986/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://115.63.49.40:33214/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://115.63.49.40:33214/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://115.50.157.197:44934/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://113.99.201.29:51687/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://113.128.237.43:38535/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://109.236.44.241:34528/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://109.236.44.241:34528/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
+url,http://105.228.61.96:36293/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 18:25:02
 md5_hash,e71f2bdf8fab7636e68b2f98825f57af,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
 md5_hash,d8a279c8f28d44574eea6be549bb001b,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
 md5_hash,d57bd31fafd76cb91a947866b261cba9,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
@@ -6048,7 +6286,6 @@ domain,max-1000x1000.png,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11
 domain,main.getLastMessage,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
 domain,support.broadcom.com,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
 domain,s.indexOf,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
-domain,github.com,,75,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
 domain,files.completeUploadExternal,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
 domain,flat.vmdk,,30,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
 domain,www.virustotal.com,,0,aktiv,Google Threat Intelligence (Mandiant),2026-11-19 21:23:04
@@ -9423,40 +9660,3 @@ domain,roedentallab.com,,30,aktiv,ransomware.live,2026-11-18 03:36:42
 domain,intelligentaudit.com,,30,aktiv,ransomware.live,2026-11-18 03:36:42
 domain,examinetics.com,,30,aktiv,ransomware.live,2026-11-18 03:36:42
 sha256_hash,da604139df0b04644cb0abfdd282c3cd94075ddd8b314c2d1c8d70ec3e501e7e,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,9039ebbdd6abe36ad8ac48097dae6813d4a49315e1403c9ae7ebab539601cde6,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,f230087b20c623ccfb1894d995e7e9f442eb30c614f67395f41b8ca09efaaba6,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,e29ef19d248de934e68924e8c9ca6921784a25288958d1b8dc454995d0da9a23,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,84a59ad7dc91c05f7b3c82bec13c85fe633cbf075d5ccca57eef113b22b3795f,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,290a541fd083448b585d5b881fb922436c89d5cec418b6751b66d7d655856ebd,ACR Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,d53e8b26daa17b7323fc8fe7696889ca11e92255235d52523652d5f49ade913f,ACR Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,e768f1d3e6388eb82f4d7387850d0b07900c695d8b2ed8d05c42a275ef786c47,WARDENStealer,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,961cadcff0b1afcb310b03c6776ba5dab3ff5a14bb8d6bed6b9014cca2520279,ACR Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,61e9538410e4db34ef8e7c4621c728c1ad9c3566605a1c06c193075a341f0c6f,ACR Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,3959072e282de745109dee2de460d343b7e44a2aed477311d3d840ac95a08e17,RevStealer,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,da10faedff30caf7196bbd6cd879963437c48f3719f813cdad556c9d554595fa,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,0c0342c4f3d1a976e3344d2f1508ea298fc8e7c65a513d080b17eca76f3315ef,Mirai,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-sha256_hash,a273bf60739c53c5af2a961843e4e7865793435f6618f90a74be75bcce77dd9e,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,m.fafa117e.com,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,theregiontowing.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,alphapharmacy.co,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,vlxdnamthang.vn,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,mowcangler.co.uk,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,casaberria.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,gc.aria88.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,sbpoets.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.shoeaid.co.uk,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,lighthousemoving.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,exclusivegems.co,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.mansionhouse.gr,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,cerawaxs.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,mytoolshop.servebeer.com,Ave Maria,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,anirudhjoshi.in,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,newosler.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,alipcheckallcinda.com,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,elpaladin.net,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,8ogpgd5z.xeros.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,nelr.click,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,5vobauua3ojpklx.icu,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,nscdigital.co.uk,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,apitrxenergysaver.com,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,klassickitchenqatar.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
