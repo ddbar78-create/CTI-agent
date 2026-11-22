@@ -1,4 +1,237 @@
 type,value,family,score,status,source,first_seen_utc
+md5_hash,e71f2bdf8fab7636e68b2f98825f57af,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,d8a279c8f28d44574eea6be549bb001b,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,d57bd31fafd76cb91a947866b261cba9,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,bea1c4274d2e67cfb293403280fef45a,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,abd97017af169282a9e6422bca2af4a6,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,623e0522e4737c3bf8ac7d786d0941ce,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,4e0d17f04b9d3669a7f583c0035fcf68,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,3552cffb5b9f2114030f18e880131fa0,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,31feacd14cfa8076a8b17e24108bfbfe,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,24ccc6ecdd5a8bb99eb1d391985a9acb,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,0fe0fab1b4cb1b552685a272c3383020,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+md5_hash,00b727927ffc3d7cc5497c0906e07449,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,f8f458ded34d2159b5aa46d2a772cd916db93e8f,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,f2329894f4699fbda7f5a69e8241b98cef6a7350,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,e476616555353fb522f04c385005147cdad6df42,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,e2af396685122698e7ad6fe562977153511bfe90,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,cfa64360c7eb03d613fc83b6c57baf888f72071e,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,c4dc417aff44bae35be152f8cd5838897969c757,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,86b50f040684effceabdb344e3a66acbf7b8ff10,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,6fc3f85d61895b9bc3e22f4d450d6aec79766373,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,31ff026aada7f533b26b0947e8395533103e9894,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,2f12c1a2b6987258be108851a3bc52673cd16094,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,2a6ac14e64af40d0ca2a90c476a7d2dcdea3369d,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha1_hash,0e403decd6739010207ee55dced5f9e3bd7e0c12,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,ffd3f75dc955f02cd4a2a75952669fe6627c79f1b1f2533f2fc3bbb345daf2da,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,f2e9b244e9182a037c681eb363c3083d5242267706ab04ff01a1d0e45a3ef9bf,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,e703469ec137e9a29dc4d74e0ad581c8f9f5a1da56c4c1b918c6d23ac9642935,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,e5d69dbd3650f2044941225ae8b8fcf7559a9377792539a1fa25b2d49cac5122,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,d66647d709399cdbd13f76da6f41dc4886fb82baefeeba40585c4a5b608c8bbe,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,cc8ba71c1c182ac368a4a62123d4f8813eb3f2c51e91908fcc918fec0f50d874,EtherRAT,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,71432b0e08645d29aa22f6ea6b4df5c044559c3b8b9729da0f38b594375bd1a5,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,5df4a4b70dac99852efc00bc706dfcd0167563a9a543e57a96ef48cff509f42b,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,3aafa696fd2a130a34c1dbc186b552809c7fa0e54227d4de41980c1c9af502f2,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,33b2b1b6aee041d92d829958d23c1b2aab9937d1d1f0a42651886ae453f5602e,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,14a9f4f5b52cb5c0af7f1769916382a1c194fabb931ac954ed3639eb99ba1afd,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+sha256_hash,0cdd42f10590b560ed892f418e95234c31753c01080365bff873527bd0e22e3d,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-22 11:02:18
+domain,www.unlinedsound.com,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,www-featherwallet.org,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,stcc.topickks.icu,hype,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,sendit.sh,ssh,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,raw.githubusercontent.com,BlankGrabber,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,outline-willow.com,Amos,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,infinitevote.com,stealer,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+domain,cdc.fixiow.icu,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://www.unlinedsound.com/ecc874/cfebbac7d1c0.js,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://www-featherwallet.org/download/files/releases/win-installer/feather-2.8.1-win.zip,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://www-featherwallet.org/download/files/releases/win-installer/FeatherWalletSetup-2.8.1.exe,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://stcc.topickks.icu/HFinex.zip,hype,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://sendit.sh/6tnYY/ck2Iw.gz,ssh,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/zakaria-akash/pulseboard-backend/refs/heads/main/src/common/middleware/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/zakaria-akash/fashion-mart-website/refs/heads/main/src/app/api/admin/products/%5BproductId%5D/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/yousuf-git/cloak/refs/heads/main/desktop/src-tauri/icons/android/mipmap-anydpi-v26/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/xtshivam9/shivam-and-geetanjali-team/refs/heads/main/public/fonts/fa-solid-600.eot,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/xtshivam9/brahmastra/refs/heads/main/public/fonts/fa-solid-600.eot,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/xtshivam9/Loopstudio-main-shivam/refs/heads/main/public/fonts/fa-solid-600.eot,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/whitneygrotesque2163/whitneygrotesque2163.github.io/refs/heads/main/undoubtable/Latest_azurous.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/whitneygrotesque2163/GTA-6-Game-Pass-Free-Access-PC-2026/refs/heads/main/usuary/Pass-GT-Game-P-Free-Access-v3.0.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/webasiWebApp/songcosmos---Copy/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/nhrdf-education/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/nhdrf-catreing/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/majestic-cabinets/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/kai_admin/refs/heads/main/resources/views/backend/admin/layouts/partials/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/java-script/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/european/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/bootstrap-education/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/PHP-Basic/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/wasifahmed85/NHRDF-Exampractis/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/vocaotri/nest-auth-jwt/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/vimalbhesaniya/server.live/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/utujesandrine456/C-Files/refs/heads/master/data/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/umairjameel321/node20-weather-app/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tranthienhau/video-transcriber/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tranthienhau/flutter_blueprint/refs/heads/master/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tranthienhau/flutter-snore-recorder/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tranthienhau/flutter-realtime-chat-marketplace/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tranthienhau/flutter-offline-ocr-sync/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tranthienhau/capacitor-web-to-mobile/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/toniiplaycode/Website-Booking-Ticket-Movie/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/wrapped_token_eth/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/the-akemsingh/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/hf-image-express/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/eth_bridge/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/Year-Chart-Extension/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/Singleton-Pattern/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/the-akemsingh/Azure/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/testing24v-dot/testingtheme/refs/heads/main/public/fonts/fa-solid-600.eot,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/techy05-v/streamify-video-call/refs/heads/main/frontend/src/pages/constants/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tanvirops/sticky-note-frontend/refs/heads/main/js/common/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/tanvirops/ByteX-Business-development-website/refs/heads/master/images/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/svyatoslv/LCT_2025/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/souravsasmal/socket-test-server/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/smartraysam/annewatt/refs/heads/master/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/shubhagrwl/gqlgen-auth/refs/heads/master/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/shahrierbiddut/vue-staterkit-laravel/refs/heads/main/resources/js/components/ui/alert/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/shahrierbiddut/shoptonics/refs/heads/main/assets/font/font-awesome-4.7.0/css/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/shahrierbiddut/KeenKeeper-Assi-7-Hero/refs/heads/main/src/assets/Pages/data/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/shahrierbiddut/CareerPilot_server/refs/heads/main/src/config/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/shahrierbiddut/Assi_4_Hero/refs/heads/main/script/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/seidgy/abella-inss/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/savindaJ/Lern-SprinBoot-With-React/refs/heads/master/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/sarad-blockchain/Calculator_dapp/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/sajjad-mascot/sajjad-mascot.github.io/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/prashannaLeo/Hackthon_WK_1/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/parvezislam45/new-health/refs/heads/main/src/app/Pages/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/parvezislam45/hospital-management/refs/heads/main/src/app/Components/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/parvezislam45/bigbazar/refs/heads/main/staticfiles/admin/img/gis/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/parvezislam45/My-Portfolio/refs/heads/main/src/app/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/parvezislam45/All-Auths/refs/heads/main/server/accounts/migrations/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/lamdan0901/solist-landing/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/lamdan0901/BatRadar-vscode/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/gogz111/phantomX/refs/heads/main/PhantomX.zip,BlankGrabber,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ebad-khan-01/todo-list/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ebad-khan-01/add-to-cart/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/demonationx93/demonationx93.github.io/refs/heads/main/src/components/Application_2.0.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/demonationx93/GTA-6-Compressed-Download-50GB-PC/refs/heads/main/semiopalescent/1.5.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/cloeturkic9843/cloeturkic9843.github.io/refs/heads/main/ineducabilian/Latest-v1.2.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/cloeturkic9843/GTA-6-Gold-Master-Build-Leaked-PC/refs/heads/main/inarculum/PC_Leaked_GT_Master_Gold_Build_v2.8.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Zeyad-Baloch/medicortex_backend_mcp/refs/heads/main/app/api/endpoints/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ZainAli00/datascience_portfolio_projects/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ZahidMiana/rust/refs/heads/main/ENUM/src/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ZahidMiana/YOLO_Object_Detection/refs/heads/main/huggingface_deploy/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ZahidMiana/Self_Healing_MultiAgent_Code_Assistant/refs/heads/main/backend/app/api/v1/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ZahidMiana/SMART-KISAAN/refs/heads/main/assets/images/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/ZahidMiana/Foudry_FundMe-/refs/heads/main/lib/chainlink-brownie-contracts/contracts/abi/%40eth-optimism/contracts/L1/messaging/IL1CrossDomainMessenger.sol/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Yosef781227/Zoom-clone/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Yosef781227/Chatter-/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/YatharthKaushal/google-cal-oauth/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Yashkapure06/netflix-clone/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Yashkapure06/deltaSigmaVentures/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Yashkapure06/Stock-Control-System/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Yashkapure06/Patterns/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Whitey1234/visa-portal/refs/heads/main/src/app/Navbar/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Whitey1234/tutor-booked/refs/heads/main/src/Private/PrivateRoutes/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Whitey1234/recipe-books/refs/heads/main/src/Component/Extra/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Whitey1234/payNeeds/refs/heads/main/src/AuthProvider/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/WebAMM/PlotPocket-BE/refs/heads/master/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Wasif-Shahid9/singta/refs/heads/main/assets/images/blog/details/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Wasif-Shahid9/portfolio-flow-main/refs/heads/main/src/components/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Wasif-Shahid9/frontend__shoppingCart/refs/heads/main/src/conponents/navbar/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Wasif-Shahid9/ecommerce__mern/refs/heads/main/frontend/src/components/admin/orders/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Vogue-Softwares-Solutions/PM-dashboardF/refs/heads/main/src/pages/Dashboard/DashboardContent/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Vogue-Softwares-Solutions/PM-dashboardB/refs/heads/main/controllers/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/VidathTheekshana/SLIIT_FINAL/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/VictorClonnyy/Estudos/refs/heads/main/Sql.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Valerian001/CodeAlpha_Simple_E-Commerce_Store/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/UmarAuna/Sahabul-Azkar/refs/heads/master/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/UmarAuna/PatientRecordTest-Umar/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/UmarAuna/FlutterBasics/refs/heads/master/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/UmarAuna/Flutter-Sample-Codes/refs/heads/master/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/UmarAuna/Chat-GPT-Flutter/refs/heads/master/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Tmahn001/study-proj/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Tmahn001/study-api/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Tmahn001/Shop-Task/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Tmahn001/LMS-Task/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Tejaswgupta/Dinin-test/refs/heads/master/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Talent-Index/Freelancer_Payment_Escrow/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Taiyob/eshop/refs/heads/master/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Taiyob/Gym-Class-Scheduling-and-Membership-Management-System/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/TG-Codes/jamb-clone/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/TAIJULAMAN/Clock-App/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/SibomanaEdouard/dnl_project/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Semulli/APIFILTER/refs/heads/main/src/Pages/public/fonts/fa-solid-900.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/SamyaRoy999/Migmag99-dash/refs/heads/main/src/assets/Images/Notifications/public/fonts/fa-brand-400.woff,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/SajidAfridi/MyCalculator/refs/heads/main/public/fonts/fa-solid-400.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Saddam2508/shopping-site/refs/heads/master/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/RabeyaAkter78/ssl-commerz/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/RabeyaAkter78/socket-io-server/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/PavloooVA/BuscaPaises/refs/heads/main/public/fonts/fa-solid-500.woff2,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/PasanSasmika/cbc-backend/refs/heads/master/controllers/public/fonts/fa-brands-400.ttf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Morettonico5037/morettonico5037.github.io/refs/heads/main/assets/3.0.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/Morettonico5037/GTA-6-PC-Version-Download-Offline-2026/refs/heads/main/regain/Offline_P_Version_GT_Download_3.7.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://raw.githubusercontent.com/MUmerch641/PDF-Unloacker-app/refs/heads/main/public/fonts/fa-solid-700.otf,DEVPOPPER,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://outline-willow.com/f/9ksbxnvwoj7pts0uxop4sa/01pemlfd,Amos,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://infinitevote.com/C1eF2xWk/poto1.bin,stealer,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://github.com/t62381556-cmyk/fw1423/releases/download/fw142/mnrx.exe,CoinMiner,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://github.com/t62381556-cmyk/fw1423/releases/download/fw142/cmrg.exe,CoinMiner,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://github.com/Pathzyawatch/discord-zapret/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://github.com/Pathzyawatch/discord-zapret/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://cdn.discordapp.com/attachments/1471257275170558113/1574013902973575292/a98e5263f6?ex=6b041a2e&is=6b02c8ae&hm=7bda37bc05f0e63940b9a97ef2d72772cf87b9f4f60c1cb3f5206c5542f6aa65&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,https://cdc.fixiow.icu/DvnX.zip,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://85.234.100.172/yrjrs/tftf.bba,stealer,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://8.155.57.226:9107/linux,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://61.52.150.220:33045/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://61.52.150.220:33045/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://45.90.81.17:56956/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://45.90.81.17:56956/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://42.232.235.14:34020/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://42.232.235.14:34020/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://39.40.172.208:38947/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://31.77.248.254/files/ambush.png,stealer,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://27.215.50.218:47438/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://27.215.181.129:53051/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://27.215.181.129:53051/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://222.141.139.136:37168/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://222.141.139.136:37168/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://222.141.113.60:49544/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://222.141.113.60:49544/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://222.140.195.8:60796/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://222.138.149.165:48581/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://211.230.3.71/bins/jews.x86,automated,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://210.208.110.42:46200/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://195.165.182.55:57789/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://195.165.182.55:57789/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://182.126.101.3:59268/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://182.119.178.181:54957/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://182.116.13.152:41016/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/shitmloversishere.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/x86,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/spc,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/sh4,gafgyt,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/ppc,ua-wget,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/mpsl,ua-wget,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/mips,gafgyt,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/m68k,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/arm7,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/arm6,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/arm,gafgyt,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://181.215.115.169/SBIDIOT/arc,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://178.141.25.42:38851/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://160.22.107.158/ntm.x86_64,CoinMiner,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://160.22.107.158/ntm.aarch64,docker,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://124.161.116.7:59073/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://123.8.35.255:54476/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://123.5.221.28:52437/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://117.223.140.60:52817/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://117.223.140.60:52817/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://115.63.8.47:43351/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://115.56.56.44:56392/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://115.55.230.233:51891/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://115.50.157.197:44934/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://113.53.69.133:43555/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://112.93.138.178:43429/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
+url,http://112.93.138.178:43429/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-22 11:02:18
 url,https://www.securityweek.com/president-trump-taps-kirsten-davies-as-national-cyber-director/,,30,aktiv,SecurityWeek,2026-11-22 02:58:22
 url,https://www.securityweek.com,,30,aktiv,SecurityWeek,2026-11-22 02:58:22
 domain,www.securityweek.com,,50,aktiv,SecurityWeek,2026-11-22 02:58:22
@@ -6518,7 +6751,6 @@ domain,wilkbuulderss.screenconnect.com,screenconnect,95,aktiv,ThreatFox · URLha
 domain,tecpasco.com,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
 domain,sunsundown.com,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
 domain,statist.site,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
-domain,raw.githubusercontent.com,LummaStealer,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
 domain,pcsa.nu,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
 domain,luisrivera.com,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
 url,https://wilkbuulderss.screenconnect.com/Bin/ScreenConnect.ClientSetup.exe?e=Access&y=Guest&c=Nwew&c=&c=&c=pg&c=&c=&c=&c=,screenconnect,95,aktiv,ThreatFox · URLhaus,2026-11-19 12:50:29
@@ -9228,88 +9460,3 @@ domain,5vobauua3ojpklx.icu,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:3
 domain,nscdigital.co.uk,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
 domain,apitrxenergysaver.com,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
 domain,klassickitchenqatar.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.ikukuomaproject1.com,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,ig.aria88.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,v5.apigacor77.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,acmegamer.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,ro.devotions.eu,StrelaStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,milleycapital.co.uk,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,moin-socks.de,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,apirastone.xyz,Coruna,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,node.mothwick.cc,ACR Stealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,gptfe3dd.ceomutual.com.mx,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,drefdan.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.dwklaw.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,xeros.store,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,cafeskane.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,frame25.es,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,centrofer.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.sindimotos-ce.org.br,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,quietcrate.xyz,Unknown Loader,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,kidandkru.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,yunyu.yunyu.pw,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,animalplanet.ma,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,eccor.com.br,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,nginxmysql.com,BloodAlchemy,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,bridge6.hazellayer76.website,RevStealer,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,residences-anna.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,forsttrading.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.grillfeszt.info,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,op.aromattoto.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,kingswaygroupofhotels.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,teddybeareducare.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,mikesbikeparts.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,asgaskjgthaskjg.xyz,Coruna,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,qs.aria88.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,q6.aromattoto.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.ikukuomaproject2.com,Remcos,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,leapfront.ai,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,adminetole.icu,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,fbareimbursement.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,nittokenakata.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,intoactiv.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,f2u2n15altji5nf5d94f0jx.cfd,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,olumawu.org.ng,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,happymed.pl,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,wizacademy.co.uk,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,dolphlinksan.online,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,k7.aria88.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,restaurantbibi.ch,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,aromattoto.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,dialogieuropaei.eu,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,biopackdigital.lk,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,saeqnwsc.com,Unknown malware,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,nusantarasibernews.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,stopinternetgambling.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,pingstatus.click,ACR Stealer,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,qcvn.edu.vn,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,sqlserver-sqlite.com,BloodAlchemy,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,opticademichoacan.com,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,usspharmaanalytics.co.in,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,liuxingtao.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,ascsrl.com.ar,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,asistenciatecnica24.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.ddduuuppp.com,BloodAlchemy,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,decor.impiriainterior.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,g.aria88.net,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,techworldx.xyz,Unknown malware,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.giannacalcados.com.br,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.icore.global,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,playcasinoth.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,giannacalcados.com.br,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,17j2n74w.libersity.mx,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,ivvsolutionsmz.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,essentialvibration.net,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,inksanity.in,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,www.countryheart.nl,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,siruvise.ydns.eu,XWorm,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,fjpqyhix.cubitnet.xyz,ClearFake,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,affordablecar-service.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,zv.aromattoto.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,z.gl111.org,Vidar,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,tathastunaturals.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,5yedpf632rk3t98.icu,Coruna,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,rentamanak.com,ClearFake,95,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,whedbeeinsurance.com,IClickFix,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,ashraydesign.com,Unknown Loader,80,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
-domain,spywarehook.com,Unknown RAT,100,aktiv,ThreatFox (abuse.ch),2026-11-18 03:36:38
