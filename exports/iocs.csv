@@ -1,7 +1,451 @@
 type,value,family,score,status,source,first_seen_utc
+url,https://www.securityweek.com/ground-truth-ciso-matt-martin-on-building-a-real-security-program-without-an-enterprise-budget/,,30,aktiv,SecurityWeek,2026-11-25 22:23:23
+url,https://www.securityweek.com,,30,aktiv,SecurityWeek,2026-11-25 22:23:23
+domain,www.securityweek.com,,50,aktiv,SecurityWeek,2026-11-25 22:23:23
+url,https://www.securityweek.com/us-treasurys-fincen-disconnects-systems-following-cyber-incident/,,30,aktiv,SecurityWeek,2026-11-25 22:23:23
+url,https://www.securityweek.com/shinyhunters-claims-comeback-new-inception-group-rejects-alleged-ties/,,30,aktiv,SecurityWeek,2026-11-25 22:23:23
+url,https://www.securityweek.com/two-newly-disclosed-geoserver-vulnerabilities-under-attack/,,30,aktiv,SecurityWeek,2026-11-25 22:23:23
+url,https://unit42.paloaltonetworks.com/ai-threat-horizon/,,30,aktiv,Unit 42,2026-11-25 22:23:21
+url,https://unit42.paloaltonetworks.com,,30,aktiv,Unit 42,2026-11-25 22:23:21
+domain,unit42.paloaltonetworks.com,,50,aktiv,Unit 42,2026-11-25 22:23:21
+url,https://www.microsoft.com/en-us/security/blog,,30,aktiv,Microsoft Security Blog,2026-11-25 22:23:18
+url,https://www.microsoft.com/en-us/security/blog/2026/11/25/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-email-security/,,30,aktiv,Microsoft Security Blog,2026-11-25 22:23:18
+domain,www.microsoft.com,,10,aktiv,Microsoft Security Blog,2026-11-25 22:23:18
+url,https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/,,30,aktiv,Microsoft Security Blog,2026-11-25 22:23:18
+sha256_hash,b2c593bdc096fa20f3fe00f1ea4a59b5320f884415a008f66b4283b935c9cfe1,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,a3a5e2c42cc88336ef7ae7b2e118cd770162a72067df5304b97c774c6ff7562a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,686dcfd8e7e33f2df80085d0b03b078958f32ba7a0aa735e07b4dde9f4bf3022,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,137c26e7db76a9626240473ab53a8fceedb1f0a9ca3580a3e66bd1f9d02e407e,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,d05d0fd903592c9a60527a578bcb7654d24d3b61,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,4e40f11cb2d19e6b9f4d0eeaec91f42bc19a5d61,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,34bf800b57e2644cd77b3d4092ea5348,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,265c91f3133350d4d28732f58143e374,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,4b46e7374d148e207d2a4b5d2931b16d0fdce83ece2e05823d211c07ac9eb75d,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b4fdaf46a9817f828eb7bc29c9319953a9e06fba2bc2325c972bc25d4ed219d5,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,4ab643f49ee2a86c36ba665d7a3e5b91997d1da2840d64a0483d2b477c7ca7e0,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,402781973739d057cf3e91d14fce1fb0c12ca95683e2ba43c035ae43314995dd,,100,aktiv,AlienVault OTX,2026-11-25 22:23:17
+cve,CVE-2025-59361,,,,AlienVault OTX,2026-11-25 22:23:17
+cve,CVE-2025-59360,,,,AlienVault OTX,2026-11-25 22:23:17
+ipv4,196.251.107.186,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,91.92.242.236,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,185.215.113.209,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://91.92.242.236/files-129312398/files/file_583f8856851a870c.exe,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://142.11.210.231/bins/packets.mipe,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,cloudservicebase.ddns.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,https://cloudservicebase.ddns.net/update/CVE-2026-44747_patch.dat',,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,https://cloudservicebase.ddns.net/update/CVE-2026-44747_patch.dat,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,50f2e9c97c3c15ac3c7abbad47a272bdfe47acef,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,2e8391d0802f4633986cb037cba5e2804c8657fb,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,ece7a00c3538451f421413265dfadd4d,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,e36515e3fb6349a641ef456317ae0b3f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,cd5bc2ef1c7e076b4460e33047e3c1ad,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,988e5f290039d4b31527468bd4e76787,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,505524d1acd4caad4a1c119312b0e1d1,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,4b8f63685671c33f9641cd5828a78b3b,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,e7e7649f7249cb32f3123299e3a200c83dc210420b40f944168c36ab781b9458,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,9a581faca7fba81aa0ac91f621eb9302646bca3a954d044746c4751aae2e23a0,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,0068c4edd784c482030b68fa3a13e5d16fde30ed999619b87ead40ef5333a074,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2ae7e8cb7d50922c9b8f6032fa452d0e0b27f8b0f520ddd90945ebdb6ecf423a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b8eb00ae419b1a9421f13200ff4893eba57800543de1d71b9752c301123783ff,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b33c9b4c9771032b16de477271551f64f4f550f85eec96a70d1a345f84f55603,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,9bc1be99462f89880e1e22d9d3ade01cbbfe8bae54a27125e0129542f92ce93f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,27f600d476638c8f1236db3eda9d70e39c9a96ff62fca69ca227426c48448bf7,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,17761569bf44d46877b22972bb1ca224527562a7a7aeb5b70ca8112510a49537,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b797935ff3db3da42d046537d17191d790a6344a12947347165eea2744e1265d,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,78fa8ea3d4daaaf088babd49f2bc0e59220940dc256d8b8938bad95e2fe4717b,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,3dfce4e8d5b625e435429c8d15fb6ce8bad9601fbc7b84f74b4aa5b560bc482e,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,26485a167f9e4c4ea146c8420ba0bcc44facbec4d5e8fd91e624f2c81255b589,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b8cf4c68dc362aeb31546a3dd091f8f23cf624e495eec84c840f2dd0906e2f4d,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,1bc553ee2324f67c86cf8d9057da242e8ab363c59e452f5a69a1275909c20a97,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,541b0893ca326b6c652cb1d5873f208e968481e33b635c3869479016bcd75d4f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,ae28ff44ee3bd2911c5a1e4110f12d12e7b585f087a0afd85d6fdc4d4b5a36f5,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,ef691b00cada5974b6bb516386c90589bd2340216f446518ad08d11fc930d631,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,016f633b9a8dd5ef17d577775cc64f96aa30192f3fbf814eba0c3f5c9fa5d91a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,56e899eb1d5c967cbe760d1b7ac409fb9420b862c122ef7ec2a2aa6469a503a7,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,a3d04638930eae8442578679be6d150b3c56373627c9bc7e480725a31bb2d85d,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,63f1c64bd0db73b327d6655e4262ab8dcbd4ff2ed0a6dd5e062ceb977dcb3e75,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,09dd6f214a5b5a1fe2934cc859a1d1ce566894faf9236a0bcab2d2cf34448d63,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b49a89af8c4884f9aecad7d980bfffa03226e8d30aa35afd813919af9e2d7cfa,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,352b04dac5f63208f45c7c7326ed06c6fa8ae2752e4cdafff0cfe649ebaeabe2,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,33510d8e48c26279c0c212b4e6e5f95b7f0a116061eae7f50241f81903be5b6b,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,d0a78aec3dd8dbce2e3fb0412b666a602fc0a71a800e24b99d735581795e11dc,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,9e58baccd25b009b80f093bbcaf007b1ca3ac763c9826e05e1352e64264d0d42,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,ccf299e23471cd79b2f40f91ee6f48293893e6c626ef84b10ef0b3ba86a89770,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+cve,CVE-2026-44747,,,,AlienVault OTX,2026-11-25 22:23:17
+url,http://webhook.site/72f421ea-5576-4a4a-8c55-a2a79c19c8b8,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://pastebin.com/raw/swqSMxYs,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,38.253.224.12,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,150.242.254.199,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,204.194.54.240,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+cve,CVE-2026-31431,,,,AlienVault OTX,2026-11-25 22:23:17
+cve,CVE-2024-1086,,,,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,97669d76529bc5efd4fa6506de13fb71,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,e9a03f331f3d737a2dcf479a54b94fd7,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,8211127a7bc385bc784822d22f69c426,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,455cf0f40354af34569df868f601543ea04df583,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,2cbeaed3a591219c0eca708b4cb9f4e249231b89,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,7e9fd6f02d35806af0b7447038322fdf0eed4318,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,f585e980a16e52b8da2d2328dc5688cb0a1dc5cd,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,a49f43d0ae373cb35df2cb7a5542bc58234764dad15a628d28a5c67fc6834357,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,0319739869e1aadb2d598152a0290215c057c8364257f3a84a42164cf863019f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,c5d1358ece7dff7834507a29f59fdc35a1a2afa3045ae8d754fb497f6f999296,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,bloonspace.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,58b0fef7be4ea9168796c2e24d092f61326bbc4e,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,33d245e0c67264fb8721bd227cdb57c19b255684,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,e55773c308dd1f09cd789d5ec185bb98,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,76abab53a62dcfc04f1665cfb82fffb8,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,acf1b83914aca2944f55be6ff269cc984f35e3a757a12d9cd036e428c93087bc,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,ae9556b371d29e5fd1f7ff45c00fb60644d6cd8c5bfc1b78a565c1f6296f3a81,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,39cb29f0985fa58d6b4f632948d543c3633e0a8ab1a51a360a813f2752eb082f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,75e5225cb2fca8b62718648e0c663b9003048a19860ae9f0458f7d904220e693,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,e13e019dae958f20d7a252adf64888ab6e6c427622b67c5bf7ae6ffa4a0e25f3,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2d92fe0b3b918bdbca318879a65bd5a00e63e00b181085afdeed6922c85f90bd,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,https://setup-assistant.com/api/config,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,https://setup-assistant.com/api/collect,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://monkeysholder.info/index.php,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://monkeysholder.info/api.php?d5758ec1,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://monkeysholder.info/api.php,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,d2efe756e96ce7c2d85454e3960f770177408ce4,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,cb895ff9e3387220b31bd9dff9f7d8ef65f36a3f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,a422c5f576fb04405c789cf925bdff2c669dd3e6,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,a18f97fd1d22b6db3529482f558c8e2f3e5fdb29,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,51a902e9ab6aff068896abc3581ffc63cf515a18,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,36d55de325a779815145637df2b8077d1077013f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,11007520a90a2120c607c99688190f56d66899c1,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,d81a917e80de669820ded410780fc003,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,beda709ab23287a548e14cb5e9b917f9,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,a65758c4e8a6cd63b29ac9958912569c,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,a5d1541148ed8d06ea13b564a846f105,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,8e70a2cfde956e4cf980b48cc3f4add9,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,3f4b5b38c93b1b756ff511457be30ffe,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,101e014ad7adb16a6813daa7c2972a1c,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2a4ea0bce6e7d5c182a2af9ac0a6bd040b0fcb3671d8f7342d68a0c0a745128f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,7e68eeee6a3e02a1c80dc743234a51bc32c0b377baa1042b9484b70cde9176f3,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,5d05b6b278fe0733ed796ffc9bd322b46d964eeb4f9a72e8737ae9fdb062c0f5,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,8eea1de7ad1e4483b8c92f484662a4d67b7a0343fcfe9a233997a39a9c8bfd96,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,422fed3be685f2ccb5bdfbad489584d11e9b266c61eb8c5d521e4f7c7d2ff341,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,28ef014272655afc4e5246c1661abf81a7807e2a3e445cbdf00fa73aaab08414,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,8beaa8db7b85c08de59313a53c67e7ed0f1c62cd54991555d41561b68c49808f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,teams.codes-team.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,snipp.codes-team.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,https://remote.medochomie.com/api/ClientDownloads/WindowsInstaller/0f3db892-22d4-4479-a7ec-e54a375bd19c',,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+url,http://185.106.102.70:8080/HK5PpjU6I9ug0zmNZqAFdIPa9wayXl2RZ,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha1_hash,e519fb5cd034e30a89c3c9904b7e776f615bf484,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,772756296fd234156415da4081abd399e4647f83470120097e925918b2f03f85,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,5d3b30589eceab51b804383c3a1f8538b207826a4dbcc919db4b6b17c090cf56,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,e9598232aa4232fcc2db3ae60490d2a71ba103f12f07f9d819f88b86400a81ff,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,7e3e897ffe49395918a015ec54bdff4c89ee2411131ca94ccff20678a62b5974,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,27d50c5f96ab050bead5710b2c213a9de4ab0a8823ef6394e9aa0a23f8372600,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,f0dadfd28efdace2701ca95939602825a49c9f61f703e2814269b7c469fc789c,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,197fd95c1b0ffad9c3a116c8bc53f5445381d31af789ed11b2227ab20fb4c0f8,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,5b29f81adcfe1b795f344bd660b87ddc2cb06dc6ac72b7aeee5af2a64438b635,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,28ef8ced263c5732726ae6e615a9f0ddf05863a1bde95c4dcb6b96561b5ac9ba,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,f8016ff265fac046a72a1f89c98ced960c492d2b1ec303f0f07ef39c6324a985,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,13a619e7501a07cdabc9595050aa03e073d820d843c156a04246104263086749,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,29321b3a590ba2c0850eea6c0bd3dcd8503115fc381282cefaf41fc7bb468c80,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,0547965e807a030ad9b1bcd0b7cc7c383f3ad6ae7ad173e236057430279fb808,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,35b236fc5ff19e05b2699b0f824fe85d6ffdf7c2f1516d3fed8c6dbe920ea162,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,5d3d532dcdd2002ce7b16fd95d9d04ccf7cdf001b003eaec49e7f288eaa43e17,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,845302a55726b76dd48baa2beaf302fa33cbb6479a816a3794e78ba49ddf3973,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,451ea8cf63e71a79211308734913453d03b4cc9b07b43163805dea8d49a46bc4,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,6b183b16dbbda5a01cfa73366d01ef1a87a9bedfcc3ddae8d7849bc3f37cedbf,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2db69a664953fd4ad33f7cfda67f8ec53798803a0b95f0c004222e94c4f9629b,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,fc110456041ec607e3dea81e13277baa5328e8a8026084d6d679236f45da8c4c,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,6a522cb5d1888511b547f64043bb4c35f9d81452adcfa268650f7d803bf77dfc,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,1971142007ed60d009dcd56600b96a41a01e9fba8696b65ed7699aaf12265b77,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,02a12f39429d7f111aa4f087dd73fd8d8415fe7be0e76202a4cfd5242144040e,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,d271b2ef422709febe95b891d42ccd9fd0855bff8a15f76b78a528ff34195342,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,90619f94124e86f9337f12e88fb3533b9718b8fe6328c7c1bb97503efe1d2bb2,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,abe2761831fbccb959037c65443f3988d92a69a2140b76f3e6666734f3982ba4,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,3c0be3c1397a5a14ee511a3452c708514b3afd0fd975a11715f0d9fb98e462dd,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,9977374425f552e8408d400dfd0340b1047a5085943ba9c85cb4b454be828427,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,85e78b3ae9648594f7c3a069b5aa6bf985f25e6c14794aa9511054b6828912c6,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,4469babd3d9b88bdec90b9164f0f80d95fb267434461ae85114a7197eeb02e3a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2627ea4d7dcadca71de39b19fe8dc877e8f5c54c5e71d85202641196864df9ae,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,b42ce40afb65b510317bc755d37f2f4617186b70dd28e3a35b7f064eb42628bd,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2212b52b448740327d96fb98cf0145ffce62cf0741a12822f8bd40216a4a5863,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,29c0173763a740aca360970c5646b299f492ef64d37476ca4d02da7a832df80a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,ca5b94ec1a3a218e12bfe6179a396e69b48de0000eac48e445b49e9d2cc80fa2,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,dff387a7cc85a396f95eb1833cecd65fb991cdbcdaef45cc657cd75be266cc39,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,13ed4c76184bf60f46db4b3b2b7cb62f91bb8208b2813e58d8b8c879ee9259cc,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,428f92ef5f7f7348cc1abdf168854b676808957de812a53b956db473036ae131,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,884327755c4bf778b524bbe3814307c077d3bd72c19920a0995824a931ca9e2d,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,9a3de87064b4e7f246b5282d4b313ea48fdb37176d85bad1ba6faca6c6907ee5,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,351a44052f2e3f0897ca3c517650e3cd93515bf2d29db8006e0f26f062ecb5c9,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,f733b6cac9f85dd0e7a73ab8e592df5125e13195e5acd2793f76d4ccbf736990,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,40e8117a60a1490a94b65bbac8163968e2823113a5cb3023a60eff611171ebc4,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,bf98bdb300e04d2200ce90a3626f05c2a9942597f5919ae2f6152a8d1327443b,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,61cdefd7f039f5c7d1c1b17ba74b8dae31138ff16072ba474e20f7566d2c011a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,90e79eab4188775d1da963d6ddc8c92b63c01f17d709e03f836f42241e7210ec,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,6be53629a26384078fd38c431819d86a27fd03af53ff3ae7fd19ae38aae2be73,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,6cedef9bdbaef331bad705b1488686e10dd4e2fbd5fda78af57b4704bf4ab344,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,651a5ba217c996cbdd567038632e28896e06d0f728708327badd5f0b53963d9a,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,fdd5c7a353c5f313076a8c37eb6e672e633fe4416591642564abe3274782d2bf,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,68ed37807c4c41541c3fb5afa3763b514be0b5d3086e8864c1e67a74580f4535,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,648365b4983f3468b0f077c30110d6271e6f0c9a870ed6769be774f87f5c2b08,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,a4ef03a850d6a9bc590d4c074230f09848309c95c92a62a9d32c5d0be7573f52,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,31782222f017e5340261f0cb6d1b0bbbd9eb8309bd56a67a628e7335bdb1be4f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,15cb048c38063ec269208ea0ff98c7fd86e21a4d7a7c2eaeaa49933e36224de7,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,f78e4ab9d74f9cd74c02a8e0cb9e00348dff14281d44092b9d874c17dee8bded,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,c763a530794ca9b5b2319941fedef3684a65c427e945038f9a03cd505afb30f7,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,80f98fff65c9488a1794a7b7e61acfa65830308d1ccd6801f5d4936e71403e04,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,438290e0fb6651bd8fc5eb45a6e50b7c9339e435c425adf2e0718c2edec03c72,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,7bfd88831a0599b2fe070f8f41fd4e1953584aa220b0cb788d4b1f805e7f0920,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,deed01f1f9359b1bbb926795234a5ba5860894aac9c0db4e55b3c9a8fa77d2a1,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,625f86e71a4b99c1fb9764a98e81901158ef0b1f6b0374b4cf1753f58bb3b858,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,9aa67867d5407184882da7eca22542fe4fa40db8e7cdb3526d4f9b75a9c57d55,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,d619323f20fd58e70ff846e1051a830d9735c89c6b2c72809258cfbc180d915c,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,3239b5916a3462e17ed3110083f3310c58bf1c74aca75e20ddb8bfa7b7b519fb,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,8657c350a2cf338721ade0bba8bd976cdd0c6e21fb7d5052eec24f8a034d7f7f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,27f36e562015365017c1458a5944b4f03cb13049f3b268bb919fcff7f83c459f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,684f748deceabf0fbb789ce11cc748ec62ea7e218f44289557e733509ec9b250,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+sha256_hash,2477bbf0ab3f0c9db73fcb2f5f9dfe8cf6703a88862a7c98a5de6f349cd8833f,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,8f8f055dc2c3e573f31719ff31f7ddc8,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,45.38.170.31,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,217.60.5.87,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,217.60.5.75,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,217.60.5.55,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,213.252.245.60,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,213.252.245.44,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,88.119.171.245,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,88.119.170.218,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,95.182.88.89,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+ipv4,213.252.232.131,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,webmail.cabelenet.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,remote.medochomie.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,owa.webmail-eac.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,nl-backend.gatewaynet.site,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,nl-backend.cnpcyprus.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,nl-backend.cabelenet.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,mesh.websitegate.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,federation.aegeneair.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,exchange.webmail-eac.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,liveupdatenews.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,portal-gateway.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,aegeneair.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,medochomie.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,webmail-eac.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,primetel-tel.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,primtel-tel.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,cabelenet.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,cnpcyprus.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,gatewaynet.site,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,corenewsnetwork.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,gapgroups.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,websitegate.net,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,dpwords.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-twitch.tv,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-grubhub.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-amd.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-creditkarma.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-indeed.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-dropbox.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-westernunion.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,activisionblizzard-legal.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-duolingo.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-paychex.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+domain,legal-pepsico.com,,55,aktiv,AlienVault OTX,2026-11-25 22:23:17
+md5_hash,f8fc69dc5c576806d9a7dca8fdeec2f1,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,e9f7ec75a20b226d873a672be529db03,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,e9c791d4458197cde06331baf8a65610,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,da2085178996da0bf5c3ea5265a1f2fd,signed,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,bffd32a950f2b6d135b3864d1cdde44c,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,b913b4c79996ba967b9bf15cd5ff3d0e,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,93cfb5c668c27c244389ce330f84bc54,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,7c81efb04a0c3fe20141b52d9f759648,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,70da445f5d958473a23dd8b4b8d2e6ee,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,3f20ba9d7b0178a2ccaa00b33163358e,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+md5_hash,3b64d2c2f007d6fa7b0053fafd1ea08a,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,f9617a9dba06a951ab4675c806ed2c2f8a433d27,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,e1ea4a0e33df88cebb4c29f45974569ddf6799bb,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,dbf709515399328cb75b3bc211f4a32475705510,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,ce59e54a8d64d51c0484eb7816def9fb5c974de7,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,c5a62ab1672003821b9571c83701c67ddca2283f,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,b4d4c1466ea7a4ad547bf48338bc3c1723006c25,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,a426d7fa30cbb068c11d4fe895b8ba9c90ebcabf,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,9767b0f0ee41ecbfb76f7b90e8929dc7434662e3,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,704f16a5340bd53a816543bd3f2deebcb04d1354,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,6c9c2307fa66a89a0db16c8be7b002594f328b1d,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha1_hash,2a738c695864778accc6e2033c3efa6835f88265,signed,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,fb2f617a3e25f5541545579cab16d7a933e522fc346d16c45e6f748101c5a525,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,f891c619cdbf184a30acbfd3ddf5c8c193a336444b701397efef72859d08d6ba,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,eb832924cb00ced89846970fbc6cb0e54808cc006d8532069d846822114bdb3e,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,c8f49973d3df68a612025dc0cf68a1366652b18b60206e5dbe5fd1489a477699,Prometei,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,c443cfdfb9f378164e9ba0a739115c2e15f78d0ee02396f494516e769a616fbb,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,a8f46f88eb16b2d003a93260d5d645a9e455606faeb34d76e9cdb25edd59ee4f,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,918eb4dd40ff14b8baf5663bce173f6988c75ca5517cb991403fea8f75259b15,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,4cb9b156425157d802c314d82ddc0387dcc3c4400f12d1d235b539ee684b1b22,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,4584e833e17aaf6cb5a2871b3f7b57612c57b8a52ef3bfd70f33ba8856dda9bd,signed,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,383f895d1897ac48271bbd5ac6a9614560d87eacea01ce1fe634848188c1a7c1,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+sha256_hash,283bbd4476026660e9f2348604b248dcf14015793e3eea9d2f66055d66976caf,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 22:23:16
+domain,wyp.hyperseqk.icu,hype,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+domain,runelite.ch,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+domain,dx.duxlip.icu,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://wyp.hyperseqk.icu/Hyper.zip,hype,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://www.dropbox.com/scl/fi/tlhq3ncu5rhopz6a7v89m/be30b2deb7?rlkey=8eb1gtv1a38lw6jzg1097cc9d&st=izuqibox&dl=1,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://runelite.ch/runelite-api.jar,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/magicbutterflyload/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/magicbutterflyload/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/zapret-discord-youtibe/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/zapret-discord-youtibe/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SubstanceBeePillar/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/zapret-discord-youtube/releases/download/zapret-discord-youtube/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/zapret-discord-youtube/releases/download/zapret-discord-youtube/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Zapret-Discord/releases/download/Zapret-Discord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Skachat-Zapret/releases/download/Skachat-Zapret/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Skachat-Zapret/releases/download/Skachat-Zapret/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/ObhodDiscord/releases/download/ObhodDiscord/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/ObhodDiscord/releases/download/ObhodDiscord/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/DiscordObhod/releases/download/DiscordObhod/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/DiscordObhod/releases/download/DiscordObhod/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/DiscordFix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/DiscordFix/releases/download/DiscordFix/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Discord-Zapret/releases/download/Discord-Zapret/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Discord-Zapret/releases/download/Discord-Zapret/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Discord-Fix/releases/download/Discord-Fix/zapret-discord-youtube-1.10.4.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Springenhandcuff/Discord-Fix/releases/download/Discord-Fix/zapret-discord-youtube-1.10.4.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/zapret-discord-youtibe/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/zapret-discord-youtibe/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/SmokePresidentSing/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/zapret-discord-youtibe/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/zapret-discord-youtibe/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/HippoDescribe/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/zapret-youtibe-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/zapret-youtibe-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Dawnnobridge/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/zapret-youtibe-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/zapret-youtibe-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/zapret-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/youtube-discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/yotube-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/fix-discord/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/discord-youtube/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/discord-youtube-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.zip,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://github.com/Bottombenstep/discord-fix/releases/download/%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-Zapret/zapret-discord.rar,github,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://dx.duxlip.icu/DvnX.zip,dvx.to,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://cdn.discordapp.com/attachments/1575244461309436035/1575244726985162782/2f85843c4f?ex=6b089479&is=6b0742f9&hm=62013631b697adec348893bf396bd8eec010c159258348ac150fd409ce42cfc5&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,https://cdn.discordapp.com/attachments/1566604992914133066/1575224954805428375/12a7981efa?ex=6b08820f&is=6b07308f&hm=3051b735a6ce76284dcb85e44a2a2ca952cee43bd9711de989f2c4515bf7ef31&,IRAHook,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://59.97.254.30:60483/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://59.97.248.127:54223/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://59.96.142.238:53758/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://59.96.140.235:41117/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://59.96.140.235:41117/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://42.5.244.240:60815/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://42.4.118.214:50412/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://42.239.188.105:54394/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://42.239.171.150:56322/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://42.239.171.150:56322/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://42.224.80.162:52782/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://27.37.228.154:38478/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://222.134.170.14:38871/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://219.156.186.155:57083/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://216.126.81.138:51325/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://216.126.81.138:51325/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://203.204.158.100:60757/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://196.190.69.149:53709/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://183.12.165.10:37895/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://182.180.103.17:44307/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://182.180.103.17:44307/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://182.119.254.208:47139/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://182.114.240.63:58611/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://173.182.86.23:38713/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://173.182.86.23:38713/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://154.223.128.222:37733/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://138.255.178.214:39628/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://124.6.167.113:45787/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://123.4.197.221:59472/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://122.100.129.245:52953/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://119.189.214.203:56937/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://119.183.26.175:52870/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://119.116.34.254:55864/i,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://119.116.34.254:55864/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://119.116.32.75:55907/bin.sh,URLhaus,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.63.201.194:48242/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.60.244.97:52073/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.56.67.138:37429/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.52.37.52:56843/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.52.37.52:56843/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.49.8.39:50635/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://115.199.104.206:58475/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://114.198.242.174:44563/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://113.231.211.218:42206/i,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://113.231.211.218:42206/bin.sh,Mozi,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://111.173.159.66:44844/bin.sh,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://110.136.54.87:57128/bin.sh,mirai,100,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://107.175.65.218/bins/sora.x86,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+url,http://105.224.250.233:45823/i,mirai,95,aktiv,ThreatFox · URLhaus,2026-11-25 22:23:15
+cve,CVE-2026-133323,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2026-133303,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2026-133311,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2026-133275,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2026-133324,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2023-25915,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2023-25914,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2025-41450,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2026-133469,,,,CISA KEV,2026-11-25 22:23:14
+cve,CVE-2026-103406,,,,CISA KEV,2026-11-25 22:23:14
+url,https://www.cisa.gov/staying-secure-large-scale-events],,30,aktiv,CISA Advisories,2026-11-25 22:22:59
+url,https://www.cisa.gov/resources-tools/resources/free-cybersecurity-services-and-tools],,30,aktiv,CISA Advisories,2026-11-25 22:22:59
+url,https://www.cisa.gov/news-events/alerts/2026/11/25/cisa-adds-10-known-exploited-vulnerabilities-catalog#main],,30,aktiv,CISA Advisories,2026-11-25 22:22:59
+domain,www.cisa.gov,,10,aktiv,CISA Advisories,2026-11-25 22:22:59
 url,https://www.securityweek.com/drupal-flaw-found-by-anthropic-scanner-exploited-in-attacks/,,30,aktiv,SecurityWeek,2026-11-25 12:35:26
-url,https://www.securityweek.com,,30,aktiv,SecurityWeek,2026-11-25 12:35:26
-domain,www.securityweek.com,,50,aktiv,SecurityWeek,2026-11-25 12:35:26
 url,https://www.securityweek.com/palo-alto-networks-patches-fragnesia-flaw-used-to-root-firewalls/,,30,aktiv,SecurityWeek,2026-11-25 12:35:26
 url,https://www.securityweek.com/hackers-exploit-unpatched-flaw-in-defunct-idunno-anticsrf-library/,,30,aktiv,SecurityWeek,2026-11-25 12:35:26
 cve,CVE-2026-131914,,,,SecurityWeek,2026-11-25 12:35:26
@@ -509,7 +953,6 @@ url,http://120.86.170.227:34213/i,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-2
 url,http://27.215.50.218:47438/i,Mozi,80,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
 url,http://210.208.111.26:35067/bin.sh,Mirai,100,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
 url,http://222.139.193.228:54687/bin.sh,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
-url,http://110.136.54.87:57128/bin.sh,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
 url,http://105.225.94.152:44633/bin.sh,Mirai,80,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
 sha256_hash,4d4d20957b5bc457ceb00012c3bb52d25c0c463f14619f2cd2e00813dc95ce99,SNOWLIGHT,100,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
 sha256_hash,f9a1fcc6d375dfbd2bd08ac507f27b970448bb86657404d4217e5f2f6da9c962,Unknown malware,95,aktiv,ThreatFox (abuse.ch),2026-11-25 12:34:49
@@ -1866,15 +2309,12 @@ url,https://www.drupal.org/sa-core-2026-017,,30,aktiv,The Hacker News,2026-11-25
 url,https://nvd.nist.gov/vuln/detail/CVE-2026-132165,,30,aktiv,The Hacker News,2026-11-25 12:34:06
 url,https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog],,30,aktiv,The Hacker News,2026-11-25 12:34:06
 domain,www.drupal.org,,40,aktiv,The Hacker News,2026-11-25 12:34:06
-domain,www.cisa.gov,,10,aktiv,The Hacker News,2026-11-25 12:34:06
 domain,install.php,,40,aktiv,The Hacker News,2026-11-25 12:34:06
 domain,nvd.nist.gov,,10,aktiv,The Hacker News,2026-11-25 12:34:06
 cve,CVE-2026-132165,,,,The Hacker News,2026-11-25 12:34:06
 cve,CVE-2026-132224,,,,The Hacker News,2026-11-25 12:34:06
 url,https://www.securityweek.com/an-unclassified-cia-system-was-breached-in-a-cyberattack-ap-source-says/,,30,aktiv,SecurityWeek,2026-11-25 02:15:37
-url,https://unit42.paloaltonetworks.com,,30,aktiv,Unit 42,2026-11-25 02:15:34
 url,https://unit42.paloaltonetworks.com/cve-2026-123633-nginx-http2-vulnerability/,,30,aktiv,Unit 42,2026-11-25 02:15:34
-domain,unit42.paloaltonetworks.com,,50,aktiv,Unit 42,2026-11-25 02:15:34
 cve,cve-2026-123633,,,,Unit 42,2026-11-25 02:15:34
 md5_hash,e4bfb8736d81e4ab7ad464e4af3a2d2c,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 02:15:05
 md5_hash,df7f3f7634b2460eee3b0d0c359110d8,EasyShell,95,aktiv,ThreatFox · MalwareBazaar,2026-11-25 02:15:05
@@ -2698,9 +3138,7 @@ domain,marblelink.cfd,Unknown Loader,100,aktiv,ThreatFox (abuse.ch),2026-11-25 0
 url,https://isc.sans.edu/podcastdetail/10194,,30,aktiv,SANS ISC,2026-11-25 02:14:43
 url,"https://isc.sans.edu/podcastdetail/10194,",,30,aktiv,SANS ISC,2026-11-25 02:14:43
 domain,isc.sans.edu,,40,aktiv,SANS ISC,2026-11-25 02:14:43
-url,https://www.cisa.gov/resources-tools/resources/free-cybersecurity-services-and-tools],,30,aktiv,CISA Advisories,2026-11-25 02:14:37
 url,https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog#main],,30,aktiv,CISA Advisories,2026-11-25 02:14:37
-url,https://www.cisa.gov/staying-secure-large-scale-events],,30,aktiv,CISA Advisories,2026-11-25 02:14:37
 ipv4,10.3.0.18,,0,aktiv,NCSC-NL (Nederländerna),2026-11-24 17:30:19
 url,https://www.securityweek.com/peninsula-energy-halts-trading-after-cyber-incident-hits-us-uranium-mine/,,30,aktiv,SecurityWeek,2026-11-24 17:30:18
 url,https://www.securityweek.com/elecbrakes-bluetooth-vulnerabilities-expose-trailers-to-forced-braking/,,30,aktiv,SecurityWeek,2026-11-24 17:30:18
