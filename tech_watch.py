@@ -14,9 +14,12 @@ NY KEV-sårbarhet berör något på listan.
 import html
 import re
 import sqlite3
+import os
 
 from storage import DB_PATH
 from tech_watchlist import TECH_WATCHLIST
+if os.environ.get("CTI_PUBLIC"):
+    TECH_WATCHLIST = []
 
 WINDOW_DAYS = 30
 MAX_ARTICLES_SCANNED = 1500
